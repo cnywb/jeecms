@@ -1,0 +1,34 @@
+/*ÎÊ¾íµ÷²é 2015-06-10*/
+.qnTopbanner { margin: 0 auto 15px; width: 940px;}
+.qnbox { width: 940px; margin: 0 auto;}
+.qnQA { background-color: #f1efe8; border-radius: 5px; padding: 14px; margin-bottom: 5px;}
+.qnQA h3 { color: #81ba2f; font-size: 18px; line-height: 36px; border-bottom: 1px solid #d8d7d0;}
+.qnQA ul li { line-height: 35px; color: #85837f; font-size: 14px;}
+.qnQA ul li input { margin-right: 10px;}
+.qnQA ul li .reason { background: none; border: 0; border-bottom: 1px solid #d8d7d0; width: 260px; color: #b1b0a9; line-height: 20px; margin: 0 0 0 10px;}
+.qnQAgrey { background-color: #fbfaf8;}
+.qnSubmit { width: 112px; margin: 60px auto 0; display: block;}
+
+.qnblack_overlay { position: fixed; width: 100%; height: 100%; background: url(../images/zzc_bg.png) repeat left top; left: 0; top: 0; z-index: 4;}
+.qnpop .close { position: absolute; right: 20px; top: -1px;}
+.qnpop { position: fixed; top: 10%; left: 50%; margin: 0 0 0 -205px; width: 410px; z-index: 5;}
+.qnpop .pbox { background: url(../images/popupbg.png) no-repeat left bottom; padding-bottom: 25px;}
+.qnpop .pbox td { padding: 0 20px; font-size: 16px; line-height: 25px; font-family:"Microsoft YaHei UI", sans-serif, serif; vertical-align: middle; color: #585858;}
+.qnPopBtn { text-align: center;}
+.qnPopBtn a { display: inline-block;}
+.qnpop .pbox td span { color: #000;}
+.qnpop .pbox td span b { font-size: 48px; color: #f79906; font-weight: normal;}
+
+.qnpop .pbox td ul li { border: 1px solid #ddd7d9; box-shadow: inset 0 2px 0 0 #f0f0f0; background-color: #fff; line-height: 25px; color: #868686; font-size: 14px;border-radius:5px; margin-bottom: 5px; font-family: "Î¢ÈíÑÅºÚ";}
+.qnpop .pbox td ul li.fl { float: left; width: 49%;}
+.qnpop .pbox td ul li.fr { float: right; width: 49%;}
+.qnpop .pbox td ul li span { width: 45px; display:block; float: left; border-right: 1px solid #dad1ce; text-align: center; line-height: 25px; margin-right: 5px;}
+.qnpop .pbox td ul li input { border: 0; background: none; height: 25px; width: 120px; display:block;}
+
+.qnred { color: #c50000;padding: 5px 20px 0; font-size: 16px; line-height: 25px; font-family:"Microsoft YaHei UI", sans-serif, serif; margin-bottom: 10px;}
+.qnlogin { padding: 0 20px; margin-bottom: 15px;}
+.qnlogin li { border: 1px solid #ddd7d9; box-shadow: inset 0 2px 0 0 #f0f0f0; background-color: #fff; line-height: 25px; color: #868686; font-size: 14px;border-radius:5px; margin-bottom: 5px; font-family: "Î¢ÈíÑÅºÚ"; overflow:hidden; zoom: 1;}
+.qnlogin li span { display:block; width: 64px; text-align: center; float: left; border-right: 1px solid #dad1ce; text-align: center; line-height: 35px; margin-right: 5px;}
+.qnlogin li input { border: 0; background: none; height: 35px; width: 220px; display:block; float: left;}
+.qnlogin li img { float: left; padding-top: 8px;}
+

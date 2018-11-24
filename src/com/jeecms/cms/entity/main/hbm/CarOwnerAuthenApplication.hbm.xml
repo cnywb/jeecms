@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="CarOwnerAuthenApplication" table="CAR_OWNER_AUTHEN_APPLICATION">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_CAR_OWNER_AUTHEN_APP_ID</param></generator>
+		</id>
+		<property name="vvin" column="VVIN" type="string" not-null="true" length="30"/>
+		<property name="vname" column="VNAME" type="string" not-null="true" length="50"/>
+		<property name="vmobile" column="VMOBILE" type="string" not-null="true" length="20"/>
+		<property name="certImageUrl" column="CERT_IMAGE_URL" type="string" not-null="true" length="500"/>
+		<property name="status" column="STATUS" type="integer" not-null="true" length="10"/>
+		<property name="dealerName" column="DEALER_NAME" type="string" not-null="false" />
+		<property name="dealerServiceCode" column="DEALER_SERVICE_CODE" type="string" not-null="false" />
+		<property name="salesCode" column="SALES_CODE" type="string" not-null="false" />
+		<property name="memo" column="MEMO" type="string" not-null="false" />
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<many-to-one
+			name="creater"
+			column="creater_id"
+			class="CmsUser"
+			not-null="true"
+			>
+		</many-to-one>
+				
+	</class>
+</hibernate-mapping>
+		

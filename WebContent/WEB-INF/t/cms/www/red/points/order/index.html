@@ -1,0 +1,216 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>商品积分兑换</title>
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/css/member.css" />
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css"/>
+<link href="/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/red/fordjs/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/r/cms/www/red/js/area.js"></script>
+<style type="text/css">
+table input {
+  width: 195px;
+  height: 26px;
+  padding: 0 5px;
+  border-radius: 5px;
+  background: none;
+  border: 1.5px solid #949494;
+    margin: 5px 0;
+}
+
+span.radio {
+  background: url('/r/cms/www/red/images/radio.png') no-repeat;
+  width: 22px;
+  height: 22px;
+  position: relative;
+  background-size: 100%;
+  display: block;
+  float: left;
+  margin: 0 8px;
+    cursor: pointer;
+}
+
+span.radio_on{  background: url('/r/cms/www/red/images/radio_on.png') no-repeat;}
+
+span.selectcon {
+  background: url('/r/cms/www/red/images/select_bg.png') no-repeat;
+  width: 47px;
+  height: 26px;
+  display: block;
+  background-size: 100%;
+  line-height: 26px;
+  overflow: hidden;
+  padding: 0 15px 0 5px;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input.Wdate {
+  background: url('/r/cms/www/red/images/caleder.png') no-repeat;
+  width: 197px;
+  height: 26px;
+  display: block;
+  background-size: 100%;
+  border: none;
+}
+#jvForm select {
+  width: 67px;
+  height: 26px;
+  opacity: 0;
+  position: relative;
+}
+#jvForm td{line-height: 26px;}
+label {
+    width: 65px;
+    float: left;
+    position: relative;
+    line-height: 24px;
+}
+
+input:invalid, textarea:invalid {
+    background-color: #fff;
+}
+
+</style>
+</head>
+<body>
+
+<div id="miandiv">
+	<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+
+<article class="main ycyc">
+	<h1>精品附件</h1>
+	
+	<article class="ctan">
+	<section>
+	 	
+
+	<div>
+		<section id="pagelist" class="tabpage art">
+		<div class="tabbox">
+		<ul class="tabfj">
+		 	[#if noauthuser=="0"]
+		 		未认证车主，不能兑换商品
+		 	[/#if]
+		 	[#if enoughpoint=="0"]
+		 		用户积分不足，努力发帖吧；
+		 	[/#if]
+		</ul>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		  <tr>
+		   <td align="center" class="pn-sp">
+		   		用户积分：${userpoint!}
+		   </td>
+		    <td align="center" class="pn-sp">
+		   		产品名称：${product.title!}
+		   </td>
+		    <td align="center" class="pn-sp">
+		   		产品所需兑换的积分：${product.pointNum!}
+		   </td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			<form id="jvForm" action="../exchangesave.jspx" method="post">
+						收货人姓名：<input type="text" name="sendee" value="11"/><br/>
+						手机：<input type="text" name="mobilePhoneNo" value="12"/><br/>
+						电话：<input type="text" name="phoneNo" value="12"/><br/>
+						 <label style="padding: 0 5px 0 0;">
+						 <span class="provinceVal selectcon">[#if user.userExt.province??]${user.userExt.province!?html}[#else]省[/#if]</span>
+							<select  class="province" id="s_province"></select>
+							 <input  type="hidden"  name="province" id="province" value="${user.userExt.province!?html}" />
+							 <input  type="hidden"  name="city" id="city" value="${user.userExt.city!?html}"/>
+							 <input  type="hidden"  name="county" id="county" value="${user.userExt.county!?html}"/>
+						 </label>
+						 <label style="padding: 0 5px 0 0;">
+							 <span class="cityVal selectcon">[#if user.userExt.city??]${user.userExt.city!?html}[#else]市[/#if]</span>
+							 <select  class="city" id="s_city"></select>
+						 </label>
+						 <label style="padding: 0 5px 0 0;">
+							 <span class="areaVal selectcon">[#if user.userExt.county??]${user.userExt.county!?html}[#else]县[/#if]</span>
+							 <select  class="area"  id="s_county"></select>
+						 </label> 详细地址：<input type="text" name="address" value="12"/><br/><br/>
+					 
+						邮编：<input type="text" name="zipCode" value="12"/><br/>
+						备注：<input type="text" name="memo" value=""/><br/>
+						<button  id="btnExchangeSave" type="button">确认兑换</button>
+			</form>
+			</td>
+		</tr>
+		</table>
+		</div>
+		</section>
+   </section>
+	</article>
+	 
+</article>
+
+</div>
+</div>
+<script >
+$(function(){
+	
+	$('select').change(function(e){//自定义下拉菜单事件
+		console.log("ddddd");
+		var selval=$(this).val();
+		$(this).prev().html(selval);
+		
+	});
+	
+	//从隐藏的原生单选按钮中读取选中值
+ 
+	_init_area();
+	$("#s_province").change(function(){
+		$("#s_city").prev().html("");
+		$("#province").val($(this).val());
+		$("#city").val("");
+		$("#s_county").prev().html("");
+		$("#county").val("");
+	});
+$("#s_city").change(function(){
+	$("#city").val($(this).val());
+	$("#s_county").prev().html("");
+	$("#county").val("");
+});
+$("#s_county").change(function(){
+	$("#county").val($(this).val());
+});
+	
+	$("#btnExchangeSave").on('click',function(){
+		//表单验证
+		$('#jvForm').submit();
+	});
+});
+function doSubmit(){
+	
+		
+}
+</script>
+</body>
+</html>

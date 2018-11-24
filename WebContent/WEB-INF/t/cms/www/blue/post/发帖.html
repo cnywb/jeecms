@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>回复主题 - ${site.name} </title>
+	<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="/${res}/bbs_forum/js/pony.js" type="text/javascript"></script>
+    <script src="/${res}/bbs_forum/js/PnEditor.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/${res}/bbs_forum/css/whole.css" />
+    <link rel="stylesheet" type="text/css" href="/${res}/bbs_forum/css/layout.css" />
+        <link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/plugins/kindeditor4/plugins/code/prettify.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor4/kindeditor.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor4/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+    function getCookie(name){
+     	 var strCookie=document.cookie;
+     	 var arrCookie=strCookie.split("; ");
+     	 for(var i=0;i<arrCookie.length;i++){
+     	 var arr=arrCookie[i].split("=");
+     	     if(arr[0]==name){
+     	  	 	return arr[1];
+     	 	}
+     	 }
+     	 return "";
+     } 
+    var editor;
+      function initEditor(){
+      	var base=location.protocol+"//"+window.location.hostname+":"+window.location.port;
+         	var sessionId=getCookie("JSESSIONID");
+         	var auth_id=getCookie("AUTH_ID");
+         	KindEditor.ready(function(K) {
+      		 editor= K.create('#_editor_textarea', {
+        			cssPath:base+'/plugin/kindeditor/plugins/code/prettify.css',
+      			uploadJson:base+'/common/kindeditor/upload.jhtml;jsessionid='+sessionId+"?AUTH_ID="+auth_id+"&needWaterMark=true", //多文件上传时必须加上
+      			fileManagerJson:base+'/common/kindeditor/manage.jhtml;jsessionid='+sessionId+"?AUTH_ID="+auth_id,
+      			allowFileManager : true
+      		 });
+         	});
+        
+      }
+$(function() {
+	new PnEditor();
+});
+function checkContent(){
+  if(editor.html()==""){
+     alert("内容不能为空");
+     return false;
+  }
+  return true;
+}
+$(document).ready(function(){
+	initEditor();
+   [#if canAddPostPoint==false]initModelAlert('回贴');[/#if]
+});
+function initModelAlert(modalType){
+	if ($('#modal-backdrop').size() === 0) {
+		var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+		$('body').append(fade);
+		$('#myModal').find("font").text(modalType);
+		$('#myModal').show();
+		$('#myModal .modal-close,#myModal .btn-default').click(function(event) {
+			$('#modal-backdrop').remove();
+			$('#myModal').hide();
+		});
+	}
+}
+</script>
+<script type="text/javascript">
+	$("#jvForm").validate($.validator.AlertError);
+</script>
+<style type="text/css">
+#_editor_controls{text-align:left;}
+#_editor_controls ._menu{font-size:12px;padding:4px 9px 2px 2px;}
+
+.editortoolbar a{width:30px; float:left; display:block; margin:4px 0 0 4px; cursor:pointer; text-decoration:none;}
+.editortoolbar a:hover{border:1px solid #C1C1C1;}
+
+
+._controls_normal{border:1px solid #F5F5F0;}
+._controls_hover{border:1px solid #9DB3C5;background-color:#E8F3FD;}
+
+#_pop_container{font-size:12px;}
+#_pop_container ul{list-style-type:none;margin:0px;padding:10px 7px;}
+#_pop_container li{padding:1px;cursor:pointer}
+#_pop_container > div{position:absolute;border:1px solid #CCC;border-bottom-style:solid;background-color:#FFF}
+
+#_forecolor_pop{padding:5px;}
+#_forecolor_pop td{width:12px;height:12px;}
+#_forecolor_pop td div{width:10px;height:10px;cursor:pointer;}
+._forecolor_normal{border:1px solid #FFF;}
+._forecolor_hover{border:1px solid #000;}
+
+._center{text-align:center;}
+._pop_input{width:270px;padding:10px 10px;}
+._pop_input input[type=text]{width:260px;}
+._pop_input div{padding:1px 0;}
+._pop_input hr{height:1px;padding-top:0px; margin-top:0px;}
+
+#_editor_textarea{width:99%;height:250px;}
+._editor_local_img{border:1px solid #CCC;padding:10px;background-color:#FFF}
+.modal-backdrop{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1030;
+	background-color: #000;
+	opacity: .5;
+	filter: alpha(opacity=50);
+	-webkit-transition: opacity .15s linear;
+	transition: opacity .15s linear
+}
+.modal {
+	position: fixed;
+	top: 20%;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	display: none;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-webkit-transition: opacity .15s linear;
+	transition: opacity .15s linear;
+}
+.modal-dialog {
+	position: relative;
+	z-index: 1050;
+	width: auto;
+	margin: 10px;
+}
+.modal-content {
+	width: 410px;
+	margin: 0 auto;
+	position: relative;
+	background-color: #fff;
+	border: 1px solid #999;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 6px;
+	outline: 0;
+	-webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	background-clip: padding-box;
+}
+.modal-header{
+	width: 100%;
+	height: 185px;
+	position: relative;
+}
+.modal-header img{
+	width: 410px;
+	height: 185px;
+}
+.modal-close{
+	width: 38px;
+	height: 45px;
+	background: url(/r/cms/www/blue/bbs_forum/images/q_close.png) no-repeat 0 0;
+	position: absolute;
+	top: 0;
+	right: 20px;
+	cursor: pointer;
+}
+.modal-body{
+	width: 100%;
+	padding: 28px 0;
+	text-align: center;
+	font-size: 14px;
+}
+.modal-footer {
+	padding: 0 20px 20px;
+	text-align: center;
+}
+.btn-default{
+	width: 134px;
+	height: 32px;
+	background: url(/r/cms/www/blue/bbs_forum/images/modle_btn_ok.png) no-repeat 0 0;
+	border:none;
+	outline: none;
+}
+</style>
+  </head>
+  <body>
+    [#include "../include/head.html"/]
+    <!--header--> 
+	[#include "../include/页头.html"/]	
+	<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+	<article class="main ycyc fuylt">
+	<h1>福域论谈</h1>	
+	<ul class="ltbanner">
+		<li><a href="${base}/">${site.name}</a> &raquo; 回复主题</li>
+	</ul>
+    <!--main-->
+    <div class="main-wrap">
+    <div id="main">
+    <div class="c"></div>
+    <div class="t z">
+    <form id="jvForm" action="${base}/post/o_save.jspx" method="post" enctype="multipart/form-data" validate="true" onsubmit="return checkContent();">
+      <table cellspacing="0" cellpadding="0" width="100%" align="center">
+        <tbody>
+          <tr style="color: #666; line-height: 23px; height: 23px">
+            <td class="h"><b>回复主题</b></td>
+            <td class="h"><input type="hidden" name="topicId" value="${topicId!}"/></td>
+          </tr>
+          <tr class="tr2">
+            <td colspan="99" style="border-bottom-width: 0px"></td>
+          </tr>
+          <tr>
+            <td class="f_one" valign="top" width="20%" style="padding-right: 7px; padding-left: 7px; padding-bottom: 7px; padding-top: 7px"><b>内 容</b><br />
+            </td>
+            <td class="f_one" valign="top" style="padding-right: 7px; padding-left: 7px; padding-bottom: 7px; padding-top: 7px">
+  
+            <div>
+            <textarea id="_editor_textarea" rows="10" cols="80" vld="{rangelength:[2,4096]}" style="width: 96%" name="content">[#if otype??&&post??][#if otype==1][quote]${post.quoteContent!}[/quote][#else]回复第${post.indexCount!}楼[/#if][/#if]</textarea></div>
+            <div class="fr gray" id="atc_content_warn" style="padding-right: 50px; padding-left: 50px; padding-bottom: 0px; padding-top: 0px">限 2,4096 字符</div>
+            <div style="margin: 5px 0px">
+            <input type="hidden" name="forumId" value="${forumId!}"/>
+            <input type="hidden" value="${postTypeId!}" name="postTypeId"/>
+            <input type="hidden" value="[#if post??]${post.id!}[/#if]" name="replyToPostId"/>
+            <input class="btn fl b" type="submit" style="padding-right: 0px; padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: 26px" value="提 交" /></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    </div>
+    </div>
+    </div>
+   <!--/main-->
+    </article>
+    </div>
+    <!--弹出层-->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img src="/r/cms/www/blue/bbs_forum/images/modal_banner.png" alt="" />
+					<div class="modal-close"></div>
+				</div>
+				<div class="modal-body">您今天的<font ></font>积分上限已满，<br />您可以继续<font></font>，但积分将不被记录，谢谢！</div>
+				<div class="modal-footer">
+					<input type="button" class="btn-default">
+				</div>
+			</div>
+		</div>
+	</div>
+    <!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+  </body>
+</html>

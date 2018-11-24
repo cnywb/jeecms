@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="ClubUser" table="Club_User">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="uuid" type="java.lang.String" column="UUID" length="20"/>
+		<property name="uname" column="UNAME" type="string" not-null="true" length="100"/>
+		<property name="upass" column="UPASS" type="string" not-null="true" length="100"/>
+		<property name="uemail" column="UEMAIL" type="string" not-null="true" length="100"/>
+		<property name="urname" column="URNAME" type="string" not-null="false" length="100"/>
+		<property name="usex" column="USEX" type="string" not-null="false" length="4"/>
+		<property name="uadress" column="UADRESS" type="string" not-null="false" length="200"/>
+		<property name="uprovince" column="UPROVINCE" type="string" not-null="false" length="40"/>
+		<property name="ucity" column="UCITY" type="string" not-null="false" length="40"/>
+		<property name="uarea" column="UAREA" type="string" not-null="false" length="80"/>
+		<property name="uzip" column="UZIP" type="string" not-null="false" length="20"/>
+		<property name="uidenname" column="UIDENNAME" type="string" not-null="false" length="100"/>
+		<property name="uidennum" column="UIDENNUM" type="string" not-null="false" length="100"/>
+		<property name="uphonenum" column="UPHONENUM" type="string" not-null="false" length="40"/>
+		<property name="utel" column="UTEL" type="string" not-null="false" length="40"/>
+		<property name="umsn" column="UMSN" type="string" not-null="false" length="100"/>
+		<property name="uqq" column="UQQ" type="string" not-null="false" length="40"/>
+		<property name="uargsub" column="UARGSUB" type="long" not-null="false" length="22"/>
+		<property name="unickname" column="UNICKNAME" type="string" not-null="false" length="100"/>
+		<property name="ulastdate" column="ULASTDATE" type="timestamp" not-null="false" length="19"/>
+		<property name="ulastip" column="ULASTIP" type="string" not-null="false" length="40"/>
+		<property name="ucurrentdate" column="UCURRENTDATE" type="timestamp" not-null="false" length="19"/>
+		<property name="mid" column="MID" type="integer" not-null="false" length="20"/>
+		<property name="ucurrentip" column="UCURRENTIP" type="string" not-null="false" length="40"/>
+		<property name="ulogincount" column="ULOGINCOUNT" type="long" not-null="false" length="22"/>
+		<property name="uscore" column="USCORE" type="long" not-null="false" length="22"/>
+		<property name="uforumscore" column="UFORUMSCORE" type="long" not-null="false" length="22"/>
+		<property name="usig" column="USIG" type="string" not-null="false" length="400"/>
+		<property name="uimg" column="UIMG" type="string" not-null="false" length="400"/>
+		<property name="uforumstate" column="UFORUMSTATE" type="long" not-null="false" length="22"/>
+		<property name="uclubstate" column="UCLUBSTATE" type="long" not-null="false" length="22"/>	
+		<property name="createuser" column="CREATEUSER" type="string" not-null="false" length="20"/>
+		<property name="createdate" column="CREATEDATE" type="timestamp" not-null="false" length="19"/>
+		<property name="updateuser" column="UPDATEUSER" type="string" not-null="false" length="20"/>
+		<property name="updatedate" column="UPDATEDATE" type="timestamp" not-null="false" length="19"/>
+		<property name="flag" column="FLAG" type="long" not-null="false" length="22"/>
+		<property name="notes" column="NOTES" type="string" not-null="false" length="400"/>
+		<property name="upvid" column="UPVID" type="long" not-null="false" length="22"/>
+		<property name="ucid" column="UCID" type="long" not-null="false" length="22"/>
+		<property name="dlid" column="DLID" type="string" not-null="false" length="20"/>
+		<property name="uhometel" column="UHOMETEL" type="string" not-null="false" length="400"/>
+		<property name="random" column="RANDOM" type="string" not-null="false" length="20"/>	
+		<property name="retpwddate" column="RETPWDDATE" type="timestamp" not-null="false" length="19"/>
+		<property name="ubirth" column="UBIRTH" type="timestamp" not-null="false" length="19"/>
+		<property name="postcount" column="POSTCOUNT" type="long" not-null="false" length="22"/>
+		<property name="threadcount" column="THREADCOUNT" type="long" not-null="false" length="22"/>	
+	</class>
+</hibernate-mapping>

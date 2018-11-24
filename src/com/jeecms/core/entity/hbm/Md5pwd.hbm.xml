@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.core.entity">
+	<class name="Md5pwd" table="FORUM_MD5PWD">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="ID">
+			<generator class="sequence"><param name="sequence">SEQ_FORUM_MD5PWD</param></generator>
+		</id>
+		<property name="pwd" column="PWD" type="string" not-null="true" length="80"/>
+		<property name="jspwd" column="JSPWD" type="string" not-null="true" length="80"/>
+		<property name="encryptpwd" column="ENCRYPTPWD" type="string" not-null="true" length="80"/>
+		<property name="createuser" column="CREATEUSER" type="string" not-null="true" length="20"/>
+		<property name="createdate" column="CREATEDATE" type="timestamp" not-null="true" length="19"/>
+		<property name="updateuser" column="UPDATEUSER" type="string" not-null="true" length="20"/>
+		<property name="updatedate" column="UPDATEDATE" type="timestamp" not-null="true" length="19"/>
+		<property name="flag" column="FLAG" type="integer" not-null="true" length="22"/>
+		<property name="notes" column="NOTES" type="string" not-null="true" length="400"/>
+	</class>
+</hibernate-mapping>

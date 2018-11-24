@@ -1,0 +1,146 @@
+@charset "utf-8";
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-size:66.3%}
+fieldset,img{border:0;margin:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{/* text-decoration: underline; */color:#fff;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea,img{vertical-align:middle;outline:none;}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+body{font-family: "Microsoft YaHei", "Century Gothic", "å¾®è½¯é›…é»‘", sans-serif !important;}
+.dn{display: none;}
+.ab{position: absolute;}
+.ab00{position: absolute;top:0;left: 0;}
+
+.logo1{top:40px;right:40px}
+.logo2{top:50px;left:40px}
+.bg{width:100%;height:100%;}
+.btn{background: url(../img/btn_bg.png) no-repeat center center;width: 412px;height: 96px;color: #fff;font-size: 42px;left:50%;margin-left: -206px;text-align: center;line-height: 96px;}
+
+/*初始化页面*/
+#frameAnimatebg {}
+.initPage {width: 100%;height: 100%;background: #0c1c41;}
+.initPage .loading{top: 60%;width: 95%;text-align: center;font-size: 25px;color:#fff;line-height: 25px;left: 5%;}
+.initPage .ld{display: block;vertical-align: top;top: 60%;left: 50%;margin-left: -90px;}
+.initPage .ld.active{animation:rounds 3s infinite linear;-webkit-animation:rounds 3s infinite linear;}
+@-webkit-keyframes rounds {
+	from{-webkit-transform: rotate(0deg)}
+	to{-webkit-transform: rotate(360deg);}
+}
+
+@keyframes rounds {
+	from{transform: rotate(0deg);}
+	to{transform: rotate(360deg);}
+}
+.initPage .car{top:40%;left: 50%;margin-left: -375px;}
+
+/*首页*/
+.page1{width: 100%;height: 100%;}
+.page1 .bg2{width:100%;height:100%;}
+.page1 .title{top:200px;left:50%;margin-left: -304px;}
+.page1 .txt{top:500px;width:100%;color:#fff;text-align:center;font-size:28px;}
+.page1 .js_start {bottom: 150px;left: 50%;margin-left: -193px;}
+.page1 .btnbg{bottom: 150px;left: 50%;margin-left: -193px;width: 386px;height: 83px;}
+.page1 .js_rule{text-align:center;text-decoration:underline;color:#fff;font-size:30px;bottom:80px;width:100%;}
+/* 游戏页面 */
+.page2{width: 100%;height: 100%;} 
+.page2 .title{top:150px;left:50%;margin-left: -220px;}
+.page2 .txt{top:600px;width:100%;color:#fff;text-align:center;font-size:28px;}
+.page2 .cars .car .plus{bottom: 150px;left:50%;margin-left: -110px;}
+.page2 .cars{bottom:10%;left: 0;overflow: hidden;width: 100%;height: 400px;} 
+.page2 .cars .car1{top: 20px;left: -650px;}
+.page2 .cars .car1.active{animation:runslow 4s infinite linear;-webkit-animation:runslow 4s infinite linear;}
+.page2 .cars .car2{top: 50px;left: -650px;}
+.page2 .cars .car2.active{animation:runslow 4s infinite linear;-webkit-animation:runslow 4s infinite linear;}
+.page2 .cars .car3{top: 150px;left: -650px;} 
+.page2 .cars .car3.active{animation:runslow 4s infinite linear;-webkit-animation:runslow 4s infinite linear;}
+.page2 .cars .car4{top: 40px;left: -650px;}
+.page2 .cars .car4.active{animation:runslow 4s infinite linear;-webkit-animation:runslow 4s infinite linear;}
+.page2 .cars .car5{top: 120px;left: -650px;}
+.page2 .cars .car5.active{animation:runslow 4s infinite linear;-webkit-animation:runslow 4s infinite linear;}
+.page2 .cars .car6{top: 150px;left: -650px;}
+.page2 .cars .car6.active{animation:runslow 4s infinite linear;-webkit-animation:runslow 4s infinite linear;}
+.page2 .cars .car{top: 180px;left: -650px;}
+.page2 .cars .car.active{animation:runquick 6s infinite linear;-webkit-animation:runquick 5s infinite linear;}
+
+@-webkit-keyframes runslow {
+	from { -webkit-transform: translate(-700px,0) }
+	to { -webkit-transform: translate(4400px,0) }
+} 
+@keyframes runslow {
+	from { transform: translate(-700px,0) }
+	to { transform: translate(4400px,0) }
+} 
+
+@-webkit-keyframes runquick {
+	from { -webkit-transform: translate(0,0) }
+	to { -webkit-transform: translate(2700px,0) }
+} 
+@keyframes runquick {
+	from { transform: translate(0,0) }
+	to { transform: translate(2700px,0) }
+} 
+
+
+.page2 .js_catch{top: 0px;left:0;width: 100%;height: 100%;background: rgba(255,0,0,0);}
+
+/* 游戏结束 */
+.page3{width: 100%;height: 100%;}
+.page3 .blackbg{width:100%;height:100%;background:rgba(0,0,0,0.7);}
+.page3 .success{   left: 50%;    margin-left: -329px;    top: 100px;}
+.page3 .next{bottom:50px;left:50%;margin-left: -28px;}
+.page3 .next.active{animation:tipnext 2s infinite ease;-webkit-animation:tipnext 2s infinite ease;}
+@keyframes tipnext{
+	0%{transform: translateY(-30px);opacity:0;}
+	50% { opacity: 1; }
+	100%{transform: translateY(0);opacity:0;}
+}
+@-webkit-keyframes tipnext{
+	0%{-webkit-transform: translateY(-30px);opacity:0;}
+	50% { opacity: 1; }
+	100%{-webkit-transform: translateY(0);opacity:0;}
+}
+.page3 .btngroup{bottom: 5%;left: 50%;}
+.page3 .js_tryagain{bottom: 100px;left: 50%;margin-left: -289px;}
+.page3 .js_getticket{bottom: 0;left: 50%;margin-left: -289px;}
+.page3 .txt{bottom:150px;width:100%;color:#fff;text-align:center;font-size: 30px;}
+/* 填写表单 */
+.page4 {width:100%;height:100%;}
+.page4 .backdrop{width:100%;height:100%;}
+.page4 .title{top: 200px;width: 100%;text-align: center;color: #fff;font-size: 50px;}
+.page4 .tip{top: 280px;width: 100%;text-align: center;color: #fff;font-size: 30px;}
+.page4 .form{width: 557px;height: 496px;top: 420px;left:50%;margin-left:-279px;font-size:26px;}
+.page4 .form input{ height:45px;width:402px;background:transparent;border:none;color:#fff;text-indent:5px;}
+.page4 .form select{height:45px;width: 360px;background:transparent;border:none;color:#fff;-webkit-appearance:none;text-indent:5px;outline:none;}
+.page4 .form .name{top:0;left:150px;}
+.page4 .form .phone{top:92px;left:150px;}
+.page4 .form .cartype{top:182px;left:150px;}
+.page4 .form .maybebuytime{top:270px;left:150px;}
+.page4 .form .province{top:360px;left:150px;width:192px;}
+.page4 .form .city{top:360px;left:370px;width:185px;}
+.page4 .form .dealer{top:450px;left:150px;}
+.page4 .js_submit{bottom: 3%;left: 50%;margin-left: -289px;}
+/* 成功弹窗 */
+.successPage {width:100%;height:100%;background:rgba(0,0,0,0.6);}
+.successPage .content{left:50%;margin-left:-292px;top: 10%;width: 584px;height: 908px;}
+.successPage .content .title{top: 200px;text-align:center;width:100%;font-size:38px;color:#fff;}
+.successPage .content .tip{top: 350px;text-align:center;width:100%;font-size:28px;color:#fff;line-height: 45px;}
+.successPage .content .cls{top:20px;right:20px;}
+/* 活动规则 */
+.rulePage {width:100%;height:100%;background:rgba(0,0,0,0.6);}
+.rulePage .content{left:50%;margin-left:-292px;top: 10%;width: 584px;height: 908px;font-size: 58px;}
+.rulePage .content .title{top: 80px;text-align: left;width:100%;font-size:38px;color:#fff;margin-left: 50px;}
+.rulePage .content .hr1{top: 150px;color:#fff;left:0;width: 484px;margin: 0 50px;}
+.rulePage .content .rules{top: 200px;text-align: left;width: 484px;color:#fff;line-height: 45px;margin: 0 50px;}
+.rulePage .content .rules li{margin:10px 0 30px 0;list-style:square;list-style-position: inside;} 
+.rulePage .content .tip{top: 650px;text-align: left;width:100%;color:#fff;line-height: 45px;margin-left: 50px;}
+.rulePage .content .cls{top:20px;right:20px;}

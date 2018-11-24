@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	
+    <script type="text/javascript" src="/r/cms/www/red/js/jquery-1.js"></script>
+	<link href="/r/cms/www/mobile/style/style_auth.css" rel="stylesheet" />
+	
+    <!--移动端版本兼容 -->
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if(window.screen.height == 480) {
+         //   document.write('<link href="css/style2.css" rel="stylesheet" />');
+        }
+        if(/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if(version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <!--移动端版本兼容 end -->
+    <title></title>
+
+	
+	<script type="text/javascript">
+	
+	function getUrlParam(name) {  
+        var reg = new RegExp('(^|&)'+name+'=([^&]*)(&|$)');  
+        var r = window.location.search.substr(1).match(reg);  
+        if (r != null){  
+            return unescape(r[2]);  
+        }  
+        return null;  
+    }  
+	function checkFields(){
+		var vname = $("#vname").val().trim();
+		var vmobile = $("#vmobile").val().trim();
+		var vvin = $("#vvin").val().trim();
+		if(vname == ""){
+			alert("姓名不能为空!");;
+			return false;
+		}
+		if(!validateMobilePhoneNo(vmobile)){
+			alert("电话号码不正确!");
+			return false;
+		}
+		if(!validateVin(vvin)){
+			alert("VIN码不正确!");
+			return false;
+		}
+		return true;
+	}
+
+	function validateVin(vin){
+		if(vin.length!=17){
+			return false;
+		}
+		var prefix=vin.substring(0,3).toUpperCase();
+		if(prefix!="LVS"&&prefix!="LVR"){
+			return false;
+		}
+		var endstr=vin.substring(11,17);
+		var reg1=/^\d+$/;
+		var reg2=/^[A-Za-z]+$/;
+		if(!endstr.match(reg1)){
+			return false;
+		}
+		var middlestr=vin.substring(10,11);
+		if(!middlestr.match(reg2)){
+			return false;
+		}
+		return true;
+	}
+
+	function validateMobilePhoneNo(mobilePhoneNo){
+		var reg=/^((13[0-9])|(15[^4,\D])|(18[0-9]))\d{8}$/;
+		return mobilePhoneNo.match(reg);
+	}
+	
+	function carOwnerCheck(){
+		if(!checkFields()){
+			return;
+		}
+		var requestJson={};
+		requestJson["vvin"]=$("#vvin").val().trim();
+		requestJson["vname"]=$("#vname").val().trim();
+		requestJson["vmobile"]=$("#vmobile").val().trim();
+		 $.ajax( {//提交数据
+				url : 'carOwnerCheckAjax.jspx',
+				type : 'post',
+				dataType:'json',
+				data: requestJson,
+				success : function(result) {
+					var msg=result.status;
+				    if(msg == "1"){
+				    	$('#auth_success').show();
+				    	var returnUrl=getUrlParam("returnUrl");
+       					if(returnUrl!=null&&returnUrl!=""){
+      						window.location.href=returnUrl;
+      					}
+					}else if(msg == "3"){
+						alert("认证失败,该VIN码已经被验证过!请用该VIN码对应的ID登入!");
+						window.location.href='../mobileLogin.jspx?registType=2';
+					}else if(msg == "4"){
+					
+						$('#auth_failed_title').html("认证失败,电话号码错误!");
+						$('#auth_failed').show();
+			   		}else if(msg == "5"){
+			   			
+			   			$('#auth_failed_title').html("认证失败,姓名错误!");
+						$('#auth_failed').show();
+					}else if(msg == "6"){
+						
+						$('#auth_failed_title').html("认证失败,姓名和电话都错误!");
+						$('#auth_failed').show();
+					}else if(msg == "7"){
+						
+						$('#auth_failed_title').html("该VIN码不存在!");
+						$('#auth_failed').show();
+					}else if(msg=="99"){
+						
+						$('#auth_failed_title').html("用户未登录！");
+						$('#auth_failed').show();
+					}
+					
+		      },error:function(){
+		    	 
+		            alert("网络或数据异常，操作失败！");
+		     }
+		});
+	}
+	
+	
+
+	</script>
+	
+</head>
+<body>
+
+[#if user??]
+[#if user.group.id==2]
+<div class='overlay'>
+<div class='shadow'></div>
+<p>您已完成认证！欢迎您登入福域官网！<br>
+如您还需添加车辆，请继续！
+</p>
+<a href='javascript:;' onclick="$('.overlay').hide();" ><img src='/r/cms/www/mobile/images/confirmbtn.png' width='30%' /></a>
+</div>
+[/#if]
+[/#if]
+
+<div class='overlay' style="display: none;" id="auth_success">
+<div class='shadow' ></div>
+<p>认证成功！<br>
+欢迎您登入福域官网！<a href="https://www.changanfordclub.com" style="color: white;" >https://www.changanfordclub.com</a>如您还需添加车辆，请继续！
+</p>
+<a href='javascript:;' onclick="$('.overlay').hide();" ><img src='/r/cms/www/mobile/images/confirmbtn.png' width='30%' /></a>
+</div>
+
+
+<div class='overlay' style="display: none;" id="auth_failed">
+<div class='shadow' ></div>
+<p><font id="auth_failed_title"></font><br>
+如您确认信息无误，请锁定信息，并登入福域官网上传《车辆行驶证》图片。<a href="https://www.changanfordclub.com/czrz/index.htm" style="color: white;" >https://www.changanfordclub.com/czrz/index.htm</a>
+</p>
+<a href='javascript:;' onclick="$('.overlay').hide();" ><img src='/r/cms/www/mobile/images/confirmbtn.png' width='30%' /></a>
+</div>
+
+<article class="main ycyc">
+	<h1>车主认证</h1>
+	<h2><span>个人信息</span></h2>
+	<article class="ctan de_event" style="padding-bottom: 50px;">
+		<section class="logins register">
+			<div class='tb_info'>
+				<ul>
+					<li class='tips' style='padding-left: 10px;'><strong class="red" style=" margin: 0 0 0 18px;">*</strong>为必填信息，请与购车合同上的信息保持一致，确保认证顺利完成。</li>
+					<li><span><strong class="red" style=" margin: 0 0 0 18px;">*</strong>姓名：</span><input class="input2 uname" id="vname" vld="{required:true,rangelength:[3,20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在！'}}" name="username" type="text"></li>
+					<li class='note'>（购车合同的姓名）</li>
+					<li><span><strong class="red" style=" margin: 0 0 0 18px;">*</strong>手机：</span><input type="text" value="" id="vmobile" name="password" class="uname"></li>
+					<li class='note'>（常用手机号）</li>
+					<li><span><strong class="red" style=" margin: 0 0 0 18px;">*</strong>车辆VIN码：</span><input type="text" value="" id="vvin" class="uname"></li>
+					<li class='note'>（添加新车，请输入新车的VIN码）</li>
+					<li>
+					<a href="javascript:;" onclick="carOwnerCheck();"  style="margin-left: 24%;"><img src="/r/cms/www/mobile/images/btn_rz.jpg" alt="" name="register" width="100%"></a>
+					</li>
+					
+				</ul>
+					
+			</div>
+			
+				<img src='/r/cms/www/mobile/images/renzimg_02.jpg' class='czrz' >
+			
+		</section>
+		
+	</article>
+</article>
+
+</body>
+</html>

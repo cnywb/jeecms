@@ -1,0 +1,140 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id){
+		var dvnum=7;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('page'+i).className="";
+		document.getElementById('pagelist'+i).style.display="none";
+		}
+		document.getElementById('page'+id).className="out";
+		document.getElementById('pagelist'+id).style.display="block";
+	}
+	 
+	$(document).ready(function(){
+		   var faceIcon=$("#crop_preview").attr("src");
+		   if(faceIcon.indexOf("image/")==-1){
+			   $("#crop_preview").attr("src","/${res}/bbs_member/img/face/"+faceIcon);
+		   }
+	 });
+</script>
+</head>
+<body>
+[#include "../include/head.html"/]
+    <!--header--> 
+[#include "../include/页头.html"/]	
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>个人主页</h1>
+	[#include "会员中心页_导航.html"/]
+	<article class="selfpage de_event self">
+		<section id="pagelist1" class="tabpage none" style="display: block;">
+			<h2><span>${bbsUser.username}</span>[@car_owners userid=bbsUser.id][#if carowners.group.id==2]<img src="${base}/r/cms/www/red/images/self_rz.jpg" alt="" class="fl">[#else]<img src="${base}/r/cms/www/red/images/self_wrz.jpg" alt="" class="fl">[/#if][/@car_owners]</h2>
+			<div class="detail">
+				<ul class="fl">
+					<li class="fl"><img id="crop_preview" src="${(bbsUser.avatar)!'none.gif'}" alt=""></li>
+					<li class="fr"><span style="background: url('');">用户名：${bbsUser.username}</span><br>
+						<a href="${mainurl}${base}/czrz/index.htm">[@car_owners userid=bbsUser.id][#if carowners.group.id==2]添加车辆[#else]车主认证[/#if][/@car_owners]</a><br>
+						<a href="${base}/member/information.jhtml">个人资料</a><br>
+						
+						</li>
+				</ul>
+				<div class="fr" >
+					 <img src="/${res}/bbs_forum/images/page_img01.gif" alt="" class="fl">
+					<div class="banz">
+						<h3>头衔：${bbsUser.group.name}</h3>
+						<div ><img alt="" src="/${res}/bbs_forum/img/level/${bbsUser.group.imgPath}.gif" /></div>
+						<ul>
+							<li >精华：${bbsUser.primeCount!}  主题：${bbsUser.topicCount!}  回复：${bbsUser.replyCount!}<br>
+								注册时间：${bbsUser.registerTime?string('yyyy-MM-dd')}<br>
+							最后登录： ${bbsUser.lastLoginTime!}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<h2>论坛热贴</h2>
+			<table cellpadding="0" cellspacing="0" width="100%" class="listtable">
+				<tr>
+					<td class="aleft"><img src="/${res}/bbs_forum/images/page_img02.gif" alt=""></td>
+				</tr>
+				<tr class="bg01">
+					<td class="bg01">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<th width="572" class="aleft"><span style=" padding-left: 15px;">标 题</span></th>
+								<th width="102" class="aleft">作 者</th>
+								<th width="129">回 复 / 人 气</th>
+								<th width="136">所在版块</th>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				 [@hot_topic count='15' orderby='7']
+      			 [#list tag_pagination.list as topic]
+				<tr>
+					<td height="2"></td>
+				</tr>
+				<tr>
+					<td class="aleft"><img src="/${res}/bbs_forum/images/page_img03.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td class="bg02">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="title" width=""><a href="${topic.url}" title="${topic.title?html}"> [@text_cut s=topic.title?html len=16 append="..."/]</a><span>HOT</span></td>
+								<td class="aleft" width="102">${topic.creater.username!}<br>
+								${topic.createTime?string("yyyy-MM-dd")}</td>
+								<td width="129">${topic.replyCount!} /  [@topic_vcount topicId=topic.id]${viewCount!}[/@topic_vcount]</td>
+								<td width="136">${topic.forum.title}</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				 [/#list]
+    			 [/@hot_topic]
+			</table>
+			
+			<ul class="page">
+				 <li class="num">[@hot_topic count='15' orderby='7'][#include "../tag/topic.html"/] [/@hot_topic]</li>
+			</ul>
+			
+		</section>		
+	</article>
+</article>
+</div>
+<!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+
+
+</body>
+</html>

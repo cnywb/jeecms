@@ -1,0 +1,418 @@
+body, div, dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6, pre, code,
+form, fieldset, legend, input, button,
+textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+	}
+fieldset, img {
+    border: 0;
+	display: block;
+	}
+ul,ol {
+	list-style:none;
+	}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	}
+a{
+	text-decoration:none;
+	}
+a:hover{
+	text-decoration:underline;
+	}
+small {
+	font-size:12px;
+	}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea {
+	font-size:100%;
+	}
+label,input,select,form img,button,textarea {
+	vertical-align:middle;
+	}
+address, caption, cite, code, dfn,
+em, strong, th, optgroup {
+    font-style: normal;
+    font-weight: normal;
+	}	
+.clear:after { 
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clear {
+	display: inline-block;
+	}
+/* Hides from IE-mac \*/
+* html .clear {
+	height: 1%;
+	} 
+.clear {
+	display: block;
+
+	} 
+/* End hide from IE-mac */
+body{font:14px/1.5 "Microsoft YaHei";color:#a0a0a0;}
+.block { display: block;}
+.none { display: none;}
+
+#gamediv {
+  width: 100%;
+  height: 100%;
+  background: url(../images/home_bg.jpg) repeat-y center;
+  background-size: 100% 100%;
+  position: relative;
+  min-width: 1000px;
+  height: 2083px;
+}
+#gamediv .gameContent {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#gamediv .start_game {
+  position: relative;
+  background: url(../images/g1.png) no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 453px;
+}
+
+#gamediv .guess_content,#gamediv .ques1,#gamediv .ques2,#gamediv .ques3,#gamediv .ques4,#gamediv .ques5,#gamediv .win,#gamediv .lose {
+  position: relative;
+  background: url(../images/ques_area.jpg) no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+#gamediv .win,#gamediv .lose{
+  position: absolute;
+  background: url(../images/ques_bg.png) no-repeat;
+}
+
+#gamediv .win  img,#gamediv .lose img{
+  top: 273px;
+  left: 398px;
+  position: relative;
+}
+#gamediv .win a,#gamediv .lose a{
+  width: 205px;
+  height: 50px;
+  display: block;
+  left: 399px;
+  top: 221px;
+  position: relative;
+  text-indent: -99px;
+  overflow: hidden;
+}
+
+#gamediv .ques1{
+  position: absolute;
+  background: url(../images/p1.png) no-repeat;
+}
+#gamediv .ques2{
+  position: absolute;
+  background: url(../images/p2.png) no-repeat;
+}
+#gamediv .ques3{
+  position: absolute;
+  background: url(../images/p3.png) no-repeat;
+}
+#gamediv .ques4{
+  position: absolute;
+  background: url(../images/p4.png) no-repeat;
+}
+#gamediv .ques5{
+  position: absolute;
+  background: url(../images/p5.png) no-repeat;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+}
+.shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.7;
+  z-index: 0;
+}
+.overlayForm {
+	position: fixed;
+  width: 370px;
+  height: 100%;
+  margin: 0 auto;
+  top: 327px;
+  left: 40%;
+}
+a.btn_close {
+	position: absolute;
+  right: 0;
+  width: 70px;
+  height: 48px;
+  opacity: 0; 
+  text-indent: -55px;
+  overflow: hidden;
+}
+
+p.loginmsg {
+  font: 15.37px 'Microsoft YaHei';
+  color: #c50000;
+  line-height: 45px;
+}
+
+p.setinfo {
+  width: 310px;
+  height: 50px;
+  border: 1px solid #dbd4d2;
+  border-radius: 7px;
+  margin-bottom: 5px!important;
+  position: relative;
+  display: block;
+  background: #fff;
+}
+a.btn_login,a.btn_go_register {
+  position: relative;
+  padding: 15px 0 20px;
+  display: block;
+}
+.overlay form a img{
+margin:0 auto;
+}
+
+.overlay form{
+  background: #fbfaf5;
+}
+p.tips {
+  font: 15px 'Microsoft YaHei';
+  text-align: center;
+}
+.overlay form p{
+width:310px;
+position:relative;
+margin:0 auto;
+}
+#gamediv a.get_ticket {
+  top: 300px;
+  position: relative;
+  width: 200px;
+  height: 52px;
+  display: block;
+  left: 134px;
+  text-indent: -999999px;
+  overflow: hidden;
+}
+
+.overlayForm .setinfo input{
+	width: 250px;
+  height: 50px;
+  border: none;
+  background: none;
+  padding: 0 0 0 15px;
+  font: 15px 'Microsoft YaHei';
+  float: left;
+}
+.overlayForm .register_setinfo {
+  width: 310px;
+  height: 50px;
+  border: 1px solid #dbd4d2;
+  border-radius: 7px;
+  margin-bottom: 5px!important;
+  position: relative;
+  display: block;
+  background: #fff;
+}
+
+.certification .overlayForm .register_setinfo {
+margin-top: 5px;
+}
+
+.overlayForm .register_setinfo input{
+  width: 295px;
+  height: 50px;
+  border: none;
+  background: none;
+  padding: 0 0 0 15px;
+  font: 15px 'Microsoft YaHei';
+  float: left;
+}
+span.icon_email {
+  background: url(../images/icon_email.jpg) no-repeat;
+  width: 25px;
+  height: 18px;
+  position: relative;
+  display: block;
+  background-size: 100%;
+  float: right;
+  margin: 15px 15px 0 0;
+}
+
+p.mb_15{
+  margin-bottom: 15px!important;
+  position: relative;
+}
+
+a.btn_certificate {
+  padding: 25px 0;
+  position: relative;
+  display: block;
+  padding: 35px 0 25px 0;
+}
+
+p.name_msg {
+  font: 11px 'Microsoft YaHei';
+  top: -4px;
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.register .overlayForm input.certificate {
+  width: 190px!important;
+  position: relative;
+  float: left;
+}
+
+a.btn_register {
+  position: relative;
+  padding: 35px 0 25px 0;
+  display: block;
+}
+
+p.certificate_tips {
+  color: #ce0000;
+  font: 13px 'Microsoft YaHei';
+  padding: 10px 0 0;
+}
+p.title_selfinfo {
+  font: 16px 'Microsoft YaHei';
+  padding:15px 10px;
+  position: relative;
+  display: block;
+}
+
+span.line {
+background: #dbd2d1;
+  width: 107px;
+  height: 2px;
+  display: block;
+  margin: 11px 10px 0 0;
+  float: left;
+}
+
+.register .overlayForm form{
+  padding-top: 10px;
+  position: relative;
+}
+span.icon_block {
+  background: url(../images/icon_block.jpg) no-repeat;
+  width: 20px;
+  height: 25px;
+  position: relative;
+  display: block;
+  background-size: 100%;
+  float: right;
+  margin: 10px 15px 0 0;
+}
+
+input.certificate {
+  width: 190px!important;
+}
+img.certificateNum {
+  margin: 7px;
+  right: -10px;
+  position: relative;
+}
+.ques_content{
+  position: absolute;
+  top: 346px;
+  left: 295px;
+}
+.ques_content ul li {
+  font: 16px/30px 'Microsoft YaHei';
+  color: #fff;
+  margin-top: 10px;
+}
+
+span.select {
+  width: 25px;
+  height: 20px;
+  background: url(../images/select_bg.png) no-repeat;
+  display: block;
+  background-size: 100%;
+  position: relative;
+  float: left;
+  margin-top: 3px;
+  margin-right: 15px;
+}
+.ques_content ul li span.on{ background: url(../images/select_bg_on.png) no-repeat;}
+.ques_content ul li.quesDes {
+ font: 16px/45px 'Microsoft YaHei';
+  margin-top: 0px;
+  border-bottom: 1px solid #fff;
+}
+.question .q2{
+	position: relative;
+	left: 131px;
+}
+.question .q3{
+	position: relative;
+	left: 261px;
+}
+.question .q4{
+	position: relative;
+	left: 411px;
+}
+.question .q5{
+	position: relative;
+	left: 543px;
+}
+
+.q2 .ques_content{
+left: 350px;
+z-index:4;
+}
+.q3 .ques_content{
+  top: 251px;
+  left: 370px;
+  z-index:3;
+}
+.q4 .ques_content{
+  top: 342px;
+  left: 291px;
+  z-index:2;
+}
+#gamediv  .question {width: 1500px;}
+#gamediv  .question img{opacity: 0.5;}
+
+.canvas_bg{position:absolute}
+.guess #canvas{
+  position: relative;
+  cursor: crosshair;
+  top: 253px;
+  left: 342px;
+}
+.guess  .msg{
+  position: absolute;
+  top: 291px;
+  left: 423px;
+  font-size: 35px;
+  font-family: '黑体';
+  color: #eb1c23;
+  font-weight: bold;
+}
+
+#gamediv .question img.mask {
+    position: absolute;
+    top: 0px;
+    opacity: 1;
+}

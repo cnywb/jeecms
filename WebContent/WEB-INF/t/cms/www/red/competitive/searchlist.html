@@ -1,0 +1,73 @@
+<ul class="tabfj">
+ [#list pagination.list as m]
+	 <li>
+	 		<a href="javascript:void(0);"
+	 		    id="${m.id!}"
+	 			data-productId="${m.id!}",
+	 			data-productname="${m.productName!}" 
+	 			data-imageurl="${m.imgUrl!}"
+	 			data-price="[#if user??&&user.group.id==2]${m.price?string.currency}元[#else]认证车主可见价格[/#if]"
+	 			data-applicablemodels="${m.applicableModels!}"
+	 			data-intro="${m.briefIntroduction!}"
+	 		>
+	 		<img src="${m.imgUrl}" width="152" height="112"><span style="width:100px; white-space:nowrap; text-overflow:ellipsis;">${m.productName}</span><br>
+			<span>
+				[#if user??&&user.group.id==2]
+					${m.price?string.currency}
+				[#else]
+					认证车主可见价格
+				[/#if]
+			</span>
+			</a>
+	</li>
+	<input type="hidden" id="t706" value="${m.applicableModels}">
+	<input type="hidden" id="d706" value="${m.briefIntroduction}">
+ [/#list]
+</ul>
+<ul>
+<li class="f_page">
+[#if pagination.totalCount gt 0]
+	<a href="javascript:void(0)", onclick="goTo('../list/${pagination.prePage}.jspx?productName=${productName!}')">上一页</a>
+<a href="javascript:void(0)", onclick= "goTo('../list/${pagination.nextPage}.jspx?productName=${productName!}')">下一页</a>
+<span>第${pagination.pageNo}页</span>
+<span>共${pagination.totalCount}件</span>
+<span>共${pagination.totalPage}页</span>
+[#else]
+   	  没有查找到精品附件			   
+[/#if]
+	</li>
+</ul>
+<script type="text/javascript">
+$(function(){
+	$(".tabfj").find("a").on("click",function(){
+	 	var $this=$(this);
+		var productId=$this.attr('id');
+		var productName=$this.data('productname');
+		var price=$this.data('price');
+		var imageURL=$this.data('imageurl');
+		var applicableModels=$this.data('applicablemodels');
+		var intro=$this.data('intro');
+		var title=$(".tab .out .sp02").text();
+		$("#lmmc").text(isEmpty(title)?"精口品附件":title);
+		$("#imageUrl").attr("src",imageURL);
+	  	$("#modal_name").text(productName);
+	  	$("#modal_model").text(applicableModels);
+	  	$("#modal_price").text(price);
+	  	$("#modal_intro").text(intro);
+	  	$(".zzc").show();	
+	    updateBrowse(productId);
+	});
+});
+
+function isEmpty(o){
+		return o===null ||o=== undefined ? true : /^[\s\xa0]*$/.test(o);
+}
+function updateBrowse(productId){
+		$.ajax({
+            url :' ${base}/competitive/update.jspx?productId='+productId,      
+            async : false,
+            type : 'get',
+         	timeout:5000
+        });
+}
+</script>

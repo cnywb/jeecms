@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://www.changanfordclub.com/competitive/index.jspx -->
+<html class=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>精品附件-福域</title>
+<link href="/${res}/competitive/css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/competitive/css/style.css" rel="stylesheet" type="text/css">
+<script src="/${res}/competitive/js/respond.min.js"></script>
+<script src="/${res}/competitive/js/jquery-1.7.1.min.js"></script>
+<script>
+   function showDiv(a,b,c,d,e){
+	  	$("#fjimg").attr("src",a);
+	  	$("#fjmc").text(b);
+	  	$("#lmmc").text(e);
+	  	var c1= $("#t"+c).val();
+	  	var d1= $("#d"+c).val();
+		$("#fjcx").text(c1);
+		$("#fjms").text("认证车主可见价格");
+		$("#jj").text(d1);
+	  	$('.zzc').show();
+  	}
+  	
+  
+	//tab切换
+	function changeDV_TAB(code){
+		$('.ul_tab_a').removeClass("out");
+		$('#classification'+code).addClass("out");
+		//调用查询方法
+		searchData();
+	}
+	//左侧ul切换
+	function changeDV_LI(code){
+		$('.ul_li_a').removeClass("choice");
+		$('#vehicleModels'+code).addClass("choice");
+		//调用查询方法
+		searchData();
+	}
+	
+	function searchData(){
+		var productName = $("#productName").val();
+		var classification = $('a.out').attr('value');
+		var vehicleModels = $('a.choice').attr('value');
+		if(!vehicleModels){
+			vehicleModels = "";
+		}
+		$(".tabbox").load("../list/1.jspx?productName="+productName);
+	}
+
+	function goTo(url){
+		console.log(url);
+		$(".tabbox").load(url);
+	}
+</script>
+</head>
+<body>
+<div class="header">
+	<ul class="ul01">
+		<li>
+			
+
+<div id="loginCsiDiv" style="width: 570px">&nbsp;您好，您还没有登录哦！ <a href="https://www.changanfordclub.com/register.jspx">免费注册</a>&nbsp;|&nbsp;<a href="https://www.changanfordclub.com/login.jspx?returnUrl=/">会员登录</a>&nbsp;|&nbsp;<a href="https://www.changanfordclub.com/member/forgot_password.jspx">忘记密码</a>
+
+</div>
+
+<script type="text/javascript">
+
+$(function(){
+	//加载login_csi.jspx实际页面为/WEB-INF/t/cms/www/red/csi/会员登录.html
+	Cms.loginCsi("","loginCsiDiv",{"returnUrl":"https://www.changanfordclub.com/competitive/index.jspx"});
+});
+</script>
+<script type="text/javascript" language="javascript">
+   //加入收藏
+       function AddFavorite(sURL, sTitle) {
+           sURL =encodeURI(sURL); 
+       try{   
+          window.external.addFavorite(sURL, sTitle);   
+       }catch(e) {   
+          try{   
+              window.sidebar.addPanel(sTitle, sURL, "");   
+           }catch (e){   
+              alert("您的浏览器不支持自动加入收藏功能，请使用Ctrl+D进行添加，或手动在浏览器里进行设置！");
+          }   
+       }
+   }
+   
+   //设为首页
+   function SetHome(url){
+       if (document.all) {
+          document.body.style.behavior='url(#default#homepage)';
+             document.body.setHomePage(url);
+       }else{
+           alert("您的浏览器不支持自动设置页面为首页功能，请您手动在浏览器里设置该页面为首页！");
+       }
+   }
+</script>			
+	</li>
+	    
+		<li class="fr">客服热线 8008108168／4008877766</li>
+	</ul>
+	<ul class="ul02">
+		<li><a href="https://www.changanfordclub.com/"><img src="/${res}/images/logo.png"  title="福域—探享无限"></a></li>
+		<li class="search">
+			<form action="http://www.google.cn/search" method="get" name="googForm" id="googForm">
+              <input type="text" value="搜索精彩内容" name="q" id="ipt_search">
+              <script type="text/javascript">
+					function googSeach()
+					{
+						document.getElementById("googForm").submit();
+					}
+				</script>
+              <a href="javascript:void(0);" onclick="googSeach();"></a>
+			  <input type="hidden" name="newwindow" value="1">
+			  <input type="hidden" name="ie" value="utf-8">
+              <input type="hidden" name="oe" value="utf-8">
+              <input type="hidden" name="hl" value="zh-CN">
+              <input type="hidden" name="domains">
+              <input type="hidden" name="sitesearch">
+            </form>
+		</li>
+		<li class="fr"><a href="http://www.ford.com.cn/"><img src="/${res}/images/ford.jpg" alt=""></a></li>
+	</ul>
+</div><script src="/${res}/competitive/js/front.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var title=$("title").text();
+var hostname=window.location.hostname;
+var cmshostname="www.changanfordclub.com";
+var bbshostname="bbs.changanfordclub.com";
+if((cmshostname==hostname||bbshostname==hostname)&&title!="经销商专区-福域"&&title!="问卷调研"&&window.location.protocol=="http:"){
+    window.location.href= window.location.href.replace(/http:/, "https:");
+}else if((cmshostname==hostname||bbshostname==hostname)&&(title=="经销商专区-福域"||title=="问卷调研")&&window.location.protocol=="https:"){
+    window.location.href= window.location.href.replace(/https:/, "http:");//经销商专区的百度地图不支持https
+}
+$(document).ready(function(){
+  $("body").click(function(){//页面里点击时让车辆保养计算器的下拉列表消失
+    $('#cartype').hide();
+	$('#buyyear').hide();
+	$('#buymouth').hide();
+	$('#carlic').hide();
+	$("#byyear").show();
+	  $("#bymouth").show();
+	  $("#bylic").show();
+   });
+});
+	$(function(){
+		StandardTaxRate();
+		}
+	);
+		var trstr="";
+		var nextstrstr="";
+	function showYcAjax(){
+var carname = $("#bycx").text();
+var carlic =$("#bylic").text();
+var nowdate = new Date();
+var butime=$("#byyear").text()+"年"+$("#bymouth").text()+"月";
+
+		$("#miandiv").load("/r/cms/www/red/loaddiv/byjsq2.html",function(){
+			$("#carname").text(carname);
+			$("#lic").text(carlic+"公里");
+			$("#buytime").text("购买时间"+butime);
+			$("#showresule").append(trstr);
+			$("#shownext").append(nextstrstr);
+			});
+		
+	}
+	var carname;
+	var xmlObj;
+	function StandardTaxRate(){
+   $.ajaxSetup({ cache: false });
+   $.ajax({
+        url: "/r/cms/www/red/xml/demo.xml",
+        dataType: 'xml',
+        type: 'GET',
+        timeout: 2000,
+        error: function(xml)
+        {
+           
+        },
+        success: function(xml)
+        {
+        	xmlObj=$(xml);
+            if ($(xml) != null) {
+                    for (var i = 0; i < $(xml).find("test > car").length; i++) {
+                    	var liId="cartype_"+i;
+                        $("#cartype").append("<li id=\""+liId+"\" onclick=\"doStopBubble(this,event);doCarTypeChoose('"+liId+"');\">" + $(xml).find("test > car:eq(" + i + ")").attr("name") + "</li>");
+                    }
+                }
+         
+            }
+    });
+};
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+function doCarTypeChoose(liId){
+	    carname=$("#"+liId).text();
+		$("#bycx").text(carname);
+		$("#cartype").hide();
+		var imgsrc =xmlObj.find("test > car[name='"+ carname+"']").attr("img");
+		$("#cgimg").attr("src",imgsrc);
+		$("#carlic").empty();
+		for (var i = 0; i < xmlObj.find("test > car[name='" + carname + "'] > lic").length; i++) {
+			var liId="carlic_"+i;
+         $("#carlic").append("<li id=\""+liId+"\" onclick=\"doStopBubble(this,event);doCarLiChoose('"+liId+"');\" >" + xmlObj.find("test > car[name='" + carname + "'] > lic:eq(" + i + ")").attr("name") + "</li>");
+        }
+		 $("#byyear").show();
+		  $("#bymouth").show();
+		  $("#bylic").show();
+}
+
+function doCarLiChoose(liId){
+	var bylicText=$("#"+liId).text();
+	$("#bylic").text(bylicText);
+	$("#carlic").hide();
+	trstr="";
+	nextstrstr="";
+	var nowdate = new Date();
+	var yearv=$("#byyear").text();
+	var mouthv=$("#bymouth").text();
+	var divmouth=(nowdate.getFullYear() - yearv)*12 +(nowdate.getMonth()+1-mouthv);
+	for (var i = 0; i < xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item").length; i++) {
+		var resultval=xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("result");
+	  if(resultval.search(/更换/)!= -1){
+        trstr+="<tr><td>" + xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("project")+"</td><td>" +xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("result")+"</td><td>"+xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("price")+"</td></tr>";
+	  }else{
+	  nextstrstr+="<tr><th>"+xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("project")+"</th><tr>";
+	  }
+  }
+	 
+}
+
+function doBuyYearChoose(year){
+	$("#byyear").text($(year).text());
+	$("#buyyear").hide();
+	$("#bylic").show();
+}
+function doBuyMouthChoose(mouth){
+	$("#bymouth").text($(mouth).text());
+	$("#buymouth").hide();
+	$("#bylic").show();
+}
+
+function jsddm_open()
+{	jsddm_canceltimer();
+	jsddm_close();
+	ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');
+	if($(this).find('ul').size()>0){//如果有子菜单,则显示子菜单背景
+		 $("#navhome").addClass("topnavout");
+	}
+}
+
+function jsddm_close()
+{	if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');
+          $("#navhome").removeClass("topnavout");
+}
+
+function jsddm_timer()
+{	closetimer = window.setTimeout(jsddm_close, timeout);}
+
+function jsddm_canceltimer()
+{	if(closetimer)
+	{	window.clearTimeout(closetimer);
+		closetimer = null;}}
+
+$(document).ready(function()
+{	$('#jsddm > li').bind('mouseover', jsddm_open);
+	$('#jsddm > li').bind('mouseout',  jsddm_timer);});
+
+document.onclick = jsddm_close;
+  </script>
+[#include 'include/header.html']
+<div id="miandiv" style=" overflow: hidden;">
+	<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	<!-- 车主认证 -->
+	[#include "../include/czrz.html"/]
+	<div class="main ycyc">
+	<h1>精品附件</h1>
+	
+	<div class="ctan clearfix">
+	<div class="ctan-section pr">
+		<ul class="tab">
+           	
+		</ul>
+
+		<div class="searchbox">
+			<input placeholder="请输入产品名称" type="text"  value="${productName!}" name="productName"  id="productName"/>
+			<span class="btn" onclick="searchData();"></span>
+		</div>
+
+		<div class="pr">
+			<div class="sideMenu pa">
+			 	
+			</div>
+			<div id="pagelist" class="tabpage art" style="display: block;">
+				<div class="tabbox">
+				　 <!-- 显示产品内容 -->
+					 [#include "searchlist.html"]
+				</div>
+			</div>
+		</div>
+   </div>
+<script type="text/javascript">
+//阻止冒泡事件
+function doStopBubble(obj,evt) {  
+	 var e=(evt)?evt:window.event; //判断浏览器的类型，在基于ie内核的浏览器中的使用cancelBubble  
+	 if (window.event) {  
+	 e.cancelBubble=true;  
+	 } else {  
+	 e.stopPropagation();  
+	 }  
+}
+</script>
+<!-- 右则页面 -->
+[#include "include/content_right.html"/]
+</div>
+</div>
+</div>
+<!-- 页脚 -->
+[#include "include/footer.html"/]
+<!-- 模态对话框 -->
+[#include "include/footer_modal.html"/]
+</body>
+</html>

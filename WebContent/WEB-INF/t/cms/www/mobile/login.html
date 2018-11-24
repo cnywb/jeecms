@@ -1,0 +1,114 @@
+﻿﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	   <script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+    <script src="/r/cms/www/blue/bbs_forum/js/prototype.js"></script>
+    <script type="text/javascript" src="/r/cms/www/blue/bbs_forum/js/md5.js"></script>
+    <script type="text/javascript" src="/r/cms/www/red/js/jquery-1.js"></script>
+	<link href="/r/cms/www/mobile/style/style_auth.css" rel="stylesheet" />
+    <!--移动端版本兼容 -->
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if(window.screen.height == 480) {
+         //   document.write('<link href="css/style2.css" rel="stylesheet" />');
+        }
+        if(/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if(version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    
+    <script type="text/javascript">
+    function getUrlParam(name) {  
+        var reg = new RegExp('(^|&)'+name+'=([^&]*)(&|$)');  
+        var r = window.location.search.substr(1).match(reg);  
+        if (r != null){  
+            return unescape(r[2]);  
+        }  
+        return null;  
+    }  
+    function doLogin(){
+    	var submitData={};
+    	submitData["username"]=$("#login_username").val();
+    	submitData["password"]=$("#login_password").val();
+    	submitData["captcha"]=$("#login_validatecode").val();
+    	submitData["password"]=utility.MD5(submitData["password"]);
+    	submitData["registType"]=$("#registType").val();
+    	if(submitData["username"]==""){
+    		alert("用户名不能为空!");
+    		return;
+    	}
+    	if(submitData["password"]==""){
+    		alert("密码不能为空!");
+    		return;
+    	}
+    	if(submitData["captcha"]==""){
+    		alert("验证码不能为空!");
+    		return;
+    	}
+    	
+    	 $.ajax( {
+    			url :'../../loginAjax.jspx',
+    			type : 'post',
+    			data:submitData,
+    			dataType:'json',
+    			success : function(result) {
+    				$("#img_captcha").click();
+      				if(result.status==1){
+      					var returnUrl=getUrlParam("returnUrl");
+       					if(returnUrl!=null&&returnUrl!=""){
+      						window.location.href=returnUrl;
+      					}else{
+      						window.location.href="../czrz/mobileCarOwnerAuthen.jspx";
+      					}
+    			    }else{
+    					alert(result.message);
+    				}
+    	        },error:function(){
+    	        	$.unblockUI();
+    	            alert("网络或数据异常，操作失败！");
+    	       }
+    		});
+    }
+
+    </script>
+    <!--移动端版本兼容 end -->
+    <title></title>
+
+	
+	
+</head>
+<body>
+<article class="main ycyc">
+	<h1>用户登录</h1>
+	<article class="ctan de_event" style="padding-bottom: 50px;">
+		<section class="logins register sectionRegist">
+			<div class='tb_info'>
+				<ul>
+					<li><span>用户名：</span><input class="input2 uname" id="login_username" vld="{required:true,rangelength:[3,20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在！'}}" name="username" type="text"></li>
+					<li><span>密码：</span><input type="password" value="" id="login_password" name="password" class="uname"></li>
+					<li><span>验证码：</span><input type="text" value="" id="login_validatecode" name="captcha" class="uname"></li>
+					<li class='note'><img id="img_captcha"  onclick="this.src='/captcha.svl?d='+new Date()" alt="" src="/captcha.svl" ></li>
+					<li>
+					<a href="javascript:;" onclick="doLogin();" style="margin-left: 30%;"><img src="/r/cms/www/mobile/images/loginbtn.jpg" alt="" name="register" width="100%"></a>
+					</li>
+				</ul>
+				
+			</div>
+		</section>
+		
+	</article>
+</article>
+<input type="hidden" id="registType" value="[#if registType??]${registType}[/#if]">
+</body>
+
+</html>

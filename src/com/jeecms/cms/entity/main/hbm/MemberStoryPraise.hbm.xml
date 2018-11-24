@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.campaign.sfdj">
+	<class name="MemberStoryPraise" table="MEMBER_STORY_PRAISE">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_MEMBER_STORY_PRAISE_ID</param></generator>
+		</id>
+		
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<many-to-one
+			name="creater"
+			column="CREATER_ID"
+			class="com.jeecms.cms.entity.main.CmsUser"
+			not-null="true"
+			>
+		</many-to-one>
+		<many-to-one
+			name="memberStory"
+			column="MEMBER_STORY_ID"
+			class="MemberStory"
+			not-null="true"
+			>
+		</many-to-one>		
+	</class>
+</hibernate-mapping>
+		

@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<test>
+<car name="s-max">
+	<buytime name="6">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+	</buytime>
+
+	<buytime name="12">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+		<item project="检查挡风玻璃雨刮片" price="86.58元" result="建议每20000公里/12个月检查一次"></item>
+		</buytime>
+
+	<buytime name="24">
+		<item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每40000公里/24个月检查一次"></item>
+		</buytime>
+
+	<buytime name="30">
+		<item project="更换火花塞" price="98.28元" result="建议每55000公里/30个月更换一次"></item>
+                </buytime>
+
+        <buytime name="36">
+		<item project="检查自动变速箱油" price="114.66元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	<lic name="5000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="86.58元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+                <item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每40000公里/24个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="86.58元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞" price="98.28元" result="建议每55000公里/30个月更换一次"></item>
+		<item project="检查自动变速箱油" price="114.66元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="86.58元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每40000公里/24个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="86.58元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="86.58元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="759.33元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+</car>
+<car name="经典福克斯">
+	<buytime name="6">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+	        </buytime>
+
+	<buytime name="12">
+		<item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+		</buytime>
+
+         <buytime name="18">
+		<item project="更换空气滤清器" price="74.88元" result="建议每30000公里/18个月更换一次"></item>
+		</buytime>
+
+	<buytime name="24">
+		<item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞" price="42.12元" result="建议每40000公里/24个月更换一次"></item>
+		</buytime>
+
+        <buytime name="36">
+		<item project="检查自动变速箱油" price="57.33元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	<lic name="5000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+                <item project="更换空气滤清器" price="74.88元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞" price="42.12元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+		<item project="更换空气滤清器" price="74.88元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="检查自动变速箱油" price="57.33元" result="建议每55000公里/36个月检查一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞" price="42.12元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+		<item project="更换空气滤清器" price="74.88元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+		<item project="更换机油滤清器" price="40.95元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="80.73元" result="建议每10000公里/6个月检查一次"></item>
+		<item project="检查防冻液" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="216.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="581.49元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+</car>
+<car name="蒙迪欧-致胜">
+	<buytime name="6">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+	        </buytime>
+
+	<buytime name="12">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="130.0455" result="建议每20000公里/12个月检查一次"></item>
+		</buytime>
+
+	<buytime name="24">
+		<item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="检查防冻液" price="141.57元" result="建议每40000公里/24个月检查一次"></item>
+		</buytime>
+
+        <buytime name="36">
+		<item project="更换火花塞" price="98.28元" result="建议每55000公里/36个月更换一次"></item>
+		<item project="检查自动变速箱油" price="114.66元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	<lic name="5000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="130.0455" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="141.57元" result="建议每40000公里/24个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="130.0455" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="更换火花塞" price="98.28元" result="建议每55000公里/36个月更换一次"></item>
+                <item project="检查自动变速箱油" price="114.66元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="130.0455" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="141.57元" result="建议每40000公里/24个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="130.0455" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="130.0455" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="141.57元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1154.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+
+</car>
+<car name="新福克斯">
+	<buytime name="6">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+	        </buytime>
+
+	<buytime name="12">
+		<item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+		</buytime>
+
+	<buytime name="18">
+		<item project="更换空气滤清器*" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+		</buytime>
+
+        <buytime name="24">
+		<item project="更换制动液" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.6L C6)" price="57.33元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(2.0L GDIQ0)" price="57.33元" result="建议每40000公里/24个月更换一次"></item>
+		</buytime>
+
+        <buytime name="36">
+		<item project="检查自动变速箱油" price="190.71元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	        
+	<lic name="5000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+		<item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+		<item project="更换空气滤清器*" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.6L C6)" price="57.33元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(2.0L GDIQ0)" price="57.33元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换空气滤清器*" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+                <item project="更换空气滤清器*" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="检查自动变速箱油" price="190.71元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+		<item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.6L C6)" price="57.33元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(2.0L GDIQ0)" price="57.33元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+                <item project="更换空气滤清器*" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换燃油滤清器" price="78.39元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="99.45元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="111.15" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="789.75元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+
+</car>
+<car name="嘉年华">
+	<buytime name="6">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+	        </buytime>
+
+	<buytime name="12">
+		<item project="检查花粉过滤器芯" price="62.01元" result="建议每20000公里/12个月检查一次"></item>
+		</buytime>
+
+        <buytime name="24">
+		<item project="更换燃油滤清器" price="81.9元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L Ti-VCT)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		</buytime>
+
+        <buytime name="30">
+		<item project="更换空气滤清器" price="78.39元" result="建议每50000公里/30个月更换一次"></item>
+		</buytime>
+
+        <buytime name="36">
+		<item project="检查自动变速箱油" price="190.71元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	<lic name="5000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="62.01元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+		<item project="更换空气滤清器" price="78.39元" result="建议每50000公里/30个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+                <item project="更换燃油滤清器" price="81.9元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L Ti-VCT)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="62.01元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换空气滤清器" price="78.39元" result="建议每50000公里/30个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查自动变速箱油" price="190.71元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查花粉过滤器芯" price="62.01元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+		<item project="更换燃油滤清器" price="81.9元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L Ti-VCT)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="62.01元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换空气滤清器" price="78.39元" result="建议每50000公里/30个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="62.01元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="52.65元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="126.36元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="569.79元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+</car>
+
+<car name="翼搏">
+	<buytime name="6">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+	        </buytime>
+
+	<buytime name="12">
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+		</buytime>
+
+        <buytime name="24">
+		<item project="更换燃油滤清器" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L Ti-VCT)" price="111.15元" result="建议每40000公里/24个月更换一次"></item>
+		</buytime>
+
+        <buytime name="30">
+		<item project="更换空气滤清器" price="62.01元" result="建议每50000公里/30个月更换一次"></item>
+		</buytime>
+
+        <buytime name="36">
+		<item project="检查自动变速箱油" price="190.71元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	<lic name="5000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+                <item project="更换燃油滤清器" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L Ti-VCT)" price="111.15元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换空气滤清器" price="62.01元" result="建议每50000公里/30个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查自动变速箱油" price="190.71元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+		<item project="更换燃油滤清器" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L Ti-VCT)" price="111.15元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		 <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换空气滤清器" price="62.01元" result="建议每50000公里/30个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="93.6元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="630.63元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+
+</car>
+<car name="翼虎">
+	<buytime name="6">
+		<item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+	        </buytime>
+
+	<buytime name="12">
+                <item project="更换燃油滤清器" price="76.05元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每20000公里/12个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+		</buytime>
+
+        <buytime name="18">
+                <item project="更换空气滤清器" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换火花塞(1.6L GTDIQ2)" price="95.94元" result="建议每30000公里/18个月更换一次"></item>
+		</buytime>
+
+        <buytime name="24">
+		<item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(2.0L CAF488WQ2)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		</buytime>
+
+        <buytime name="36">
+		<item project="检查自动变速箱油" price="57.33元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	<lic name="5000">
+		<item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+		<item project="更换燃油滤清器" price="76.05元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+                <item project="更换空气滤清器" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞(1.6L GTDIQ2)" price="95.94元" result="建议每30000公里/18个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+                <item project="更换燃油滤清器" price="76.05元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(2.0L CAF488WQ2)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+                <item project="更换空气滤清器" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换燃油滤清器" price="76.05元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞(1.6L GTDIQ2)" price="95.94元" result="建议每30000公里/18个月更换一次"></item>
+		<item project="检查自动变速箱油" price="57.33元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+		<item project="更换燃油滤清器" price="76.05元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="69.03元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(2.0L CAF488WQ2)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+		<item project="更换空气滤清器" price="78.39元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞(1.6L GTDIQ2)" price="95.94元" result="建议每30000公里/18个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换燃油滤清器" price="76.05元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每20000公里/12个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+		<item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="272.61元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1579.5元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+</car>
+
+<car name="新蒙迪欧">
+	<buytime name="6">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+	        </buytime>
+
+	<buytime name="12">
+                <item project="更换火花塞(1.5L GTDIQ4)" price="98.28元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+		</buytime>
+
+        <buytime name="18">
+                <item project="更换空气滤清器" price="92.43元" result="建议每30000公里/18个月更换一次"></item>
+		</buytime>
+
+        <buytime name="24">
+		<item project="更换燃油滤清器" price="105.3元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换制动液" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(2.0L CAF488WQ3/4)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		</buytime>
+
+        <buytime name="36">
+		<item project="检查自动变速箱油" price="57.33元" result="建议每55000公里/36个月检查一次"></item>
+		</buytime>
+
+	        
+	<lic name="5000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="15000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞(1.5L GTDIQ4)" price="98.28元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="25000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="35000">
+                <item project="更换燃油滤清器" price="105.3元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L GTDIQ4)" price="98.28元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="45000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="55000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞(1.5L GTDIQ4)" price="98.28元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查自动变速箱油" price="57.33元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="65000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="75000">
+		<item project="更换燃油滤清器" price="105.3元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换制动液" price="76.05元" result="建议每40000公里/24个月更换一次"></item>
+                <item project="更换火花塞(1.5L GTDIQ4)" price="98.28元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞(2.0L CAF488WQ3/4)" price="98.28元" result="建议每40000公里/24个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="85000">
+		<item project="更换空气滤清器" price="92.43元" result="建议每30000公里/18个月更换一次"></item>
+                <item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="95000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换火花塞(1.5L GTDIQ4)" price="98.28元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查防冻液" price="153.27元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+
+        <lic name="105000">
+		<item project="更换机油滤清器" price="88.92元" result="建议每10000公里/6个月更换一次"></item>
+                <item project="更换发动机机油" price="57.33元" result="建议每10000公里/6个月更换一次"></item>
+		<item project="检查自动变速箱油" price="57.33元" result="建议每55000公里/36个月检查一次"></item>
+                <item project="检查花粉过滤器芯" price="59.67元" result="建议每20000公里/12个月检查一次"></item>
+                <item project="检查挡风玻璃雨刮片" price="222.3元" result="建议每10000公里/6个月检查一次"></item>
+                <item project="检查轮胎" price="1848.6元" result="建议每10000公里/6个月检查一次"></item>
+		</lic>
+		</car>
+</test>

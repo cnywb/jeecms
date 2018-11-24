@@ -1,0 +1,48 @@
+<header>
+  [#if bbsUser??]
+  <ul class="ul01">
+	<li>
+    欢迎您：${bbsUser.username}
+    &nbsp;&nbsp;[#if bbsUser.group??]${bbsUser.group.name}[@car_owners userid=bbsUser.id][#if carowners.group.id==2](车主)[/#if][/@car_owners][/#if]
+   
+    &nbsp;&nbsp;<a href="${base}/member/index.jhtml">会员中心</a>
+    [#if returnUrl?? && returnUrl?length gt 0]
+    &nbsp;&nbsp;<a href="javascript:void(0);" onclick="doLogout();">退出登录</a>
+    [#else]
+    &nbsp;&nbsp;<a href="javascript:void(0);" onclick="doLogout();">退出登录</a>
+    </li>
+    <li class="fr">客服热线 8008108168／4008877766</li>
+    </ul>
+    [/#if]
+    [#else]
+	<ul class="ul01">
+	<!-- <a href="${base}/member/forgot_password.jspx">忘记密码 -->
+		<li>您好，您还没有登录哦！ <a href="javascript:void(0);" onclick='$("#switch_L3").show();' >免费注册</a>&nbsp;|&nbsp;<a href="javascript:void(0);" onclick='$("#switch_L2").show();'>会员登录</a>&nbsp;|&nbsp;<a href="${mainurl}${base}/member/forgot_password.jspx">忘记密码</a></li>
+		<li class="fr">客服热线 8008108168／4008877766</li>
+	</ul>
+	[/#if]
+	<ul class="ul02">
+		<li><a href="http://www.changanfordclub.com"><img src="/${res}/images/logo.png" alt="" /></a></li>
+		<!--<li class="search"><input type="text" value="搜索精彩内容" name=""><a href="#"></a></li>  -->
+		<li class="search">
+			<form action="http://www.google.cn/search" method="get" name="googForm" id="googForm">
+              <input type="text" value="搜索精彩内容"  name="q" id="ipt_search"/>
+              <script type="text/javascript">
+					function googSeach()
+					{
+						document.getElementById("googForm").submit();
+					}
+				</script>
+              <a href="javascript:void(0);" onclick="googSeach();"></a>
+			  <input type="hidden" name="newwindow" value="1" />
+			  <input type="hidden" name="ie" value="utf-8" />
+              <input type="hidden" name="oe" value="utf-8" />
+              <input type="hidden" name="hl" value="zh-CN" />
+              <input type="hidden" name="domains" />
+              <input type="hidden" name="sitesearch" />
+            </form>
+		</li>
+		<li class="fr"><a href="http://www.ford.com.cn/"><img src="/${res}/images/ford.jpg" alt="" /></a></li>
+	</ul>
+</header>
+

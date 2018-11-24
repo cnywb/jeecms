@@ -1,0 +1,151 @@
+@charset "utf-8";
+
+/* CSS Document */
+.warp_c_banner {
+	width: 1000px;
+	overflow: hidden;
+	position: relative;
+}
+.warp_c_banner img {
+	width: 1000px;
+	height: 560px;
+}
+.warp_c_activity {
+	width: 1000px;
+	padding-top: 72px;
+	text-align: center;
+	background-color: #f2e3c1;
+	background: url(../images/bg_qb_body.png) repeat-y 0 0;
+	overflow: hidden;
+}
+.event_details {
+	width: 100%;
+	overflow: hidden;
+}
+.warp_c_activity h3 {
+	width: 650px;
+	height: 55px;
+	margin: 0 auto;
+	background: url(../images/title_bg.png) no-repeat center;
+	font-size: 24px;
+	color: #fff;
+}
+.general{
+	width: 906px;
+	margin: 8px auto 0;
+}
+.general_header{
+	width: 100%;
+	height: 5px;
+	background: url(../images/bg_point_header.png) no-repeat 0 0;
+}
+.general_body{
+	width: 100%;
+	background: url(../images/bg_point_body.png) repeat-y 0 0;
+	position: relative;
+}
+.g_bow{
+	width: 166px;
+	height: 175px;
+	background: url(../images/icon-bow.png) no-repeat 0 0;
+	position: absolute;
+	top: -8px;
+	right: -22px;
+	z-index: 2
+}
+.general_bottom{
+	width: 100%;
+	height: 10px;
+	background: url(../images/bg_point_bottom.png) no-repeat 0 0;
+} 
+.g_desc{
+	width: 100%;
+	padding-top: 50px;
+	overflow: hidden;
+}
+.g_desc li{
+	margin-left: 78px;
+	background: url(../images/icon-point.png) no-repeat 0 center;
+	padding-left: 14px;
+	font-size: 16px;
+	color: #5b2211;
+	text-align: left;
+}
+.g_title{
+	clear: both;
+	padding-top: 20px;
+	color: #5b2211;
+}
+.g_table{
+	margin:52px 26px 0;
+	overflow: hidden;
+}
+.g_table_t{
+	width: 100%;
+	border:0
+}
+.g_table_t td.large_td{
+	width: 286px;
+	height: 32px;
+}
+.g_table_t td.smale_td{
+	width: 97px;
+	height: 32px;
+}
+.g_table_t td .bgwhite{
+	line-height: 32px;
+	margin: 2px;
+	color: #5b2211;
+	background-color: #f2e3c1;
+	font-size: 16px;
+}
+.g_table_t td .bgmiddlewhite{
+	line-height: 32px;
+	height: 60px;
+	margin: 2px;
+	color: #5b2211;
+	background-color: #f2e3c1;
+	font-size: 16px;
+}
+.g_table_t td .bgbigwhite{
+	line-height: 32px;
+	height: 100px;
+	margin: 2px;
+	color: #5b2211;
+	background-color: #f2e3c1;
+	font-size: 16px;
+}
+.g_table_t td .bgmulti{
+	font-size: 12px;
+	line-height: 16px;
+}
+.g_table_t td .fontsamel{
+	font-size: 14px;
+}
+.g_copyright{
+	padding-top: 72px;
+	padding-bottom: 10px;
+	font-size: 12px;
+	text-align: right;
+	margin-right: 26px;
+	color: #5b2211;
+}
+.my_btn {
+	width: 115px;
+	height: 30px;
+	margin: 55px auto 180px;
+}
+.bg_qb_bottom {
+	clear: both;
+	width: 1000px;
+	height: 12px;
+	background: url(../images/bg_qb_bottom.png) no-repeat 0 0;
+}
+.my_btn_003{
+	float: right;
+	width: 115px;
+	height: 30px;
+	background: url(../images/my_btn_003.png) no-repeat 0 0;
+	border: none;
+	outline: none;
+}

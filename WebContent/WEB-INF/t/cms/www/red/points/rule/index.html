@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<title>积分获取</title>
+[#include '../common/header.html']
+<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/points_obtain.css">
+</head>
+<body>
+[#include '../common/bodyheader.html']
+<div class="warp" id="warp">
+		<div class="warp_cen">
+			<h3 class="warp_c_title">积分获取</h3>
+			<div class="c_bg_top"></div>
+			<div class="c_bg_body">
+				<div class="r_banner">
+					<img src="/${res}/point/images/points/p_banner.jpg" alt="" />
+					<div class="r_banner_tag">
+						<p class="r_banner_tag_title r_padding_top">长安福特“福域”联手官方微信“长安福特微客服”，倾情回馈广大车主！即日起在“福域”与微客服发帖、回帖、玩游戏…</p>
+						<p class="r_banner_tag_title">即获赠相应积分；通过累积、兑换、抽奖、秒杀…赢取享不尽的精美豪礼.</p>
+						<ul class="r_banner_tag_link">
+							<li class="left_link"><a href="${base}/points/integral/index.jhtml">积分规则</a></li>
+							<li class="middle_link_red"><a href="${base}/points/rule/index.jhtml">积分获取</a></li>
+							<li class="middle_link"><a href="${base}/points/ward/index.jhtml">积分兑换</a></li>
+							<li class="right_link"><a href="${base}/points/lottery/index.jhtml">积分抽奖</a></li>
+						</ul>
+					</div>
+			</div>
+			<div class="ob_box">
+					<div class="ob_title">
+						<p>所有车主只有在完成俱乐部会员注册，并成功通过车主认证后才能开始获取积分。</p>
+						<p>长安福特保留对其产品、服务及“福域”积分获取标准及规则的修订权利。</p>
+					</div>
+					<div class="ob_table">
+						<h3>车主可以通过如下形式获取积分</h3>
+						<div class="table_item">
+							<table cellpadding="0" cellspacing="0">
+                    			<tr>
+                    				<th width="182px"><div class="bgheader_first">行为</div></th>
+                    				<th width="182px"><div class="bgheader">获取积分</div></th>
+                    				<th width="140px"><div class="bgheader">积分上限</div></th>
+                    				<th width="210px"><div class="bgheader">说明</div></th>
+                    				<th width="140px"><div class="bgheader_last">渠道</div></th>
+                    			</tr>
+                    			[#list pointRules as rule]
+                    				[#if rule_index%2=0]
+	                    			<tr>
+	                    				<td><div class="bgwhite  bgwhite_first">${rule.pointRuleName!}</div></td>
+	                    				<td><div class="bgwhite ">${rule.pointNum!}分</div></td>
+	                    				<td><div class="bgwhite">${rule.maxPointNumMemo!}</div></td>
+	                    				[#if rule.pointRuleNo=='PERFACT_USER_INFO']
+	                    					<td><div class="bgwhite bgmulti">${rule.memo!}</div></td>
+	                    				[#elseif rule.pointRuleNo=='TOP_TOPIC']
+	                    					<td><div class="bgwhite ">${rule.memo!}</div></td>
+	                    				[#elseif rule.pointRuleNo=='TOPIC_DISGEST']
+	                    					<td><div class="bgwhite ">${rule.memo!}</div></td>
+	                    				[#else]
+	                    					<td><div class="bgwhite">${rule.memo!}</div></td>
+	                    				[/#if]
+	                    				<td><div class="bgwhite"> [#if rule.channel==0]网站&微信[#elseif rule.channel==1]网站[#else]微信[/#if]</div></td>
+	                    			</tr>
+	                    			[#else]
+		                    			<tr>
+		                    				<td><div class="bgwhite bgwhite_light bgwhite_first">${rule.pointRuleName!}</div></td>
+		                    				<td><div class="bgwhite bgwhite_light">${rule.pointNum!}分</div></td>
+		                    				<td><div class="bgwhite bgwhite_light">${rule.maxPointNumMemo!}</div></td>
+		                    				[#if rule.pointRuleNo=='PERFACT_USER_INFO']
+		                    					<td><div class="bgwhite bgwhite_light bgmulti">${rule.memo!}</div></td>
+		                    				[#elseif rule.pointRuleNo=='TOP_TOPIC']
+		                    					<td><div class="bgwhite bgwhite_light ">${rule.memo!}</div></td>
+		                    				[#elseif rule.pointRuleNo=='TOPIC_DISGEST']
+		                    					<td><div class="bgwhite bgwhite_light ">${rule.memo!}</div></td>
+		                    				[#else]
+		                    					<td><div class="bgwhite bgwhite_light">${rule.memo!}</div></td>
+		                    				[/#if]
+		                    				<td><div class="bgwhite bgwhite_light"> [#if rule.channel==0]网站&微信[#elseif rule.channel==1]网站[#else]微信[/#if]</div></td>
+		                    			</tr>
+	                    			[/#if]
+	                    		[/#list]
+                    		</table>
+						</div>
+					</div>
+					<div class="ob_button">
+                	   <a href="${base}/survey/index.jspx?code=CZZM"><button class="bgbutton">我的问卷</button></a>
+                		[#if user??]
+                			<a href="${bbsurl}${base}/topic/v_add3.jspx"><button class="bgbutton">我的发帖</button></a>
+                		[#else]
+                			<a href="${base}/login.jspx?returnUrl=${bbsurl}${base}/topic/v_add3.jspx"><button class="bgbutton">我的发帖</button></a>
+                		[/#if]
+                	</div>
+					<div class="ob_title ob_des">
+						<p>本次活动中所发放的礼品由获得者本人自行申报缴纳个人所得税；</p>
+						<p>抽奖成功的车主，需留下正确的姓名、手机、地址等信息，便于递送礼品；</p>
+						<p>凡因个人原因导致信息预留错误而无法收到礼品，福域俱乐部将不再补发礼品。</p>
+					</div>
+					<p class="ob_complay">特别声明：活动的最终解释权归长安福特所有。</p>
+				</div>
+			</div>
+            <div class="bg_qb_bottom"></div>
+            <div class="line10"></div>
+		</div>
+	</div>
+	[#include '../common/footer.html']
+	[#include '../common/right.html']
+</body>
+<!-- 登录状态 -->
+[#include '../common/loginstatus.html']
+</html>

@@ -1,0 +1,135 @@
+html{min-height: 100%;background-image: url('../img/bg2.png');background-position: center center;background-repeat: no-repeat;background-size: cover;min-height: 100%;background-color: #fff;}
+.bg22{background-image: url('../img/bg22.png');background-position:center -60px;}
+body{font-family: "Microsoft YaHei";font-size: 12px;}
+ul li,ol li{list-style-type: none;}
+.dn{display: none;}
+/*bootstrap*/
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+.btn:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #333333;
+  text-decoration: none;
+}
+
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+label {
+  display: inline-block;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+
+/* 头 */
+.header{position: fixed;top:0;left:0;right:0;color: #fff;text-align: center;height:44px;line-height:44px;background: url(../img/header.png) repeat-x;background-size: 100% 100%;padding:0 15px;}
+.header .back img{width: 55px;}
+.header .jump img{width: 51px;}
+.header h1{margin:0;font-size:25px;font-weight: bold;line-height: 44px;}
+
+
+/*中间*/
+.wrap{overflow:hidden;background: #f8f8f8;position: relative;transform: translateY(0px);margin: 0;padding: 0;}
+.scrollpage{position: absolute;top:0;width: 100%;-webkit-transition: 0.5s;-moz-transition: 0.5s;transition: 0.5s;}
+.scrollitem{overflow: hidden;width: 100%;height: 100%;position: relative;}
+
+/* 预约 */
+#subscribe-form{/*padding:20px;*/ color: #516d7b;background: url(../img/bg2.png) no-repeat;background-size: 100% 100%;}
+.scroller{padding: 20px;}
+#subscribe-form .title{text-align: center;padding-top: 0px;}
+#subscribe-form .title  h2{font-size: 16px;font-weight: bold;}
+.form-control{border:1px solid #5d7784;border-radius: 0;padding: 2px 5px;font-size: 16px;/*color:#516D7B;*/}
+/*.form-control::-webkit-input-placeholder {color:#516D7B;font-size: 12px}*/
+ /*.form-control:-moz-placeholder {color:#516D7B;font-size: 12px}*/
+ /*.form-control::-moz-placeholder {color:#516D7B;font-size: 12px}*/
+ /*.form-control:-ms-input-placeholder {color:#516D7B;font-size: 12px}*/
+#subscribe-form .btn-div{margin:0px;}
+#subscribe-form .btn{border-radius: 0;background:#5d7784;color: #fff;width: 100%;font-size: 14px;}
+#subscribe-form .form-group{position: relative;}
+.hook{position: absolute;bottom: 1px;right:1px;width: 35px;background-color: #f8f8f8;height: 32px;border-left:1px solid #5d7784;cursor: hand;}
+.hook .caret{border-width: 8px;margin: 12px 0 0 8px;}
+/*.car-address select{width: 49%;float: left;}
+.car-address select:last-child{float: right}*/
+
+.select_bg{overflow:hidden; background-image:url(../img/select_icon.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: 38px 35px;      
+    -moz-border-radius: 0px;  
+    -webkit-border-radius: 0px; 
+    border-radius:0px;
+    background-color: #fff; 
+}
+.select_bg .form-control{-webkit-appearance: none;-moz-appearance: none;appearance:none;background: none;}
+.car-address .flleft{float: left;width: 49%;}
+.car-address .flright{float: right;width: 49%;}
+/*#subscribepop{margin:0;text-align:center;display: none;color: #fff;line-height: 20px;border:0;background-color: #5d7784;padding: 15px;width: 200px;}*/
+/*#subscribepop .glyphicon{font-size: 40px;}*/
+/*#subscribepop .con{font-size: 30px;padding: 10px 0;}*/
+/*#subscribepop .submit button{background: none;border:1px solid #fff;font-size: 25px;color: #fff;padding:3px 10px;}*/
+.mark{background:#000; opacity:0.4; width:100%; height:3000px; position:absolute; top:0; left:0;}
+
+
+.popup{width: 100%;height: 100%;position: absolute;background: rgba(0,0,0,0.7);top: 0;left: 0;}
+#subscribepop{margin:0;text-align:center;color: #fff;line-height: 20px;border:0;background-color: #5d7784;padding: 15px;width: 140px;position: absolute;z-index: 1;top: 30%;left: 50%;margin-left: -88px;}
+#subscribepop p{margin: 0 0 5px;}
+#subscribepop .glyphicon{font-size: 30px;}
+#subscribepop .con{font-size: 20px;padding: 5px 0;}
+#subscribepop .submit button{background: none;border:1px solid #fff;font-size: 14px;color: #fff;padding:3px 10px;}
+
+input[type="text"]{padding: 0px 0px;width: 99.8%;}
+input[type="tel"]{padding: 0px 0px;width: 99.8%;}

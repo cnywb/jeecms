@@ -1,0 +1,39 @@
+
+<div>总票数：<span class="red">${topic.totalCount!}</span></div>
+[#if voted??]
+[#list voteItems as item]
+<div style="width:300px">
+	${item.name}
+	<div style="width:200;"><img src="/${res}/bbs_forum/img/vote_bar.gif" width="${item.percent}%" height="10px"/><div>
+	${item.voteCount}票 ${item.percent}%
+</div>
+[/#list]
+[#if topic.voteStartTime??]
+投票开始时间：${topic.voteStartTime?string("yyyy-MM-dd HH:mm:ss")}
+<br>
+投票结束时间：${topic.voteEndTime?string("yyyy-MM-dd HH:mm:ss")}
+[/#if]
+<br>
+您已经投过票了
+[#else]
+[#list voteItems as item]
+<div style="width:300px;height:320px">
+     [#if topic.multipleVote??&&topic.multipleVote==true]
+	<input type="checkbox" name="itemIds" value="${item.id}"/>
+	[/#if]
+	 [#if topic.multipleVote??&&topic.multipleVote==false]
+	<input type="radio" name="itemIds" value="${item.id}"/>
+	[/#if]
+	${item.name}
+	<div style="width:200;"><img src="/${res}/bbs_forum/img/vote_bar.gif" width="${item.percent}%" height="10px"/><div>
+	${item.voteCount}票 ${item.percent}% 
+</div>
+[/#list]
+[#if topic.voteStartTime??]
+投票开始时间：${topic.voteStartTime?string("yyyy-MM-dd HH:mm:ss")}
+<br>
+投票结束时间：${topic.voteEndTime?string("yyyy-MM-dd HH:mm:ss")}
+[/#if]
+<br><br>
+<input type="button" value="提交" style="width: 50px" onclick="vote('itemIds', '${topic.id}');">
+[/#if]

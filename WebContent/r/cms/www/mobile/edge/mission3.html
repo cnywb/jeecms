@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=640, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <title>福特锐界 | 黄金线路大挑战</title>
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  	<!-- 强制使用webkit内核 -->
+  <meta name="renderer" content="webkit">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Ford EDGE"/>
+
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="/r/cms/www/mobile/edge/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/r/cms/www/mobile/edge/assets/css/jquery.fullPage.css">
+  <link rel="stylesheet" href="/r/cms/www/mobile/edge/assets/css/animate.css"/>
+  <link rel="stylesheet" href="/r/cms/www/mobile/edge/assets/css/app.css">
+</head>
+<body>
+
+<div id="fullpage">
+    <div class="section edge-mission1">
+    	<div class="edge-mainFrame">
+    		<div class="edge-Logos"><img src="/r/cms/www/mobile/edge/assets/i/logo.png?1207" class="am-img-responsive"></div>
+    		<div class="edge-subLogos"><img src="/r/cms/www/mobile/edge/assets/i/logo2.png?1207" class="am-img-responsive"></div>
+    		<div class="edge-sologan"><img src="/r/cms/www/mobile/edge/assets/i/sologanMain.png?1207" class="am-img-responsive"></div>
+    		<div class="edge-footTxt">黄金线路大挑战</div>
+    		<div class="edge-mission1Title"><img src="/r/cms/www/mobile/edge/assets/i/thirdtxt4.png?1207" class="am-img-responsive">	
+    		</div>
+    		<div class="edge-map"></div>
+    		<div class="chinaMap dn">
+    			<canvas id="mapofChina" width="304" height="297"></canvas>
+    		</div>
+    		<div class="chinaMap dn">
+    			<canvas id="mao" width="304" height="297"></canvas>
+    		</div>
+    		<div class="missionThree3txt"></div>
+    		<div class="btnTrack"></div>
+    		<div class="edge-missionNotice" style="display:none">想要和锐界一起走遍梦想的黄金线路，<br>
+			即刻点击预约试驾
+    	</div>
+    	<div class="edge-shareBtn" style="display:none"><img src="/r/cms/www/mobile/edge/assets/i/btn_share.png?1207" class="am-img-responsive"></div>
+    	<div class="edge-yyBtn" style="display:none"><img src="/r/cms/www/mobile/edge/assets/i/btn_yy.png?1207" class="am-img-responsive"></div>
+    </div>
+    </div>
+</div>
+<div class='popup' style='display:none'>	
+	<div class="setinfo edge-formFrame">
+	<a href='javascript:;' class='close'><img src='/r/cms/www/mobile/edge/assets/i/closeBtn.png?1207' class="am-img-responsive"/></a>
+		<form>
+		<p class="am-text-center" style="margin-top:80px"><img src="/r/cms/www/mobile/edge/assets/i/feedbackTitle.png?1207" width="70%"></p>
+		<p class="am-text-center"><img src="/r/cms/www/mobile/edge/assets/i/applyPic.png?1207"></p>
+		<p class="am-text-center"><img src="/r/cms/www/mobile/edge/assets/i/applyTxt.png?1207"></p>
+		<p class='sbtitle' style='margin-top: 25px;'><span>手机号：</span><span class="edge-Input"><input type='text' maxlength='11' class='mobile'/></span></p>
+		<p class='sbtitle'><span>姓名：</span><span class="edge-Input"><input type='text' class='name'/></span></p>
+		<p class="am-text-center"><a href='javascript:;' class='commit'><img src="/r/cms/www/mobile/edge/assets/i/submitBtn.png?1207" style="width: 30%;"></a></p>
+	</form>
+	</div>
+</div>
+<div class='success' style='display:none'>
+	<p>提交成功<br>稍后会有客户和您联系</p>
+	<a href='javascript:;'>确定</a>
+</div>
+ <div class='ploading' id='load' style="display: none;">
+ 	<span class="loadTxt">正在处理数据请耐心等待</span>
+ </div>
+ <div class='share dn'>
+	<img src='/r/cms/www/mobile/edge/assets/i/shareSuccess.png?1207'/>
+</div>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/r/cms/www/mobile/edge/assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/r/cms/www/mobile/edge/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="/r/cms/www/mobile/edge/assets/js/amazeui.min.js"></script>
+<script src="/r/cms/www/mobile/edge/assets/js/jquery.easings.min.js"></script>
+<script src="/r/cms/www/mobile/edge/assets/js/jquery.slimscroll.min.js"></script>
+<script src="/r/cms/www/mobile/edge/assets/js/jquery.fullPage.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/r/cms/www/mobile/edge/assets/js/wechat.js"></script>
+<script src="/r/cms/www/mobile/edge/assets/js/setInfo.js"></script>
+<script src="/r/cms/www/mobile/edge/assets/js/uploadtrack.js"></script>
+<script>
+	
+	(function($){
+		$('#fullpage').fullpage();
+	})(jQuery);
+</script>
+</body>
+</html>

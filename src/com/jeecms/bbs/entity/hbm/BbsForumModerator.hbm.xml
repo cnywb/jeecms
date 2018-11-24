@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.bbs.entity">
+		<class name="BbsForumModerator" table="bbs_forum_user">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_BBS_FORUM_USER_ID</param></generator>
+		</id>
+		<many-to-one
+			name="user"
+			column="user_id"
+			class="BbsUser"
+			not-null="true"
+			>
+		</many-to-one>
+		<many-to-one
+			name="forum"
+			column="forum_id"
+			class="BbsForum"
+			not-null="true"
+			>
+		</many-to-one>
+			<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+		<class name="BbsForumModeratorApplication" table="BBS_FORUM_BM_APPLICATION">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_BBS_FORUM_BM_APP_ID</param></generator>
+		</id>
+		<many-to-one
+			name="user"
+			column="user_id"
+			class="BbsUser"
+			not-null="true"
+			>
+		</many-to-one>
+		<many-to-one
+			name="forum"
+			column="forum_id"
+			class="BbsForum"
+			not-null="true"
+			>
+		</many-to-one>
+			<property
+			name="status"
+			column="STATUS"
+			type="integer"
+			not-null="false"
+			/>
+			<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+</hibernate-mapping>

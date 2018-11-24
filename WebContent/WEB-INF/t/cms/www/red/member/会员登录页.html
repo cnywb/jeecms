@@ -1,0 +1,129 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>用户登录-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/blue/bbs_forum/js/prototype.js"></script>
+<script type="text/javascript" src="/r/cms/www/blue/bbs_forum/js/md5.js"></script>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+
+
+<script>
+	//tab切换
+	function changeDV1(id){
+		var dvnum=3;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('list'+i).className="";
+		document.getElementById('jtab'+i).style.display="none";
+		}
+		document.getElementById('list'+id).className="out";
+		document.getElementById('jtab'+id).style.display="block";
+	}
+	function clickSub()
+	{
+		
+		$('#password').val(utility.MD5($('#password').val()));
+		
+		document.getElementById("jvForm").submit();
+	}
+</script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>用户登录</h1>
+	<img src="/${res}/images/img01.png" alt="" style="float: left; overflow: hidden; zoom: 1;" />
+	<article class="ctan de_event" style="padding-bottom: 50px;">
+		<section class="logins">
+			<form id="jvForm" action="${base}/login.jspx" method="post">
+			<table cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					[#if message??]
+				<div style="color:red">
+				[#if message=="true"]您必须登录后才能继续刚才的操作
+				[#else]${message}[/#if]
+				</div>
+				<input type="hidden" name="message" value="${message}"/>
+				[/#if]				
+				[#if processUrl??]<input type="hidden" name="processUrl" value="${processUrl}"/>[/#if]
+				[#if returnUrl??]<input type="hidden" name="returnUrl" value="${returnUrl}"/>[#else]<input type="hidden" name="returnUrl" value="/"/>[/#if]
+				[#if errors??]
+					<ul>
+					[#list errors as error]<li>${error}</li>[/#list]
+					</ul>
+				[/#if]
+				[#if success??]
+				[#if success]
+					注册成功！
+				[/#if]
+				[/#if]
+					</tr>
+				<tr>
+					<th width="65">用户名：</th>
+					<td><input type="text" id="username" value="" name="username" class="uname"></td>
+				</tr>
+				<tr>
+					<th width="65">密码：</th>
+					<td><input type="password" value="" id="password" name="password" class="uname"></td>
+				</tr>
+				 <tr>
+                  <td align="right">验证码：</td>
+                  <td><input type="text" title="请填写验证码" class="required input" size="15" name="captcha" id="captcha"/></td>
+                </tr>
+                <tr>
+                  <td align="right"></td>
+                  <td><img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/></td>
+                </tr>
+				<!-- <tr>
+					<th width="65"></th>
+					<td><input type="radio">下次自动登录<input type="radio">安全登录</td>
+				</tr> -->
+				<tr>
+					<th width="65"></th>
+					<!-- <td><input type="image" src="${base}/r/cms/www/red/images/loginbtn.jpg" alt="" value="" onclick="javascript:jvForm.submit()"></td> -->
+					<td><a href="javascript:;" onclick="clickSub();"><img src="${base}/r/cms/www/red/images/loginbtn.jpg" alt=""  /></a></td>
+				</tr>
+				<!--<tr>
+					<td colspan="2" class="coltwo"><span>用其他账号登录：</span><a href="#" class="qq"></a><a href="#" class="sina"></a><a href="#" class="taobao"></a></td>
+				</tr>-->
+			</table>
+		</form>
+		</section>
+		<section class="regist">
+			<p class="reg01">还不是福域用户？赶紧注册去<a href="${base}/register.jspx"><img src="/${res}/images/regbtn.jpg" alt=""></a></p>
+                        <p class="wechatRZ">微客服认证用户，绑定福域帐号<a href="${base}/userCreatedByWechatBinding.jspx"><img src="/${res}/images/wechat_logo.jpg" alt=""></a></p>
+		</section>
+		
+		
+	</article>
+</article>
+</div>
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>

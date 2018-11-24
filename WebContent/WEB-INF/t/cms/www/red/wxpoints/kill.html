@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>长安福特</title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/pointsmall.css">
+	<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.css">
+	<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/css/pages/spike.css">
+	<style>
+		.modal-content{width: auto;background-color: #f9edbe;color:#A52E00;}
+		.modal-header{height: auto;}
+		.btn-default,.btn-confirm{background:none;background-color: #F9A311;text-align:center;color:white; border-radius: 5px;font: 13px/1.5 "黑体", Arial, Verdana;}
+		.btn-default:active,.btn-confirm:active{background-color: rgba(249, 237, 190, 0.59);}
+		.sendee th{width: 45%;color:#A52E00;}
+		.sendee td{width:55%;}
+		.sendee input{width:100%;
+			outline: none;border-bottom: 1px solid #A52E00;border-radius: 0;}
+	</style>
+</head>
+<body>
+<!--积分不足、未登录、未认证的车主弹出层-->
+<div class="modal" id="authmodal" style="display:none">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+				<div class="modal-body-content">
+					<div  id="modal-body-content" style="color:#000;"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input type="button" class="btn-confirm" value="确  定">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="myModal" style="top:5%">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+				<div style="margin: 0 30px;"><span style="color:#F57D04;font-size:20px;">秒杀成功!<br/>恭喜您获得秒杀王称号!</span> <span id="lotteryResultTxt" style="color:red;display: none;"></span><br/>
+					请填写奖品寄送信息</div>
+				<form id="jvForm" novalidate="novalidate">
+					<input type="hidden" name="productId" id="productId" value="">
+					<input type="hidden" name="orderId" id="orderId" value="">
+					<table class="sendee">
+						<tbody>
+						<tr>
+							<th width="50%"><span>*</span>收件人姓名：</th>
+							<td width="50%"><input type="text" name="sendee" id="sendee" value="" class="required" placeholder="姓名" maxlength="30" aria-required="true"></td>
+						</tr>
+						<tr>
+							<th><span>*</span>收件人手机：</th>
+							<td><input type="text" name="mobilePhoneNo" id="mobilePhoneNo" value="" placeholder="手机号" maxlength="11"></td>
+						</tr>
+
+						<tr>
+							<th><span>*</span>收件人地址：</th>
+							<td><input type="text" name="address"  id="address" value="" placeholder="详细地址" maxlength="128"></td>
+						</tr>
+						</tbody></table>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<input type="button" id="jvForm_submit" class="btn-default" value="确认信息">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="viewport">
+	<nav class="nav">
+		<a href="javascript:;" title=""  code="14100"><span>--:--</span> 即将开始<div class="triangle"></div></a>
+		<a href="javascript:;" title="" code="14200"><span>--:--</span> 即将开始<div class="triangle hide"></div></a>
+		<div class="nav-line"></div>
+	</nav>
+	<section class="section">
+		<div class="date-line">
+			<span>距离秒杀开始还有：</span>
+			<span id="countTime"><em>-</em><em>-</em>:<em>-</em><em>-</em>:<em>-</em><em>-</em></span>
+		</div>
+		<div class="tip">积分秒杀，豪礼抢先赢!</div>
+	</section>
+		<ul class="product" id="productList">
+		</ul>
+</div>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/zepto.min.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var openId = window.sessionStorage.getItem("openId");
+		var acode1 = "14100";//10点活动代码
+		var acode2 = "14200";//14点活动代码
+		var currentStartTime = {};
+		var currentCode =acode1;
+		var countTimeInterval = null;
+		//tab
+		$('.nav a').tap(function(){
+			if ($(this).hasClass('active'))return;
+			$(this).addClass('active').siblings('a').removeClass('active');
+			$('.triangle').addClass('hide');
+			$(this).find('.triangle').removeClass('hide');
+			var code = $(this).attr("code");
+			doQueryActivityProduct(code);
+			var activityKillOfWeek = window.sessionStorage.getItem("activityKillOfWeek"+code);
+			var activityStartTime = window.sessionStorage.getItem("activityStartTime"+code);
+			currentStartTime[code] = activityStartTime;
+			currentCode = code;
+			if(countTimeInterval!=null){
+				window.clearInterval(countTimeInterval);
+			}
+			disabledKill(activityKillOfWeek);
+		});
+		$(".nav a[code='14100']").trigger("tap");//默认第一个活动激活
+
+		doQueryActivity(acode1);
+		doQueryActivity(acode2);
+		function doQueryActivity(activityCode){
+			var activityCacheTime = window.sessionStorage.getItem("activityCacheTime"+activityCode);
+			var activityStartTime = window.sessionStorage.getItem("activityStartTime"+activityCode);
+			var flag = false;
+			var now = new Date();
+
+			if(activityCacheTime&&activityStartTime){
+				var time = new Date(activityCacheTime);
+				if(now<=time){
+					flag = true;
+				}
+			}
+			if(flag){
+				currentStartTime[activityCode] = activityStartTime;
+				$("a[code='"+activityCode+"']").find("span").html(activityStartTime+":00");
+				return;
+			}
+			$.ajax({
+				url:"${base}/wxpoints/lottery/queryActivity.jhtml",
+				data:{"activityCode":activityCode,"openId":openId},
+				dataType:"json",
+				type:"POST",
+				success:function(retval){
+					if(retval&&retval["code"]){
+						var killStartTime = retval["killStartTime"];
+						var killOfWeek = retval["killOfWeek"];
+						$("a[code='"+activityCode+"']").find("span").html(killStartTime+":00");
+						var now = new Date();
+						var mm = now.getMinutes();
+						now.setMinutes(mm+5);//增加5分钟
+						window.sessionStorage.setItem("activityCacheTime"+activityCode,now);
+						window.sessionStorage.setItem("activityStartTime"+activityCode,killStartTime);
+						window.sessionStorage.setItem("activityKillOfWeek"+activityCode,killOfWeek);
+						if(activityCode=="14100"){
+							currentStartTime[activityCode] = killStartTime;
+							disabledKill(killOfWeek);
+						}
+					}else{
+						one.ui.dialog(retval["name"]);
+					}
+				},error:function(retval){
+					one.ui.dialog("系统异常!");
+				}
+			})
+		}
+
+		function disabledKill(killOfWeek){
+			if(killOfWeek&&killOfWeek!=""){
+				var now = new Date();
+				var currentWeek = now.getDay();
+				if(currentWeek==0){
+					currentWeek=7;
+				}
+				killOfWeek = killOfWeek.split(",");
+				var disabled = true;
+				for(var i=0;i<killOfWeek.length;i++){
+					var week = killOfWeek[i];
+					if(week==currentWeek){
+						disabled=false;
+						break;
+					}
+				}
+				$("#productList").find(".product-mark").remove();
+				if(disabled){
+					$("#countTime").html("<em>-</em><em>-</em>:<em>-</em><em>-</em>:<em>-</em><em>-</em>");
+					$("#productList").append("<div class=\"product-mark\"></div>");
+				}
+			}
+			if(!disabled){
+				if(countTimeInterval!=null){
+					window.clearInterval(countTimeInterval);
+				}
+				countTime();
+				countTimeInterval =window.setInterval(countTime,1000);
+			}
+
+		}
+
+		function countTime(){
+			var startTime = currentStartTime[currentCode];
+			//倒计时
+			var now = new Date();
+			var end = new Date();
+			end.setHours(startTime);
+			end.setMinutes(0);
+			end.setSeconds(0);
+
+			$("#productList").find(".product-mark").remove();
+			if(now>=end){
+				$("#countTime").html("<em>0</em><em>0</em>:<em>0</em><em>0</em>:<em>0</em><em>0</em>");
+			}else{
+				var leftTime=end.getTime()-now.getTime();
+				var leftsecond = parseInt(leftTime/1000);
+				var day1=Math.floor(leftsecond/(60*60*24));
+				var hour=Math.floor((leftsecond-day1*24*60*60)/3600);
+				var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60);
+				var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60);
+				var str =[];
+				if(hour<10){
+					str.push("0"+hour);
+				}else{
+					str.push(hour);
+				}
+				str.push(":");
+				if(minute<10){
+					str.push("0"+minute);
+				}else{
+					str.push(minute);
+				}
+				str.push(":");
+				if(second<10){
+					str.push("0"+second);
+				}else{
+					str.push(second);
+				}
+				str = str.join("");
+				str=str.split("");
+				var html = [];
+				for(var i=0;i<str.length;i++){
+					if(str[i]==":"){
+						html.push(":");
+					}else{
+						html.push("<em>"+str[i]+"</em>");
+					}
+				}
+				$("#countTime").html(html.join(""));
+				$("#productList").append("<div class=\"product-mark\"></div>");
+			}
+		}
+
+		function doQueryActivityProduct(activityCode){
+			$("#productList").find("li").remove();
+			var cacheTime = window.sessionStorage.getItem("cacheTime"+activityCode);
+			var cacheHtml = window.sessionStorage.getItem("cacheHtml"+activityCode);
+
+			var flag = false;
+			var now = new Date();
+
+			if(cacheTime&&cacheHtml){
+				var time = new Date(cacheTime);
+				if(now<=time){
+					flag = true;
+				}
+			}
+			if(flag){
+				$("#productList").append(cacheHtml);
+				$("a.kill_btn").tap(function(){
+					var id = $(this).attr("id");
+					kill(id);
+				});
+				return;
+			}
+			$.ajax({
+				url:"${base}/wxpoints/lottery/queryActivityProduct.jhtml",
+				data:{"activityCode":activityCode,"openId":openId},
+				dataType:"json",
+				success:function(retval){
+					var html =[];
+					for(var i=0;i<retval.length;i++){
+						var o = retval[i];
+						html.push("<li>");
+						html.push("<div class='p-img'><img src='"+o["product"]["imageSmallURL"]+"' alt='"+o["product"]["info"]+"'/></div>");
+						html.push("<h3>"+o["product"]["title"]+"</h3>");
+						html.push("<p>所需积分:"+o["product"]["pointNum"]+"</p>");
+						html.push("<del>商品定价：¥"+o["product"]["price"]+"</del>");
+						html.push("<a href='javascript:void(0);' class='kill_btn' id='"+o["product"]["id"]+"'>立刻秒杀</a>");
+						html.push("</li>");
+					}
+					var cacheHtml = html.join("");
+					window.sessionStorage.setItem("cacheHtml"+activityCode,cacheHtml);
+					var now = new Date();
+					var mm = now.getMinutes();
+					now.setMinutes(mm+5);//增加5分钟
+					window.sessionStorage.setItem("cacheTime"+activityCode,now);
+					$("#productList").find("li").remove();
+					$("#productList").append(cacheHtml);
+
+					$("a.kill_btn").tap(function(){
+						var id = $(this).attr("id");
+						kill(id);
+					});
+				},error:function(retval){
+					$("#productList").html("系统异常!");
+				}
+			})
+		}
+
+		function kill(productId){
+			var data = {};
+			data["activityCode"]=currentCode;
+			data["productId"]=productId;
+			data["openId"]=openId;
+			$.ajax({
+				url: "${base}/wxpoints/lottery/doKill.jhtml",
+				data: data,
+				type: "POST",
+				success:function (retval) {
+					var result = retval.split(":");
+					var flag = result[0];
+					var message = result[1];
+					if(flag=="false"){
+						authModal(message);
+					}else{
+						openModal(message,productId,result[2]);
+					}
+				},
+				error:function (retval) {
+					authModal("系统异常!");
+				}
+			});
+		}
+		$("#jvForm_submit").tap(function(){
+
+			var data ={};
+			data["productId"]=$("#productId").val();
+			data["orderId"]=$("#orderId").val();
+			data["activityCode"]=currentCode;
+			data["openId"]=openId;
+			data["sendee"]=$("#sendee").val();
+			data["mobilePhoneNo"]=$("#mobilePhoneNo").val();
+			data["address"]=$("#address").val();
+			if(!data["sendee"]||data["sendee"]==""){
+				alert("姓名不能为空!");
+				return;
+			}
+
+			if(!data["mobilePhoneNo"]||data["mobilePhoneNo"]==""){
+				alert("手机号不能为空!");
+				return;
+			}
+
+			if(!data["address"]||data["address"]==""){
+				alert("地址不能为空!");
+				return;
+			}
+
+			$.ajax({
+				url:"${base}/wxpoints/lottery/exchangesave.jhtml",
+				data:data,
+				dataType:"json",
+				success:function(retval){
+					var status = retval["status"];
+					var message = retval["message"];
+					if(status!=="true"){
+						colseModal();
+						authModal(message);
+					}else{
+						colseModal();
+						authModal("谢谢!\n礼品将在30天内寄出!");
+					}
+				},error:function(retval){
+					loading.close();
+					colseModal();
+					console.log(retval);
+					authModal("系统异常");
+				}
+			});
+		});
+
+	});
+
+
+	function colseModal(){
+		$('#modal-backdrop').remove();
+		$('#myModal').hide();
+	}
+	function openModal(txt,productid,orderId){
+		var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+		$('body').append(fade);
+		$('#myModal').show();
+		$("#lotteryResultTxt").html(txt);
+		$("#productId").val(productid);
+		$("#orderId").val(orderId);
+
+	}
+	//用户授权提示页面
+	function authModal(message,callbackfn){
+		callbackfn=callbackfn||$.noop;
+		if ($('#modal-backdrop').size() === 0) {
+			var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+			$('body').append(fade);
+			if(message.indexOf("积分不足")>-1||message.indexOf("礼品寄送地址已填写")>-1){
+				$("#alert_tip").hide();
+			}else{
+				$("#alert_tip").show();
+			}
+			$('#authmodal').show();
+			$('#modal-body-content').html(message);
+			$('#authmodal .modal-close,#authmodal .btn-confirm').click(function(event) {
+				$('#modal-backdrop').remove();
+				$('#authmodal').hide();
+				if(callbackfn)
+				callbackfn.call(this);
+			});
+
+		}
+	}
+</script>
+</body>
+</html>

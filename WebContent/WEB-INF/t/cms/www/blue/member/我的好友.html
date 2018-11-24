@@ -1,0 +1,121 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style type="text/css">
+	
+	.userIcon{
+	width:90px;
+	height: 90px;
+	}
+</style>
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id){
+		var dvnum=7;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('page'+i).className="";
+		document.getElementById('pagelist'+i).style.display="none";
+		}
+		document.getElementById('page'+id).className="out";
+		document.getElementById('pagelist'+id).style.display="block";
+	}
+	
+	function postData(name){
+		$("#username").val(name);
+		$("#goSendMsg").submit();
+	}
+	$(document).ready(function(){
+		$(".userIcon").each(function(){
+			   var faceIcon=$(this).attr("src");
+			   if(faceIcon.indexOf("image/")==-1){
+				   $(this).attr("src","/${res}/bbs_member/img/face/"+faceIcon);
+			   }
+		});
+	});
+</script>
+
+</head>
+<body>
+[#include "../include/head.html"/]
+    <!--header--> 
+[#include "../include/页头.html"/]	
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>个人主页</h1>
+	[#include "会员中心页_导航.html"/]
+	<article class="selfpage de_event self">
+	<form action="${base}/member/friendSearch.jhtml" name="jvForm" method="get">
+		<section id="pagelist5" class="tabpage none" style="display: block;">
+			<ul class="inftab">
+				<li class="bodl"><a href="myfriend.jhtml" onClick="changeDV3('1')" class="out" id="haoy1">我的好友</a></li>
+				<li><a href="friendSearch.jhtml" onClick="changeDV3('2')" id="haoy2">搜索好友</a></li>
+				<!-- <li class="bodl"><a href="javascript:void(0);" onClick="changeDV3('2')" id="haoy2">管理好友分组</a></li>
+				<li class="bodl"><a href="javascript:void(0);" onClick="changeDV3('3')" id="haoy3">谁来看过我</a></li>
+				<li class="bodl"><a href="javascript:void(0);" onClick="changeDV3('4')" id="haoy4">我去看过谁</a></li>
+				<li><a href="javascript:void(0);" onClick="changeDV3('5')" id="haoy5">可能认识的人</a></li>
+				<li class="search"><input type="text" value="搜索好友" name=""><a href="#"></a></li> -->
+			</ul>
+			<table cellpadding="0" cellspacing="0" width="100%" class="listtable block">
+			<div class="haoybox block" id="haoylist1">
+				<div class="fenzbox">
+					<ul id="fenzlist1" class="block">
+					 [@myfriend_page userId=bbsUser.id count=5]
+     					[#list tag_pagination.list as friendship]
+						<li><img class="userIcon" src="${(friendship.friend.avatar)!'none.gif'}" alt=""><span>${friendship.friend.username!}</span>${friendship.friend.group.name}[@car_owners userid=friendship.friend.id][#if carowners.group.id==2](车主)[/#if][/@car_owners]
+							<div><span><a href="javascript:void(0);" onclick="postData('${friendship.friend.username!}');" class="fl">留言</a></span></div></li>
+						[/#list]
+     				[/@myfriend_page]
+					</ul>					
+				</div>
+				<ul class="page">
+				<li class="num">
+				[@myfriend_page userId=bbsUser.id count=5]
+			     [#include "../tag/topic.html"/]
+			    [/@myfriend_page]	
+			    </li>			
+				</ul>
+			</div>
+			</table>
+		</section>
+	</form>
+	</article>
+</article>
+</div>
+<!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+
+<form action="${base}/member/goSendMsg.jhtml" method="post" id="goSendMsg">
+<input type="hidden" id="username" name="username"/>
+<input type="hidden" id="type" value="2" name="type"/>
+</form>
+
+</body>
+</html>

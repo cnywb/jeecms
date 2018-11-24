@@ -1,0 +1,188 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>微客服车主绑定-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/blue/bbs_forum/js/prototype.js"></script>
+<script type="text/javascript" src="/r/cms/www/blue/bbs_forum/js/md5.js"></script>
+<script type="text/javascript" src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script>
+	
+	
+	function redirect(){
+		var currentHref=window.location.href;
+		if(currentHref.indexOf("bbs.")==-1){
+			return;
+		}
+		window.location.href=window.location.href.replace(/bbs/, "www");
+	}
+	redirect();
+	
+	function checkUserName(userName){
+		var reg=/^(?=.*\d)[a-z\d]{3,14}$/i;  //校验必须由英文加数字长度为3-14
+		var reg2=/^(?=.*\d)[\u4E00-\u9FA5\uF900-\uFA2D\d]{3,14}$/i  //校验必须由中文加数字长度为3-14
+    	// /[\u4E00-\u9FA5\uF900-\uFA2D]/; //校验中文
+		return (userName.match(reg2)||userName.match(reg));
+	}
+	$(document).ready(function(){
+		$("#a_submit").click(function(){
+			bindUserCreatedByWechat();
+		});
+		
+	});
+	function showBlock(){
+		$.blockUI({
+	        message: '<h1>正在执行操作,请稍后...</h1>',
+	        css: {
+	            border: 'none',                   // 无边界
+	            width:"180px",
+	            top:"50%",                        // 高居中
+	            left:"50%"                        // 左居中
+	       }
+	    });
+	}
+	function bindUserCreatedByWechat(){
+		var submitData={};
+		submitData["mobilePhone"]=$("#mobilePhone").val();
+		submitData["username"]=$("#username").val();
+		submitData["validateCode"]=$("#validateCode").val();
+		if(submitData["mobilePhone"]==""){
+			alert("绑定失败！您填写的手机号码有误，请重新输入。");return;
+		}
+        if(!checkUserName(submitData["username"])){
+        	 alert("绑定失败！用户名必须由3到14位的英文字母或者中文字符和数字组成。");return;
+		}
+         if(submitData["validateCode"]==""){
+        	 alert("绑定失败！验证码不能为空。");return;
+		}
+		showBlock();
+		 $.ajax( {
+				url :'bindUserCreatedByWechat.jspx',
+				type : 'post',
+				data:submitData,
+				dataType:'text',
+				success : function(result) {
+					$("#img_validateCode").click();
+					$.unblockUI();
+					if(result==0){
+						alert("绑定失败！您的用户名已被其他用户注册，请使用其他用户名。");
+					}else if(result==1){
+						alert("绑定失败！您填写的手机号码有误，请重新输入。");
+					}else if(result==2){
+						alert("绑定失败！该手机号已经完成车主绑定，请勿重复操作。");
+					}else if(result==3){
+						$("#binding_table").hide();
+						$("#div_success").show();
+					   setInterval('goHome()',1000);
+				    }else if(result==4){
+						alert("绑定失败！系统错误。");
+					}else if(result==5){
+						alert("绑定失败！验证码错误,请重新输入。");
+						$("#img_validateCode").click();
+					}
+		        },error:function(){
+		        	$.unblockUI();
+		            alert("网络或数据异常，操作失败！");
+		       }
+			});
+		
+	}
+	
+	function goHome(){
+		var time=$("#reduce_time").text()*1;
+		if(time>1){
+			$("#reduce_time").text(time-1);
+		}else{
+		    window.location.href="/";
+		}
+	}
+</script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>微客服车主绑定</h1>
+	<img src="/${res}/images/img01.png" alt="" style="float: left; overflow: hidden; zoom: 1;" />
+	<article class="ctan de_event" style="padding-bottom: 50px;">
+		<section class="logins register">
+		
+			<table cellpadding="0" cellspacing="0" width="100%" id="binding_table">
+				<tr>
+					<th width="90" style='text-align: right!important'>手机号码：</th>
+					<td width="240"><input class="input2 uname" id="mobilePhone" type="text" /></td>
+					<td>友情提醒：<br />请输入微客服认证时填写的手机号码</td>
+				</tr>
+				<tr>
+					<th  style='text-align: right!important'>认证用户名：</th>
+					<td height="30"><input type="text" value="" id="username" class="uname"></td>
+					<td>友情提醒：<br />用户名必须由3到14位的英文字母或者中文字符和数字组成</td>
+				</tr>
+                 <tr>
+					<th style='text-align: right!important'>验证码：</th>
+					<td height="30"><input type="text" value="" id="validateCode" class="uname"></td>
+					<td><img  id="img_validateCode" src="/captcha.svl" width="67" height="30" onclick="this.src='/captcha.svl?d='+new Date()" ></td>
+				</tr>              
+                <tr>
+					<th></th>
+					<td height="100" valign="top"><a href="javascript:;" id="a_submit" style="display:inline-block;" ><img src="${base}/r/cms/www/red/images/infor_confBtn.jpg" alt="" name="register"  /></a></td>
+					<td><!--<img id="guestbookCaptcha" onclick="this.src='${base}/captcha.svl?d='+new Date()" alt="" src="${base}/captcha.svl" />--></td>
+				</tr>
+                                <tr>
+                                        <th></th>
+					<td style="color: #ff0017; font-size: 11px; padding-right: 30px;" colspan="2">*您的福域用户名和密码将以短信形式发送至您的手机，在登录页面后正确填写用户名和密码即可完成绑定。</td>
+                                </tr>
+			</table>
+			
+
+                        <div class="dlbd" style=" display: none;">
+                                <p>您的福域用户名和密码将以短信形式发送至您的手机，登录后即可完成绑定！</p>
+                                <a href="javascript:;" onclick="clickSub();"><img src="${base}/r/cms/www/red/images/loginbtn.jpg" alt=""  /></a>
+                        </div>
+
+                        
+                        <div id="div_success" class="dlbd dlbdSuc" style=" display: none;">
+                                <p>您已成功绑定福域网站车主信息，现在起可通过福域论坛参与更多车主专享精彩活动，长安福特诚挚感谢您的加入！</p>
+                                <span><font id="reduce_time">5</font>秒后自动跳转至福域网站首页，如没有跳转，<a href="/">请点击这里</a></span>
+                        </div>
+             
+		</section>
+		<section class="regist">
+			<p class="reg01">还不是福域用户？赶紧注册去<a href="${base}/register.jspx"><img src="/${res}/images/regbtn.jpg" alt=""></a></p>
+		</section>
+		
+		
+	</article>
+</article>
+</div>
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>

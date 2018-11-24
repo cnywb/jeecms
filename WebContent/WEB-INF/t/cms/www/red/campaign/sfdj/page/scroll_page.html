@@ -1,0 +1,30 @@
+ [#list pagination.list as m]
+		<div class="item masonry_brick">
+			<div class="item_t">
+				<div class="img">
+				<div><a href="${m.imageUrl}" class="highslide" onclick="return hs.expand(this,{wrapperClassName: 'borderless floating-caption', dimmingOpacity: 0.75, align: 'center'});"><img src="${m.imageUrl}" width="325"/></a><div class="highslide-caption" ></div></div>
+		<!-- 			<a href="javascript:void(0);" onClick="showImgBox('${m.imageUrl}');"><img width="325" alt="" src="${m.imageUrl}" /></a> -->
+				</div>
+				<div class="title"><span>${m.creater.username}:<br>${m.content}</span></div>
+			</div>
+			<div class="item_b clearfix">
+				<div class="items_likes">
+					[#if user??][#if user.username=='admin']
+					[#if m.status==1]<font color="green">审核通过</font>[/#if]
+					[#if m.status==2]<font color="red">审核未通过</font>[/#if]
+				  [#if m.status==0]
+				   <a href="javascript:void(0);" onclick="memberStoryPass('${m.id}')"  >审核通过</a>
+				   <a href="javascript:void(0);" onclick="memberStoryUnPass('${m.id}')"  >审核不通过</a>
+				  [/#if]
+				[/#if]
+				[/#if]
+				[#if m.status==1]
+				    <a href="javascript:void(0);" onclick="goToShare('${m.id}')"  class="like_btn">分享</a>
+					<em class="bold" onclick="addMemberStoryPraise('${m.id}');" >${m.praiseCount}</em>
+				[/#if]
+					
+				</div>
+			</div>
+		  </div><!--item end-->
+	[/#list]	
+		

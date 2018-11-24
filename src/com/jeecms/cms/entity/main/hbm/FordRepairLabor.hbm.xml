@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="FordRepairLabor" table="FORD_REPAIR_LABOR">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="vlid" type="java.lang.Long" column="VLID" length="22"/>
+		<property name="vbillId" column="VBILL_ID" type="string" not-null="false" length="70"/>
+		<property name="vroId" column="VRO_ID" type="string" not-null="false" length="30"/>
+		<property name="vsstId" column="VSST_ID" type="string" not-null="false" length="60"/>
+		<property name="nitemCost" column="NITEM_COST" type="double" not-null="false" length="18"/>
+		<property name="vitemCode" column="VITEM_CODE" type="string" not-null="false" length="60"/>
+		<property name="vitemName" column="VITEM_NAME" type="string" not-null="false" length="240"/>
+		<property name="nlaborHour" column="NLABOR_HOUR" type="double" not-null="false" length="18"/>
+		<property name="nlaborFee" column="NLABOR_FEE" type="double" not-null="false" length="18"/>
+		<property name="ndiscountRate" column="NDISCOUNT_RATE" type="double" not-null="false" length="18"/>
+		<property name="vnotes" column="VNOTES" type="string" not-null="false" length="400"/>
+		<property name="vcreated" column="VCREATED" type="string" not-null="false" length="100"/>
+		<property name="dcrtDate" column="DCRT_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vupdated" column="VUPDATED" type="string" not-null="false" length="100"/>
+		<property name="dupDate" column="DUP_DATE" type="timestamp" not-null="false" length="19"/>
+	</class>
+</hibernate-mapping>

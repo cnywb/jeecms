@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.campaign.answercontest">
+	<class name="ContestAsk" table="CONTEST_ASK">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_CONTEST_ASK_ID</param></generator>
+		</id>
+		<property name="code" column="CODE" type="string" not-null="true"/>
+		<property name="content" column="CONTENT" type="string" not-null="true"/>
+		<property name="sequence" column="SEQ" type="integer" not-null="true"/>
+		<property name="group" column="CROUP_CODE" type="string" not-null="true"/>
+		<property name="type" column="TYPE" type="integer" not-null="true"/>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	<!-- 	<set name="answers" inverse="true" cascade="all">
+			<key column="ID"/>
+			<one-to-many class="com.jeecms.cms.entity.campaign.answercontest.ContestAnswer"/>
+		</set> -->
+	</class>
+		<class name="ContestAnswer" table="CONTEST_ANSWER">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_CONTEST_ANSWER_ID</param></generator>
+		</id>
+		<property name="code" column="CODE" type="string" not-null="true"/>
+		<property name="content" column="CONTENT" type="string" not-null="true"/>
+		<property name="sequence" column="SEQ" type="integer" not-null="true"/>
+		<property name="isCorrectAnswer" column="IS_CORRECT_ANSWER" type="java.lang.Boolean" not-null="true"/>
+		<many-to-one
+			name="contestAsk"
+			column="CONTEST_ASK_ID"
+			class="com.jeecms.cms.entity.campaign.answercontest.ContestAsk"
+			not-null="true"
+			>
+		</many-to-one>
+		
+		
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+</hibernate-mapping>
+		

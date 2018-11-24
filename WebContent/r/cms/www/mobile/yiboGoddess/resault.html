@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=640, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>长安福特翼搏</title>
+    <!--<link type="text/css" rel="stylesheet" href="styles/main.css">-->
+    <link type="text/css" rel="stylesheet" href="assets/jscss/animate.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/jscss/style.css">
+</head>
+	<body>
+		<div class="loading_wrap db" >
+			<div class="cloud1"></div>
+			<div class="cloud2"></div>
+			<div class="cloud3"></div>
+			<div class="loading1">
+				<div class="loading-peng"></div>
+				<div class="loading-txt">Loading 0%</div>
+				<div class="loading-man2"></div>
+			</div>
+			<div class="bottomCloud"></div>
+			<div class="logo"></div>
+		</div>
+		
+		<div class="Resault_wrap resaultOne dn"> <!--结论 尾门-->
+			<img src="assets/i/resaul1_head.png" class="r1_head dn">
+			<img src="assets/i/r1_txt.png" class="r1_txt dn">
+			<img src="assets/i/resault1_superMan.png" class="r1_man dn">
+			
+			<div class="logo"></div>
+		</div>
+		<div class="Resault_wrap resaultTwo dn"> <!--结论 离地间隙-->
+			<img src="assets/i/resault2_head.png" class="r2_head dn">
+			<img src="assets/i/resault2_txt.png" class="r2_txt dn">
+			<img src="assets/i/resault2_man.png" class="r2_man dn">
+			<div class="logo"></div>
+		</div>
+		<div class="Resault_wrap resaultThree dn"> <!--天窗 -->
+			<img src="assets/i/resault3_head.png" class="r3_head dn">
+			<img src="assets/i/resault3_man.png" class="r3_man dn">
+			<img src="assets/i/resault3_txt.png" class="r3_txt dn">
+
+			<div class="logo"></div>
+		</div>
+		<div class="Resault_wrap resaultFour dn"> <!--犀利大灯 -->
+			<img src="assets/i/resault4_head.png" class="r4_head dn">
+			<img src="assets/i/resault4_txt.png" class="r4_txt dn">
+			<img src="assets/i/resault4_man.png" class="r4_man dn">
+			
+			<div class="logo"></div>
+		</div>
+		<div class="Resault_wrap resaultFive dn"> <!--6安全气囊 -->
+			<img src="assets/i/resault5_head.png" class="r5_head dn">
+			<img src="assets/i/resault5_txt.png" class="r5_txt dn">
+			<div class="r5_man dn"></div>
+			<div class="logo"></div>
+		</div>
+		<div class="Resault_wrap videoPlay dn"> <!--TVC-->
+			<img src="assets/i/videoMan.png" class="videoMan"/>
+			<img src="assets/i/videoTitle.png" class="videoTitle"/>
+			<div class="videoLayer">
+				<div id="danmup">
+					
+				</div>
+			</div>	
+			<div class="logo"></div>	
+			<div class="homeBg"></div>
+			<img src="assets/i/closeBtn.png" class="closeBtn" />
+		</div>
+		<div class="shareTips dn">
+			<img src="assets/i/share_man.png" class="shareman">
+			<img src="assets/i/huaban.png" class="huaban">
+				<img src="assets/i/huaban2.png" class="huaban2">
+		</div>
+		<div class="resault_btnBg dn">
+			<img src="assets/i/btn_tryagain.png" class="btn_tryagain"/>
+			<img src="assets/i/btn_gift.png" class="btn_gift"/>
+			<img src="assets/i/btn_share.png" class="btn_share"/>
+		</div>
+		
+		<div class="screenAlert dn">
+			<p>为了达到最佳浏览体验，请使用竖屏方式访问本站</p>
+		</div>
+		<script src="assets/jscss/jquery-2.1.4.min.js"></script>
+		<script src="assets/jscss/globe.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="assets/jscss/jwplayer.js"></script>
+		<script src="assets/jscss/wechat.js"></script>
+		<script src="assets/jscss/resault.js" ></script>
+		<script>
+				jwplayer("danmup").setup({//通过js调用播放器并安装到指定容器（container）内
+					file: "assets/i/Goddess.mp4",//调用视频文件
+					width: 610,//播放器宽
+					height: 388,//播放器高
+					aspectratio:"100%",//自适应宽高比例，如果设置宽高比，可设置宽度100%,高度不用设置
+					image:"",//视频预览图片
+					controlbar: "over",//控制条位置
+					screencolor :"#000",//播放器颜色
+					repeat:"always",//重复播放
+					autostart:false,//自动播放
+usefullscreen:false
+					});
+		</script>
+	</body>
+</html>

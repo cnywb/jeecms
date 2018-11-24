@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+/* CSS Document */
+.warp_c_banner {
+	width: 1000px;
+	overflow: hidden;
+	position: relative;
+}
+.warp_c_banner img {
+	width: 1000px;
+	height: 560px;
+}
+.warp_c_activity {
+	padding-top: 18px;
+	width: 1000px;
+	text-align: center;
+	background-color: #f2e3c1;
+	overflow: hidden;
+	background: url(../images/bg_qb_body.png) repeat-y 0 0;
+}
+.event_details {
+	width: 100%;
+	overflow: hidden;
+}
+.warp_c_activity h3 {
+	margin: 0 auto;
+	font-size: 24px;
+	color: #fff;
+	height: 55px;
+	width: 650px;
+	background: url(../images/title_bg.png) no-repeat center;
+}
+.event_details img.event_details_pic {
+	margin: 5px auto 15px;
+	width: 930px;
+	height: 390px;
+	margin-left: 27px;
+}
+.event_details img.jiangpin {
+	margin: 5px auto 15px;
+	width: 906px;
+	height: 340px;
+	margin-left: 5px;
+}
+.event_details img.guize {
+	margin: 5px auto 15px;
+	width: 906px;
+	height: 300px;
+	margin-left: 27px;
+}
+.bg_qb_bottom {
+	clear: both;
+	width: 1000px;
+	height: 12px;
+	background: url(../images/bg_qb_bottom.png) no-repeat 0 0;
+}
+.my_btn {
+	height: 135px;
+}

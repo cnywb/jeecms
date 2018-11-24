@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+<title>积分查询</title>
+[#include '../common/header.html']
+<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/points_query.css">
+</head>
+<body>
+[#include '../common/bodyheader.html']
+<div class="warp" id="warp">
+		<div class="warp_cen">
+			<h3 class="warp_c_title">福域积分换礼</h3>
+			<div class="c_bg_top"></div>
+			<div class="c_bg_body">
+				<div class="r_banner">
+					<img src="${base}/r/cms/www/red/point/images/points/p_banner.jpg" alt="" />
+					<div class="r_banner_tag">
+						<p class="r_banner_tag_title r_padding_top">长安福特“福域”联手官方微信“长安福特微客服”，倾情回馈广大车主！即日起在“福域”与微客服发帖、回帖、玩游戏…</p>
+						<p class="r_banner_tag_title">即获赠相应积分；通过累积、兑换、抽奖、秒杀…赢取享不尽的精美豪礼.</p>
+						<ul class="r_banner_tag_link">
+							<li class="left_link"><a href="${base}/points/integral/index.jhtml">积分规则</a></li>
+							<li class="middle_link"><a href="${base}/points/rule/index.jhtml">积分获取</a></li>
+							<li class="middle_link"><a href="${base}/points/ward/index.jhtml">积分兑换</a></li>
+							<li class="right_link"><a href="${base}/points/lottery/index.jhtml">积分抽奖</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="r_query">
+					<div class="r_title">
+						<p>所有车主只有在完成俱乐部会员注册，并成功通过车主认证后才能开始获取积分。</p>
+						<p>长安福特保留对其产品、服务及“福域”积分获取标准及规则的修订权利。</p>
+					</div>
+					<div class="r_user">
+						<div class="r_user_title"><p>个人信息</p></div>
+						<div class="r_user_info">
+							<div class="r_user_info_header">
+								[#if user.userImg??]
+					         	   	[#if user.userImg!=""]
+					              		<img src="${user.userImg!}" />
+					            	[#else]
+					              		<img src="/${res}/img/member/member-phtot.gif"/>
+					              	 [/#if]
+					            [#else]
+					            	 <img src="/${res}/img/member/member-phtot.gif"/>
+					            [/#if]
+							</div>
+							<ul class="r_user_info_des user_info_des01">
+								<li class="user_name">${user.username!}</li>
+								[#if user??&&user.group.id==2]
+								<li class="user_mark"><img src="${base}/r/cms/www/red/point/images/points/q_003.png" alt="" /></li>
+								[/#if]
+								<li class="user_title">头衔：${bbsUser.group.name!}</li>
+								<li>车主姓名：${user.realname!}</li>
+								<li>手机：${user.mobile!?html}</li>
+								<li>积分：${unifiedUser.currentPoint!}</li>
+							</ul>
+							<ul class="r_user_info_des">
+								<li>姓名：${user.realname!}</li>
+								<li>性别：[#if user.gender??] [#if user.gender ]男[#else]女[/#if] [#else]保密[/#if]</li>
+								<li>电话号码：${user.mobilePhone!}</li>
+								<li>邮件地址：${unifiedUser.email!}
+								<li>地址：[#if user.userExt??]${user.userExt.province!?html} ${user.userExt.city!?html} ${user.userExt.county!?html} ${user.comefrom!?html}[/#if]</li>
+								<li>邮编：</li>
+							</ul>
+							<ul class="r_user_info_des">
+								<li>出生日期：${(user.birthday?string('yyyy-MM-dd'))!}</li>
+								<li>国籍：</li>
+								<li>职业：</li>
+								<li>可用积分：${unifiedUser.expiredPoint!}</li>
+								<li>过期积分：${unifiedUser.currentPoint!}</li>
+								<li>累计积分：${unifiedUser.historyPoint!}</li>
+							</ul>
+						</div>
+						<div class="r_user_bottom"></div>
+						<div class="r_point">
+							<div class="r_user_title">
+								<p>积分查询</p>								 
+                				<div class="g_serach">
+                    				<span>从</span>
+                    				<input type="text" readonly="readonly" id="startDate" name="startDate" class="serach_text" value="${startDate!}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')||\'${maxDate}\'}'})" class="Wdate">
+                    				<span>至</span>
+                    				<input type="text" readonly="readonly" id="endDate" name="endDate"   class="serach_text" value="${endDate!}"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'${maxDate}'})" class="Wdate">
+                    				<a href="javascript:_gotoPage(1);" class="serach_link">搜索</a>
+                    			</div>
+                			</div>
+							<div class="table_item">
+								<table cellpadding="0" cellspacing="0">
+	                    			<tr>
+	                    				<td width="204px"><div class="bgwhite bgwhite_first">日期</div></td>
+	                    				<td width="250px"><div class="bgwhite">项目</div></td>
+	                    				<td width="174px"><div class="bgwhite">积分</div></td>
+	                    				<td width="226px"><div class="bgwhite">有效期</div></td>
+	                    			</tr>
+	                    			[#list points as point]
+	                    				[#if point_index%2==0]
+			                    			<tr>
+			                    				<td><div class="bgwhite bgwhite_first">${(point.incomeDate?string('yyyy-MM-dd'))!}</div></td>
+			                    				<td><div class="bgwhite">${point.pointRuleName!}</div></td>
+			                    				<td><div class="bgwhite">${point.pointNum!}</div></td>
+			                    				<td><div class="bgwhite">${(point.expiryDate?string('yyyy-MM-dd'))!}</div></td>
+			                    			</tr>
+		                    			[#else]
+			                    			<tr>
+			                    				<td><div class="bgwhite bgwhite_light bgwhite_first">${(point.incomeDate?string('yyyy-MM-dd'))!}</div></td>
+			                    				<td><div class="bgwhite bgwhite_light">${point.pointRuleName!}</div></td>
+			                    				<td><div class="bgwhite bgwhite_light">${point.pointNum!}</div></td>
+			                    				<td><div class="bgwhite bgwhite_light">${(point.expiryDate?string('yyyy-MM-dd'))!}</div></td>
+			                    			</tr>
+		                    			[/#if]
+	                    			[/#list]
+	                    		</table>
+		                    	<form id="tableForm" action="index.jhtml" method="post">
+		                    	<input type="hidden"  id="tfStartDate"  name="startDate"/>
+		                    	<input type="hidden"  id="tfEndDate"  name="endDate"/>
+		                    	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="pagination" >
+									 <tr>
+										   <td align="center" class="warp_c_pro">
+										   [#if pagination.totalCount gt 0]
+												[#if pagination.firstPage]
+												上一页
+												[#else]
+												<a href="javascript:void(0)", onclick="_gotoPage('${pagination.prePage}')">上一页</a>
+												[/#if]
+												[#if pagination.lastPage]
+												下一页
+												[#else]
+												<a href="javascript:void(0)", onclick= "_gotoPage('${pagination.nextPage}')">下一页</a>
+												[/#if]
+												<span>第${pagination.pageNo}页</span>
+												<span>共${pagination.totalCount}条</span>
+												<span>共${pagination.totalPage}页</span>
+										   [#else]
+										   		没有查找数据		   
+										   [/#if]
+										   </td>
+										</tr>
+									</table>
+									 <input type="hidden" name="page" value="1"/>
+									 <input type="hidden" name="rows" value="10"/>
+								 </form>
+							</div>
+						</div>
+					</div>
+					<div class="r_query_complay">特别声明：活动的最终解释权归长安福特所有。</div>
+				</div>
+			</div>
+			<div class="c_bg_bottom"></div>
+			<div class="space30"></div>
+		</div
+</div>
+[#include '../common/footer.html']
+[#include '../common/right.html']
+</body>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery-1.7.1.min.js"></script>
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(function(){
+		$('.subnav').hover(function() {
+			$('.topnav').addClass('topnav_out');
+			var index=$(this).index();
+			$(this).find('ul').css('left', index*104);
+		}, function() {
+			$('.topnav').removeClass('topnav_out');
+		});
+
+	});
+</script>
+<script type="text/javascript">
+function _gotoPage(page) {
+	try{
+		var tableForm = document.getElementById("tableForm");
+	 	$("#tfStartDate").val($('#startDate').val());
+	 	$("#tfEndDate").val($('#endDate').val());
+		if(page!=null && typeof(page)!="undefined" && page!=0){
+			$("input[name=page]").val(page);
+		}
+		tableForm.action="index.jhtml";
+		tableForm.onsubmit=null;
+		tableForm.submit();
+	} catch(e) {
+		alert('_gotoPage方法出错');
+	}
+}
+</script>
+<!-- 登录状态 -->
+[#include '../common/loginstatus.html']
+</html>

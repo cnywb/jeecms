@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>长安福特</title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/css/pages/questionnaire.css">
+</head>
+<body>
+<div class="viewport">
+	<header class="header">
+		<img src="${base}/r/cms/www/red/wxpoints/images/ques.jpg" alt="">
+	</header>
+	<div class="section">
+		<div class="section-box-none"  id="sectionBox">
+			<form id="actionfrm" method="post">
+				<div class="btn-bar" id="btnBar"><a href="javascript:void(0);" class="btn-submit" id="btnSubmit">提交</a></div>
+			</form>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="user_id" value="[#if user??]${user.id}[/#if]">
+<input type="hidden" id="group_id" value="[#if user??]${user.group.id}[/#if]">
+<input type="hidden" id="surveyId" value="[#if t??]${t.id}[/#if]" />
+<input type="hidden" id="surveyCode" value="[#if t??]${t.code}[/#if]" />
+<input type="hidden" id="enable" value="[#if enable??]${enable}[/#if]" />
+<input type="hidden" id="msg" value="[#if msg??]${msg}[/#if]" />
+<input type="hidden" id="canAddPoint" value="[#if canAddPoint??]${canAddPoint}[/#if]" />
+<input type="hidden" id="base" value="${base}"/>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/zepto.min.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/js/pages/questionnaire.js"></script>
+</body>
+</html>

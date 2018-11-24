@@ -1,0 +1,676 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>论坛列表页 福域论谈-福域</title>
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+    <link rel="stylesheet" type="text/css" href="/${res}/bbs_forum/css/whole.css" />
+    <link rel="stylesheet" type="text/css" href="/${res}/bbs_forum/css/layout.css" />
+    <link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+
+
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+
+     <link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="${base}/plugins/jquery.blockUI.js"></script>
+	<script type="text/javascript">
+	
+	function editTitle(id) {
+		$('#title'+id).show();
+		$('#link'+id).hide();
+		$('#title'+id).select();
+	}
+	function updateTitle(id) {
+		var title = $('#title'+id).val();
+		if($('#link'+id).text() == title) {
+			//do nothing
+		} else if($.trim(title).length<2) {
+			alert("标题不能小于2个字符");
+		} else  {
+			$.postJson('${base}/jeebbs/TopicTitleUpdate.do', {
+				'topicId' : id,
+				'title' : title
+			}, function(data) {
+				if (!data.success) {
+					alert(date.msg);
+				}
+			});
+		}
+		$('#title'+id).hide();
+		$('#link'+id).text(title).show();
+	}
+	function manageTopic(url) {
+		var batchChecks = document.getElementsByName('topicIds');
+		var hasChecked = false;
+		for(var i=0; i<batchChecks.length; i++) {
+			if(batchChecks[i].checked) {
+				hasChecked = true;
+				break;
+			}
+		}
+		if(!hasChecked) {
+			alert('请选择要操作的数据！');
+			return;
+		}
+		var form = document.getElementById('jvForm');
+		form.action=url;
+		form.submit();
+   }
+	
+	function setToHeadlineTopic(url) {
+		var batchChecks = document.getElementsByName('topicIds');
+		var hasChecked = false;
+		var counter=0;
+		for(var i=0; i<batchChecks.length; i++) {
+			if(batchChecks[i].checked) {
+				hasChecked = true;
+				counter=counter+1;
+			}
+		}
+		if(!hasChecked) {
+			alert('请选择要操作的数据！');
+			return;
+		}
+		if(counter>1) {
+			alert('只能请选择一条要操作的数据！');
+			return;
+		}
+		var topicId=$("input[name='topicIds']:checked").eq(0).val();
+		$.post(url,{
+			'topicId':topicId
+			}, function(data) {
+			  alert(data.message);
+			},"json");
+      }
+	
+	function updateIsForbidReply(flag) {
+		var batchChecks = document.getElementsByName('topicIds');
+		var hasChecked = false;
+		var counter=0;
+		for(var i=0; i<batchChecks.length; i++) {
+			if(batchChecks[i].checked) {
+				hasChecked = true;
+				counter=counter+1;
+			}
+		}
+		if(!hasChecked) {
+			alert('请选择要操作的数据！');
+			return;
+		}
+		if(counter>1) {
+			alert('只能请选择一条要操作的数据！');
+			return;
+		}
+		var url="${base}/topic/forbidReply.jspx";
+		if(flag=='0'){
+			 url="${base}/topic/allowReply.jspx";
+		}
+		var topicId=$("input[name='topicIds']:checked").eq(0).val();
+		$.post(url,{
+			'ids':topicId
+			}, function(data) {
+			  alert(data.message);
+			},"json");
+      }
+
+	function checkall(){
+	        var batchChecks = document.getElementsByName('topicIds');
+	        var onCheck = document.getElementById('checkAll');
+	        if(onCheck.checked){
+			for(var i=0; i<batchChecks.length; i++) {
+				batchChecks[i].setAttribute("checked","checked");
+			}
+			}else{
+			for(var i=0; i<batchChecks.length; i++) {
+				batchChecks[i].setAttribute("checked","");
+			}
+			}
+	}
+	function showChild(typeId){
+		$("#childType_"+typeId).toggle();
+	}
+	
+	$(document).ready(function(){//重设有样试的标题大小,以便让标题大小统一
+		rewirteScalingImg();
+		$(".title span").each(function(){
+			if($(this).children().size()==0||$(this).children().size()==1){
+				$(this).css({"font-size":"1em"});
+			}
+		});
+	});
+	
+	
+	function showBlock(){
+		$.blockUI({
+	        message: '<h1>正在执行操作,请稍后...</h1>',
+	        css: {
+	            border: 'none',                   // 无边界
+	            width:"180px",
+	            top:"50%",                        // 高居中
+	            left:"50%"                        // 左居中
+	       }
+	    });
+	}
+	
+	
+	function showSendComplaint(){
+		$("#complaint_content").val("");
+		$.blockUI({message:$('#div_send_complaint'),css:{ width:'550px'} });
+	}	
+	
+	function doReport(){
+		 var reason=$("#complaint_content").val();
+		 if(reason==""){
+			 alert("投诉内容不能为空！");return;
+		 }
+		 $.ajax( {//提交数据
+				url : '/member/report.jhtml',
+				type : 'post',
+				dataType:'text',
+				data: {"reason":reason,"url":""},
+				success : function(result) {
+					 alert("操作成功！");
+					 $.unblockUI();
+		      },error:function(){
+		    	  $.unblockUI();
+		            alert("网络或数据异常，操作失败！");
+		     }
+		});
+	}
+	
+	
+	function showSendFeedback(){
+		[#if bbsUser??]
+		$("#feedback_content").val("");
+		$.blockUI({message:$('#div_send_feedback'),css:{ width:'550px'} });
+		[#else]
+		alert("请先登录!");
+		[/#if]
+	}	
+	
+	function doFeedback(){
+		 var reason=$("#feedback_content").val();
+		 if(reason==""){
+			 alert("内容不能为空！");return;
+		 }
+		 reason="意见反馈:"+reason;
+		 $.ajax( {//提交数据
+				url : '/member/report.jhtml',
+				type : 'post',
+				dataType:'text',
+				data: {"reason":reason,"url":""},
+				success : function(result) {
+					 alert("操作成功！");
+					 $.unblockUI();
+		      },error:function(){
+		    	  $.unblockUI();
+		            alert("网络或数据异常，操作失败！");
+		     }
+		});
+	}
+	
+	
+	function addBbsForumModeratorApplication(forumId){
+			 showBlock();
+			 $.ajax( {//提交数据
+					url : '/jeebbs/forum/addBbsForumModeratorApplication.jspx',
+					type : 'post',
+					dataType:'text',
+					data: {"forum.id":forumId},
+					success : function(result) {
+						$.unblockUI();
+						if(result==0){
+							 alert("操作失败,您已经是该版块版主！");
+						}else if(result==1){
+							 alert("操作失败,您有正在待审批的申请，请勿重复申请！");
+						}else if(result==2){
+							 alert("操作成功，请耐心等待管理员的审核！");
+						}else if(result==999){
+							 alert("操作失败，用户未登录！");
+						}
+						
+			      },error:function(){
+			    	  $.unblockUI();
+			            alert("网络或数据异常，操作失败！");
+			     }
+			});
+	
+		
+	}
+	
+	function rewirteScalingImg(){
+		var base="http://"+window.location.hostname+":"+window.location.port;
+		$("img").each(function(){
+			var src=$(this).attr("src");
+		    if(src.indexOf("scaling.htm")!=-1&&src.indexOf("url=/attached")!=-1){
+				src=src.replace(/url=/,"url="+base);
+				$(this).attr("src",src);
+			}
+		   });
+	}
+	
+</script>
+  <script> 
+// 解决ie下 html5标签问题,没有这个代码ie下顶栏有问题
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+<style type="text/css">
+.item_lum_p p.p_img {
+    width: 100%;
+    float: left;
+    padding-left: 15px;
+    margin-top: -6px;
+    padding-bottom: 3px;
+}
+
+.zhuti{
+    width: 800px;
+    float: left;
+}
+
+
+
+.slide_top_box{
+	width: 56px;
+	position: fixed;
+	right: 50%;
+	bottom: 100px;
+	z-index: 10;
+	margin-right: -554px;
+}
+.slide_top_box ul{
+	width: 100%;
+	overflow: hidden;
+}
+.slide_top_box .l_feedback{
+	width: 100%;
+	height: 40px;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_btn_feedback.png) no-repeat 0 0;
+	cursor: pointer;
+}
+.slide_top_box .l_gotop{
+	width: 100%;
+	height: 47px;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_btn_goto.png) no-repeat 0 0;
+	cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+    [#include "../include/head.html"/]
+    <!--header--> 
+	[#include "../include/页头.html"/]
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]		
+<article class="main ycyc fuylt">
+	<h1>福域论谈</h1>
+	<ul class="ltbanner">
+		<li><a href="${base}/">${site.name}</a>&gt;&gt;<a href="${forum.url}">${forum.title}</a></li>
+		<li class="center">${forum.description}</li>
+		<li class="fr">
+		<span>版主:[#if moderatorNames==""][空缺][#else]${moderatorNames}[/#if]</span>
+		[#if moderatorNames==""]
+		<span><a href="javascript:void(0);" onclick="addBbsForumModeratorApplication(${forum.id});" >申请版主</a></span>
+		[#else]
+		<span><a href="javascript:void(0);" onclick="showSendComplaint();" >投诉版主</a></span>
+		
+		[/#if]
+		<span>主题:${forum.topicTotal!}</span>
+		<span>贴子:${forum.postTotal!}</span>
+		</li>
+	</ul>
+	<article class="ctan event">
+		
+		<div class="art">
+		<div class="h2box" style="padding: 10px 0px 30px 0px">
+			<ul class="page">
+					
+					<li class="num">[@topic_page forumId=forum.id findType=type topLevel='0' count='15' tpl='0'][#include "../tag/forumtopic.html"/] [/@topic_page]</li>
+					<!-- <li class="pre"><a href="#"></a></li><li style="margin-right: 10px;"><input type="text" value="" name="" class="text"><input type="image" src="../images/go.gif" alt="" value=""></li>
+					<li class="next"><a href="#"></a></li> -->
+				</ul>
+			<ul class="fr">
+			[#if bbsUser??]
+				<li class="fl"><a href="${base}/topic/v_add${forum.id!}.jspx"><img src="/${res}/bbs_forum/images/lt_btnft.jpg" alt=""></a></li>
+				<li class="fr"><a href="${base}/topic/v_add${forum.id!}.jspx?category=vote"><img src="/${res}/bbs_forum/images/lt_btnvote.jpg" alt=""></a></li>
+			 [/#if]
+			</ul>
+		</div>
+			<div class="toptab">
+				<ul class="zhuti">
+					<li><a href="/${forum.path}/index.jhtml"  [#if location?contains('index.jhtml')]class="out"[/#if]  id="zhut1">全部主题</a></li>
+				    <li><a href="/${forum.path}/type/0.jhtml?findType=index_jing" [#if location?contains('index_jing')]class="out"[/#if] >精华</a></li>
+					[#list typeList as t]
+                      [#list t.childList as ct]
+ 	                <li><a href="/${forum.path}/type/${ct.id}.jhtml" [#if location?contains('${ct.id}')]class="out"[/#if] id="zhut2">${ct.typeName}</a></li>
+                     [/#list]
+					[/#list]
+		    	</ul>
+				<ul class="sel" style="width: 250px">
+				<!-- 
+					<li class="fl"><span><a href="#"></a>一天内的主题</span>
+						<ul class="option" style="display: none;">
+							<li>一天内的主题</li>
+							<li>一天内的主题</li>
+						</ul></li>
+					<li class="fr"><input type="image" src="../images/lt_submit.gif" alt="" value=""></li> -->
+					<li class="fr"><form action="${base}/topic/vSearchDayTopic.jspx">
+            <input type="hidden" name="forumId" value="${forum.id}"/>
+            <select name="day">
+            <option value="1">1天内的主题</option>
+            <option value="2">2天内的主题</option>
+            <option value="7">1星期内的主题</option>
+            <option value="30">1个月内的主题</option>
+            <option value="60">2个月内的主题</option>
+            <option value="90">3个月内的主题</option>
+            <option value="180">6个月内的主题</option>
+            <option value="365">1年内的主题</option>
+            </select>
+			<input type="button" onclick="this.form.submit();" value="提 交" class="btn" />
+          </form></li>
+				</ul>
+			</div>
+			<div class="zhuttab block" id="zhutlist1">
+			<form method="post" action="" id="jvForm"><input type="hidden" value="${forum.id}" name="forumId" />
+				<table cellpadding="0" cellspacing="0" width="100%" class="listtable listtable02">
+					<tr>
+						<td class="aleft"><img src="/${res}/bbs_forum/images/page_img02.gif" alt=""></td>
+					</tr>
+					<tr class="bg01">
+						<td class="bg01">
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<th width="572" class="aleft"><span style=" padding-left: 15px;">标 题</span></th>
+									<th width="136" >作 者</th>
+									<th width="129">回 复 / 人 气</th>
+									<th width="136">最后发表</th>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<!--置顶主题列表_Begin-->
+					
+					[#if pageNo==1]
+					[@topic_page topLevel='1' count='10' tpl='0' parentTypeId='${parentTypeId!}' ]
+					[#list tag_pagination.list as topic]
+					
+					[#if topic.topLevel==3||(topic.topLevel==2&&topic.forum.category.id==forum.category.id)||(typeId==0&&topic.topLevel==1&&topic.forum.id==forum.id)||(typeId>0&&topic.topLevel==1&&topic.forum.id==forum.id&&topic.postType.id==typeId)]			          
+					<tr>
+						<td height="2"></td>
+					</tr>
+					<tr>
+						<td class="aleft"> 
+							<img src="/${res}/bbs_forum/images/page_img02.gif" alt="">
+						 </td>
+					</tr>
+					<tr>
+						<td class="bg02">
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td class="title" width=""><!-- <a href="#" class="colorg"></a> -->
+									 [#if moderators]
+									<input type="checkbox" name="topicIds" value="${topic.id}" />
+									[/#if]	
+						            [#if topic.style]
+									[#if topic.styleBold]<strong>[/#if]
+									[#if topic.styleItalic]<em>[/#if]
+									<img style="margin-top: 5px;float:left;" src="/${res}/bbs_forum/img/headtopic_${topic.topLevel!}.gif"/>&nbsp;
+									<a  id="link${topic.id}" href="${topic.url!}" [#if topic.styleColor?? && topic.styleColor?length>0] style="color:#${topic.styleColor};" [#else]style="color: #262626"[/#if]>${topic.title} </a>
+									
+									[#if topic.affix??&&topic.affix]<!-- <img style="margin-top: 5px;float:left;" src="/${res}/bbs_forum/img/comm.gif"/> -->[/#if]
+									[#if topic.styleItalic]</em>[/#if]
+									[#if topic.styleBold]</strong>[/#if]
+									[#else]
+											<a id="link${topic.id}" href="${topic.url}" style="color: #262626">${topic.title}</a>
+									[/#if]
+									
+									
+												
+									</td>
+									<td width="136">${topic.creater.username!}<br>
+									<font style="font-size: 0.8em">${topic.createTime!?string("yyyy-MM-dd HH:mm:ss")}</font></td>
+									<td width="129">${topic.replyCount!} /  [@topic_vcount topicId=topic.id]${viewCount!}[/@topic_vcount]</td>
+									<td width="136">[#if topic.lastReply??]${topic.lastReply.username!}<br>
+									<font style="font-size: 0.8em">${topic.lastTime!?string("yyyy-MM-dd HH:mm:ss")}</font> [/#if]</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+			          [/#if]
+			          [/#list]
+			          [/@topic_page]
+					<!--置顶主题列表_End-->
+				      [/#if]					
+					
+					<tr>
+						<td height="7"></td>
+					</tr>
+					<tr>
+						<td class="aleft"><img src="/${res}/bbs_forum/images/page_img02.gif" alt=""></td>
+					</tr>
+					<tr>
+						<td class="bg01" height="2"></td>
+					</tr>
+					<tr>
+						<td height="7"></td>
+					</tr>
+				</table>
+				<table cellpadding="0" cellspacing="0" width="100%" class="listtable">
+				<!--普通主题列表_Begin-->
+		        [@topic_page forumId=forum.id findType=type topLevel='0' count='15' tpl='0' typeId='${typeId!}' parentTypeId='${parentTypeId!}']
+		        [#list tag_pagination.list as topic]
+					<tr>
+						<td height="2"></td>
+					</tr>
+					<tr>
+						<td class="aleft">
+							<img src="/${res}/bbs_forum/images/page_img03.gif" alt="">
+						</td>
+					</tr>
+					<tr>
+						<td class="bg02">
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td class="title" width="">
+									[#if moderators]
+									<input type="checkbox" name="topicIds" value="${topic.id}"/>
+									[/#if]
+									[#if topic.question][问][/#if]
+									[#if topic.style]
+									[#if topic.styleBold]<strong>[/#if]
+									[#if topic.styleItalic]<em>[/#if]
+									<a id="link${topic.id}" href="${topic.url!}" 
+									[#if topic.styleColor?? && topic.styleColor?length>0] 
+									style="color:#${topic.styleColor};" [#else]style="color: #262626"[/#if]>${topic.title}		
+									[#if topic.primeLevel!=0]
+										[#if topic.primeLevel==1]<img style="margin-top: 5px;float:left;" src="/${res}/bbs_forum/img/jing1.jpg" alt="" />
+										[#elseif topic.primeLevel==2]<img style="margin-top: 5px;float:left;" src="/${res}/bbs_forum/img/jing2.jpg" alt="" />
+										[#elseif topic.primeLevel==3]<img style="margin-top: 5px;float:left;" src="/${res}/bbs_forum/img/jing3.jpg" alt="" />
+										[/#if]
+									[/#if]
+									</a>
+									[#if topic.affix??&&topic.affix]<!-- <img style="margin-top: 5px;float:left;"src="/${res}/bbs_forum/img/comm.gif"/> -->[/#if]
+									[#if topic.styleItalic]</em>[/#if]
+									[#if topic.styleBold]</strong>[/#if]
+									[#else]
+											<a id="link${topic.id}" href="${topic.url}" style="color: #262626">${topic.title}</a>
+									[/#if]
+								     
+								      [#if topic.viewHot]<img  style="margin-top: 5px;float:right;" src="/${res}/bbs_forum/images/t_hot.gif" alt="" />[/#if]
+								      [#if topic.new]<img style="margin-top: 5px;float:right;"  src="/${res}/bbs_forum/images/t_new.gif" alt="" />[/#if]
+									</td>
+									<td width="136">${topic.creater.username!}<br>
+									<font style="font-size: 0.8em">${topic.createTime!?string("yyyy-MM-dd HH:mm:ss")}</font></td>
+									<td width="129">${topic.replyCount!} / [@topic_vcount topicId=topic.id]${viewCount!}[/@topic_vcount]</td>
+									<td width="136">[#if topic.lastReply??]${topic.lastReply.username!}<br>
+									<font style="font-size: 0.8em">${topic.lastTime!?string("yyyy-MM-dd HH:mm:ss")}</font>[/#if]</td>
+								</tr>
+								<tr>
+								<td clospan="2"> <table><tr>
+								[#list topic.firstPostImageSrcList as src]
+								   [#if src??&&src_index<=4]
+								    <td  style="padding:5px">
+								     [#if src?index_of('/emoticons')==-1]
+								     <img alt="" src="/common/image/scaling.htm?url=${src!}&&width=90&height=60">
+									 [/#if]
+									[#if src?index_of('/emoticons')!=-1]
+									<img alt="" src="${src!}">
+					                 [/#if]
+					                </td>
+									 [/#if]	
+									[/#list]
+								</tr></table> </td>
+								
+								
+								</tr>
+								
+							</table>
+						</td>
+					</tr>
+					
+					[/#list]
+			        [/@topic_page]
+					<!--普通主题列表_End-->
+					<tr>
+						<td height="2"></td>
+					</tr>
+					<tr>
+						<td class="aleft">
+							<img src="/${res}/bbs_forum/images/page_img03.gif" alt="">
+						</td>
+					</tr>
+					[#if bbsUser??]
+					<tr >
+					 
+			          <td class="bg02" style="text-align: left;">
+					   [#if uptop]
+					   <input id="checkAll" type="checkbox" onclick="checkall();" value="on" />全选
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_upTopInput.jspx');" value="置顶" />
+					  [/#if]
+					  [#if manager]
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_primeInput.jspx');" value="精华" />
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_highlightInput.jspx');" value="加亮" />
+					  <!--
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_lockInput.jspx');" value="锁定/打开" />
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_upordownInput.jspx');" value="提升/下沉" />
+					    -->
+					  [/#if]
+					  [#if sheild]
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_moveInput.jspx');" value="移动" />
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/v_shieldInput.jspx');" value="屏蔽" />
+					  [/#if]
+					  [#if moderators]
+					  <input class="bta" type="button" onclick="manageTopic('${base}/topic/o_delete.jspx');" value="删除" />
+					  [/#if] 
+					  [#if bbsUser.group.name=='超级版主']
+					   <input class="bta" type="button" onclick="setToHeadlineTopic('${base}/topic/setToHeadline.jspx');" value="设为版块头条" />
+					  [/#if]
+					   [#if bbsUser.group.name=='超级版主'||bbsUser.group.name=='版主']
+					   <input class="bta" type="button" onclick="updateIsForbidReply('1');" value="禁止回贴" />
+					   <input class="bta" type="button" onclick="updateIsForbidReply('0');" value="开启回贴" />
+					  [/#if]            
+					  </td>
+					</tr>		
+					[/#if]				
+				</table>
+				<div class="h2box">
+					<ul class="page">				
+						<li class="num"> [@topic_page forumId=forum.id findType=type topLevel='0' count='15' tpl='0' typeId='${typeId!}' parentTypeId='${parentTypeId!}'][#include "../tag/forumtopic.html"/] [/@topic_page]</li>
+						
+						<!-- <li class="pre"><a href="#"></a></li><li style="margin-right: 10px;"><input type="text" value="" name="" class="text"><input type="image" src="../images/go.gif" alt="" value=""></li>
+						<li class="next"><a href="#"></a></li> -->
+					</ul>
+					<ul class="fr">
+					[#if bbsUser??]
+						<li class="fl"><a href="${base}/topic/v_add${forum.id!}.jspx"><img src="/${res}/bbs_forum/images/lt_btnft.jpg" alt=""></a></li>
+						<li class="fr"><a href="${base}/topic/v_add${forum.id!}.jspx?category=vote"><img src="/${res}/bbs_forum/images/lt_btnvote.jpg" alt=""></a></li>
+					 [/#if]
+					</ul>
+				</div>
+				</form>
+			</div>
+			
+
+			
+		</div>
+	</article>
+</article>
+	<div class="slide_top_box">
+		<ul>
+			<a href="javascript:void(0);" onclick="showSendFeedback();"> <li class="l_feedback"></li></a>
+			<a href="#" target="_self" > <li class="l_gotop"></li></a>
+		</ul>
+	   </div>
+</div>
+
+<div id="div_send_complaint" style="display:none; cursor: default">
+       <table cellpadding="0" cellspacing="0" width="100%">
+								
+								<tr>
+									<td><br>投诉内容：</td>
+									<td style="text-align: left;"><br><textarea id="complaint_content" name="content" rows="6" cols="70"></textarea></td>
+								</tr>
+								
+								<tr>
+									
+									<td colspan="2">
+									
+     								<input type="submit" value="提交" onclick="doReport();"/>
+     								<input type="submit" value="取消" onclick="$.unblockUI();"/>
+     								</td>
+     							
+								</tr>
+							</table>
+</div>
+
+<div id="div_send_feedback" style="display:none; cursor: default">
+       <table cellpadding="0" cellspacing="0" width="100%">
+								
+								<tr>
+									<td><br>意见反馈：</td>
+									<td style="text-align: left;"><br><textarea id="feedback_content" name="content" rows="6" cols="70"></textarea></td>
+								</tr>
+								
+								<tr>
+									
+									<td colspan="2">
+									
+     								<input type="submit" value="提交" onclick="doFeedback();"/>
+     								<input type="submit" value="取消" onclick="$.unblockUI();"/>
+     								</td>
+     							
+								</tr>
+							</table>
+</div>
+
+<!--footer--> [#include "../include/页脚.html"/] <!--footer-->
+</body>
+</html>

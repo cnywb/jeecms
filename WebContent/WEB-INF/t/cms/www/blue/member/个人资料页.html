@@ -1,0 +1,448 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/ajaxupload.js" type="text/javascript"></script>
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<!-- <script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script> -->
+
+<link rel="stylesheet" href="/plugins/kindeditor4/plugins/code/prettify.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor4/kindeditor.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor4/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="/plugins/jcrop/css/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript" src="/plugins/jcrop/js/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script type="text/javascript" >
+function clickSub(){
+	
+	if($('#password').val()=='')
+	{
+		alert('新密码不能为空!');
+		return;
+	}
+	if($('#chnewPassword').val()=='')
+	{
+		alert('新密码确认不能为空!');
+		return;
+	}
+	if($('#chnewPassword').val()!=$('#password').val())
+	{
+		alert('新密码确认必须与新密码一致!');
+		return;
+	}
+	//alert(document.getElementById('newPassword').value);
+	$('#newPassword').val(MD5Tool.MD5($('#password').val()));
+	//alert(document.getElementById("creator").action);
+	$("#creator").submit();
+	//$('creator').submit();
+}
+	//tab切换
+	function changeDV1(id){
+		var dvnum=7;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('page'+i).className="";
+		document.getElementById('pagelist'+i).style.display="none";
+		}
+		document.getElementById('page'+id).className="out";
+		document.getElementById('pagelist'+id).style.display="block";
+		
+	}
+	function changeDV2(id){
+		var dvnum=3;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('xiaox'+i).className="";
+		document.getElementById('xixlist'+i).style.display="none";
+		}
+		document.getElementById('xiaox'+id).className="out";
+		document.getElementById('xixlist'+id).style.display="block";
+		
+		
+	}
+	function showimage(imgpath,value){
+	    var path = imgpath + '/face/'+ value;
+		document.images.useravatars.src = path;
+		document.getElementById('proicon').value = value;
+		return false;
+	}
+	
+	
+	//简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
+	function showCoords(obj){
+		$("#x1").val(obj.x);
+		$("#y1").val(obj.y);
+		$("#x2").val(obj.x2);
+		$("#y2").val(obj.y2);
+		$("#w").val(obj.w);
+		$("#h").val(obj.h);
+	}
+
+
+    jcrop_api=null;
+	flag=false;
+	function initJcrop(imgSrc){
+	 if(flag==false){
+		 flag=true;
+		 doInitJcrop();
+	 }else{
+		 $(".jcrop-holder img").attr("src",imgSrc);//刷新 jcrop的图片
+	 }
+   }
+	
+	function doInitJcrop(){
+		 $("#ori_image").Jcrop({setSelect:[0,0,90,90],
+			onChange:showPreview,
+			onSelect:showPreview,
+			aspectRatio:1,
+			allowResize:true,
+			keySupport:false//此属性为了避免在ie下卡死
+		},function(){
+		    jcrop_api=this;
+		  });	
+	}
+	
+	
+	function showPreview(coords){
+		showCoords(coords);
+		if(parseInt(coords.w) > 0){
+			//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到
+			var rx = $("#preview_box").width() / coords.w; 
+			var ry = $("#preview_box").height() / coords.h;
+			//通过比例值控制图片的样式与显示
+			$("#crop_preview").css({
+				width:Math.round(rx * $("#ori_image").width()) + "px",	//预览图片宽度为计算比例值与原图片宽度的乘积
+				height:Math.round(rx * $("#ori_image").height()) + "px",	//预览图片高度为计算比例值与原图片高度的乘积
+				marginLeft:"-" + Math.round(rx * coords.x) + "px",
+				marginTop:"-" + Math.round(ry * coords.y) + "px"
+			});
+		}
+	}
+	img = new Image();//用来得到原始尺寸
+	function initEditor(){//初始化图片上传组件
+		KindEditor.ready(function(K) {
+				var uploadbutton = K.uploadbutton({
+				button : K('#upload-file')[0],
+				fieldName : 'imgFile',
+				url : '/common/kindeditor/upload.jhtml?dir=image',
+				afterUpload : function(data) {
+					if (data.error === 0) {
+						$("#ori_image").show();
+						var url = K.formatUrl(data.url, 'absolute');
+						K('#imgUrl').val(url);
+						$("#proicon").val(url);
+						img.src=url;
+						var orgW=img.width;
+						var orgH=img.height;
+						$("#ori_image").attr("src",url);
+						$("#crop_preview").attr("src",url);
+						initJcrop(url);
+					}else{
+						alert("上传图片出错!");
+					}
+				},
+				afterError : function(str) {
+					
+				}
+			});
+			uploadbutton.fileBox.change(function(e) {
+				uploadbutton.submit();
+			});
+		});
+	}
+	
+   $(document).ready(function(){
+	   $("#ori_image").hide();
+	   initEditor();
+	   //为了克服editor在display:none情况下失效的问题,用代理的按钮点击并将原始的上传按钮放到visibility: hidden;的div中
+	   $("#upload-file-delegate").click(function(){
+			 $(".ke-upload-file").click();//点周实际上传按钮
+		});
+	   
+	   $("#btn_save").click(function(){
+		   var url=$("#imgUrl").val();
+		   if(url==""){
+			   $("#creator").submit();
+		   }else{
+			   cutImage();
+		   }
+	   });
+	   
+	   var faceIcon=$("#crop_preview").attr("src");
+	   if(faceIcon.indexOf("image/")==-1){
+		   $("#crop_preview").attr("src","/${res}/bbs_member/img/face/"+faceIcon);
+	   }
+	   
+ });
+   
+   function showBlock(){
+		$.blockUI({
+	        message: '<h1>正在执行操作,请稍后...</h1>',
+	        css: {
+	            border: 'none',                   // 无边界
+	            width:"180px",
+	            top:"50%",                        // 高居中
+	            left:"50%"                        // 左居中
+	       }
+	    });
+	}
+	function cutImage(){
+		if($("#imgUrl").val()==""){
+			alert("请上传照片！");return;
+		}
+	
+		var requestJson={};
+		var orgW=img.width;
+		var orgH=img.height;
+		var imgW=$("#ori_image").css("width");
+		var imgH=$("#ori_image").css("height");
+		imgW=imgW.substring(0,imgW.indexOf("px"));
+		imgH=imgH.substring(0,imgH.indexOf("px"));
+		var wRatio=orgW/imgW;
+		var w=$("#w").val();
+		var h=$("#h").val();
+		var y1=$("#y1").val();
+		var x1=$("#x1").val();
+		if(w*wRatio>imgW){
+			alert("裁剪宽度必须小于等于图片实际宽度,请重新调整!");return;
+		}
+	    if(h*wRatio>imgH){
+	    	alert("裁剪高度必须小于等于图片实际高度,请重新调整!");return;
+		}
+		
+		if(w==""||w=="0"){
+			requestJson["imgWidth"]=orgW;
+		}else{
+			requestJson["imgWidth"]=parseInt(w*wRatio);
+		}
+		if(h==""||h=="0"){
+			requestJson["imgHeight"]=orgH;
+		}else{
+			requestJson["imgHeight"]=parseInt(h*wRatio);
+		}
+		requestJson["imgSrcPath"]=$("#imgUrl").val();
+		requestJson["imgTop"]=parseInt(y1*wRatio);
+		requestJson["imgLeft"]=parseInt(x1*wRatio);
+		requestJson["reMinWidth"]=parseInt(w*wRatio);
+		requestJson["reMinHeight"]=parseInt(h*wRatio);
+		requestJson["imgScale"]=1;
+		requestJson["uploadNum"]=1;
+		showBlock();
+		 $.ajax( {//提交数据
+				url : '/member/imageCutAjax.jspx',
+				type : 'post',
+				dataType:'json',
+				data: requestJson,
+				success : function(result) {
+					$.unblockUI();
+					if(result.status==1){
+						 $("#creator").submit();
+					}else{
+						 alert("裁剪图片错误请稍后再试！");
+					}	
+		      },error:function(){
+		    	  $.unblockUI();
+		    	  alert("系统错误请稍后再试！");
+		     }
+			});
+	
+}
+</script>
+<!--  <script src="${base}/r/cms/www/blue/bbs_forum/js/prototype.js"></script> -->
+<script src="${base}/r/cms/www/blue/bbs_forum/js/md5.min.js"></script> 
+</head>
+<body>
+[#include "../include/head.html"/]
+    <!--header--> 
+[#include "../include/页头.html"/]	
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>个人资料</h1>
+	<ul class="ltbanner">
+		<li><a href="${base}/member/index.jhtml">会员中心</a>&gt;&gt;修改个人资料</li>
+	</ul>
+	<article class="selfpage de_event self">
+		<section id="pagelist3" class="tabpage none" style="display: block;">
+			<ul class="inftab">
+				<li class="bodl"><a href="javascript:void(0);" onClick="changeDV2('1')" class="out" id="xiaox1">基本资料</a></li>
+				<li class="bodl"><a href="javascript:void(0);" onClick="changeDV2('2')" id="xiaox2">修改头像</a></li>
+				<li><a href="javascript:void(0);" onClick="changeDV2('3')" id="xiaox3">修改密码</a></li>
+			</ul>
+			<form id="creator" action="${base}/member/update.jspx" method="post" enctype="multipart/form-data" >
+			<div class="xxbox block" id="xixlist1">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td>
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td width="80" class="vtop">性别：</td>
+									<td> [#if bbsUser.gender??]
+								            [#if bbsUser.gender] <input type="radio" checked="checked" name="gender" value="1" /> 男 <input type="radio" name="gender" value="0" /> 女</td>
+								            [#else]
+								            <input type="radio" name="gender" value="1" /> 男 <input type="radio" name="gender" value="0" checked="checked" /> 女</td>[/#if]
+								            [#else]
+								            <input type="radio" checked="checked" name="gender" value="1" /> 男 <input type="radio" name="gender" value="0" /> 女</td>
+								            [/#if]
+								     </td>
+								</tr>
+								<tr>
+									<td width="80" class="vtop">来自：</td>
+									<td><input class="input" maxlength="14" name="comefrom" value="${bbsUser.comefrom!}" type="text" /></td>
+								</tr>
+								<tr>
+									<td width="80" class="vtop">电子邮箱：</td>
+									<td><input class="input" maxlength="75" size="50" name="email" value="${bbsUser.email!}" type="text" /></td>
+								</tr>
+								<tr>
+									<td width="80" class="vtop">自我简介：</td>
+									<td><textarea class="input" rows="2" cols="50" name="intro">${bbsUser.intro!}</textarea></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input class="btn" type="submit"  value="保存资料" /></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td height="43"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="xxbox none" id="xixlist2">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td>
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td width="25%" class="vtop">
+									<div   id="preview_box" style="overflow: hidden;width: 90px;height:90px">
+											<img id="crop_preview" height="90" width="90" name="useravatars" alt="" src="${bbsUser.avatar!}"/>
+											<input type="hidden" value="/${res}/bbs_member/img/face/" id="face_path">
+            						</div>
+            						</td>
+									<td>
+									<div id="openchang" style="margin-top: 1%; float: left; width: 100%">
+						            <div id="face1" style="margin-top: 1%; float: left; width: 100%">
+						            <div id="iconbox">
+						            <div style="width: 272px">
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','01.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/01.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','02.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/02.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','03.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/03.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','04.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/04.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','05.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/05.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','06.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/06.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','07.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/07.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','08.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/08.gif" /></span>
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','09.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/09.gif" /></span> 
+						            <span class="fl face" onClick="showimage('/${res}/bbs_member/img','10.gif')">
+						            <img height="50" width="50" alt="" src="/${res}/bbs_member/img/face/10.gif" /></span>
+						            </div>
+						            </div>
+						            <input type="hidden" id="proicon" name="avatar" value="${(bbsUser.avatar)!'none.gif'}"/></div>
+						            </div>
+									</td>
+								</tr>
+								<tr>
+									<td><input type="button"  id="upload-file-delegate" value="上传照片" /></td>
+									<td><input class="btn" type="button" id="btn_save" value="保存资料" /></td>
+								</tr>
+								<tr style="visibility: hidden;">
+				               <td  colspan="2" >
+				                <b>x1</b><input type="text" size="4" id="x1" />
+                    	      <b class="ml5">y1</b><input type="text" size="4" id="y1" />
+                    	      <b class="ml5">x2</b><input type="text" size="4" id="x2" />
+                    	      <b class="ml5">y2</b><input type="text" size="4" id="y2" />
+                    	      <b class="ml5">w</b><input type="text" size="4" id="w" />
+                    	      <b class="ml5">h</b><input type="text" size="4" id="h" />
+                    	      <input type="hidden" id="imgUrl" >
+   			                  </td>
+				            </tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td ><img alt="" id="ori_image" src="" width="299" height="0" /></td>
+					</tr>
+				</table>
+				<br>
+			</div>
+			<div class="xxbox none" id="xixlist3">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td>
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<!-- 
+								<tr>
+									<td width="80" class="vtop">原密码：</td>
+									<td><input class="input" type="password" maxlength="75" name="oldpassword" id="oldpassword" /></td>
+								</tr>
+								 -->
+								<tr>
+									<td width="80" class="vtop">新密码：</td>
+									<td><input class="input" type="password" maxlength="75" name="password" id="password"/><input  type="hidden"  name="newPassword" id="newPassword"/></td>
+								</tr>
+								<tr>
+									<td width="80" class="vtop">确认密码：</td>
+									<td><input class="input" type="password" maxlength="75" name="chnewPassword" id="chnewPassword"/></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input class="btn" type="button"  value="保存资料" onclick="clickSub();"/></td>					
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td height="43"></td>
+					</tr>
+				</table>
+			</div>
+			<input class="input" type="hidden" maxlength="75" name="id" value="${bbsUser.id!}"/>
+			</form>
+		</section>		
+	</article>
+</article>
+<div style="visibility: hidden;"><input type="button"  id="upload-file" value="上传照片"  /></div>
+
+</div>
+<!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+
+
+</body>
+</html>

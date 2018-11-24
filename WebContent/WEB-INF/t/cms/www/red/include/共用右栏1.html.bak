@@ -1,0 +1,25 @@
+<aside>
+			<div class="baoy">
+			<img src="/${res}/images/carby.png" alt="">
+			<div class="bg">
+				<ul id="" class="sel">
+					<li onclick="$('#cartype').show()"><span id="bycx">选择保养车型</span></li>
+					<ul id="cartype" class="option" >
+					</ul>
+					<li><input type="text" id="datepicker" style="height:28px;width:170px;margin:0px;color:#978181;font:14px/1.6 黑体;" value="选择购买时间"></input></li>
+					<ul id="buyyear" class="option" >
+					</ul>
+					<li onclick="$('#carlic').show()"><span id="bylic">选择公里数</span></li>
+					<ul id="carlic" class="option" >
+					</ul>
+				</ul>
+				<input type="image" src="/${res}/images/confirm.jpg" alt="确 定" onclick="showYcAjax()" value="确 定">
+			</div>
+			<ul class="link">
+				<li><a href="${base}/gfbyjy/index.htm"><img src="/${res}/images/gfby.png" alt=""></a></li>
+				<li><a href="${base}/cyljk/index.htm"><img src="/${res}/images/cylj.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/dljy.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/ycjh.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/qc.png" alt=""></a></li>
+			</ul>
+		</aside>

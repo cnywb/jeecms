@@ -1,0 +1,37 @@
+[#list tag_pagination.list as topic]
+<tr>
+	<td class="bg02">
+		<table cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td class="title" width="">
+				[#if topic.style]
+				[#if topic.styleBold]<strong>[/#if]
+				[#if topic.styleItalic]<em>[/#if]
+				<a id="link${topic.id}" href="${topic.url!}" 
+				[#if topic.styleColor?? && topic.styleColor?length>0] 
+				style="color:#${topic.styleColor};"[/#if]>${topic.title}		</a>
+				[#if topic.primeLevel!=0]
+					[#if topic.primeLevel==1]<img src="/${res}/bbs_forum/img/jing1.jpg" alt="" />
+					[#elseif topic.primeLevel==2]<img src="/${res}/bbs_forum/img/jing2.jpg" alt="" />
+					[#elseif topic.primeLevel==3]<img src="/${res}/bbs_forum/img/jing3.jpg" alt="" />
+					[/#if]
+				[/#if]
+				&nbsp;[#if topic.moderatorReply??&&topic.moderatorReply]<img src="/${res}/bbs_forum/img/banzhu.gif"/>[/#if]
+				[#if topic.affix??&&topic.affix]<img src="/${res}/bbs_forum/img/comm.gif"/>[/#if]
+				[#if topic.styleItalic]</em>[/#if]
+				[#if topic.styleBold]</strong>[/#if]
+				[#else]
+						<a id="link${topic.id}" href="${topic.url}">${topic.title}</a>
+				[/#if]		
+				</td>
+				<td width="136">${topic.creater.username!}<br>
+				${topic.createTime!?string("yyyy-MM-dd HH:mm:ss")}</td>
+				<td width="129">${topic.replyCount!} / [@topic_vcount topicId=topic.id]${viewCount!}[/@topic_vcount]</td>
+				<td width="136">[#if topic.lastReply??]${topic.lastReply.username!}<br>
+				${topic.lastTime!?string("yyyy-MM-dd HH:mm:ss")}[/#if]</td>
+			</tr>
+			
+		</table>
+	</td>
+</tr>
+[/#list]

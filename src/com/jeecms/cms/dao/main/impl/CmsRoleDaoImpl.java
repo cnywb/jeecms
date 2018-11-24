@@ -1,0 +1,46 @@
+package com.jeecms.cms.dao.main.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.jeecms.cms.dao.main.CmsRoleDao;
+import com.jeecms.cms.entity.main.CmsRole;
+import com.jeecms.common.hibernate3.HibernateBaseDao;
+
+@Repository
+public class CmsRoleDaoImpl extends HibernateBaseDao<CmsRole, Integer>
+		implements CmsRoleDao {
+	@SuppressWarnings("unchecked")
+	public List<CmsRole> getList(Integer siteId) {
+		String hql = "from CmsRole bean ";
+		if(siteId!=null){
+			hql+=" where bean.site.id=?";
+		}
+		hql+=" order by bean.priority asc";
+		return find(hql,siteId);
+	}
+
+	public CmsRole findById(Integer id) {
+		CmsRole entity = get(id);
+		return entity;
+	}
+
+	public CmsRole save(CmsRole bean) {
+		getSession().save(bean);
+		return bean;
+	}
+
+	public CmsRole deleteById(Integer id) {
+		CmsRole entity = super.get(id);
+		if (entity != null) {
+			getSession().delete(entity);
+		}
+		return entity;
+	}
+
+	@Override
+	protected Class<CmsRole> getEntityClass() {
+		return CmsRole.class;
+	}
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="FordCar" table="FORD_CAR">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="vcarId" type="java.lang.String" column="VCAR_ID" length="40"/>
+		<property name="vcustomerId" column="VCUSTOMER_ID" type="string" not-null="false" length="20"/>
+		<property name="vbrand" column="VBRAND" type="string" not-null="false" length="60"/>
+		<property name="vproduct" column="VPRODUCT" type="string" not-null="false" length="60"/>
+		<property name="vmodel" column="VMODEL" type="string" not-null="false" length="60"/>
+		<property name="vcolor" column="VCOLOR" type="string" not-null="false" length="60"/>
+		<property name="vvin" column="VVIN" type="string" not-null="false" length="40"/>
+		<property name="vengineNmb" column="VENGINE_NMB" type="string" not-null="false" length="40"/>
+		<property name="vradioNmb" column="VRADIO_NMB" type="string" not-null="false" length="40"/>
+		<property name="vcarKeyNmb" column="VCAR_KEY_NMB" type="string" not-null="false" length="40"/>
+		<property name="vlicenseNmb" column="VLICENSE_NMB" type="string" not-null="false" length="60"/>
+		<property name="vpurchasedDate" column="VPURCHASED_DATE" type="string" not-null="false" length="20"/>
+		<property name="vdealerId" column="VDEALER_ID" type="string" not-null="false" length="20"/>
+		<property name="vdealerName" column="VDEALER_NAME" type="string" not-null="false" length="120"/>
+		<property name="vsalesman" column="VSALESMAN" type="string" not-null="false" length="100"/>
+		<property name="vwarrantyBegindate" column="VWARRANTY_BEGINDATE" type="string" not-null="false" length="20"/>
+		<property name="vwarrantyEnddate" column="VWARRANTY_ENDDATE" type="string" not-null="false" length="20"/>
+		<property name="visWarrantyExtend" column="VIS_WARRANTY_EXTEND" type="string" not-null="false" length="20"/>
+		<property name="vcarSource" column="VCAR_SOURCE" type="string" not-null="false" length="40"/>
+		<property name="vcarDsid" column="VCAR_DSID" type="string" not-null="false" length="40"/>
+		<property name="vbuyType" column="VBUY_TYPE" type="string" not-null="false" length="40"/>
+		<property name="vcarUsage" column="VCAR_USAGE" type="string" not-null="false" length="40"/>
+		<property name="vcarStatus" column="VCAR_STATUS" type="string" not-null="false" length="40"/>
+		<property name="vpayType" column="VPAY_TYPE" type="string" not-null="false" length="40"/>
+		<property name="vischecked" column="VISCHECKED" type="string" not-null="false" length="40"/>
+		<property name="nmileage" column="NMILEAGE" type="long" not-null="false" length="10"/>
+		<property name="vmileageDate" column="VMILEAGE_DATE" type="string" not-null="false" length="20"/>
+		<property name="nunitPrice" column="NUNIT_PRICE" type="long" not-null="false" length="10"/>
+		<property name="vinvoiceNumber" column="VINVOICE_NUMBER" type="string" not-null="false" length="60"/>
+		<property name="vnotes" column="VNOTES" type="string" not-null="false" length="600"/>
+		<property name="vdmsOwnerId" column="VDMS_OWNER_ID" type="string" not-null="false" length="40"/>
+		<property name="vcreated" column="VCREATED" type="string" not-null="false" length="100"/>	
+		<property name="dcrtDate" column="DCRT_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vupdated" column="VUPDATED" type="string" not-null="false" length="100"/>
+		<property name="dupDate" column="DUP_DATE" type="timestamp" not-null="false" length="19"/>
+	</class>
+</hibernate-mapping>
+		

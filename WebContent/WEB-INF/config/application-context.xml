@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-lazy-init="true">
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>		
+			     	    
+				 <value>/WEB-INF/config/jdbc.properties</value>				
+				
+				<!--<value>classpath:jdbc.properties</value>
+				
+				<value>file:WebContent/WEB-INF/config/jdbc.properties</value>-->
+				
+			</list>
+		</property>
+	</bean>
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="autoCommitOnClose" value="true"/>
+		<property name="checkoutTimeout" value="${cpool.checkoutTimeout}"/>
+		<property name="initialPoolSize" value="${cpool.minPoolSize}"/>
+		<property name="minPoolSize" value="${cpool.minPoolSize}"/>
+		<property name="maxPoolSize" value="${cpool.maxPoolSize}"/>
+		<property name="maxIdleTime" value="${cpool.maxIdleTime}"/>
+		<property name="acquireIncrement" value="${cpool.acquireIncrement}"/>
+		<property name="maxIdleTimeExcessConnections" value="${cpool.maxIdleTimeExcessConnections}"/>
+	</bean> -->
+	
+	    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">   
+        <!-- 基本属性 url、user、password -->  
+        <property name="url" value="${jdbc.url}" />  
+        <property name="username" value="${jdbc.username}" />  
+        <property name="password" value="${jdbc.password}" />  
+            
+        <!-- 配置初始化大小、最小、最大 -->  
+        <property name="initialSize" value="${cpool.minPoolSize}" />  
+        <property name="minIdle" value="${cpool.minPoolSize}" />   
+        <property name="maxActive" value="${cpool.maxPoolSize}" />  
+       
+        <!-- 配置获取连接等待超时的时间 -->  
+        <property name="maxWait" value="${cpool.maxIdleTime}" />  
+       
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->  
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />  
+       
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->  
+        <property name="minEvictableIdleTimeMillis" value="300000" />  
+        
+        <property name="validationQuery" value="SELECT 1 FROM DUAL" />  
+        <property name="testWhileIdle" value="true" />  
+        <property name="testOnBorrow" value="false" />  
+        <property name="testOnReturn" value="false" />  
+       
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->  
+        <property name="poolPreparedStatements" value="true" />  
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />  
+       
+        <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 -->  
+        <property name="filters" value="stat" />   
+    </bean>  
+	
+	    <!-- 
+	    常用数据库validationQuery检查语句
+数据库 	validationQuery
+Oracle 	select 1 from dual
+DB2 	select 1 from sysibm.sysdummy1 
+mysql 	select 1 
+microsoft sql 	select 1
+hsqldb 	select 1 from INFORMATION_SCHEMA.SYSTEM_USERS
+postgresql 	select version()
+ingres 	select 1
+derby 	select 1
+H2 	select 1 -->
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>	
+		<property name="mappingLocations">
+			<list>
+				<value>classpath*:/com/jeecms/core/entity/hbm/*.hbm.xml</value>
+				<value>classpath*:/com/jeecms/cms/entity/main/hbm/*.hbm.xml</value>
+				<value>classpath*:/com/jeecms/cms/entity/assist/hbm/*.hbm.xml</value>
+				<value>classpath*:/com/jeecms/bbs/entity/hbm/*.hbm.xml</value>
+				<!-- 积分 -->
+				<value>classpath*:/com/jeecms/point/entity/hbm/*.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+			hibernate.dialect=org.hibernate.dialect.Oracle9Dialect
+			<!--
+			hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+			-->
+			hibernate.show_sql=false
+			hibernate.format_sql=true
+			hibernate.query.substitutions=true 1, false 0
+			hibernate.jdbc.batch_size=20
+			hibernate.cache.use_query_cache=true
+			</value>
+		</property>
+		<property name="entityInterceptor">
+			<ref local="treeInterceptor"/>
+		</property>
+		<property name="cacheProvider">
+			<ref local="cacheProvider"/>
+		</property>
+		<property name="lobHandler">
+			<ref bean="lobHandler" />
+		</property>
+	</bean>
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true"/>
+	<bean id="cacheProvider" class="com.jeecms.common.hibernate3.SpringEhCacheProvider">
+		<property name="configLocation">
+			<value>classpath:ehcache-hibernate.xml</value>
+		</property>
+		<property name="diskStoreLocation">
+			<value>/WEB-INF/cache/hibernate</value>
+		</property>
+	</bean>
+	<bean id="treeInterceptor" class="com.jeecms.common.hibernate3.TreeIntercptor"/>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	  <context:annotation-config/>
+	<!--
+	<context:component-scan base-package="com.jeecms.cms.manager"/> 	
+	<context:component-scan base-package="com.jeecms.cms.dao"/> -->
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

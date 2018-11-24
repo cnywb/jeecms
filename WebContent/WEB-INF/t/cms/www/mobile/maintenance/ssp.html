@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>  
+        <meta charset="utf-8">  
+       	<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/r/cms/www/mobile/maintenance/css/amazeui.min.css">
+		<link rel="stylesheet" href="/r/cms/www/mobile/maintenance/css/style.css">
+        <title>长安福特原厂-保养套餐查询</title>
+    </head>
+<body> 
+	<div class="am-box init-pg" style="display: none;" id="introduce">
+                <img class="am-img-responsive" src="/r/cms/www/mobile/maintenance/i/fd/bg3.jpg">
+		<div class="am-g">
+			<button class="am-btn am-btn-primary btninit"  type="submit" id="btn_start">查询</button> 
+                        <img class="btnbg am-img-responsive" src="/r/cms/www/mobile/maintenance/i/fd/btnbg.jpg" >
+		</div>
+ 		
+	</div>
+    <div class="am-box info-pg" id="content">
+    	<header class=" am-g fd-header">
+			<p class="am-u-xs-8  am-u-sm-8 am-u-md-8 am-u-lg-8 hd-text">
+				长安福特原厂<br/>保养套餐查询
+			</p>
+			<img class="am-img-responsive am-u-xs-4  am-u-sm-4 am-u-md-4 am-u-lg-4  hd-img " src="/r/cms/www/mobile/maintenance/i/fd/zb-title.png" alt="">
+		</header> 
+
+
+		<div class="fd-info">
+			<div class="am-g  fd-in">
+				<div class="am-u-xs-7  am-u-sm-7 am-u-md-7 am-u-lg-7 title-info">
+					<img src="/r/cms/www/mobile/maintenance/i/fd/zb-tp.png" alt=""> 
+					信息输入
+				</div>
+			</div>
+			<div class="am-g fd-content">
+				<input type="email" class=" vin-text" id="doc-vin" placeholder="VIN码:">
+				<p class=" fd-tip">请正确输入您的VIN码，以查询您的保养套餐使用情况;<br>
+				您购买的长安福特原厂保养套餐需满1月后，方可查询其使用情况。</p>
+				<div class="am-g btn-group">
+					<div class="am-panel am-panel-default pdz">
+						<button class="am-btn am-btn-primary btnsearch"  >查询<span class="am-icon-chevron-down am-fr"></span></button>
+						<div id="collapse-panel-1" class="am-collapse ">
+							
+						</div>
+					</div>
+					<div class="am-g btn-group">
+						<div id="collapse-panel-2" class=" am-collapse ">
+							 
+							 <form class="am-form-inline" role="form">
+							查询长安福特原厂保养套餐价格：
+							 	<div class="am-form-group  am-u-sm-9 pdz">
+								
+								 <select class="style-text" id="carModel"  >
+								   [#list carModelList as t]
+                                                                    [#if t!='锐界 Edge 2.7L'&&t!='锐界 Edge 2.0L']
+                                                                     <option value="${t}" >${t}</option>
+                                                                    [/#if]
+								
+								   [/#list]
+								 </select>
+								 
+								</div> 
+								<div class="am-form-group am-u-sm-3 pdz">
+								 <button  type="button" class="am-btn am-btn-primary btnsearchst">查询</button> 
+								 </div>
+							 </form>
+
+						</div>
+						<!-- data-am-collapse="{target: '#collapse-panel-2'}"  -->
+						<button type="button" class="am-btn am-btn-primary btnvin"  id="btn_how_to_get_vin">如何查询VIN码<span class="am-icon-chevron-down am-fr"></span></button>
+						
+					          </div>
+					<a class="am-u-xs-12  am-u-sm-12 am-u-md-12 am-u-lg-12 " href="javascript:;" id="btn_introduce" >什么是长安福特原厂保养套餐？</a>
+				</div>
+				
+			</div>
+		</div>
+    </div>
+	
+	
+	
+	
+	
+	   <div class="popup" style="display: none;">
+			<div class="popupContentWrap vin">
+				<div class="titleTxt popupTitle">如何查询VIN码</div>
+				<div class="popupMain">
+					<p class="popupTxt">查询方法一: 机动车行驶证</p>
+					<img src="/r/cms/www/mobile/recall/i/xsz.jpg">
+					<p class="popupTxt">查询方法二: 前挡风玻璃左侧</p>
+					<img src="/r/cms/www/mobile/recall/i/vin2.jpg">
+				</div>
+				<a href="###" class="btnQuestion" id="backBtn"><img src="/r/cms/www/mobile/recall/i/icoFind.png">  返回查询</a>
+			</div>
+		</div>
+
+        <div class="popupmsg dn" id="display: none;">
+              <div class="popupContentWrap">
+                <div class="pupupmsgtxt"></div>
+                <div class="pupupft"></div>
+		<img class="msgbg" src="/r/cms/www/mobile/maintenance/i/fd/pop.jpg" >
+                
+              </div>
+	</div>
+
+<div class="popuptable dn" id="display: none;">
+<div class="contenttb">
+<div class="popupContentWrap">
+<div class="pupuptexttable">
+ <img class='cls' src="/r/cms/www/mobile/maintenance/i/fd/cls.png" alt=""> 
+                <table class="am-table am-table-bordered am-table-striped am-table-compact">
+  <thead>
+  <tr>
+    <th>类型</th>
+    <th>名称</th>
+    <th>价格(RMB)</th>
+  </tr>
+  </thead>
+  <tbody  id="package_list">
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+	
+<!--[if (gte IE 9)|!(IE)]><!-->
+	<script src="/r/cms/www/mobile/maintenance/js/jquery.min.js"></script>
+	<!--<![endif]-->
+	<!--[if lte IE 8 ]>
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+	<script src="/r/cms/www/mobile/maintenance/js/amazeui.ie8polyfill.min.js"></script>
+	<![endif]-->
+	<script src="/r/cms/www/mobile/maintenance/js/amazeui.min.js"></script>  
+    <script src="/r/cms/www/mobile/maintenance/js/ssp.js"></script>
+
+</body>
+</html>

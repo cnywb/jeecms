@@ -1,0 +1,129 @@
+﻿<ul class="dw">
+		<li><a href="#"><img src="/${res}/images/czrz.png" alt="" /></a></li>
+		<li><a href="#"><img src="/${res}/images/zxkf.png" alt="" /></a></li>
+	</ul>
+<article class="main ycyc">
+	<h1>保养计算器<span>根据您爱车的基本情况，我们给您以下保养建议</span></h1>
+	<article class="ctan">
+		<section>
+			<h2 class="shuz"><span>1</span>需要更换的保养项目</h2>
+			<div class="art cal">
+				<h3>1). 更换机油及滤清器</h3>
+				<table cellpadding="0" cellspacing="0" width="683" class="table01">
+					<tr class="thead">
+						<th width="330">保养项目</th>
+						<th width="253">查询结论</th>
+						<th width="98" class="zh">价格</th>
+					</tr>
+					<tr>
+						<td class="first"><div>更换机油（建议每5000公里/6个月更换一次）</div></td>
+						<td>更换（到2013年09月需要进行更换） </td>
+						<td>400元</td>
+					</tr>
+					<tr>
+						<td class="first"><div>更换机油滤清器（建议每5000公里/6个月更换一次）</div></td>
+						<td>更换（到2013年09月需要进行更换）</td>
+						<td>800元</td>
+					</tr>
+					<tr>
+						<td class="first"><div>更换空气滤清器（建议每1万公里/12个月更换一次） </div></td>
+						<td>您上次保养周期是否更换这个项目了？</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr class="zuh">
+						<td class="first"><div>更换燃油滤清器（建议每1万公里/12个月更换一次）</div></td>
+						<td>您上次保养周期是否更换这个项目了？</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				<img src="/${res}/images/img04.gif" alt="" class="bott">
+				<h3>2). 空调系统保养</h3>
+				<table cellpadding="0" cellspacing="0" width="683" class="table01">
+					<tr class="thead">
+						<th width="330">保养项目</th>
+						<th width="253">查询结论</th>
+						<th width="98" class="zh">价格</th>
+					</tr>
+					<tr class="zuh">
+						<td class="first"><div>更换空调滤清器（建议每2万公里/24个月更换一次）</div></td>
+						<td>您上次保养周期是否更换这个项目了？</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+				<img src="/${res}/images/img04.gif" alt="" class="bott">
+			</div>
+			<h2 class="shuz"><span>2</span>需要检查的保养项目</h2>
+			<div class="art cal">
+				<p class="bott">这部分项目不是到期必须更换，但需要到期就要进行检查，视检查耗损程度决定是否需要更换。</p>
+				<table cellpadding="0" cellspacing="0" width="683" class="table01 table02">
+					<tr class="thead">
+						<th>1). 更换机油及滤清器（建议每3万公里检查一次）</th>
+					</tr>
+					<tr>
+						<td class="first"><div>2). 车灯 (更换大灯及雾灯灯泡	如果车灯出现光衰而变暗，应及时更换。)</div></td>
+					</tr>
+					<tr class="tfoot">
+						<td>3). 雨刷</td>
+					</tr>
+				</table>
+				<p style="margin-bottom: 5px;">&nbsp;</p>
+			</div>
+		</section>
+		<aside>
+			<div class="baoy">
+				<img src="/${res}/images/carby01.png" alt="">
+				<div class="bg">
+					<h3 class="ac"><img src="/${res}/images/side_h3.gif" alt=""></h3>
+					<ul class="carinfor">
+						<li>福特福克斯1.8T</li>
+						<li>购买时间 2012-06</li>
+						<li>行驶5000公</li>
+					</ul>
+					<ul class="sel">
+						<li><span><a href="#"></a>选择保养车型</span><ul class="option">
+							<li>选择保养车型</li>
+							<li>选择保养车型</li>
+						</ul></li>
+						<li><span><a href="#"></a>选择购买时间</span></li>
+						<li><span><a href="#"></a>选择公里数</span></li>
+					</ul>
+					<input type="image" src="/${res}/images/confirm.jpg" alt="确 定" value="确 定">
+				</div>
+			</div>
+			<ul class="link">
+				<li><a href="#"><img src="/${res}/images/cylj.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/dljy.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/ycjh.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/qc.png" alt=""></a></li>
+			</ul>
+		</aside>
+	</article>
+</article>
+<footer>
+	<nav>
+		<ul>
+			<li><a href="#" class="tit">用车养车</a><a href="#">行车宝典</a><a href="#">爱车养护</a><a href="#">用车指南下载</a></li>
+			<li><a href="#" class="tit">售后服务</a><a href="#">官方保养建议</a><a href="#">保养计算器</a><a href="#">真假配件</a> <a href="#">精品附件</a> <a href="#">QC流程</a> <a href="#">售后产品</a></li>
+			<li><a href="#" class="tit">互动问答</a><a href="#">常见Q&amp;A</a><a href="#">福域百科</a><a href="#">在线调研</a><a href="#">话题PK</a></li>
+			<li><a href="#" class="tit">福域论坛</a><a href="#">热门话题</a><a href="#">长安福特活动专版</a><a href="#">车型板块</a> <a href="#">兴趣板块</a> <a href="#">事务板块</a></li>
+			<li><a href="#" class="tit">精彩活动</a><a href="#">最新活动</a><a href="#">往期回顾</a></li>
+			<li><a href="#" class="tit">车型鉴赏</a></li>
+			<li class="last"><a href="#" class="tit">经销商专区</a><a href="#">经销商查询</a><a href="#">升级服务请您监督</a><a href="#">经销商活动</a></li>
+		</ul>
+		<p><a href="#">隐私权保护声明</a> | <a href="#">版权保护</a> | <a href="#">网站地图</a> | <a href="#">联系我们</a> | <a href="#">24小时客服热线</a> ?2013福特汽车（中国）有限公司 沪ICP备05031283号</p>
+	</nav>
+</footer>
+
+<!--弹出层-->
+<article class="zzc">
+	<section class="popup">
+		<h2><a href="javascript:void(0);" onClick="$('.zzc').hide();" class="close"><img src="/${res}/images/close.gif" alt=""></a>经典福克斯精品附件</h2>
+		<ul>
+			<li class="fl"><img src="/${res}/images/photo06.jpg" alt=""></li>
+			<li class="fr"><p>附件名称：福克斯绒质地垫<br>
+				适用车型：两箱、三箱</p>
+			<p>高级环保阻燃材料，无异味，易清洁；贴合原车尺寸和裁剪；特有专用定位孔，防止滑动，令脚步更舒适，驾驶更轻松</p>
+			</li>
+		</ul>
+	</section>
+</article>

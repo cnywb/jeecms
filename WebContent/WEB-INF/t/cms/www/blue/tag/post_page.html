@@ -1,0 +1,767 @@
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="/${res}/bbs_box/wbox.js"></script> 
+<link rel="stylesheet" type="text/css" href="/${res}/bbs_box/wbox.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/plugins/code/prettify.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor4/kindeditor.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor4/lang/zh_CN.js"></script>
+<script type="text/javascript" src="${base}/plugins/jquery.blockUI.js"></script>
+<style type="text/css">
+	.demo {
+		width:200px;
+	}
+	.userIcon{
+	width:90px;
+	height: 90px;
+	}
+	
+ .jinghuazhang {
+    background: transparent url("/r/cms/www/blue/bbs_forum/images/bbs_jinghua.png") no-repeat scroll 0px 0px;
+    float: left;
+    height: 100px;
+    right: 250px;
+    position: absolute;
+    top: 200px;
+    width: 101px;
+    z-index: 1;
+}
+
+<!-- 
+ *{margin:0;padding:0;}
+.box{margin-bottom:12px;overflow-x:hidden;overflow-y:hidden;padding:3px;background:#FFFFEE;border:solid 1px #999;}
+.boxTitle{font-size:10.5pt;color: black;}
+ -->
+ 
+ .t_b_i_01{
+	width: 100%;
+	height: 49px;
+	background: url(/r/cms/www/blue/bbs_forum/images/t_003.png) no-repeat 0 0;
+	margin-top: 20px;
+}
+.t_b_i_01_01{
+	float: left;
+	width: 800px;
+	line-height: 49px;
+	font-size: 16px;
+	padding-left: 28px;
+}
+.t_b_i_01_02{
+	width: 105px;
+	float: right;
+}
+.t_b_i_01_02 dl{
+	float: left;
+	width: 40px;
+	margin-left: 11px;
+	color: #787878
+}
+.t_b_i_01_02 dl dt{
+	padding-top: 6px;
+	height: 16px;
+}
+.t_b_i_01_02 dl dd{
+	height: 16px;
+}
+.t_b_i_02{
+	float: left;
+	width: 100%;
+	background:#eff0f0 url(/r/cms/www/blue/bbs_forum/images/t_004.png) repeat-y 0 0;
+}
+.t_b_i_02_01{
+	width: 208px;
+	float: left;
+	border-left: 1px solid #e2eecc;
+	border-right: 1px solid #e2eecc;
+	background-color: #eff0f0;
+	position: relative;
+}
+.t_b_i_02_01_01{
+	width: 154px;
+	height: 153px;
+	margin-left: 35px;
+	margin-top: 24px;
+	background: url(/r/cms/www/blue/bbs_forum/images/t_005.png) no-repeat 0 0;
+}
+.t_b_i_02_01_02{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	font-weight: 600;
+	font-size: 13px;
+	position: absolute;
+	top: 16px;
+	left: 0
+}
+.t_b_i_02_01_03{
+	padding-left: 35px;
+	color: #000;
+	height: 18px;
+	line-height: 18px;
+}
+.t_b_i_02_01_04{
+	width: 130px;
+	height: 66px;
+	background: url(/r/cms/www/blue/bbs_forum/images/t_006.png) no-repeat 0 0;
+	margin-left: 35px;
+}
+.t_b_i_02_01_04_01{
+	padding: 12px 3px 0;
+	color: #81ba2f
+}
+.t_b_i_02_01_04_01 p{
+	width: 50%;
+	float: left;
+}
+.t_b_i_02_01_04_02{
+    clear:both;
+	margin: 3px;
+	height: 8px;
+	border: 1px solid #81ba2f;
+	overflow: hidden;
+}
+.t_p_01{
+	float: left;
+	width: 30%;
+	height: 8px;
+	background-color: #81ba2f;
+}
+.t_p_02{
+	float: left;
+	width: 70%;
+	height: 8px;
+	background-color: #eff0f0;
+}
+.t_b_i_02_01_04_03{
+	padding-left: 3px;
+	color: #81ba2f
+}
+.t_b_i_02_01_05{
+	margin-top: 10px;
+	margin-left: 35px;
+	color: #000
+}
+.t_b_i_02_01_05 li{
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+}
+.t_b_i_02_01_05 li span{
+	color: #81ba2f
+}
+.t_b_i_02_02{
+	float: right;
+	width: 717px;
+	padding: 5px;   
+	border-right: 1px solid #e2eecc;
+}
+.t_b_02_02_01{
+	width: 100%;
+	float: left;
+	border-bottom: 1px dashed #ccced0
+}
+.t_b_02_02_01 h3{
+	float: left;
+	padding-left: 10px;
+	font-weight: normal;
+	line-height: 23px;
+}
+.t_b_02_02_01 span{
+	float: right;
+	padding-right: 10px;
+	color: #ff862e
+}
+.t_b_02_02_02{
+	float: left;
+	padding: 10px 5px;	
+	margin-bottom: 120px;
+}
+.t_b_02_02_03{
+	clear: both;
+	text-align: right;
+	border-top: 1px dashed #ccced0;
+	color: #f8e9ad;	
+}
+.t_b_02_02_03 a{
+	height: 26px;
+	line-height: 26px;
+	color: #f8e9ad;	
+}
+.t_b_02_02_03 a.last_a{
+	padding-right: 5px;
+}
+
+.t_b_i_02_01_00{
+	width:45px;
+	height:40px;
+	position:absolute;
+	top:28px;
+	right:19px;
+	z-index:3;
+	cursor:pointer
+}
+
+.t_b_i_02_01_01_01{
+	width:100px;
+	height:100px;
+	padding:33px 0 0 14px;
+}
+.t_b_i_02_01_01_01 img{
+	width:100px;
+	height:100px;
+}
+
+
+.modal-backdrop{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1030;
+	background-color: #000;
+	opacity: .5;
+	filter: alpha(opacity=50);
+	-webkit-transition: opacity .15s linear;
+	transition: opacity .15s linear
+}
+.modal {
+	position: fixed;
+	top: 20%;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	display: none;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-webkit-transition: opacity .15s linear;
+	transition: opacity .15s linear;
+}
+.modal-dialog {
+	position: relative;
+	z-index: 1050;
+	width: auto;
+	margin: 10px;
+}
+.modal-content {
+	width: 410px;
+	margin: 0 auto;
+	position: relative;
+	background-color: #fff;
+	border: 1px solid #999;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 6px;
+	outline: 0;
+	-webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	background-clip: padding-box;
+}
+.modal-header{
+	width: 100%;
+	height: 185px;
+	position: relative;
+}
+.modal-header img{
+	width: 410px;
+	height: 185px;
+}
+.modal-close{
+	width: 38px;
+	height: 45px;
+	background: url(/r/cms/www/blue/bbs_forum/images/q_close.png) no-repeat 0 0;
+	position: absolute;
+	top: 0;
+	right: 20px;
+	cursor: pointer;
+}
+.modal-body{
+	width: 100%;
+	padding: 28px 0;
+	text-align: center;
+	font-size: 14px;
+}
+.modal-footer {
+	padding: 0 20px 20px;
+	text-align: center;
+}
+.btn-default{
+	width: 134px;
+	height: 32px;
+	background: url(/r/cms/www/blue/bbs_forum/images/modle_btn_ok.png) no-repeat 0 0;
+	border:none;
+	outline: none;
+}
+</style>
+
+<script type="text/javascript">
+function getCookie(name){
+  	 var strCookie=document.cookie;
+  	 var arrCookie=strCookie.split("; ");
+  	 for(var i=0;i<arrCookie.length;i++){
+  	 var arr=arrCookie[i].split("=");
+  	     if(arr[0]==name){
+   	 	 return arr[1];
+  	 	}
+  	 }
+  	 return "";
+  } 
+function getUrlParam(name) {  
+    var reg = new RegExp('(^|&)'+name+'=([^&]*)(&|$)');  
+    var r = window.location.search.substr(1).match(reg);  
+    if (r != null){  
+        return unescape(r[2]);  
+    }  
+    return null;  
+}  
+var postAlertShow=false;
+var showPostAlert=function(){
+	if(postAlertShow==false){
+		postAlertShow=true;
+		[#if canAddPostPoint??&&canAddPostPoint==false]initPostModelAlert();[/#if]
+	}
+};
+ var editor;
+   function initEditor(){
+     	var base=location.protocol+"//"+window.location.hostname+":"+window.location.port;
+      	var sessionId=getCookie("JSESSIONID");
+      	var auth_id=getCookie("AUTH_ID");
+      	KindEditor.ready(function(K) {
+   		 editor= K.create('#atc_content', {
+     			cssPath:base+'/plugin/kindeditor/plugins/code/prettify.css',
+   			uploadJson:base+'/common/kindeditor/upload.jhtml;jsessionid='+sessionId+"?AUTH_ID="+auth_id+"&needWaterMark=true", //多文件上传时必须加上
+   			fileManagerJson:base+'/common/kindeditor/manage.jhtml;jsessionid='+sessionId+"?AUTH_ID="+auth_id,
+   			allowFileManager : true,
+   			afterFocus:showPostAlert,
+			items : [
+						'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+   		 });
+      	});
+     
+   }
+  
+function checkContent(){
+   var content=editor.text();
+   if(content==""){
+     alert("内容不能为空!");
+     return false;
+  }
+  return true;
+}
+
+function checkedCount(name) {
+	var batchChecks = document.getElementsByName(name);
+	var count = 0;
+	for (var i = 0;i < batchChecks.length; i++) {
+		if (batchChecks[i].checked) {
+			count++;
+		}
+	}
+	return count;
+}
+
+function vote(name, tid){
+	var itemNum = checkedCount(name);
+	if(itemNum == 0){
+		alert("请至少选择一项!");
+		return;
+	}
+	var items = document.getElementsByName(name);
+	var itemIds = new Array();
+	var count = 0;
+	for(var i=0; i<items.length; i++){
+		if(items[i].checked){
+			itemIds[count] = items[i].value;
+			count++;
+		}
+	}
+	$.post('${base}/topic/vote.jspx', {
+		'itemIds':itemIds,
+		'tid':tid
+	}, function(data) {
+		if(data.success){
+			VoteResult();
+		}else{
+			alert(data.message);
+		}
+	},"json");
+}
+
+function apply(id, val,pid){
+	$.post("${base}/member/applyJson.jhtml",{"u": val},function(data){
+		if(data){
+			alert("提交申请成功!");
+		}
+	});
+}
+
+function favoriteAdd(topicId)
+{
+	$.post("${base}/member/favorite/add.jhtml",{topicId:topicId,type:2},function(result){
+		alert("收藏成功！");
+	});
+}
+
+function showSendLeaveMsg(userName){
+	$("#content").val("");
+	$("#leaveMsgUserName").text(userName)
+	$.blockUI({message:$('#send_leave_msg'),css:{ width:'550px'} });
+}
+
+function sendMsg(){
+	var username=$("#leaveMsgUserName").text();
+    var content=$("#content").val();
+    if(content==""){
+        alert("内容不能为空!");
+        return false;
+    }
+    if(content.length>=1000){
+        alert("内容长度不能超过1000个文字!");
+        return false;
+    }
+	$.post('${base}/member/sendMsgJson.jhtml', {
+		'username':username,
+		'content':content,
+		'msgType':2
+		}, function(data) {
+			$.unblockUI();
+			alert(data.message);
+		},"json");
+}
+
+$(document).ready(function(){
+	autoSize();
+	initEditor();
+	$(".userIcon").each(function(){
+		   var faceIcon=$(this).attr("src");
+		   if(faceIcon.indexOf("image/")==-1){
+			   $(this).attr("src","/${res}/bbs_member/img/face/"+faceIcon);
+		   }
+	});
+	$("#bdUrl").val(window.location.href);
+	if(0!=getUrlParam("point")*1){
+		initModelAlert();
+		$("a").each(function(){
+			if($(this).attr("href")!=undefined&&$(this).attr("href")!="null"&&$(this).attr("href")!=null&&$(this).attr("href")!=""){
+				var href=$(this).attr("href").replace("point","xx");
+				$(this).attr("href",href);
+			}
+		});
+	}
+	
+});
+
+function autoSize(){//贴子中的图片如果超出一定宽度则自动缩到一定宽度
+	$("div").each(function(){
+		if($(this).hasClass("tpc_content")){
+			var imgArray=$(this).find("img");
+			$.each(imgArray, function(i, item){      
+			    var w=$(item).attr("width")*1;
+			    var src=$(item).attr("src");
+			    if(((w>680)||w==0)&&src.indexOf("/emoticons")==-1){
+			    	$(item).attr("width",680);
+			    }
+			});  
+	}
+	});
+}
+
+function initModelAlert(){
+	$(".modal-body").html('<span id="alert_point_title"></span>成功！<br/>您已获得<font color="orange" id="alert_point"></font>积分');
+	var point=getUrlParam("point");
+	$("#alert_point").text(point);
+	var pointType=getUrlParam("pointType");
+	if("t"==pointType){
+		$("#alert_point_title").text("发贴");
+	}else if("p"==pointType){
+		$("#alert_point_title").text("回贴");
+	}
+	if(point!=0){
+		doShowModelAlert();
+	}
+}
+
+function doShowModelAlert(){
+	if ($('#modal-backdrop').size() === 0) {
+		var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+		$('body').append(fade);
+		$('#myModal').show();
+		$('#myModal .modal-close,#myModal .btn-default').click(function(event) {
+			$('#modal-backdrop').remove();
+			$('#myModal').hide();
+		});
+	}
+}
+
+function initPostModelAlert(){
+	$(".modal-body").html('您今天的回贴积分上限已满，<br />您可以继续<font></font>，但积分将不被记录，谢谢！');
+	doShowModelAlert();
+}
+</script>
+[#if topic.category==101]
+<script type="text/javascript">
+[#if topic.visibleAfterReply??&&userPostCount==0&&topic.visibleAfterReply==true]
+[#else]
+$(function(){
+	VoteResult();
+});
+[/#if]
+
+
+function VoteResult(){
+	$.post("${base}/topic/vote_result.jspx",{tid: "${topic.id}"},function(data){
+		$(".vote").html(data);
+		$(".vote").css({"height":"800px"});
+	});
+}
+
+
+</script>
+[/#if]
+<article class="ctan ltneir">
+		<div class="h2box">
+			<ul class="page">
+				<li class="num">
+					[#include "../tag/topic.html"/] 
+				</li>
+				
+				</ul>
+			
+			<ul class="fr" style="width:490px">
+			   <li class="fl"><img src="/${res}/bbs_forum/images/share.jpg" onclick="$('#shareForm').submit();"></li>
+				[#if bbsUser??]
+				<li class="fl"> <a href="${base}/topic/v_add${forum.id!}.jspx"><img src="/${res}/bbs_forum/images/lt_btnft.jpg" alt=""></a></li>
+				<li class="fl"><a href="${base}/topic/v_add${forum.id!}.jspx?category=vote"><img src="/${res}/bbs_forum/images/lt_btnvote.jpg" alt=""></a></li>
+				<li class="fr">[#if topic.allayReply][#if !topic.isForbidReply]<a href="${base}/post/v_add${topic.id!}.jspx"><img src="/${res}/bbs_forum/images/lt_btnhf.jpg" alt=""></a>[/#if][/#if]</li>
+				[/#if]
+			</ul>
+		</div>
+		<div class="art">
+		[#if topic.primeLevel!=0]<div class="jinghuazhang" ></div>[/#if]
+			<img src="/${res}/bbs_forum/images/lt_line01.gif" alt="" class="fl">
+			<h2><p class="fr"><span class="sp01"><strong>${topic.viewCount?html}</strong><br>阅读</span><span><strong>${topic.replyCount?html}</strong><br>回复</span></p>${topic.title}[#if topic.isForbidReply]<font color="red">(该主题已关闭回贴)</font>[/#if]</h2>
+			[#list tag_pagination.list as post]
+			[#assign creater=post.creater/] 
+			<img src="/${res}/bbs_forum/images/lt_line03.gif" alt="" class="fl">
+			<a name="pid${post.id}"></a>
+			<div class="tiez erltiez">
+				<div class="jbg">
+				<div class="t_b_i_02_01">
+							<div class="t_b_i_02_01_00" onclick="showChatWin('${creater.id!}');"></div>
+							<div class="t_b_i_02_01_01">
+								<div class="t_b_i_02_01_01_01"><img class="userIcon" src="${(creater.avatar)!'none.gif'}" /></div>
+							</div>
+							<div class="t_b_i_02_01_02 color_green">[#if post.anonymous]匿名[#else]${creater.username!}[/#if]</div>
+							[#if !post.anonymous]
+							<div class="t_b_i_02_01_03">线上马力值：${creater.group.name}[@car_owners userid=creater.id][#if carowners.group.id==2](车主)[/#if][/@car_owners]</div>
+							<div class="t_b_i_02_01_04">
+								<div class="t_b_i_02_01_04_01">
+									<p>${creater.group.name}</p>
+									<p class="tar">${creater.nextGroupName}</p>
+								</div>
+								<div class="t_b_i_02_01_04_02">
+									<p class="t_p_01" style="width:${creater.percentToNextGroup}%"></p>
+									<p class="t_p_02" style="width:100%"></p>
+								</div>
+								<div class="t_b_i_02_01_04_03">${creater.group.gradeNum!}级 当前积分：${creater.point!}分</div>
+							</div>
+							<ul class="t_b_i_02_01_05">
+								<li>注册时间：<span>${creater.registerTime?string('yyyy-MM-dd')}</span></li>
+								<li>精华：${creater.primeCount!}帖</li>
+								<li>主题：<span>${creater.topicCount!}</span></li>
+								<li>来自：${creater.cmsUserComefrom!}</li>
+								<li>爱车：${creater.cmsUserCarStyle!}</li>
+								<li>兑奖积分：${creater.userCurrentPoint!}分</li>
+							</ul>
+							[/#if]
+						</div>
+			
+				<div class="tiezcot" style="">
+					<h4><span class="fr">
+					[#if topicCreater??]
+					<a href="${topic.url}">显示全部</a>
+					[#else]
+					<a href="${topic.url}?topicCreater=${topic.creater.id}">只看楼主</a>
+					[/#if]
+					
+					<a href="javascript:;" onclick="favoriteAdd(${topic.id})">收藏本贴</a>
+					</span>
+					${post.indexCount}楼  发表于:
+					[#if post.editTime??]
+					${post.editTime?string('yyyy-MM-dd HH:mm:ss')}
+					[#else]
+					${post.createTime?string('yyyy-MM-dd HH:mm:ss')}
+					 [/#if]
+					</h4>
+					  [#if post.shield]
+					  
+         			        [#if bbsUser??&&bbsUser.moderator]
+         			        <div class="blockquote">
+						    <div class="tal s3">该贴已经被屏蔽，仅版主可见</div>
+						    <div class="tal f12">
+						    ${post.relContent!}
+						    </div>
+			                </div>
+			                [#else]
+			                <div class="blockquote">该帖子已被屏蔽，仅版主可见</div>
+			               [/#if]
+			          
+			          [#else]
+			          
+			            [#if post.hidden] 
+			          
+			                [#if bbsUser??] 
+			                    [#if post.creater.id==bbsUser.id||bbsUser.moderator]
+			                         <div class="tpc_content f14" style="padding:20px">${post.relContent}</div>
+					            [#else] 
+			          
+			                          [#if !post.topic.haveReply?contains(','+bbsUser.id+',')]
+			                          <div class="tpc_content f14" style="padding:20px">${post.hideContent}</div>
+			                          [#else]
+			                          <div class="tpc_content f14" style="padding:20px">${post.relContent}</div>
+					                  [/#if]
+			                [/#if]// end of if bbsUser
+			             [#else]
+			                <div class="tpc_content f14" style="padding:20px">${post.hideContent}</div>
+			             [/#if]//end of post.hidden
+			          [#else]
+			             
+			                [#if topic.visibleAfterReply??&&post.indexCount==1&&userPostCount==0&&topic.visibleAfterReply==true]
+			                <div class="tpc_content f14" style="padding:20px">该贴需回复后才可见</div>
+			                [#else]
+			                <div class="tpc_content f14" style="padding:20px">
+			                ${post.relContent}</div>
+			                [/#if]
+			              
+					     
+			          [/#if]
+			          [/#if]
+			          
+			          [#if post.indexCount==1]
+			          <div class="vote" ></div>
+			          [/#if]
+			    		          
+					  [#if post.grade?? && post.grade?size gt 0] 
+					  <div id="mark_tpc" class="tips tal" style="margin:0 15px 10px 15px;word-break:keep-all;word-wrap:no-wrap;line-height:25px;">
+						<div class="tal s3">本帖最近评分记录：</div>
+						[#list post.grade as grade]
+						<div class="tal f12">
+						<li>
+						${grade.grader.username} &nbsp;&nbsp; ${grade.gradeTime?string("yyyy-MM-dd")}&nbsp;&nbsp; 人气 &nbsp;&nbsp; [#if grade.score gt 0]+${grade.score}[#else]${grade.score}[/#if] &nbsp;&nbsp; ${grade.reason!}
+						</li>
+						</div>
+						[/#list]					
+					  [/#if]
+					<ul>
+						<!--  <li>[#if creater.signed??]${creater.signed?html}[/#if]</li>-->
+						<li> 
+						  [#if bbsUser??]
+				          [#if moderators||bbsUser.id==creater.id]
+				          <a href="${base}/post/v_edit${post.id!}.jspx">编辑</a> |
+				          [/#if]
+				          [#if moderators]
+				          [#if !post.shield]<a href="${base}/post/v_shield${post.id!}_${-1}.jspx">屏蔽[#else]<a href="${base}/post/v_shield${post.id!}_${0}.jspx">取消屏蔽[/#if]</a> | 
+				          [/#if][/#if]
+				          [#if bbsUser??]
+				          [#if !topic.isForbidReply]
+				          <a class="r-reply" title="引用此楼" href="${base}/post/v_quote${post.id!}.jspx">引用</a> |
+				          
+				          <a class="r-reply" title="回复此楼" href="${base}/post/v_reply${post.id!}.jspx">回复</a> |
+				          [/#if]
+				           [#if bbsUser.id!=creater.id]
+				            <a class="r-reply" title="私信" href="javascript:void(0)" onclick="showSendLeaveMsg('${creater.username!}');">私信</a> |
+				           [/#if]
+				          [#if bbsUser.id!=creater.id]
+				          <a class="r-reply" title="评分此楼" href="${base}/post/v_grade${post.id!}.jspx">评分</a> |
+				          [/#if]
+				          [/#if]
+				          <a href="${base}/member/getreportpage.jspx?url=${post.url!}" id="reportA_${post.url}_${post.id}">举报</a>   |  <a href="javascript:scroll(0,0)">顶端</a>  
+				          | </li>
+					</ul>
+					<span class="xtup"></span>
+				</div>
+			</div>
+			</div>
+			[/#list]
+			<div class="h2box">
+				<ul class="page">
+					<li class="num">
+						[#include "../tag/topic.html"/] 
+					</li>
+					</ul>
+			</div>
+			[#if topic.allayReply]
+			[#if !topic.isForbidReply]		
+			[#if bbsUser??]				
+			<img src="/${res}/bbs_forum/images/lt_line05.gif" alt="" class="fl">
+			<h2 class="ksht">快速回帖</h2>
+			<form id="jvForm" action="${base}/post/o_save.jspx" method="post" enctype="multipart/form-data" validate="true" onsubmit="return checkContent();">
+			<div class="fastht">
+				<img src="/${res}/bbs_forum/images/lt_photo.gif" alt="" class="fl">
+				<input name="postTypeId" value="${postTypeId!}" type="hidden"/>
+				<input type="hidden" name="topicId" value="${topic.id}" />
+				<ul>
+					<li><textarea cols="10" rows="2" id="atc_content" name="content"></textarea></li>
+					<li class="ltfab"> 限 50,000 字符</li>
+					<li class="ltfab"><input class="btn fl b" type="submit" style="padding-right: 1em; padding-left: 1em; padding-bottom: 0pt; padding-top: 0pt; height: 30px" name="Submit" value=" 提 交 " /></li>
+				</ul>
+			</div>
+			</form>
+			[/#if]
+			[/#if]
+			[/#if]	
+					
+		</div>
+	
+</article>
+<script type="text/javascript"> 
+var id;
+var strs=new Array();
+$("a[id^='msgSendA']").each(function(){
+	id=$(this).attr("id");
+	strs=id.split("_");
+	$(this).wBox({title: "打招呼",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/member/getsendmsgpage.jhtml?username="+strs[2]});
+});
+$("a[id^='reportA']").each(function(){
+	id=$(this).attr("id");
+	strs=id.split("_");
+	$(this).wBox({title: "举报",requestType:"iframe",iframeWH:{width:320,height:50},target:"${base}/member/getreportpage.jspx?pid="+strs[2]+"&&url="+strs[1]});
+});
+</script>
+<div id="send_leave_msg" style="display:none; cursor: default">
+       <table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td  >私信给：</td>
+									<td id="leaveMsgUserName" style="text-align: left;"></td>
+								</tr>
+								<tr>
+									<td><br> 内容：</td>
+									<td style="text-align: left;"><br><textarea id="content" name="content" rows="6" cols="70"></textarea></td>
+								</tr>
+								
+								<tr>
+									
+									<td colspan="2">
+									<input type="hidden" value='1' name="msgType"/>
+     								<input type="submit" value="发送" onclick="sendMsg();"/>
+     								<input type="submit" value="取消" onclick="$.unblockUI();"/>
+     								</td>
+     							
+								</tr>
+							</table>
+</div>
+
+<form id="shareForm" method="get" enctype="multipart/form-data" action="${base}/post/share.jspx" target="_blank" >
+<input type="hidden" name="bdText" value="[@text_cut s=topic.title?html len=16 append='...'/]" />
+[#list tag_pagination.list as post]
+[#if post_index==0]
+<input type="hidden" name="bdDesc" value="[@text_cut s=post.relContent?html len=100 append='...'/]" />
+[/#if]
+[/#list]
+<input type="hidden" name="bdUrl" id="bdUrl" value="" />
+<input type="hidden" name="bbsUserId" id="bbsUserId" value="[#if bbsUser??]${bbsUser.id}[/#if]" />
+</form>
+
+

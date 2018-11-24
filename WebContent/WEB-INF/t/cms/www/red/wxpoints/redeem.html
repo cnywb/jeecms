@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>长安福特</title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/pointsmall.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/css/pages/redeem.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/css/pages/lottery.css">
+<style>
+	.modal-content{width: auto;background-color: #f9edbe;color:#A52E00;}
+	.modal-header{height: auto;}
+	.btn-default,.btn-confirm{background:none;background-color: #F9A311;text-align:center;color:white; border-radius: 5px;font: 13px/1.5 "黑体", Arial, Verdana;}
+	.btn-default:active,.btn-confirm:active{background-color: rgba(249, 237, 190, 0.59);}
+	.sendee th{width: 45%;color:#A52E00;}
+	.sendee td{width:55%;}
+	.sendee input{width:100%;
+		outline: none;border-bottom: 1px solid #A52E00;border-radius: 0;}
+	.one_dialog {
+	    background:#fcf1d5;
+	    -webkit-border-radius: 4px;
+	    border-radius: 4px;
+	    top:20%;
+	    left: 10%;
+	}
+</style>
+</head>
+<body>
+<div class="viewport">
+	<ul class="redeem">
+		[#list list as g]
+		[#if g?exists]
+		<li>
+			<h3>${g.title} [#if g.info?exists&&g.info!=''&&g.info!=' ']<br/>${g.info}[/#if]</h3>
+			<p>所需积分:${g.pointNum}</p>
+			<div class="redeem-img"><img src="${g.imageSmallURL!}" alt="" /></div>
+			[#if g.exchangeStockNum != 0]
+			<a href="javascript:;" id="${g.id}" name="exchange" class="redeem-action">兑换</a>
+			[#else]
+			<a href="javascript:;" class="redeem-action soldout">已兑完</a>
+			<div class="redeem-mark"></div>
+			[/#if]
+		</li>
+		[/#if]
+		[/#list]
+		[#if list?size%3!=0]
+			[#assign size = 3*(list?size/3?int+1)?int-list?size-1 /]
+			[#list 0..size as i]
+			<li>
+				<div class="redeem-rong">敬请期待</div>
+				<a href="javascript:;" class="redeem-action soldout">兑换</a>
+				<div class="redeem-mark"></div>
+			</li>
+			[/#list]
+		[/#if]
+		
+	</ul>
+</div>
+<!--积分不足、未登录、未认证的车主弹出层-->
+<div class="modal" id="authmodal" style="display:none">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+				<div class="modal-body-content">
+					<div style="font-size:20px;margin-bottom: 10px;color:#000;" id="alert_tip"></div>
+					<div  id="modal-body-content" style="color:#000;"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input type="button" class="btn-confirm" value="确  定">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="myModal" style="top:5%">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+				<div style="margin: 0 30px;"><span style="color:#F57D04;font-size:30px;">兑换成功!</span><br/>
+					请填写奖品寄送信息</div>
+				<form id="jvForm" novalidate="novalidate">
+					<input type="hidden" name="productId" id="productId" value="">
+					<table class="sendee">
+						<tbody>
+						<tr>
+							<th width="50%"><span>*</span>收件人姓名：</th>
+							<td width="50%"><input type="text" name="sendee" value="" class="required" placeholder="姓名" maxlength="30" aria-required="true"></td>
+						</tr>
+						<tr>
+							<th><span>*</span>收件人手机：</th>
+							<td><input type="text" name="mobilePhoneNo" value="" placeholder="手机号" maxlength="11"></td>
+						</tr>
+
+						<tr>
+							<th><span>*</span>收件人地址：</th>
+							<td><input type="text" name="address" value="" placeholder="详细地址" maxlength="128"></td>
+						</tr>
+						</tbody></table>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<input type="button" id="jvForm_submit" class="btn-default" value="确认信息">
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="openId" id="openId" value="${unifiedUser.openId!}">
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/zepto.min.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.js"></script>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery-validate-methods.js"></script>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery.validate.messages_zh.min.js"></script>
+<script>
+	function colseModal(){
+		$('#modal-backdrop').remove();
+		$('#myModal').hide();
+	}
+	function openModal(productid){
+		var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+		$('body').append(fade);
+		$('#myModal').show();
+		$("#productId").val(productid);
+
+	}
+	//用户授权提示页面
+	function authModal(message,callbackfn){
+		callbackfn=callbackfn||$.noop;
+		if ($('#modal-backdrop').size() === 0) {
+			var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+			$('body').append(fade);
+			if(message.indexOf("积分不足")>-1||message.indexOf("礼品寄送地址已填写")>-1){
+				$("#alert_tip").hide();
+			}else{
+				$("#alert_tip").show();
+			}
+			$('#authmodal').show();
+			$('#modal-body-content').html(message);
+			$('#authmodal .modal-close,#authmodal .btn-confirm').click(function(event) {
+				$('#modal-backdrop').remove();
+				$('#authmodal').hide();
+				callbackfn.call(this);
+			});
+
+		}
+	}
+	$("div.modal-close").click(function(){
+		colseModal();
+	});
+
+	function startSubmit(){
+		var fade=$('<div id="loading-backdrop" class="loading-backdrop"><div class="loading"><div class="loading-dialog"><img src="/${res}/point/images/loading.gif" /></div><div></div>');
+		if ($('#loading-backdrop').size() === 0) {
+			$('body').append(fade);
+		}
+	}
+	function endSubmit(){
+		if ($('#loading-backdrop').size()>0) {
+			$('#loading-backdrop').remove();
+		}
+	}
+
+	$('#myModal .btn-default').click(function(e){
+		$('#jvForm').submit();
+	});
+	function doSubmitForm(){
+		startSubmit();
+		var data = $('#jvForm').serialize()+"&openId="+$('#openId').val();
+		$.ajax({
+			url:"${base}/wxpoints/product/exchange.jhtml",
+			data:data,
+			success:function(data){
+				endSubmit();
+				if(data === 'noproduct'){
+					colseModal();
+					authModal("抱歉，该礼品目前无库存，请尝试兑换其他礼品。");
+				}else if(data === 'nopoint') {
+					colseModal();
+					authModal("抱歉，积分不足<br/>请继续努力~");
+				}else{
+					colseModal();
+					authModal("恭喜，兑换成功！礼品将在30个工作日内寄出。");
+				}
+			},error:function(retval){
+				endSubmit();
+				colseModal();
+				authModal("系统异常");
+			}
+		});
+	}
+	console.dir($('a[name="exchange"]'));
+	$('a[name="exchange"]').click(function(){
+		var productId = $(this).attr('id');
+		$.ajax({
+			url:'${base}/wxpoints/product/verify.jhtml',
+			type:'post',
+			data:{productId:productId,openId:$('#openId').val()},
+			success:function(data){
+				//如果没有商品
+				if(data === 'noproduct'){
+					authModal("抱歉，该礼品目前无库存，请尝试兑换其他礼品。");
+				}else if(data === 'nopoint') {
+					authModal("抱歉，积分不足<br/>请继续努力~");
+				}else{
+					openModal(productId);
+				}
+			}
+		});
+	});
+	//验证
+	$("#jvForm").validate({
+		//debug: true, //调试模式取消submit的默认提交功能
+		submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form
+			doSubmitForm(form);
+		},
+		rules:{
+			sendee:{required:true},
+			mobilePhoneNo:{required:true,isMobile:true},
+			address:{required:true}
+		},
+		//如果验证控件没有message，将调用默认的信息
+		messages:{
+			sendee:{
+				required:"请填写姓名"
+			},
+			mobilePhoneNo:{required:'请填写手机号',isMobile:'手机号不正确'},
+			address:{required:'请填写详细地址'}
+		},
+		//设置错误信息存放标签
+		errorElement: "em",
+		//指定错误信息位置
+		errorPlacement: function (error, element) {
+			if (element.attr('id')=='s_county') {
+				error.appendTo($('#countyErrorLabel'));
+			}else{
+				error.insertAfter(element);
+			}
+		},
+		focusInvalid: false,
+		onkeyup:false,
+		ignore: '',
+		success:function(e)
+		{
+			e.removeClass('valid');
+		}
+	});
+</script>
+		
+<!-- 		
+<script>
+$(function(){
+	var content = '<div style="margin: 0 30px;"><span style="color:#F57D04;font-size:30px;">恭喜您!<br/>兑换成功!</span><span id="lotteryResultTxt" style="color:red;display: none;"></span><br/>请填写奖品寄送信息</div><br/><table class="sendee"><tr><th width="50%">收件人姓名:</th><td width="50%"><input type="text" id="receivername" name="receivername"/></td></tr>';
+	content += '<tr><th>收件人手机:</th><td><input type="text" id="receiverphone" name="receiverphone"/></td></tr>';
+	content += '<tr><th>收件人地址:</th><td><input type="text" id="receiveraddress" name="receiveraddress"/></td></tr></table>';
+	$('a[name="exchange"]').click(function(){
+		var productId = $(this).attr('id');
+		var data = {productId:productId,openId:$('#openId').val()};
+		
+		var d = one.ui.dialog({
+			title: '',
+			buttons: [{
+				"text": '确认信息',
+				callback: function() {
+					$.ajax({
+					
+					});
+					var receivername = $('#receivername').val();
+					var receiverphone = $('#receiverphone').val();
+					var receiveraddress = $('#receiveraddress').val();
+					d.close();
+					tijiao(productId,receivername,receiverphone,receiveraddress);
+				}
+			}],
+			content: content,
+			width: $("body").width() * 0.8 + "px",
+			closed: {
+				display: 'block',
+				callback: function() {
+					d.close();
+				}
+			}
+		});
+	});
+	function tijiao(productId,receivername,receiverphone,receiveraddress){
+		var re1 = /^1\d{10}$/;
+		var re2 = /^0\d{2,3}-?\d{7,8}$/;
+		if(receivername == undefined||receivername==null||receivername==''){
+			var e = one.ui.dialog({
+				title: '',
+				buttons: [],
+				content: '抱歉,您填写的信息有误，请重新填写！',
+				width: $("body").width() * 0.8 + "px",
+				buttons: [{
+					"text": '填写',
+					callback: function() {
+						e.close();
+						var d = one.ui.dialog({
+							title: '',
+							buttons: [{
+								"text": '确认信息',
+								callback: function() {
+									var receivername = $('#receivername').val();
+									var receiverphone = $('#receiverphone').val();
+									var receiveraddress = $('#receiveraddress').val();
+									d.close();
+									tijiao(productId,receivername,receiverphone,receiveraddress);
+								}
+							}],
+							content: content,
+							width: $("body").width() * 0.8 + "px",
+							closed: {
+								display: 'block',
+								callback: function() {
+									d.close();
+								}
+							}
+						});
+					}
+				}]
+			});
+		}else if(receiverphone == undefined||receiverphone==null||receiverphone==''||!(re1.test(receiverphone)||re2.test(receiverphone))){
+			var e = one.ui.dialog({
+				title: '',
+				buttons: [],
+				content: '抱歉,您填写的信息有误，请重新填写！',
+				width: $("body").width() * 0.8 + "px",
+				buttons: [{
+					"text": '填写',
+					callback: function() {
+						e.close();
+						var d = one.ui.dialog({
+							title: '',
+							buttons: [{
+								"text": '确认信息',
+								callback: function() {
+									var receivername = $('#receivername').val();
+									var receiverphone = $('#receiverphone').val();
+									var receiveraddress = $('#receiveraddress').val();
+									d.close();
+									tijiao(productId,receivername,receiverphone,receiveraddress);
+								}
+							}],
+							content: content,
+							width: $("body").width() * 0.8 + "px",
+							closed: {
+								display: 'block',
+								callback: function() {
+									d.close();
+								}
+							}
+						});
+					}
+				}]
+			});
+		}else if(receiverphone == undefined||receiverphone==null||receiverphone==''){
+			var e = one.ui.dialog({
+				title: '',
+				buttons: [],
+				content: '抱歉,您填写的信息有误，请重新填写！',
+				width: $("body").width() * 0.8 + "px",
+				buttons: [{
+					"text": '填写',
+					callback: function() {
+						e.close();
+						var d = one.ui.dialog({
+							title: '',
+							buttons: [{
+								"text": '确认信息',
+								callback: function() {
+									var receivername = $('#receivername').val();
+									var receiverphone = $('#receiverphone').val();
+									var receiveraddress = $('#receiveraddress').val();
+									d.close();
+									tijiao(productId,receivername,receiverphone,receiveraddress);
+								}
+							}],
+							content: content,
+							width: $("body").width() * 0.8 + "px",
+							closed: {
+								display: 'block',
+								callback: function() {
+									d.close();
+								}
+							}
+						});
+					}
+				}]
+			});
+		}else{
+			var data = {productId:productId,openId:$('#openId').val(),sendee:receivername,phoneNo:receiverphone,address:receiveraddress};
+			$.ajax({
+				url:'exchange.jhtml',
+				type:'post',
+				data:data,
+				success:function(data){
+					if(data === 'success'){
+						var d = one.ui.dialog({
+							title: '',
+							buttons: [],
+							content: '恭喜，兑换成功！礼品将在30个工作日内寄出。',
+							width: $("body").width() * 0.8 + "px",
+							closed: {
+								display: 'block',
+								callback: function() {
+									d.close();
+								}
+							}
+						});
+					}else if(data === 'noproduct'){
+						var d = one.ui.dialog({
+							title: '',
+							buttons: [],
+							content: '抱歉，该礼品目前无库存，请尝试兑换其他礼品。',
+							width: $("body").width() * 0.8 + "px",
+							closed: {
+								display: 'block',
+								callback: function() {
+									d.close();
+								}
+							}
+						});
+					}else if(data === 'nopoint'){
+						var d = one.ui.dialog({
+							title: '',
+							buttons: [],
+							content: '抱歉，积分不足<br/>请继续努力~',
+							width: $("body").width() * 0.8 + "px",
+							closed: {
+								display: 'block',
+								callback: function() {
+									d.close();
+								}
+							}
+						});
+					}
+				}
+				
+			});
+		}
+	}
+	});
+</script>
+ -->
+</body>
+</html>

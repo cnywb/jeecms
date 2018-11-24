@@ -1,0 +1,103 @@
+@charset "utf-8";
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td { margin: 0; padding: 0; font-size: 66.3% }
+fieldset, img { border: 0; margin: 0; }
+ul, ol { list-style: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+a { text-decoration: none; color: #000; }
+a:hover {	/* text-decoration: underline; */color: #fff; }
+small { font-size: 12px; }
+h1, h2, h3, h4, h5, h6, button, input, select, textarea { font-size: 100%; }
+label, input, select, form img, button, textarea, img { vertical-align: middle; outline: none; }
+address, caption, cite, code, dfn, em, strong, th, optgroup { font-style: normal; font-weight: normal; }
+.clear:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clear { display: inline-block; }
+
+/* Hides from IE-mac \*/
+* html .clear { height: 1%; }
+.clear { display: block; }
+
+/* End hide from IE-mac */
+body { font-family: "Microsoft YaHei", "Century Gothic", "å¾®è½¯é›…é»‘", sans-serif !important; }
+.dn { display: none; }
+.ab { position: absolute; }
+.ab00 { position: absolute; top: 0; left: 0; }
+.logo1 { top: 50px; left: 40px; }
+.logo2 { top: 40px; right: 40px; }
+.bg { width: 100%; height: 100%; }
+input {width: 370px;height: 40px;background: transparent;border: none;color: #686868;text-indent: 5px;font-size: 22px;height: 34px;}
+select {height: 34px;width: 300px;background: transparent;border: none;color: #686868;-webkit-appearance: none;text-indent: 5px;outline: none;font-size: 22px;}
+.playp {right: 5%;bottom: 4%;background-image: url(../img/music.png);background-position: center center;background-size: 100% 100%;background-repeat: no-repeat;z-index: 88;width: 37px;height: 37px;}
+.playp.p { -webkit-animation-name: mrotate; -webkit-animation-duration: 5s; -webkit-animation-iteration-count: infinite; -webkit-animation-timing-function: linear; animation-name: mrotate; animation-duration: 5s; animation-iteration-count: infinite; animation-timing-function: linear; }
+.playp.paused { background-image: url(../img/music.png); -webkit-animation-play-state: paused; animation-play-state: paused; }
+@-webkit-keyframes mrotate {
+	from { -webkit-transform: rotate(0deg) }
+	to { -webkit-transform: rotate(360deg) }
+}
+@keyframes mrotate {
+	from { transform: rotate(0deg) }
+	to { transform: rotate(360deg) }
+}
+
+/*初始化页面*/
+.initPage { width: 100%; height: 100%; background: #000000; }
+.initPage .loadingCavas { top: 40%; left: 50%; margin-left: -60px; }
+.initPage .loading { top: 50%; width: 100%; text-align: center; font-size: 25px; color: #fff; line-height: 25px; left: 0; }
+
+/*首页*/
+.page1 { width: 100%; height: 100%; }
+.page1 .btn1 {top: 33%;left: 50%;margin-left: -121px;}
+.page1 .btn2 {
+    top: 39%;
+    left: 50%;
+    margin-left: -121px;
+}
+.page1 .btnrule { bottom: 5%; left: 10%; }
+
+/*非凡推荐*/
+.page2 { width: 100%; height: 100%; }
+.page2 .formwrap2 { width: 100%; height: 100%; }
+.page2 .formwrap2 .inputName {top: 47.5%;left: 23%;width: 138px;}
+.page2 .formwrap2 .inputMobi {top: 47.5%;left: 58%;height: 35px;width: 188px;}
+.page2 .formwrap2 .inputsuggName {top: 40px;left: 92px;width: 136px;}
+.page2 .formwrap2 .inputsuggMobi {top: 41px;left: 317px;width: 188px;}
+.page2 .formwrap2 .province {top: 84px;left: 91px;height: 35px;width: 139px;}
+.page2 .formwrap2 .city {top: 86px;left: 317px;width: 187px;}
+.page2 .formwrap2 .ownerCar {width: 411px;top: 51.6%;left: 23%;height: 35px;}
+.page2 .formwrap2 .buyTime { width: 320px; }
+.page2 .formwrap2 .dealer {top: 129px;left: 163px;width: 336px;}
+.page2 .formwrap2 .dealTime {top: 175px;left: 195px;width: 310px;}
+.page2 .formwrap2 .chk2 {top: 79.8%;left: 10%;}
+.page2 .formwrap2 .js_submit { bottom: 2%; left: 50%; margin-left: -121px; }
+.page2 .formwrap2 .appends{top: 55.5%;left:50%;margin-left:-256px;position: relative;width: 512px;}
+.page2 .formwrap2 .appends .items{position: relative;height: 210px;width: 512px;overflow-y: auto;}
+.page2 .formwrap2 .appends .item{height: 210px;position: relative;width: 512px;}
+.page2 .formwrap2 .js_submit {bottom: bottom;left: 50%;margin-left: -121px;}
+.page2 .formwrap2 .js_addmore{top: 76.55%;right:12%;}
+.page2 .formwrap2 .tipdown{top: 76.55%;left:50%;margin-left:-22px;}
+
+/*再购非凡*/
+.page3 { width: 100%; height: 100%; }
+.page3 .formwrap1 { width: 100%; height: 100%; }
+.page3 .formwrap1 .inputName {top: 45%;left: 23%;width: 138px;}
+.page3 .formwrap1 .inputMobi {top: 45%;left: 58%;width: 187px;}
+.page3 .formwrap1 .province {top: 50.2%;left: 23%;width: 105px;}
+.page3 .formwrap1 .city {top: 50.2%;left: 58%;width: 189px;}
+.page3 .formwrap1 .ownerCar {top: 55.5%;left: 23%;width: 412px;}
+.page3 .formwrap1 .buyTime {top: 61%;left: 38%;width: 315px;}
+.page3 .formwrap1 .dealer {top: 66%;left: 31%;width: 361px;}
+.page3 .formwrap1 .dealTime {top: 71.5%;left: 31%;width: 359px;}
+.page3 .formwrap1 .chk1 {top: 77.2%;left: 11%;}
+.page3 .formwrap1 .submitBtn1 { bottom: 2%; left: 50%; margin-left: -121px; }
+
+/* 成功弹窗 */
+.successPage { width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); }
+.successPage .content { left: 50%; margin-left: -153px; top: 30%; }
+.successPage .content .clsbtn { top: 0; right: 0; z-index: 2; padding: 10px 10px 50px 50px; }
+.successPage .QRcode{    width: 100%; height: 100%;opacity: 0;}
+
+
+/* 活动规则 */
+.rulePage {width: 100%;height: 100%;background: rgba(0, 0, 0, 0.6);z-index: 99;}
+.rulePage .content {left: 50%;margin-left: -265px;top: 5%;font-size: 58px;}
+.rulePage .content .clsbtn { top: 0; right: 0; z-index: 2; padding: 20px 20px 50px 50px; }
+

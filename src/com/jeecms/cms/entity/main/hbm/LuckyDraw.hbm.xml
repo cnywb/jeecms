@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.campaign.luckydraw">
+	<class name="LuckyDrawAward" table="LUCKY_DRAW_AWARD">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_LUCKY_DRAW_AWARD_ID</param></generator>
+		</id>
+		<property name="code" column="CODE" type="string" not-null="true"/>
+		<property name="quantity" column="QUANTITY" type="integer" not-null="true"/>
+		<property name="remainingQty" column="REMAINING_QTY" type="integer" not-null="true"/>
+		<property name="name" column="NAME" type="string" not-null="true"/>
+		<property name="grade" column="GRADE" type="string" not-null="true"/>
+		<property name="memo" column="MEMO" type="string" />
+		<property name="imageUrl" column="IMAGE_URL" type="string" />
+		<many-to-one
+			name="luckyDraw"
+			column="LUCKY_DRAW_ID"
+			class="com.jeecms.cms.entity.campaign.luckydraw.LuckyDraw"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+	<class name="LuckyDraw" table="LUCKY_DRAW">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_LUCKY_DRAW_ID</param></generator>
+		</id>
+		<property name="chanceQty" column="CHANCE_QTY" type="integer" not-null="true"/>
+		<property name="awardQty" column="AWARD_QTY" type="integer" not-null="true"/>
+		<property name="awardRate" column="AWARD_RATE" type="integer" not-null="true"/>
+		<property name="participantType" column="PARTICIPANT_TYPE" type="integer" not-null="true"/>
+		<property name="name" column="NAME" type="string" not-null="true"/>
+		<property name="code" column="CODE" type="string" not-null="true"/>
+		<property name="memo" column="MEMO" type="string" />
+		<property name="status" column="STATUS" type="integer" not-null="true" />
+        <property
+			name="startTime"
+			column="START_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		 <property
+			name="endTime"
+			column="END_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+	<class name="LuckyDrawLog" table="LUCKY_DRAW_LOG">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_LUCKY_DRAW_LOG_ID</param></generator>
+		</id>
+		<property name="status" column="STATUS" type="integer" not-null="true" />
+        <many-to-one
+			name="creater"
+			column="creater_id"
+			class="com.jeecms.cms.entity.main.CmsUser"
+			not-null="true"
+			>
+		</many-to-one>
+		<many-to-one
+			name="luckyDraw"
+			column="LUCKY_DRAW_ID"
+			class="com.jeecms.cms.entity.campaign.luckydraw.LuckyDraw"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+	<class name="LuckyDrawResult" table="LUCKY_DRAW_RESULT">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_LUCKY_DRAW_RESULT_ID</param></generator>
+		</id>
+		 <many-to-one
+			name="award"
+			column="AWARD_ID"
+			class="com.jeecms.cms.entity.campaign.luckydraw.LuckyDrawAward"
+			not-null="true"
+			>
+		</many-to-one>
+        <many-to-one
+			name="creater"
+			column="creater_id"
+			class="com.jeecms.cms.entity.main.CmsUser"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+	<class name="LuckyDrawRule" table="LUCKY_DRAW_RULE">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_LUCKY_DRAW_RULE_ID</param></generator>
+		</id>
+		 <many-to-one
+			name="award"
+			column="AWARD_ID"
+			class="com.jeecms.cms.entity.campaign.luckydraw.LuckyDrawAward"
+			not-null="true"
+			>
+		</many-to-one>
+        <property name="awardQty" column="AWARD_QTY" type="integer" not-null="true"/>
+        <property name="remainingQty" column="REMAINING_QTY" type="integer" not-null="true"/>
+		 <property
+			name="awardDate"
+			column="AWARD_DATE"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+</hibernate-mapping>
+		

@@ -1,0 +1,15 @@
+[#if bbsUser??]
+<div>
+	欢迎您: ${bbsUser.username} &nbsp; ${bbsUser.group.name}
+&nbsp; <a href="${base}/member/index.jspx">会员中心</a>
+&nbsp; <a href="${base}/logout.jspx?returnUrl=/">退出登录</a>
+[#if messageCount!=0]
+&nbsp;&nbsp;<a  href="${bbsurl}${base}/member/myremind.jhtml"><img  width="20" height="14"  src="/r/cms/www/red/images/message_icon.gif" alt="" style="display: inline-block;" />(${messageCount})系统提醒</a>
+[/#if]
+[#if messageCount==0]
+&nbsp;&nbsp;<a  href="${bbsurl}${base}/member/myremind.jhtml"><img  width="20" height="14"  src="/r/cms/www/red/images/message_green.gif" alt="" style="display: inline-block;" />(${messageCount})系统提醒</a>
+[/#if]
+</div>
+[#else]
+&nbsp;您好，您还没有登录哦！ <a href="${base}/register.jspx">免费注册</a>&nbsp;|&nbsp;<a href="${base}/login.jspx?returnUrl=/">会员登录</a>&nbsp;|&nbsp;<a href="${base}/userCreatedByWechatBinding.jspx">微客服车主绑定</a>&nbsp;|&nbsp;<a href="${base}/member/forgot_password.jspx">忘记密码</a>
+[/#if]

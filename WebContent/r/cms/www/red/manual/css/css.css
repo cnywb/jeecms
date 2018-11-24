@@ -1,0 +1,93 @@
+ 
+/*手机版 车主手册*/
+.m-ycyc {width:100%; }
+.m-ycyc .title{width:100%;text-align: center;background: #516d7b;height: 120px;padding: 40px 0;margin-bottom: 20px;}
+
+.p1{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #516d7b;
+    }
+body{} 
+.m-ycyc .m-pic img{}
+.m-ycyc .m-pic{display: inline-block;margin: 20px;float:left;width: 40%;}
+.m-ycyc .m-h1,.m-ycyc .m-h2{color:#fff;display:block;text-align:left;float: left;width: 48%;margin: 0 0 auto;padding-left: 4%;border-left: 2px dashed;}
+.m-ycyc #t-h1,.m-ycyc #t-h2{font-size:2.1rem;font-size: 34px;}
+ .m-ycyc #t-h2 span{font-size:1.2rem;}
+.m-ycyc #myoukuplayer{width: 100%;height: 380px;}
+.p2 .book-aqy{top: 200px;position: absolute;width: 100%;}
+
+.m-ycyc .s-tit{width: 100%;position: absolute;top: 600px;}
+.m-ycyc .s-tit img{}
+
+.btngroup {/* position:absolute; *//* bottom: 0; */}
+
+.track {
+  width:100%;
+  position: relative;
+  font-size: 1.3rem;
+}
+
+.axis-y .view-port,
+.axis-y .track .inner {
+  width: 240px;
+  height: 660px;
+}
+
+
+.pagination{left:2%;bottom: 210px;position:relative;z-index: 2;}
+.book-time{
+    position: absolute;
+    right: 15px;
+    bottom: 86px;
+    color:#fff;
+    background-color: rgba(255,255,255,0.5);
+    -moz-border-radius: 2px;/* Gecko browsers */
+    -webkit-border-radius: 2px;/* Webkit browsers */
+    border-radius:2px;/* W3C syntax */
+    padding: 0 2px;
+    }
+
+.book-notice{display:block;width:100%;}
+ 
+.swiper-wrapper {
+  position: relative;
+  margin: 0;
+  padding: 0;
+ 
+} 
+
+.swiper-wrapper{ height: 440px !important;}
+
+.swiper-container {
+    width: 96% !important;
+    margin-left: 3% !important;
+    top: 450px;
+} 
+
+.swiper-wrapper .swiper-slide {
+    float:left;
+    width: 180px;
+    height: 180px;
+    background:#f2f2f2;
+    position: relative;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: #ccc 0px 3px 5px;
+    -moz-box-shadow: #ccc 0px 3px 5px;
+    box-shadow: #ccc 0px 3px 5px;
+    font-size: 1.5rem;
+    font-size: 24px;
+}
+
+.swiper-wrapper .swiper-slide img{
+ width:100%;
+
+}
+ 
+.img-block {
+  margin-bottom: 16px;
+}

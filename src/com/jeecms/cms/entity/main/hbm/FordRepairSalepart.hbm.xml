@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="FordRepairSalepart" table="FORD_REPAIR_SALEPART">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="vspid" type="java.lang.Long" column="VSPID" length="22"/>
+		<property name="vbillId" column="VBILL_ID" type="string" not-null="false" length="70"/>
+		<property name="vroId" column="VRO_ID" type="string" not-null="false" length="30"/>
+		<property name="vsstId" column="VSST_ID" type="string" not-null="false" length="60"/>
+		<property name="vpartCode" column="VPART_CODE" type="string" not-null="false" length="60"/>
+		<property name="vpartName" column="VPART_NAME" type="string" not-null="false" length="180"/>
+		<property name="npartNum" column="NPART_NUM" type="long" not-null="false" length="10"/>
+		<property name="vchargePartition" column="VCHARGE_PARTITION" type="string" not-null="false" length="4"/>
+		<property name="vmanageSort" column="VMANAGE_SORT" type="string" not-null="false" length="4"/>
+		<property name="npartCostPrice" column="NPART_COST_PRICE" type="long" not-null="false" length="22"/>
+		<property name="npartSalePrice" column="NPART_SALE_PRICE" type="long" not-null="false" length="22"/>
+		<property name="npartCostFee" column="NPART_COST_FEE" type="long" not-null="false" length="22"/>
+		<property name="npartSaleFee" column="NPART_SALE_FEE" type="double" not-null="false" length="18"/>
+		<property name="ndiscountRate" column="NDISCOUNT_RATE" type="long" not-null="false" length="22"/>
+		<property name="vnotes" column="VNOTES" type="string" not-null="false" length="200"/>
+		<property name="vcreated" column="VCREATED" type="string" not-null="false" length="100"/>
+		<property name="dcrtDate" column="DCRT_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vupdated" column="VUPDATED" type="string" not-null="false" length="100"/>
+		<property name="dupDate" column="DUP_DATE" type="timestamp" not-null="false" length="19"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 	"-//Hibernate/Hibernate Mapping DTD//EN" 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.jeecms.point.entity">
+	<class name="CompetitiveProduct" table="P_COMPETITIVE_PRODUCT">
+		<id name="id" type="java.lang.Long" column="COMPETITIVE_PRODUCT_ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_P_COMPETITIVE_PRODUCT_ID</param>
+			</generator>
+		</id>
+		<property name="vehicleModels" column="VEHICLE_MODELS" type="string" not-null="true" />
+		<property name="classification" column="CLASSIFICATION" type="string" not-null="true" />
+		<property name="productName" column="PRODUCT_NAME" type="string" not-null="true" />
+
+		<property name="productNo" column="PRODUCT_NO" type="string" not-null="true" />
+		<property name="vehicleModelsLabel" column="VEHICLE_MODELS_LABEL" type="string" not-null="true" />
+		<property name="classificationLabel" column="CLASSIFICATION_LABEL" type="string" not-null="true" />
+		<property name="applicableModels" column="APPLICABLE_MODELS" type="string" not-null="true" />
+		<property name="price" column="PRICE" type="double" not-null="true" />
+		<property name="briefIntroduction" column="BRIEF_INTRODUCTION" type="string" not-null="true" />
+		<property name="imgUrl" column="IMG_URL" type="string" not-null="true" />
+		<property name="browseTimes" column="BROWSE_TIMES" type="integer" not-null="true" />
+		<property name="status" column="STATUS" type="string" not-null="true" />
+
+		<property name="createdId" column="CREATED_ID" type="java.lang.Long" not-null="true" length="19" />
+		<property name="createdDate" column="CREATED_DATE" type="java.util.Date" />
+		<property name="updatedId" column="UPDATED_ID" type="java.lang.Long" not-null="true" length="19" />
+		<property name="updatedDate" column="UPDATED_DATE" type="java.util.Date" />
+	</class>
+</hibernate-mapping>

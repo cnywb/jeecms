@@ -1,0 +1,128 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id) {
+		var dvnum = 7;
+		for ( var i = 1; i <= dvnum; i++) {
+			document.getElementById('page' + i).className = "";
+			document.getElementById('pagelist' + i).style.display = "none";
+		}
+		document.getElementById('page' + id).className = "out";
+		document.getElementById('pagelist' + id).style.display = "block";
+	}
+</script>
+<script>
+	function ajax_delete(id) {
+		$.post("ajax_delete_msg.jhtml", {
+			"mid" : id
+		}, function(data) {
+			if (data.success) {
+				$("#m" + id).remove();
+			} else {
+				alert("操作失败");
+			}
+		}, "json");
+	}
+
+	
+	$(document).ready(function (){
+		$("#carFocusBtn").click(function(){
+			var chkCarTypes=$("input[name='chkCarTypes']");
+			var flag=false;
+			 
+			for(var i=0;i<chkCarTypes.length;i++){
+		 
+				if($("#"+chkCarTypes[i].id).attr("checked")=="checked"){
+					flag=true;
+					break;
+				}
+			}
+			if(!flag){
+				alert("请选择关注车型！");
+			}
+			return flag;
+		});
+	});
+</script>
+</head>
+<body>
+	[#include "../include/head.html"/]
+	<!--header-->
+	[#include "../include/页头.html"/]
+	<article class="main ycyc">
+		<h1>个人主页</h1>
+		[#include "会员中心页_导航.html"/]
+		<article class="selfpage de_event self">
+			<section id="pagelist5" class="tabpage none" style="display: block;">
+				<ul class="inftab">
+				<li class="bodl"><a href="car_my.jhtml"   id="lcar1">我的爱车</a></li>
+				<li class="bodl"><a href="carfriend.jhtml"   id="lcar2">好友的爱车</a></li>
+				<li><a href="car_focus.jhtml"   class="out" >关注的车型</a></li>
+			</ul>
+            <div class="GZCX_Box block" id="lcarlist3">
+            	<dl>
+                	<dt>我关注的车型：</dt>
+                    <dd>
+                    	[#list userfocusCarsType as userCarType]
+                    	<div class="GZCX">
+                    	<b class="rtop"><b class="r2"></b><b class="r1"></b></b>
+                        <div class="nifty"><span>${userCarType.name}</span><a href="car_focus_delete.jhtml?id=${userCarType.id}" class="select_Delete"></a></div>
+                        <b class="rbottom"><b class="r1"></b><b class="r2"></b></b>
+                        </div>
+                        [/#list]                      
+                  	</dd>
+                    <dt>添加关注车型：</dt>
+                    <form action="car_focus_submit.jhtml" method="post">
+                    <dd>
+                  	[#list focusCarTypes as carType]
+                  		[#if   carType.disabled ]
+                  			 <input name="chkCarTypes"  disabled="disabled"   type="checkbox" id="ck${carType.key}" value="${carType.key}" ><label for="ck${carType.key}">${carType.name}</label>		 
+                  		[#else ]
+                  			 <input name="chkCarTypes"   type="checkbox" id="ck${carType.key}" value="${carType.key}" ><label for="ck${carType.key}">${carType.name}</label>		 
+                  		[/#if]
+					[/#list]
+                    </dd>
+                    <dd>
+                    	<input type="image"   id="carFocusBtn" src="/${res}/bbs_member/img/submit02.jpg" value="" alt="" />
+                    </dd>
+                    </form>
+                </dl>
+              </div>
+            </section>
+		</article>
+	</article>
+	<!--footer-->
+	[#include "../include/页脚.html"/]
+	<!--footer-->
+</body>
+</html>

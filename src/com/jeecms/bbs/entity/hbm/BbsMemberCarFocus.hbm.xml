@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.jeecms.bbs.entity">
+	<class name="BbsMemberCarFocus" table="BBS_MEMBER_CAR_FOCUS">
+		<meta attribute="sync-DAO">false</meta>
+
+		<id name="id" type="java.lang.Long" column="BBS_MEMBER_CAR_FOCUS_ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_BBS_MEMBER_CAR_FOCUS</param>
+			</generator>
+		</id> 
+		
+		<property name="uuid" column="UUID"/>
+
+		<property name="carType" column="CAR_TYPE" />
+ 
+
+		<property name="createDate" column="CREATE_DATE" type="timestamp" not-null="false" />
+		
+		<property name="updateDate" column="UPDATE_DATE" type="timestamp" not-null="false" />
+		
+		<property name="createUser" column="CREATE_USER"  />
+		
+		<property name="updateUser" column="UPDATE_USER" />
+		
+	</class>
+</hibernate-mapping>

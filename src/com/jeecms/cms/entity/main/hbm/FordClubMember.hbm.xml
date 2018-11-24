@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="FordClubMember" table="FORD_CLUB_MEMBER">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="vcardId" type="java.lang.String" column="VCARD_ID" length="10"/>
+		<property name="vcustomerId" column="VCUSTOMER_ID" type="string" not-null="false" length="10"/>
+		<property name="vcardNo" column="VCARD_NO" type="string" not-null="false" length="30"/>
+		<property name="vcarId" column="VCAR_ID" type="string" not-null="false" length="30"/>
+		<property name="vvin" column="VVIN" type="string" not-null="false" length="30"/>
+		<property name="vname" column="VNAME" type="string" not-null="false" length="50"/>
+		<property name="vgender" column="VGENDER" type="string" not-null="false" length="15"/>
+		<property name="vbirthday" column="VBIRTHDAY" type="string" not-null="false" length="15"/>
+		<property name="vidnmb" column="VIDNMB" type="string" not-null="false" length="40"/>
+		<property name="vprovince" column="VPROVINCE" type="string" not-null="false" length="50"/>
+		<property name="vcity" column="VCITY" type="string" not-null="false" length="50"/>
+		<property name="vdist" column="VDIST" type="string" not-null="false" length="90"/>
+		<property name="vaddress" column="VADDRESS" type="string" not-null="false" length="120"/>
+		<property name="vzipcode" column="VZIPCODE" type="string" not-null="false" length="10"/>
+		<property name="vmobile" column="VMOBILE" type="string" not-null="false" length="20"/>
+		<property name="vtel" column="VTEL" type="string" not-null="false" length="20"/>
+		<property name="vemail" column="VEMAIL" type="string" not-null="false" length="80"/>
+		<property name="vlicenseNmb" column="VLICENSE_NMB" type="string" not-null="false" length="20"/>
+		<property name="vcardType" column="VCARD_TYPE" type="string" not-null="false" length="2"/>
+		<property name="vdealerId" column="VDEALER_ID" type="string" not-null="false" length="30"/>
+		<property name="vopenDate" column="VOPEN_DATE" type="string" not-null="false" length="8"/>
+		<property name="vcardStatus" column="VCARD_STATUS" type="string" not-null="false" length="2"/>
+		<property name="nscoreGet" column="NSCORE_GET" type="java.lang.Long" not-null="false" length="22"/>
+		<property name="nscoreUse" column="NSCORE_USE" type="java.lang.Long" not-null="false" length="22"/>
+		<property name="nscore" column="NSCORE" type="java.lang.Long" not-null="false" length="22"/>
+		<property name="vnotes" column="VNOTES" type="string" not-null="false" length="200"/>
+		<property name="vcreated" column="VCREATED" type="string" not-null="false" length="50"/>
+		<property name="dcrtDate" column="DCRT_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vupdated" column="VUPDATED" type="string" not-null="false" length="50"/>
+		<property name="dupDate" column="DUP_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vcomtel" column="VCOMTEL" type="string" not-null="false" length="20"/>
+		<property name="vbuyreason" column="VBUY_REASON" type="string" not-null="false" length="2"/>	
+		<property name="vidtype" column="VIDTYPE" type="string" not-null="false" length="50"/>
+		<property name="vcardnickname" column="VCARD_NICKNAME" type="string" not-null="false" length="50"/>
+		<property name="vpvid" column="VPVID" type="java.lang.Long" not-null="false" length="10"/>
+		<property name="vciid" column="VCIID" type="java.lang.Long" not-null="false" length="10"/>
+		<property name="userId" column="USER_ID" type="java.lang.Integer" not-null="false" length="10"/>
+	</class>
+</hibernate-mapping>
+		

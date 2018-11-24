@@ -1,0 +1,12 @@
+<img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在关注</h3>
+				<ul>
+					[@cms_content_list count='4' orderBy='9' titLen='18' channelId='11,12,13,14,49,50,61,64,67'  channelOption='1']
+                [#list tag_list as a]
+					<li><a href="${a.url}">[@text_cut s=a.title len=titLen /]</a></li>
+				[/#list]
+                [/@cms_content_list]
+					<li class="last"><a href="${base}/gfbyjy/index.htm">官方保养建议</a></li>
+				</ul>
+			</div>

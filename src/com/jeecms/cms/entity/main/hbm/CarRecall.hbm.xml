@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.recall">
+   <class name="CarRecall" table="CAR_RECALL">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_CAR_RECALL_ID</param></generator>
+		</id>
+		<property name="vin" column="VIN" type="string" not-null="true"/>
+		<property name="salesCode" column="SALES_CODE" type="string" />
+		<property name="salesName" column="SALES_NAME" type="string" />
+		<property name="area" column="AREA" type="string" />
+		<property name="areaManager" column="AREA_MANAGER" type="string" />
+		<property name="reason" column="REASON" type="string" />
+	</class>
+</hibernate-mapping>
+		

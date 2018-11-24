@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="ClubDictionary" table="CLUB_DICTIONARY">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="cdid" type="java.lang.Long" column="CDID" length="22"/>
+		<property name="cdtype" column="CDTYPE" type="string" not-null="false" length="160"/>
+		<property name="cdcode" column="CDCODE" type="string" not-null="false" length="100"/>
+		<property name="cdname" column="CDNAME" type="string" not-null="false" length="400"/>
+		<property name="createuser" column="CREATEUSER" type="string" not-null="false" length="20"/>
+		<property name="createdate" column="CREATEDATE" type="timestamp" not-null="false" length="19"/>
+		<property name="updateuser" column="UPDATEUSER" type="string" not-null="false" length="20"/>
+		<property name="updatedate" column="UPDATEDATE" type="timestamp" not-null="false" length="19"/>
+		<property name="flag" column="FLAG" type="long" not-null="false" length="22"/>
+		<property name="notes" column="NOTES" type="string" not-null="false" length="400"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,257 @@
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>福域</title>
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/blue/bbs_forum/js/prototype.js"></script>
+<script type="text/javascript" src="/r/cms/www/blue/bbs_forum/js/md5.js"></script> 
+<script type="text/javascript" src="/${res}/campaign/sfdj/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/${res}/campaign/answercontest/jquery.eraser.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/${res}/campaign/answercontest/index.js"></script>
+
+<link href="/${res}/campaign/answercontest/css/game.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<script> 
+// 解决ie下 html5标签问题,没有这个代码ie下顶栏有问题
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+<style type="text/css">
+.filePrew {  
+	display: block;  
+	position: absolute;  
+	top: 0;  
+	left: 0;  
+	width: 125px;  
+	height: 40px;  
+	font-size: 100px; /* 增大不同浏览器的可点击区域 */  
+	opacity: 0; /* 实现的关键点 */  
+	filter:alpha(opacity=0);/* 兼容IE */  
+}
+</style>
+<script type="text/javascript">
+var isWidescreen=screen.width>=1280; 
+if(isWidescreen){document.write("<style type='text/css'>.demo{width:1020px;}</style>");}
+</script>
+</head>
+<body>
+[#include "head.html"/]
+<div id="gamediv">
+	<div class="gameContent">
+		<div class='start_game'>
+			<a href='javascript:;' id="btn_get_tiket" class='get_ticket'>我要球票</a>
+		</div>
+	
+		<div class='guess_content' id="question_container" >
+			<div class='question ques1' id="question_content_container_0">
+				<div class='q1' style='display:none'  >
+					<img src='/${res}/campaign/answercontest/images/q1.png'/>
+						<div class='ques_content'>
+							<ul id="question_content_0">
+								<!-- <li class='quesDes'>5月2日，重庆力帆VS山东鲁能泰山的比赛场地是哪里？</li>
+								<li><span class='select'></span>重庆奥体中心</li>
+								<li><span class='select'></span>重庆奥体中心</li> -->
+							</ul>
+						</div>
+				</div>
+			</div>
+			<div class='question ques2' id="question_content_container_1">
+				<div class='q2' style='display:none'>
+					<img src='/${res}/campaign/answercontest/images/q2.png'/>
+						<div class='ques_content'>
+							<ul id="question_content_1">
+								
+							</ul>
+						</div>
+				</div>
+			
+			</div>
+			<div class='question ques3' id="question_content_container_2">
+				<div class='q3' style='display:none'>
+					<img src='/${res}/campaign/answercontest/images/q3.png'/>
+						<div class='ques_content'>
+							<ul id="question_content_2">
+								
+							</ul>
+						</div>
+				</div>
+			
+			</div>
+			<div class='question ques4' id="question_content_container_3">
+				<div class='q4' style='display:none'>
+					<img src='/${res}/campaign/answercontest/images/q4.png'/>
+						<div class='ques_content'>
+							<ul id="question_content_3">
+								
+							</ul>
+						</div>
+				</div>
+			
+			</div>
+			<div class='question ques5' id="question_content_container_4" >
+				<div class='q5' style='display:none'>
+					<img  id="img_q5" src='/${res}/campaign/answercontest/images/q5.png'/>
+					
+						<div class='ques_content'>
+							<ul id="question_content_4">
+								
+							</ul>
+						</div>
+				</div>
+			
+			</div>
+			
+			<div class='win' style='display:none'>
+				<img src='/${res}/campaign/answercontest/images/btn_win.png' />
+				<a href='javascript:;' onclick="doLuckyDraw();"  >win</a>
+			</div>
+			
+			<div class='guess' style='width:1000px;height:600px;display: none;'>
+				<img id="draw_result" src='' class='canvas_bg' />
+    			 <img id="canvas"  src="/${res}/campaign/answercontest/images/canvas_bg.jpg" />
+			</div>
+			
+			<div class='lose' style='display:none'>
+				<img src='/${res}/campaign/answercontest/images/btn_lose.png'  />
+				<a href='javascript:;' onclick="reContest();">lose</a>
+			</div>
+			
+			
+		</div>
+	
+		<div class='price_content' >
+			<img src='/${res}/campaign/answercontest/images/win_banner.jpg'/>
+			[#if t??]
+			<img src='/${res}/campaign/answercontest/images/win_area_${t.code}.jpg'/>
+			[#else]
+			<img src='/${res}/campaign/answercontest/images/win_area_default.jpg'/>
+			[/#if]
+			
+		</div>
+	</div>
+</div>
+
+<div class='overlay login' style='display:none' id="div_login" >
+	<div class='shadow'></div>
+	<div class='overlayForm'>
+		<a href='javascript:;' class='btn_close' onclick="$('#div_login').hide();" >close</a>
+		<img src='/${res}/campaign/answercontest/images/overlay_banner.png'/>
+		<form>
+			<P class='loginmsg'>您还没登录，请先登录</P>
+			<p class='setinfo'><input type='text' id="login_username" class='name' placeholder='用户名'><span class='icon_email'></span></p>
+			<p class='setinfo'><input type="password" id="login_password" class='psword' placeholder='密码'><span class='icon_block'></span></p>
+			<p class='setinfo'><input type='text' id="login_validatecode" class='certificate' placeholder='验证码'><img id="img_captcha" src="/captcha.svl" width="67" height="30" onclick="this.src='/captcha.svl?d='+new Date()"></p>
+			<a href='javascript:;' class='btn_login' id="login_submit"><img src='/${res}/campaign/answercontest/images/confirm.jpg'/></a>
+			<p class='tips'>还不是福域用户？赶紧注册去</p>
+			<a href='javascript:;' class='btn_go_register' id="btn_go_register" ><img src='/${res}/campaign/answercontest/images/register.jpg'/></a>
+		</form>
+	</div>
+</div>
+<div class='overlay register' style='display:none' id="div_register">
+	<div class='shadow'></div>
+	<div class='overlayForm'>
+		<a href='javascript:;' class='btn_close' onclick="$('#div_register').hide();">close</a>
+		<img src='/${res}/campaign/answercontest/images/overlay_banner_1.png'/>
+		<form>
+			<p class='register_setinfo'><input type='text' id="reg_username" class='register_name' ></p>
+			<p class='name_msg'>用户名由3到14位的中文字符、英文字母、数字组成</p>
+			<p class='register_setinfo'><input type='password' id="reg_password" class='register_psword' placeholder='密码'></p>
+			<p class='register_setinfo'><input type='password' id="reg_cmf_password"  class='register_confirmpsword' placeholder='确认密码'></p>
+			<p class='register_setinfo'><input type='text' id="reg_email" class='register_Email' placeholder='Email'></p>
+			<p class='register_setinfo'><input type='text' id="reg_validatecode" class='certificate' placeholder='验证码'><img id="reg_img_captcha" src="/captcha.svl" width="67" height="30" onclick="this.src='/captcha.svl?d='+new Date()" class='certificateNum'></p>
+			<a href='javascript:;' id="reg_submit" class='btn_register'><img src='/${res}/campaign/answercontest/images/register2.jpg'/></a>
+		</form>
+	</div>
+	
+</div>
+
+<div class='overlay certification' style='display:none' id="div_certification">
+	<div class='shadow'></div>
+	<div class='overlayForm'>
+		<a href='javascript:;' class='btn_close'  onclick="$('#div_certification').hide();" >close</a>
+		<img src='/${res}/campaign/answercontest/images/overlay_banner_2.png'/>
+		<form action="../../member/carownerauthen/index.jspx" method="post" id="form_certification">
+			<p class='certificate_tips'>本次活动仅对福域认证车主开放,请先进行车主认证。</p>
+			<p class='title_selfinfo'><span class='line'></span>个人信息<span class='line' style='float:right'></span></p>
+			<p class='certificate_msg mb_15'>*为必填信息，请与购车合同上的信息保持一致，确保认证顺利完成。</p>
+			<p class='register_setinfo'><input type='text' class='register_name' id="vname" name="vname" placeholder='*姓名' ></p>
+			<p class='certificate_msg'>(购车合同的姓名)</p>
+			<p class='register_setinfo'><input type='text' class='register_name' id="vmobile" name="vmobile" placeholder='*手机' ></p>
+			<p class='certificate_msg'>(常用手机号)</p>
+			<p class='register_setinfo'><input type='text' class='register_psword' id="vvin" name="vvin" placeholder='*车辆VIN码'></p>
+			<p class='certificate_msg'>(添加新车，请输入新车的VIN码)</p>
+		
+			<a href='javascript:;' class='btn_certificate' id="auth_submit"><img src='/${res}/campaign/answercontest/images/certificate.jpg'/></a>
+		</form>
+	</div>
+	
+</div>
+
+
+
+<div class='overlay register'  style='display:none' id="div_user_info">
+	<div class='shadow'></div>
+	<div class='overlayForm'>
+		<a href='javascript:;' class='btn_close' onclick="$('#div_user_info').hide();">close</a>
+		<img src='/${res}/campaign/answercontest/images/user_info.png'/>
+		<form>
+			<p class='register_setinfo'><input type='text' id="update_realname" value="[#if user??&&user.realname??]${user.realname}[/#if]" class='register_psword' placeholder='姓名'></p>
+			<p class='register_setinfo'><input type='text' id="update_mobile" value="[#if user??&&user.mobile??]${user.mobile}[/#if]"  class='register_confirmpsword' placeholder='电话'></p>
+			<p class='register_setinfo'><input type='text' id="update_comefrom"  value="[#if user??&&user.comefrom??]${user.comefrom}[/#if]" class='register_Email' placeholder='地址'></p>
+			<a href='javascript:;' onclick="doUpdateProfile();" id="user_info_save" class='btn_register'><img src='/${res}/campaign/answercontest/images/btn_save.jpg'/></a>
+		</form>
+	</div>
+</div>
+
+<div class='overlay register'  style='display:none' id="div_alert">
+	<div class='shadow'></div>
+	<div class='overlayForm'>
+		<a href='javascript:;' class='btn_close' onclick="$('#div_alert').hide();">close</a>
+		<img src='/${res}/campaign/answercontest/images/tips.png'/>
+		<form>
+		<p ></p>
+			<a href='javascript:;' onclick="$('#div_alert').hide();"  class='btn_register'><img src='/${res}/campaign/answercontest/images/confirm.jpg'/></a>
+		</form>
+	</div>
+</div>
+
+<div class='overlay register'  style='display:none' id="div_manual_cert">
+	<div class='shadow'></div>
+	<div class='overlayForm'>
+		<a href='javascript:;' class='btn_close' onclick="$('#div_manual_cert').hide();">close</a>
+		<img src='/${res}/campaign/answercontest/images/tips.png'/>
+		<form >
+		<p>VIN码不存在，认证失败，您可还可以进行手动上传行驶证进行认证。</p>
+		
+			<a href='javascript:;' id="manual_cert_link" onclick="setManualCertLink();"  class='btn_register'><img src='/${res}/campaign/answercontest/images/hand_certifi.jpg'/></a>
+		</form>
+	</div>
+</div>
+
+
+<input type="hidden" id="user_id" value="[#if user??]${user.id}[/#if]">
+<input type="hidden" id="group_id" value="[#if user??]${user.group.id}[/#if]">
+<input type="hidden"  id="lucky_draw_code" value="[#if t??]${t.code}[/#if]">
+</body>
+<script>
+
+</script>
+</html>

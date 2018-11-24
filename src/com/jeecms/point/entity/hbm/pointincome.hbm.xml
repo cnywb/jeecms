@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 	"-//Hibernate/Hibernate Mapping DTD//EN" 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.jeecms.point.entity">
+ 	<class name="PointIncome" table="P_POINT_INCOME">
+		<id name="id" type="java.lang.Long" column="POINT_INCOME_ID">
+		 	<generator class="sequence">
+		 		<param name="sequence">SEQ_P_POINT_INCOME_ID</param>
+		 	</generator>
+		</id>		 
+		<property name="userId"       column="USER_ID"   type="java.lang.Long"  />
+		<property name="pointRuleId"       column="POINT_RULE_ID"   type="java.lang.Long" />
+		<property name="incomeDate"   column="INCOME_DATE"   type="java.util.Date"       />
+		<property name="expiryDate"   column="EXPIRY_DATE"   type="java.util.Date"       />
+		<property name="pointRuleNo"  column="POINT_RULE_NO"   type="string"         />
+		<property name="pointNum"     column="POINT_NUM"       type="java.lang.Long"   />
+		<property name="pointRuleName" column="POINT_RULE_NAME" type="string"          />
+	 	<property name="memo"          column="MEMO"            type="string"         />
+		<property name="channel"   	   column="CHANNEL"      			type="integer"/>
+		<property name="pointType"     column="POINT_TYPE"       type="integer"       />
+		<property name="recordType"    column="RECORD_TYPE"      type="integer"         />
+		<property name="orderId"       column="ORDER_ID"     type="java.lang.Long"  length="19"/>
+		<property name="businessId"     column="BUSINESS_ID"     type="java.lang.Long"  length="19"/>
+		<property name="createdId"     column="CREATED_ID"       type="java.lang.Long"   length="19"/>
+		<property name="createdDate"   column="CREATED_DATE"     type="java.util.Date"/>
+		<property name="updatedId"     column="UPDATED_ID"       type="java.lang.Long"   length="19"/>
+		<property name="updatedDate"   column="UPDATED_DATE"     type="java.util.Date"/>
+ 	</class>
+ </hibernate-mapping>

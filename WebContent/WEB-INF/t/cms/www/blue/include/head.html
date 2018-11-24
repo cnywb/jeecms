@@ -1,0 +1,43 @@
+<header>
+ 
+  <ul class="ul01">
+	<li>
+	[#--客户端包含登录，用于静态化 --]
+<div id="loginCsiDiv" style="width: 570px"></div>
+<script type="text/javascript">
+
+$(function(){
+	//加载login_csi.jspx实际页面为/WEB-INF/t/cms/www/red/csi/会员登录.html
+	Cms.loginCsi("${base}","loginCsiDiv",{"returnUrl":"${location}"});
+});
+</script>
+   </li>
+   <li class="fr">客服热线 8008108168／4008877766</li>
+    </ul>
+   
+ 
+	<ul class="ul02">
+		<li><a href="http://www.changanfordclub.com"><img src="/${res}/bbs_forum/images/logo.png" alt="" /></a></li>
+		<!--<li class="search"><input type="text" value="搜索精彩内容" name=""><a href="#"></a></li>  -->
+		<li class="search">
+			<form action="http://www.google.cn/search" method="get" name="googForm" id="googForm">
+              <input type="text" value="搜索精彩内容"  name="q" id="ipt_search"/>
+              <script type="text/javascript">
+					function googSeach()
+					{
+						document.getElementById("googForm").submit();
+					}
+				</script>
+              <a href="javascript:void(0);" onclick="googSeach();"></a>
+			  <input type="hidden" name="newwindow" value="1" />
+			  <input type="hidden" name="ie" value="utf-8" />
+              <input type="hidden" name="oe" value="utf-8" />
+              <input type="hidden" name="hl" value="zh-CN" />
+              <input type="hidden" name="domains" />
+              <input type="hidden" name="sitesearch" />
+            </form>
+		</li>
+		<li class="fr"><a href="http://www.ford.com.cn/"><img src="/${res}/bbs_forum/images/ford.jpg" alt="" /></a></li>
+	</ul>
+</header>
+

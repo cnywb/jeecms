@@ -1,0 +1,50 @@
+<link href="/${res}/qtip/jquery.qtip.min.css" rel="stylesheet" /> 
+<script src="/${res}/qtip/jquery.qtip.min.js"></script> 
+<script>
+$(function(){
+$('img[alt]').qtip({ 
+position: { 
+my: 'bottom left', 
+at: 'top center' 
+}, 
+style: { 
+classes: 'ui-tooltip-red' 
+},
+content:{attr:'alt'}
+}); 
+
+});
+function subridio(a){
+$("#"+a+"rd").attr("checked",true);
+$("#votes").submit();
+}
+</script>
+[@cms_vote]
+	[#if !tag_bean??]
+<div>没有默认投票主题</div>
+[#else]
+<form id="votes" name="votes" action="${base}/vote.jspx" method="post" target="_blank" style=" padding: 0 25px;">
+<input type="hidden" name="voteId" value="${tag_bean.id}"/>
+ [#list tag_bean.subtopics as subTopic]
+				<h3>家都在讨论</h3>
+				<h4><p>${subTopic.title?html}</p></h4>
+				<ul class="zff">
+					[#if subTopic.isRadio]
+						[#list subTopic.voteItems as item]
+						[#if item_index=0]
+						<input type="radio" style="display:none;" id ="${item_index}rd" name="itemIds${subTopic.id}" value="${item.id}"/>
+							<li class="fl"  onclick="subridio('${item_index}')"><img id ="${item_index}im" src="/${res}/images/zhf.png" alt="${item_index+1}.${item.title?html}"></li>
+						[#else]
+						<input type="hidden"  style="display:none;" id ="${item_index}rd" name="itemIds${subTopic.id}" value="${item.id}"/>
+							<li class="fr"  onclick="subridio('${item_index}')"><img id ="${item_index}im" src="/${res}/images/ff.png" alt="${item_index+1}.${item.title?html}"></li>
+						[/#if]
+						[/#list]
+						[/#if]
+						<input name=subIds type="hidden" value="${subTopic.id}"/>
+				</ul>
+				<a href="${base}/topickpk/index.htm" class="more"><img src="/${res}/images/more.gif" alt=""></a>
+
+[/#list]
+</form>
+[/#if]
+[/@cms_vote]

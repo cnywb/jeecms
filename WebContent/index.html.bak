@@ -1,0 +1,655 @@
+﻿<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>福域</title>
+<link href="/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css">
+<link href="/r/cms/www/red/fordcss/recall/style.css" rel="stylesheet" type="text/css">
+<!-- 要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<script> 
+// -----解决ie下 html5标签问题,没有这个代码ie下顶栏有问题
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/red/fordjs/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+
+<script type="text/javascript">
+
+
+$(function() {
+	var sWidth = $("#focus").width(); //获取焦点图的宽度（显示面积）
+	var len = $("#focus ul li").length; //获取焦点图个数
+	var index = 0;
+	var picTimer;
+	
+	//以下代码添加数字按钮和按钮后的半透明条，还有上一页、下一页两个按钮
+	var btn = "<div class='btnBg'></div><div class='btn'>";
+	for(var i=0; i < len; i++) {
+		btn += "<span></span>";
+	}
+	btn += "</div>";
+	$("#focus").append(btn);
+	$("#focus .btnBg").css("opacity",0.5);
+
+	//为小按钮添加鼠标滑入事件，以显示相应的内容
+	$("#focus .btn span").css("opacity",0.4).mouseover(function() {
+		index = $("#focus .btn span").index(this);
+		showPics(index);
+	}).eq(0).trigger("mouseover");
+
+	
+
+	//本例为左右滚动，即所有li元素都是在同一排向左浮动，所以这里需要计算出外围ul元素的宽度
+	$("#focus ul").css("width",sWidth * (len));
+	
+	//鼠标滑上焦点图时停止自动播放，滑出时开始自动播放
+	$("#focus").hover(function() {
+		clearInterval(picTimer);
+	},function() {
+		picTimer = setInterval(function() {
+			showPics(index);
+			index++;
+			if(index == len) {index = 0;}
+		},4000); //此4000代表自动播放的间隔，单位：毫秒
+	}).trigger("mouseleave");
+	
+	//显示图片函数，根据接收的index值显示相应的内容
+	function showPics(index) { //普通切换
+		var nowLeft = -index*sWidth; //根据index值计算ul元素的left值
+		$("#focus ul").stop(true,false).animate({"left":nowLeft},300); //通过animate()调整ul元素滚动到计算出的position
+		//$("#focus .btn span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
+		$("#focus .btn span").stop(true,false).animate({"opacity":"0.6"},300).eq(index).stop(true,false).animate({"opacity":"1"},300); //为当前的按钮切换到选中的效果
+	}
+});
+
+function showContent(){
+	document.getElementById("flashContent").style.display="none";
+	location.reload();
+}
+
+$(document).ready(function(){
+  initBuyYear();
+  if($.browser.msie){//解决ie下的各种问题
+	  $("#mainHeader").before("<br/>");//mainHeader与导航菜单靠得太近
+      $("#bycx").click(function(){//辆保养计算器下拉列表被其它两个挡住的问题
+    	  $("#byyear").hide();
+    	  $("#bymouth").hide();
+    	  $("#bylic").hide();
+      });
+      $("#byyear").click(function(){
+    	  $("#bylic").hide();
+      });
+      $("#bymouth").click(function(){
+    	  $("#bylic").hide();
+      });
+      $("#bymouth").css({"font-size":"1em"});
+      $("#byyear").css({"font-size":"1em"});
+  }
+}); 
+//阻止冒泡事件
+function doStopBubble(obj,evt) {  
+	 var e=(evt)?evt:window.event; //判断浏览器的类型，在基于ie内核的浏览器中的使用cancelBubble  
+	 if (window.event) {  
+	 e.cancelBubble=true;  
+	 } else {  
+	 e.stopPropagation();  
+	 }  
+}  
+
+function initBuyYear(){
+   var myDate = new Date();
+   var y=myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+   var yOffset=y*1-2007;
+   for(var i=0;i<yOffset;i++){
+    $("#buyyear").append('<li onclick="doStopBubble(this,event);doBuyYearChoose(this);">'+(2008+i)+'</li>');
+   }
+}
+
+</script>
+<style type="text/css" media="screen">
+  #flashContent { 
+	  width:100%; 
+	  height:100%; 
+	  position:absolute;
+	  border-color:black;
+	  z-index:9999;top:0px;left:0px;
+  }
+  body { height:100%; background-color: #ffffff;}
+</style>
+
+</head>
+<body>
+<header>
+	<ul class="ul01">
+		<li>
+			
+
+<div id="loginCsiDiv" style="width: 570px"></div>
+
+<script type="text/javascript">
+
+$(function(){
+	//加载login_csi.jspx实际页面为/WEB-INF/t/cms/www/red/csi/会员登录.html
+	Cms.loginCsi("","loginCsiDiv",{"returnUrl":"/"});
+});
+</script>
+<script type="text/javascript" language="javascript">
+   //加入收藏
+       function AddFavorite(sURL, sTitle) {
+           sURL =encodeURI(sURL); 
+       try{   
+          window.external.addFavorite(sURL, sTitle);   
+       }catch(e) {   
+          try{   
+              window.sidebar.addPanel(sTitle, sURL, "");   
+           }catch (e){   
+              alert("您的浏览器不支持自动加入收藏功能，请使用Ctrl+D进行添加，或手动在浏览器里进行设置！");
+          }   
+       }
+   }
+   
+   //设为首页
+   function SetHome(url){
+       if (document.all) {
+          document.body.style.behavior='url(#default#homepage)';
+             document.body.setHomePage(url);
+       }else{
+           alert("您的浏览器不支持自动设置页面为首页功能，请您手动在浏览器里设置该页面为首页！");
+       }
+   }
+</script>			
+	</li>
+	    
+		<li class="fr">客服热线 8008108168／4008877766</li>
+	</ul>
+	<ul class="ul02">
+		<li><a href="../"><img src="/r/cms/www/red/images/logo.png" alt="" /></a></li>
+		<li class="search">
+			<form action="http://www.google.cn/search" method="get" name="googForm" id="googForm">
+              <input type="text" value="搜索精彩内容"  name="q" id="ipt_search"/>
+              <script type="text/javascript">
+					function googSeach()
+					{
+						document.getElementById("googForm").submit();
+					}
+				</script>
+              <a href="javascript:void(0);" onclick="googSeach();"></a>
+			  <input type="hidden" name="newwindow" value="1" />
+			  <input type="hidden" name="ie" value="utf-8" />
+              <input type="hidden" name="oe" value="utf-8" />
+              <input type="hidden" name="hl" value="zh-CN" />
+              <input type="hidden" name="domains" />
+              <input type="hidden" name="sitesearch" />
+            </form>
+		</li>
+		<li class="fr"><a href="http://www.ford.com.cn/"><img src="/r/cms/www/red/images/ford.jpg" alt="" /></a></li>
+	</ul>
+</header><div id="daohang"><script src="/r/cms/front.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var title=$("title").text();
+var hostname=window.location.hostname;
+var cmshostname="fordclub.changanford.cn";
+var bbshostname="fcbbs.changanford.cn";
+if((cmshostname==hostname||bbshostname==hostname)&&title!="车主手册-福域"&&title!="问卷调研"&&window.location.protocol=="http:"){
+    window.location.href= window.location.href.replace(/http:/, "https:");
+}else if((cmshostname==hostname||bbshostname==hostname)&&(title=="车主手册-福域"||title=="问卷调研")&&window.location.protocol=="https:"){
+    window.location.href= window.location.href.replace(/https:/, "http:");//经销商专区的百度地图不支持https
+}
+
+$(document).ready(function(){
+	   $("body").click(function(){//页面里点击时让车辆保养计算器的下拉列表消失
+	    $('#cartype').hide();
+		$('#buyyear').hide();
+		$('#buymouth').hide();
+		$('#carlic').hide();
+		$("#byyear").show();
+		  $("#bymouth").show();
+		  $("#bylic").show();
+	   });
+});
+	$(function(){
+		StandardTaxRate();
+		}
+	);
+		var trstr="";
+		var nextstrstr="";
+	function showYcAjax(){
+var carname = $("#bycx").text();
+var carlic =$("#bylic").text();
+var nowdate = new Date();
+var butime=$("#byyear").text()+"年"+$("#bymouth").text()+"月";
+
+		$("#miandiv").load("/r/cms/www/red/loaddiv/byjsq2.html",function(){
+			$("#carname").text(carname);
+			$("#lic").text(carlic+"公里");
+			$("#buytime").text("购买时间"+butime);
+			$("#showresule").append(trstr);
+			$("#shownext").append(nextstrstr);
+			});
+		
+	}
+	var carname;
+	var xmlObj;
+	function StandardTaxRate(){
+   $.ajaxSetup({ cache: false });
+   $.ajax({
+        url: "/r/cms/www/red/xml/demo.xml",
+        dataType: 'xml',
+        type: 'GET',
+        timeout: 2000,
+        error: function(xml)
+        {
+           
+        },
+        success: function(xml)
+        {
+        	xmlObj=$(xml);
+            if ($(xml) != null) {
+                    for (var i = 0; i < $(xml).find("test > car").length; i++) {
+                    	var liId="cartype_"+i;
+                        $("#cartype").append("<li id=\""+liId+"\" onclick=\"doStopBubble(this,event);doCarTypeChoose('"+liId+"');\">" + $(xml).find("test > car:eq(" + i + ")").attr("name") + "</li>");
+                    }
+                }
+         
+            }
+    });
+};
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+function doCarTypeChoose(liId){
+	    carname=$("#"+liId).text();
+		$("#bycx").text(carname);
+		$("#cartype").hide();
+		var imgsrc =xmlObj.find("test > car[name='"+ carname+"']").attr("img");
+		$("#cgimg").attr("src",imgsrc);
+		$("#carlic").empty();
+		for (var i = 0; i < xmlObj.find("test > car[name='" + carname + "'] > lic").length; i++) {
+			var liId="carlic_"+i;
+         $("#carlic").append("<li id=\""+liId+"\" onclick=\"doStopBubble(this,event);doCarLiChoose('"+liId+"');\" >" + xmlObj.find("test > car[name='" + carname + "'] > lic:eq(" + i + ")").attr("name") + "</li>");
+        }
+		 $("#byyear").show();
+		  $("#bymouth").show();
+		  $("#bylic").show();
+}
+
+function doCarLiChoose(liId){
+	var bylicText=$("#"+liId).text();
+	$("#bylic").text(bylicText);
+	$("#carlic").hide();
+	trstr="";
+	nextstrstr="";
+	var nowdate = new Date();
+	var yearv=$("#byyear").text();
+	var mouthv=$("#bymouth").text();
+	var divmouth=(nowdate.getFullYear() - yearv)*12 +(nowdate.getMonth()+1-mouthv);
+	for (var i = 0; i < xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item").length; i++) {
+		var resultval=xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("result");
+	  if(resultval.search(/更换/)!= -1){
+        trstr+="<tr><td>" + xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("project")+"</td><td>" +xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("result")+"</td><td>请咨询当地经销商</td></tr>";
+	  }else{
+	  nextstrstr+="<tr><th>"+xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("project")+"</th><tr>";
+	  }
+  }
+	 
+}
+
+function doBuyYearChoose(year){
+	$("#byyear").text($(year).text());
+	$("#buyyear").hide();
+	$("#bylic").show();
+}
+function doBuyMouthChoose(mouth){
+	$("#bymouth").text($(mouth).text());
+	$("#buymouth").hide();
+	$("#bylic").show();
+}
+
+function jsddm_open()
+{	jsddm_canceltimer();
+	jsddm_close();
+	ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');
+	if($(this).find('ul').size()>0){//如果有子菜单,则显示子菜单背景
+		 $("#navhome").addClass("topnavout");
+	}
+}
+
+function jsddm_close()
+{	if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');
+          $("#navhome").removeClass("topnavout");
+}
+
+function jsddm_timer()
+{	closetimer = window.setTimeout(jsddm_close, timeout);}
+
+function jsddm_canceltimer()
+{	if(closetimer)
+	{	window.clearTimeout(closetimer);
+		closetimer = null;}}
+
+$(document).ready(function()
+{	$('#jsddm > li').bind('mouseover', jsddm_open);
+	$('#jsddm > li').bind('mouseout',  jsddm_timer);});
+
+document.onclick = jsddm_close;
+  </script>
+<nav id="navhome" class="topnav">
+	<ul id="jsddm">
+<li class="home"><a href="/index.jhtml">首页</a></li>
+
+
+<li class="normal"><a href="/news/index.htm">用车养车</a>
+<ul >
+<li><a href="/world/index.htm">行车宝典</a> | <a href="/review/index.htm">爱车养护</a> | <a href="/r/cms/www/red/download/yongchezhinan.zip">用车指南下载</a>  | <a href="/media/mapFileDownload.jspx">地图升级下载</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="/veido/index.htm">售后服务</a>
+<ul>
+<li><a href="/gfbyjy/index.htm">官方保养建议</a> | <a href="/byjsq/index.htm">保养计算器</a> | <a href="/cyljk/index.htm">常用零件库</a> |  <a href="/competitive/index.jspx">汽车附件</a>| <a href="/QC/689.htm?">QC流程</a> | <a href="/dljyxsym/index.htm">服务增值业务</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="/picture/index.htm">互动问答</a>
+<ul  class="qa">
+<li><a href="/fybk/index.htm">福域百科</a> | <a href="/topickpk/index.htm">话题PK</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="http://fcbbs.changanford.cn/index.jhtml">福域论谈</a>
+<ul class="lunt">
+<li><a href="http://fcbbs.changanford.cn/fordactivity/index.jhtml">活动专版</a> | <a href="http://fcbbs.changanford.cn/fordfox/index.jhtml">车型板块</a> | <a href="http://fcbbs.changanford.cn/fordbanwuqu/index.jhtml">事务板块</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="/wldc/index.jhtml">精彩活动</a></li>
+
+
+<li class="normal"><a href="/cxjs/index.htm">车型鉴赏</a></li>
+
+
+<li class="normal"><a href="/guestbook.jspx">经销商专区</a></li>
+	</ul>
+	
+</nav>
+</div>
+<div id="miandiv">
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+<ul class="dw">
+				<li><a href="#"><img src="/r/cms/www/red/images/czrz.png" alt="" onclick="javascript:alert('请登陆后再认证!')"/></a></li>
+		<li><a href="#"><img src="/r/cms/www/red/images/wbjl.png" alt=""  onclick="javascript:alert('请登陆认证后再查看!')"/></a></li>
+		<li><a href="#"><img src="/r/cms/www/red/images/dzzh.png" alt="" onclick="javascript:alert('请登陆认证后再查看!')"/></a></li>
+		
+</ul><div id="mainHeader" style="width:1003px; margin: 54px auto 0; overflow: hidden;zoom: 1;"><img src="/r/cms/www/red/images/img01.png" alt="" style="float: left;" /></div>
+<article class="main">
+	<section class="banner" >
+		<div class="baoy"  >
+			<h2><img src="/r/cms/www/red/images/carby.png" alt=""></h2>
+			<div class="bg"  >
+				<ul id="" class="sel">
+					<li onClick="doStopBubble(this,event);$('#cartype').show();$('#buyyear').hide();$('#buymouth').hide();$('#carlic').hide();"><span id="bycx" >选择保养车型</span>
+					<ul  id="cartype" class="option" >
+					</ul>
+					</li>
+					<li class="dayy">
+						<ul>
+							<li class="fl"  onClick="doStopBubble(this,event);$('#buyyear').show();$('#cartype').hide();$('#buymouth').hide();$('#carlic').hide()"><span id="byyear"><a href="#"></a>购买年份</span>
+								<ul id="buyyear" class="option" >
+									
+					        	</ul>
+							</li>
+							<li class="fr"  onClick="doStopBubble(this,event);$('#buymouth').show();$('#cartype').hide();$('#buyyear').hide();$('#carlic').hide()" ><span id="bymouth" ><a href="#"></a>购买月份</span>
+								<ul id="buymouth" class="option">
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">1</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">2</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">3</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">4</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">5</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">6</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">7</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">8</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">9</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">10</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">11</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">12</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+										
+					<li onClick="doStopBubble(this,event);$('#carlic').show();$('#cartype').hide();$('#buyyear').hide();$('#buymouth').hide()" ><span id="bylic">选择公里数</span><ul id="carlic" class="option" >
+					</ul></li>
+					
+				</ul>
+				<input type="image" src="/r/cms/www/red/images/confirm.jpg" alt="确 定" onClick="showYcAjax()" value="确 定">
+			</div>
+		</div>
+		<div id="focus">
+			<ul class="slideshow" id="slidesImgs">
+                                    <li>
+                                        <a href="https://fcbbs.changanford.cn/fordactivity/600734.jhtml" target="_blank">
+                                        <img src="/u/cms/www/201611/11171319poai.jpg" alt="寒冬不“冻”人，暖心征言共聚福克斯！" width="100%" />
+                                        </a>
+                                     <!--   <span class="title">
+寒冬不“冻”人，暖心征言共聚福克斯！                                        </span>-->
+                                    </li>
+                                    <li>
+                                        <a href="https://fcbbs.changanford.cn/fordactivity/600472.jhtml" target="_blank">
+                                        <img src="/u/cms/www/201608/17123807gaet.jpg" alt="留下你的挑战足迹，邀好友翼起趣冒险" width="100%" />
+                                        </a>
+                                     <!--   <span class="title">
+留下你的挑战足迹，邀好友翼起趣冒险                                        </span>-->
+                                    </li>
+                                    <li>
+                                        <a href="https://fcbbs.changanford.cn/fordactivity/600695.jhtml" target="_blank">
+                                        <img src="/u/cms/www/201610/31130532l1jt.jpg" alt="2016福特SUV家族GFX寻找最美的黄色" width="100%" />
+                                        </a>
+                                     <!--   <span class="title">
+2016福特SUV家族GFX寻找最美的黄色                                        </span>-->
+                                    </li>
+                                    <li>
+                                        <a href="https://fcbbs.changanford.cn/fordactivity/600325.jhtml" target="_blank">
+                                        <img src="/u/cms/www/201607/25120351yrvh.jpg" alt="【重磅活动】认证您的“身份”，赢长安福特独家好礼！" width="100%" />
+                                        </a>
+                                     <!--   <span class="title">
+【重磅活动】认证您的“身份”，赢长安                                        </span>-->
+                                    </li>
+                                    <li>
+                                        <a href="" target="_blank">
+                                        <img src="/u/cms/www/201612/05142309hwue.jpg" alt="冬季服务活动" width="100%" />
+                                        </a>
+                                     <!--   <span class="title">
+冬季服务活动                                        </span>-->
+                                    </li>
+                                    </ul>
+		</div>
+
+                <a href="http://bbs.changanfordclub.com/fordactivity/103074.jhtml" target="_blank" class="ba02">
+                <img src="/u/cms/www/201405/16113752u2di.jpg" alt="首页右侧认证车主享特权图片" width="100%" />
+                </a>
+	</section>
+	<article class="ctan">
+		<section>
+			<ul>
+				<li class="fenl fl"><img src="/r/cms/www/red/images/xczj.png" alt=""></li>
+				<li class="wenz fr">
+					<div class="art">
+				<div class="top">
+					<div class="fl"> <a href="https://fordclub.changanford.cn:80/world/6273.htm" target="_blank"><img src="/u/cms/www/201404/15180936zpqz.jpg" alt=""></a></div>
+					<div class="fr deb">
+						<h3><a href="https://fordclub.changanford.cn:80/world/6273.htm" target="_blank" style="color: #81BA2F;">非原厂零配件的影响</a></h3>
+						<p>一辆车子组成的零件非常多，所有的零组件例如 一颗小螺丝，在原厂设计时都必须经过严格的检验及 测试才能装配到车上。</p>
+						
+					</div>
+				</div>
+<dl>
+					<dt><a href="/neiye/index.htm" title="雨刮有问题？自己来诊断！">
+              发动机保养
+                </a></dt>
+                <dd>2013-12-10 12:10:44</dd>
+				</dl>
+				<dl>
+					<dt style="width:300px;"><a href="https://fordclub.changanford.cn:80/world/6715.htm" title="外部车灯为什么有时会有雾气?" target="_blank" >
+外部车灯为什么有时会有雾气?                </a></dt><dd>2014-05-30 11:41:13</dd>
+				</dl>
+				<dl>
+					<dt style="width:300px;"><a href="https://fordclub.changanford.cn:80/world/6714.htm" title="车辆行驶中的噪音" target="_blank" >
+车辆行驶中的噪音                </a></dt><dd>2014-05-30 11:36:51</dd>
+				</dl>
+				<dl>
+					<dt style="width:300px;"><a href="https://fordclub.changanford.cn:80/world/6273.htm" title="非原厂零配件的影响" target="_blank" >
+非原厂零配件的影响                </a></dt><dd>2014-04-15 18:08:14</dd>
+				</dl>
+				<dl>
+					<dt style="width:300px;"><a href="https://fordclub.changanford.cn:80/world/6272.htm" title="空调异味的预防办法" target="_blank" >
+空调异味的预防办法                </a></dt><dd>2014-04-15 18:04:45</dd>
+				</dl>
+				<dl>
+					<dt style="width:300px;"><a href="https://fordclub.changanford.cn:80/world/6271.htm" title="如何让空调尽快达到制冷效果" target="_blank" >
+如何让空调尽快达到制冷效果                </a></dt><dd>2014-04-15 18:03:50</dd>
+				</dl>
+				<dl>
+					<dt style="width:300px;"><a href="https://fordclub.changanford.cn:80/world/6270.htm" title="车内有效除霜/除雾" target="_blank" >
+车内有效除霜/除雾                </a></dt><dd>2014-04-15 18:03:14</dd>
+				</dl>
+				<a href="/world/index.htm" class="more"><img src="/r/cms/www/red/images/more.gif" alt=""></a>
+				
+				</div>
+				</li>
+			</ul>
+			<ul class="ul04">
+			<li class="fenl fl"><img src="/r/cms/www/red/images/fwzy.png" alt=""></li>
+				<li class="wenz fr">
+					<div class="art">
+				<div class="top">
+					
+					<div class="fl deb">
+						<h3><a href="https://fordclub.changanford.cn:80/shzy/7574.htm" target="_blank" style="color: #81BA2F;">冬季服务活动<em></em></a></h3>
+						<p></p>
+						
+					</div>
+					<div class="fr"> <a href="https://fordclub.changanford.cn:80/shzy/7574.htm" target="_blank"><img src="/u/cms/www/201612/05142253hwkp.jpg" alt=""></a></div>
+				</div>
+				<dl>
+					<dt><a href="https://fordclub.changanford.cn:80/shzy/7574.htm" title="冬季服务活动" target="_blank">
+冬季服务活动                </a></dt><dd>2016-08-31 20:14:16</dd>
+				</dl>
+				<a href="/veido/index.htm" class="more"><img src="/r/cms/www/red/images/more.gif" alt=""></a>
+				
+				</div>
+				</li>
+			</ul>
+			<ul>
+				<li class="fenl fl"><img src="/r/cms/www/red/images/ltbz.png" alt=""></li>
+				<li class="wenz fr">
+					<div class="art">
+						<div class="top">
+
+on line 297, column 49 in WEB-INF/t/cms/www/red/index/首页.html activity_topic not found.
+The problematic instruction:
+----------
+==> user-directive activity_topic [on line 297, column 49 in WEB-INF/t/cms/www/red/index/首页.html]
+----------
+
+Java backtrace for programmers:
+----------
+freemarker.core.InvalidReferenceException: on line 297, column 49 in WEB-INF/t/cms/www/red/index/首页.html activity_topic not found.
+	at freemarker.core.UnifiedCall.accept(UnifiedCall.java:134)
+	at freemarker.core.Environment.visit(Environment.java:210)
+	at freemarker.core.MixedContent.accept(MixedContent.java:92)
+	at freemarker.core.Environment.visit(Environment.java:210)
+	at freemarker.core.Environment.process(Environment.java:190)
+	at freemarker.template.Template.process(Template.java:237)
+	at com.jeecms.cms.staticpage.StaticPageSvcImpl.index(StaticPageSvcImpl.java:171)
+	at com.jeecms.cms.staticpage.StaticPageSvcImpl.index(StaticPageSvcImpl.java:154)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:309)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:183)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:202)
+	at com.sun.proxy.$Proxy52.index(Unknown Source)
+	at com.jeecms.cms.staticpage.StaticAct.indexSubmit(StaticAct.java:47)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:426)
+	at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:414)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:790)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:719)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:644)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:549)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:624)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.orm.hibernate3.support.OpenSessionInViewFilter.doFilterInternal(OpenSessionInViewFilter.java:198)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at com.jeecms.common.web.ProcessTimeFilter.doFilter(ProcessTimeFilter.java:49)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:122)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:505)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:169)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:103)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:956)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:436)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1078)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:625)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1749)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1708)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)

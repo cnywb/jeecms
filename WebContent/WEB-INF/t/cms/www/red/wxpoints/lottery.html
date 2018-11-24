@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>长安福特</title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/pointsmall.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/css/pages/lottery.css">
+	<script type="text/javascript" src="/${res}/point/fordjs/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/${res}/point/fordjs/jQueryRotate.min.js"></script>
+	<script type="text/javascript" src="/${res}/point/fordjs/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="/${res}/point/fordjs/jquery-validate-methods.js"></script>
+	<script type="text/javascript" src="/${res}/point/fordjs/jquery.validate.messages_zh.min.js"></script>
+	<script type="text/javascript" src="/r/cms/www/red/js/area.js"></script>
+	<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+
+	<script>
+		function colseModal(){
+			$('#modal-backdrop').remove();
+			$('#myModal').hide();
+		}
+		function openModal(txt,productid,lotteryHistoryId){
+			var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+			$('body').append(fade);
+			$('#myModal').show();
+			$("#lotteryResultTxt").html(txt);
+			$("#productId").val(productid);
+			$("#lotteryHistoryId").val(lotteryHistoryId);
+
+		}
+		//用户授权提示页面
+		function authModal(message,callbackfn){
+			callbackfn=callbackfn||$.noop;
+			if ($('#modal-backdrop').size() === 0) {
+				var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+				$('body').append(fade);
+				if(message.indexOf("积分不足")>-1||message.indexOf("礼品寄送地址已填写")>-1){
+					$("#alert_tip").hide();
+				}else{
+					$("#alert_tip").show();
+				}
+				$('#authmodal').show();
+				$('#modal-body-content').html(message);
+				$('#authmodal .modal-close,#authmodal .btn-confirm').click(function(event) {
+					$('#modal-backdrop').remove();
+					$('#authmodal').hide();
+					callbackfn.call(this);
+				});
+
+			}
+		}
+
+		$(function(){
+			var activityCode = "12100";//活动代码
+			//var openId = window.sessionStorage.getItem("openId");
+			var openId = window.sessionStorage.getItem("openId")||"1234567890";
+
+			//活动奖品
+			var prices = {"-1":{"angle":345,"txt":"提示：感谢您的参与！很遗憾！您没有中奖！我们明天见吧"},"001":{"angle":15,"txt":"新蒙迪欧车模"},
+				"006":{"angle":75,"txt":"1500元加油卡"},"003":{"angle":135,"txt":"瑞士军刀救援刀"},
+				"0002":{"angle":195,"txt":"双肩包"},"002":{"angle":255,"txt":"U盘钥匙扣"},
+				"004":{"angle":315,"txt":"智能扫地机器人"},"-2":{"angle":345}};
+
+			var timeOut = function(){  //超时函数
+				$("#lottery_bg").rotate({
+					angle:0,
+					duration: 30000,
+					animateTo: 360*10,
+					callback:function(){
+						alert('网络超时')
+					}
+				});
+			};
+
+			function doLottery(){
+				$.ajax({
+					url:"${base}/wxpoints/lottery/lottery.jhtml",
+					type:"POST",
+					data:{"activityCode":activityCode,"openId":openId},
+					success:function(retval){
+						if(retval!==""){
+							var str = retval.split(":");
+							var flag = str[0];
+							if(flag==="true"){
+								var code = str[1];
+								var p = prices[code]||prices["-2"];//-2时，防止未定义的商品，提示使用返回值
+								var angle = p["angle"];
+								var txt = p["txt"]||str[2];
+								//$("#lottery_bg").stopRotate();
+								$("#lottery_bg").rotate({
+									angle:0,
+									duration: 5000,
+									animateTo: angle+1440,
+									callback:function(){
+										if(code!=="-1"&&code!=="-2"&&str.length==5){
+											//商品名称，商品ID，中奖记录ID
+											openModal(txt,str[3],str[4]);
+										}else{
+											var count = str[3];
+											if(code==="-1"&&count!="0"){
+												txt = "今天还有"+str[3]+"次机会，期待人品大爆发！";
+											}
+											authModal(txt);
+										}
+									}
+								});
+							}else{
+								if(str.length==3){
+									authModal(str[2]);
+								}else{
+									authModal(str[1]);
+								}
+								$("#lottery_bg").stopRotate();
+							}
+
+						}else{
+							$("#lottery_bg").stopRotate();
+							authModal("系统异常!");
+						}
+					},error:function(retval){
+						console.log(retval);
+						$("#lottery_bg").stopRotate();
+						authModal("系统异常!");
+					}
+				})
+			}
+			$("#lottery_btn").rotate({
+				bind:{
+					click: function(){
+						timeOut();
+						doLottery();
+					}
+				}
+			});
+
+			$('select').change(function(e){//自定义下拉菜单事
+				var selval=$(this).val();
+				$(this).prev().html(selval);
+
+			});
+
+			$("div.modal-close").click(function(){
+				colseModal();
+			});
+
+			function startSubmit(){
+				var fade=$('<div id="loading-backdrop" class="loading-backdrop"><div class="loading"><div class="loading-dialog"><img src="/${res}/point/images/loading.gif" /></div><div></div>');
+				if ($('#loading-backdrop').size() === 0) {
+					$('body').append(fade);
+				}
+			}
+			function endSubmit(){
+				if ($('#loading-backdrop').size()>0) {
+					$('#loading-backdrop').remove();
+				}
+			}
+
+			$('#myModal .btn-default').click(function(e){
+				$('#jvForm').submit();
+			});
+			function doSubmitForm(){
+				startSubmit();
+				var data = $('#jvForm').serialize()+"&activityCode="+activityCode+"&openId="+openId;
+				$.ajax({
+					url:"${base}/points/lottery/exchangesave.jhtml",
+					data:data,
+					dataType:"json",
+					success:function(retval){
+						endSubmit();
+						var status = retval["status"];
+						var message = retval["message"];
+						if(status!=="true"){
+							colseModal();
+							authModal(message);
+						}else{
+							colseModal();
+							authModal("您礼品寄送地址已填写，礼品将在30天内寄出。");
+							$("#jvForm").reset();
+						}
+					},error:function(retval){
+						endSubmit();
+						colseModal();
+						authModal("系统异常");
+					}
+				});
+			}
+
+			$("#jvForm").validate({
+				//debug: true, //调试模式取消submit的默认提交功能
+				submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form
+					doSubmitForm(form);
+				},
+				rules:{
+					sendee:{required:true},
+					mobilePhoneNo:{required:true,isMobile:true},
+					address:{required:true}
+				},
+				//如果验证控件没有message，将调用默认的信息
+				messages:{
+					sendee:{
+						required:"请填写姓名"
+					},
+					mobilePhoneNo:{required:'请填写手机号',isMobile:'手机号不正确'},
+					address:{required:'请填写详细地址'}
+				},
+				//设置错误信息存放标签
+				errorElement: "em",
+				//指定错误信息位置
+				errorPlacement: function (error, element) {
+					if (element.attr('id')=='s_county') {
+						error.appendTo($('#countyErrorLabel'));
+					}else{
+						error.insertAfter(element);
+					}
+				},
+				focusInvalid: false,
+				onkeyup:false,
+				ignore: '',
+				success:function(e)
+				{
+					e.removeClass('valid');
+				}
+			});
+		});
+	</script>
+	<style>
+		.modal-content{width: auto;background-color: #f9edbe;color:#A52E00;}
+		.modal-header{height: auto;}
+		.btn-default,.btn-confirm{background:none;background-color: #F9A311;text-align:center;color:white; border-radius: 5px;font: 13px/1.5 "黑体", Arial, Verdana;}
+		.btn-default:active,.btn-confirm:active{background-color: rgba(249, 237, 190, 0.59);}
+		.sendee th{width: 45%;color:#A52E00;}
+		.sendee td{width:55%;line-height: normal;}
+		.sendee input{width:100%;
+			outline: none;border-bottom: 1px solid #A52E00;border-radius: 0;}
+	</style>
+</head>
+<body>
+
+<!--积分不足、未登录、未认证的车主弹出层-->
+<div class="modal" id="authmodal" style="display:none">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+				<div class="modal-body-content">
+					<div style="font-size:20px;margin-bottom: 10px;color:#000;" id="alert_tip">很遗憾，没有抽中！</div>
+					<div  id="modal-body-content" style="color:#000;"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input type="button" class="btn-confirm" value="确  定">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="myModal" style="top:5%">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+				<div style="margin: 0 30px;"><span style="color:#F57D04;font-size:30px;">恭喜您!中奖啦!</span> <span id="lotteryResultTxt" style="color:red;display: none;"></span><br/>
+					请填写奖品寄送信息</div>
+				<form id="jvForm" novalidate="novalidate">
+					<input type="hidden" name="productId" id="productId" value="">
+					<input type="hidden" name="lotteryHistoryId" id="lotteryHistoryId" value="">
+					<table class="sendee">
+						<tbody>
+						<tr>
+							<th width="50%"><span>*</span>收件人姓名：</th>
+							<td width="50%"><input type="text" name="sendee" value="" class="required" placeholder="姓名" maxlength="30" aria-required="true"></td>
+						</tr>
+						<tr>
+							<th><span>*</span>收件人手机：</th>
+							<td><input type="text" name="mobilePhoneNo" value="" placeholder="手机号" maxlength="11"></td>
+						</tr>
+
+						<tr>
+							<th><span>*</span>收件人地址：</th>
+							<td><input type="text" name="address" value="" placeholder="详细地址" maxlength="128"></td>
+						</tr>
+						</tbody></table>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<input type="button" id="jvForm_submit" class="btn-default" value="确认信息">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="viewport">
+	<div class="panl">
+		<div class="turn" id="lottery_bg"><img src="${base}/r/cms/www/red/wxpoints/images/turntable.png" alt=""></div>
+		<div class="draw"><img src="${base}/r/cms/www/red/wxpoints/images/draw.png" alt=""  id="lottery_btn"></div>
+		<div class="train"><img src="${base}/r/cms/www/red/wxpoints/images/triangle2.png" alt=""></div>
+	</div>
+	<div class="b-panl">
+		<h3>抽奖规则</h3>
+		<p>每次抽奖需消费200积分。</p>
+		<p>在积分充足的情况下，每天最多可抽奖3次。</p>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('.viewport').height($(window).height());
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!--填写送货人信息弹出层-->
+<div class="modal" id="myModal"  style="top:5%">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<img src="/${res}/point/images/modal_banner.png" alt="" />
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+					<div align="center">恭喜您，兑礼成功!<br/>礼品将在7工作日内寄出，请填写您礼品寄送地址,<span class="red">*</span>为必填信息</div>
+					<form id="jvForm">
+					<input  type="hidden"  name="currentPoint" id="currentPoint" value="[#if unifiedUser??]${unifiedUser.currentPoint!}[/#if]"/>
+					<input  type="hidden"  name="productId" id="productId" value=""/>
+					<table class="sendee">
+							<tr>
+								<th width="30%"><span>*</span>收件人：</th>
+								<td width="70%"><input type="text" name="sendee" value="" class="required"  placeholder="姓名" maxlength="30"></td>
+							</tr>
+							<tr>
+								<th><span>*</span>手机：</th>
+								<td><input type="text" name="mobilePhoneNo" value="" placeholder="手机号" maxlength="11"/></td>
+							</tr>
+							<tr>
+								<th><span>*</span>请选择省市县：</th>
+								<td>	 
+								 <label style="padding: 0 5px 0 0;">
+								 <span class="provinceVal selectcon">								  
+								 		[#if  user??&&user.userExt.province??]${user.userExt.province!?html}[#else]省[/#if]								  
+								 </span>
+								 <select  class="province" id="s_province"></select>
+								 	[#if user??]
+									 <input  type="hidden"  name="province" id="province" value="${user.userExt.province!?html}" />
+									 <input  type="hidden"  name="city" id="city" value="${user.userExt.city!?html}"/>
+									 <input  type="hidden"  name="county" id="county" value="${user.userExt.county!?html}"/>
+									[#else]
+										<input  type="hidden"  name="province" id="province" value="" />
+										<input  type="hidden"  name="city" id="city" value=""/>
+									 	<input  type="hidden"  name="county" id="county" value=""/>
+									[/#if]
+								 </label>
+								 <label style="padding: 0 5px 0 0;">
+									 <span class="cityVal selectcon">									 
+									 	[#if user??&&user.userExt.city??]${user.userExt.city!?html}[#else]市[/#if]
+									 </span>
+									 <select  class="city" id="s_city" name="s_city"></select>
+								 </label>
+								 <label style="padding: 0 5px 0 0;">
+									 <span class="areaVal selectcon">
+									 	[#if  user??&&user.userExt.county??]${user.userExt.county!?html}[#else]县[/#if]
+									 </span>
+									 <select  class="area"  id="s_county" name="s_county"></select>
+								 </label>
+								 <label id="countyErrorLabel"  style="padding: 0 5px 0 0;width:80px;">
+								 </label>
+								</td>
+							</tr>
+							<tr>
+								<th><span>*</span>详细地址：</th>
+								<td><input type="text" name="address" value="" placeholder="详细地址" maxlength="128"/></td>
+							</tr>
+							<tr>
+								<th>备注：</th>
+								<td><input type="text" name="memo" value=""  placeholder="备注" maxlength="128"/><br/></td>
+							</tr>
+					</table>
+			</form>
+			</div>
+			<div class="modal-footer">
+				<input type="button" class="btn-default">
+			</div>
+		</div>
+	</div>
+</div>
+<!--积分不足、未登录、未认证的车主弹出层-->
+<div class="modal" id="authmodal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<img src="/${res}/point/images/modal_banner.png" alt="" />
+				<div class="modal-close"></div>
+			</div>
+			<div class="modal-body">
+		 		<div class="modal-body-content" id="modal-body-content"></div>
+			</div>
+			<div class="modal-footer">
+				<input type="button" class="btn-confirm" value="确   定">
+			</div>
+		</div>
+	</div>
+</div>

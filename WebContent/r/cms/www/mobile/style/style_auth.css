@@ -1,0 +1,126 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-size:66.3%}
+fieldset,img{border:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{text-decoration: underline;color:#000;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea{vertical-align:middle;outline:none}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+html,body{height:100%;   overflow-x: hidden;}
+body{font:12px "Microsoft YaHei","ËÎÌå",sans-serif;}
+a:hover{text-decoration:none;}
+
+.ycyc h1 {
+  color: #000;
+  font-size: 36px;
+  line-height: 45px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+    padding-top: 50px;
+}
+
+.logins li span{
+  text-align: left;
+  padding-left: 15px;
+  font-size: 24px;
+  color: #787878;
+  font-weight: bold;
+  float: left;
+  width:172px;
+   line-height: 53px;
+}
+
+.logins  .uname {
+  width: 303px;
+  height: 53px;
+  line-height: 52px;
+  border: 0;
+  background: url(../images/text_bg03.gif) no-repeat left center;
+  padding-left: 10px;
+  background-size: cover;
+  font-size: 25px;
+  padding-right: 10px;
+  font-family: sans-serif;
+  color: #222;
+}
+
+li {
+  width: 100%;
+  position: relative;
+  padding: 10px 0;
+}
+
+.note,.tips{
+  font: 20px/1.5 "ºÚÌå";
+  color: #222;
+}
+.note{
+ padding-left: 185px;
+}
+.tips{
+ padding-left: 10px;
+   margin: 20px 0;
+}
+
+.red {
+  color: #f00;
+  font-weight: normal;
+  margin: 0 2px 0 -8px;
+}
+section.regist {
+  width: 265px;
+  margin: 35px;
+}
+
+p.reg01 {
+  font: 20px/20px 'ºÚÌå';
+  color: #222;
+  padding: 16px 0;
+}
+
+.ycyc h2 {
+background: url(../images/line06.gif) repeat-x left center;
+  padding: 0;
+  color: #81ba2f;
+  width: 590px;
+  margin: 59px auto 0;
+  font-size: 24px;
+}
+
+.ycyc h2 span {
+  display: inline-block;
+  background-color: #fff;
+  padding-right: 14px;
+}
+
+.ycyc a{
+  width: 35%;
+  display: block;
+  text-align: center;
+  padding: 5%;
+  float: left;
+}
+
+img.czrz{
+  width: 80%;
+  left: 10%;
+  position: relative;
+}
+
+.sectionRegist{
+  width: 84%;
+  position: relative;
+  left: 10%;
+  padding: 30px 0;
+}

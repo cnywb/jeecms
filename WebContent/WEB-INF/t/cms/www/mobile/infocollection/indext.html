@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="/r/cms/www/mobile/infocollection/js/jquery.min.js"  type="text/javascript"></script>
+<script src="/r/cms/www/mobile/infocollection/js/jquery.fullPage.min.js"  type="text/javascript"></script>
+<script type="text/javascript" src="/r/cms/www/mobile/infocollection/js/index.js"></script>
+<link href="/r/cms/www/mobile/infocollection/css/index.css" rel="stylesheet" />
+<link href="/r/cms/www/mobile/infocollection/css/jquery.fullPage.css" rel="stylesheet" />
+ <!--移动端版本兼容 -->
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if(window.screen.height == 480) {
+           
+        }
+        if(/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if(version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <!--移动端版本兼容 end -->
+</head>
+<body>
+<div class="wrap">
+		<div class='startSlide'>
+			<div class="section part1">
+				<div class="section1">
+					<img src='/r/cms/www/mobile/infocollection/images/part1.png'  style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/cloud1.png'  class='lclould'  style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/cloud4.png' class='rclould'  style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/cycle2.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/cycle1.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/part1_1.png'  style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/part1_copy.png'  style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/next_btn.png' class='next'/>
+				</div>
+			</div>
+
+			<div class="section part2">
+				<div class="section2 ">
+					<div class='cycle'  style='display:none'>
+						<img src='/r/cms/www/mobile/infocollection/images/part2cy.png'/>
+						<img src='/r/cms/www/mobile/infocollection/images/p2cloud.png' class='lclould'/>
+						<img src='/r/cms/www/mobile/infocollection/images/part2_house.png'/>
+						<img src='/r/cms/www/mobile/infocollection/images/cloud4.png' class='rclould'/>
+						
+					</div>
+					<div class='p2content'  >
+						<img src='/r/cms/www/mobile/infocollection/images/cycle2.png' style='display:none'/>
+						<img src='/r/cms/www/mobile/infocollection/images/cycle1.png ' style='display:none'/>
+						<img src='/r/cms/www/mobile/infocollection/images/part2_copy.png' style='display:none'/>
+					</div>
+					
+					<div class='people'  style='display:none'>
+						<img src='/r/cms/www/mobile/infocollection/images/part2_p.png'/>
+						<img src='/r/cms/www/mobile/infocollection/images/Lhand.png' class='Lhandrotate'/>
+						<img src='/r/cms/www/mobile/infocollection/images/Rhand.png' class='Rhandrotate'/>
+						<img src='/r/cms/www/mobile/infocollection/images/part3_light.png' style='display:none'/>
+					</div>
+					<img src='/r/cms/www/mobile/infocollection/images/next_btn.png' class='next'/>
+				</div>
+			</div>
+
+			<div class="section part3">
+				<div class="section3">
+					<img src='/r/cms/www/mobile/infocollection/images/part3.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p2cloud.png' class='lclould' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p3clould.png' class='rclould' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p3cycle.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p3cycle2.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/part3_copy.png' style='display:none'/>
+					<div class='man' style='display:none'>
+						<img src='/r/cms/www/mobile/infocollection/images/part3_p.png' />
+						<img src='/r/cms/www/mobile/infocollection/images/part3_light.png' style='display:none'/>
+					</div>
+					<img src='/r/cms/www/mobile/infocollection/images/next_btn.png' class='next'/>
+				</div>
+			</div>
+			<div class="section part4">
+				<div class="section4">
+					<img src='/r/cms/www/mobile/infocollection/images/part4.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p4cloud.png' class='lclould' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p4cycle1.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p4cycle2.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/part4_copy.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p4car.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/next_btn.png' class='next'/>
+				</div>
+			</div>
+
+			<div class="section part5">
+				<div class="section5">
+					<div class='p5top' style='display:none'>
+						<img src='/r/cms/www/mobile/infocollection/images/part5.png' />
+						<img src='/r/cms/www/mobile/infocollection/images/car.png' style='display:none'/>
+						<img src='/r/cms/www/mobile/infocollection/images/p3clould.png' width='165px' class='lclould' />
+						<img src='/r/cms/www/mobile/infocollection/images/p2cloud.png' class='rclould'/>
+					</div>
+					<div  class='p5bottom'>
+					<img src='/r/cms/www/mobile/infocollection/images/p5cycle.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/p5cycle2.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/part1_1.png' style='display:none'/>
+					<img src='/r/cms/www/mobile/infocollection/images/part5_copy.png' style='display:none'/>
+					
+					</div>
+					<a href='javascript:;'  style='display:none'><img src='/r/cms/www/mobile/infocollection/images/joinbtn.png'/></a>
+				</div>
+			</div>
+		</div>
+		
+	
+    </div>
+
+
+</body>
+</html>

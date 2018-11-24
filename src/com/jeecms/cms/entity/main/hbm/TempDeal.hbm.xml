@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="TempDeal" table="TEMP_DEAL">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Long" column="ID" length="20"/>
+		<property name="name" column="NAME" type="string" not-null="false" length="20"/>
+		<property name="vin" column="VIN" type="string" not-null="false" length="20"/>
+		<property name="campaignCode" column="CAMPAIGN_CODE" type="string" not-null="false" length="25"/>
+		<property name="amount" column="AMOUNT" type="integer" not-null="false" length="20"/>
+		<property name="useAmount" column="USE_AMOUNT" type="integer" not-null="false" length="20"/>
+		<property name="validBeginDate" column="VALID_BEGIN_DATE" type="string" not-null="false" length="20"/>
+		<property name="validEndDate" column="VALID_END_DATE" type="string" not-null="false" length="20"/>
+		<property name="dealerServiceCode" column="DEALER_SERVICE_CODE" type="string" not-null="false" length="20"/>
+		<property name="status" column="STATUS" type="string" not-null="false" length="20"/>
+		<property name="createDate" column="CREATE_DATE" type="string" not-null="false" length="20"/>
+		<property name="userName" column="USER_NAME" type="string" not-null="false" length="20"/>
+		<property name="lowestAmount" column="LOWEST_AMOUNT" type="integer" not-null="false" length="20"/>
+		<property name="limitDeduct" column="LIMIT_DEDUCT" type="integer" not-null="false" length="20"/>
+	</class>
+</hibernate-mapping>

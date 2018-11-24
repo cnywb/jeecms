@@ -1,0 +1,55 @@
+html, body { width: 100%; height: 100%; margin: 0; background-color: #f8f7eb; color: #FFFFFF; }
+body { font-family: "Microsoft YaHei", "å¾®è½¯é›…é»‘", sans-serif !important, "Century Gothic"; background: #f8f7eb; }
+img { border: none; }
+ul, li, dd, dl { margin: 0; padding: 0; }
+.dn { display: none; }
+
+.swipe-handler .logoimg { position: absolute; left: 30px; top: 40px; z-index: 99; }
+.swipe-handler .logortimg { position: absolute;  right: 30px;top: 40px; z-index: 99; }
+.swipe-handler .btnimg { z-index: 99; position: absolute; left: 50%; -webkit-animation: btnani 1.5s infinite; animation: btnani 1.5s infinite; box-sizing: border-box;/* padding: 90px 0 20px 0; */ bottom: 30px; margin-left: -20px; }
+
+/*start page 首页*/
+@-webkit-keyframes btnani {
+	0% { -webkit-transform: translate(0, -40px); opacity: 0; }
+	50% { opacity: 1; }
+	100% { -webkit-transform: translate(0, 0); opacity: 0; }
+}
+@keyframes btnani {
+	0% { transform: translate(0, -40px); opacity: 0; }
+	50% { opacity: 1; }
+	100% { transform: translate(0, 0); opacity: 0; }
+}
+
+.bg{height: 100%;width: 100%;}
+
+.page5 .rule {position: absolute;left: 50%;bottom: 130px;margin-left: -46px;} 
+.page5 .tz{position: absolute;left: 5%;bottom: 40px;}
+.page5 .sj{position: absolute;right: 5%;bottom: 40px;}
+.page6 .info{position: absolute;top: 52%;left: 50%;margin-left: -275px;}
+.page6 .info select,.page6 .info input{position:absolute;height:22px;background:none;border: 0;}
+.page6 .info input{width:350px;}
+.page6 .info .name{top:22%;left:26%;}
+.page6 .info .tel{top:36%;left:26%;}
+.page6 .info .pro{top: 52%;left:26%;}
+.page6 .info select{width:160px;height: 32px;}
+.page6 .info .city{top: 52%;left:61%;}
+.page6 .info .cstyle{top: 66%;left:34%;width:310px;}
+.page6 .info .del{top: 81%;left:41%;width:276px;}
+
+.page6 .tj{position: absolute;bottom: 50px;left:50%;margin-left: -132px;}
+
+.popup,.success  { background-color: rgba(0, 0, 0, 0.61); width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 1000; }
+.popup .cls{margin: 1%;right: 10%;z-index: 10;top: 6%;position: absolute;}
+.popup .content{background: #dcdcdc;margin: 9% 8%;padding: 0 5%;height: 82%;overflow: auto;font-size: 1rem;text-align: justify;top: 12%;color: #4a4a4a;}
+.popup h2,.success h2 {display: inline-block;width: 100%;text-align: center;font-size: 2rem;font-size: 32px;font-weight: normal;border-bottom: 1px solid #cccccc;padding-bottom: 20px;margin-bottom: 0;}
+.popup .content div{margin: 20px 0;}
+.popup .content label{color: #02abc0;margin: 5% 0 7%;line-height: 1.8rem;font-size: 1rem;/* font-size: 16px; */}
+.popup .content ul {list-style-type:circle;}
+.popup .content ul li {line-height: 2.3rem;font-size: 1rem;list-style: initial;list-style-position: inside;margin-left: 10px;list-style-image: url(../images/bk.jpg);margin: 10px 0;}
+.popup .popbg { background: #f8f7eb; position: absolute; width: 86%; height: 90%; top: 4%; left: 8%; z-index: 0; }
+.popup .content::-webkit-scrollbar { width: 2%; }
+
+.success h2{margin: 50px 0 50px 0;font-size: 36px;font-size: 2.3rem;border-bottom: none;}
+.success .cls {margin: 1%;right: 30px;z-index: 10;top: 20%;position: absolute;}
+.success .content {background: #dcdcdc;margin: 30% 4%;padding: 0;overflow: auto;font-size: 1rem;text-align: justify;top: 12%;color: #4a4a4a;}
+.success .successbtm{margin: 0 0 20% 0 !important;font-size: 14px;text-align:center;font-size: 0.8rem;line-height: 1.4rem;}

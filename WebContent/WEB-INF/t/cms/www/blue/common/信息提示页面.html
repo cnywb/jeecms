@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>信息提示 - ${site.name} - powered by jeebbs</title>
+   	<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/css/layout.css" />
+  </head>
+  <body>
+	<div class="prompt">
+  <dl>
+    <dt></dt>  
+    <dd class="msg">信息提示：</dd>
+     [#if args??]
+    <dd>[@s.mat code=message args=args text=message/]</dd>
+     [#else]
+     <dd>[@s.mt code=message text=message/]</dd>
+     [/#list]
+	<dd>【<a href="javascript:history.back();">点击这里返回上一页</a>】</dd>
+  </dl>
+</div>
+  </body>
+</html>

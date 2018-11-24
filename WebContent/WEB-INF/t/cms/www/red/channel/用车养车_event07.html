@@ -1,0 +1,63 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>夏季服务活动 精彩活动-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/fordjs/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id){
+		var dvnum=3;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('list'+i).className="";
+		document.getElementById('jtab'+i).style.display="none";
+		}
+		document.getElementById('list'+id).className="out";
+		document.getElementById('jtab'+id).style.display="block";
+	}
+</script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>2014夏季服务活动</h1>
+	<img src="/${res}/images/full-width-top.png" />
+	<div style="width:975px;padding:0 30px;background:url(/${res}/images/full-width-bg.png) repeat-y">
+		<img src="/${res}/images/20140519-pic1.jpg" style="display:block;margin-bottom:28px" />
+		<img src="/${res}/images/20140519-pic2.gif" style="display:block" /><img src="/${res}/images/20140519-pic3.gif" style="display:block" /><img src="/${res}/images/20140519-pic4.gif" style="display:block" />
+	</div>
+	<div style="background:url(/${res}/images/full-width-bottom.png) no-repeat;width:975px;height:63px;padding:15px 0 0 30px">（*详情请洽长安福特4S店）</div>
+	</div>
+</article>
+</div>
+[#include "../include/页脚信息栏.html"/]
+
+</body>
+</html>

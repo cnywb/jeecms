@@ -1,0 +1,96 @@
+<div class="header">
+		<div class="h_top">
+			<div class="fl" id="loginCsiDiv">
+				您好，您还没有登录哦！
+				<a href="/register.jspx">免费注册</a> | 
+				<a href="/login.jspx?returnUrl=/">会员登录</a> | 
+				<a href="/userCreatedByWechatBinding.jspx">微客服车主绑定</a> | 
+				<a href="/member/forgot_password.jspx">忘记密码</a>
+			</div>
+			<div class="fr">客服热线 8008108168／4008877766</div>
+		</div>
+	</div>
+	<div class="logo_ser">
+		<div class="logo_ser_cen">
+			<h3 class="logo"><a href="http://www.changanfordclub.com"><img alt="" src="/${res}/point/images/logo.png"></a></h3>
+			<div class="search">
+				<form action="http://www.google.cn/search" method="get" name="googForm" id="googForm">
+						<input type="text"  id="ipt_search"   name="q" placeholder="搜索精彩内容">
+						<input type="hidden" name="newwindow" value="1" />
+						<input type="hidden" name="ie" value="utf-8" />
+			            <input type="hidden" name="oe" value="utf-8" />
+			            <input type="hidden" name="hl" value="zh-CN" />
+			            <input type="hidden" name="domains" />
+			            <input type="hidden" name="sitesearch" />
+				</form>
+				<script type="text/javascript">
+					function googSeach(){document.getElementById("googForm").submit();}
+				</script>
+				 <a href="javascript:void(0);" onclick="googSeach();"></a>
+			</div>
+			<div class="ford"><a href="http://www.ford.com.cn/"><img src="/${res}/point/images/ford.jpg" alt=""></a></div>
+		</div>
+	</div>
+	<div class="topnav">
+		<ul id="jsddm">
+			<li class="home"><a href="${base}/index.jhtml">首页</a></li>
+			<li class="normal subnav">
+				<a href="${base}/news/index.htm">用车养车</a>
+				<ul>
+					<li>
+						<a href="${base}/world/index.htm">行车宝典</a> | 
+						<a href="${base}/review/index.htm">爱车养护</a> | 
+						<a href="${base}/r/cms/www/red/download/yongchezhinan.zip">用车指南下载</a> | 
+						<a href="${base}/media/mapFileDownload.jspx">地图升级下载</a>
+					</li>
+				</ul>
+			</li>
+			<li class="normal subnav">
+				<a href="${base}/veido/index.htm">售后服务</a>
+				<ul class="shfw">
+					<li>
+						<a href="${base}/gfbyjy/index.htm">官方保养建议</a> | 
+						<a href="${base}/byjsq/index.htm">保养计算器</a> | 
+						<a href="${base}/cyljk/index.htm">常用零件库</a> | 
+						<a href="${base}/competitive/index.jspx">精品附件</a> | 
+						<a href="${base}/QC/689.htm?">QC流程</a> | 
+						<a href="${base}/dljyxsym/index.htm">服务增值业务</a>
+					</li>
+				</ul>
+			</li>
+			<li class="normal subnav">
+				<a href="${base}/picture/index.htm">互动问答</a>
+				<ul class="qa">
+					<li>
+						<a href="${base}/fybk/index.htm">福域百科</a> | 
+						<a href="${base}/wjdy/index.htm">在线调研</a> | 
+						<a href="${base}/topickpk/index.htm">话题PK</a>
+					</li>
+				</ul>
+			</li>
+			<li class="normal subnav">
+				<a href="${bbsurl}${base}/index.jhtml">福域论谈</a>
+				<ul class="lunt">
+					<li>
+						<a href="${bbsurl}${base}/fordactivity/index.jhtml">活动专版</a> | 
+						<a href="${bbsurl}${base}/fordfox/index.jhtml">车型板块</a> | 
+						<a href="${bbsurl}${base}/fordbanwuqu/index.jhtml">事务板块</a>
+					</li>
+				</ul>
+			</li>		
+			<li class="normal"><a href="${base}/wldc/index.jhtml">精彩活动</a></li>
+			<li class="normal"><a href="${base}/cxjs/index.htm">车型鉴赏</a></li>
+			<li class="normal"><a href="${base}/guestbook.jspx">经销商专区</a></li>
+		</ul>
+	</div>
+<script type="text/javascript">
+	$(function(){
+		$('.subnav').hover(function() {
+			$('.topnav').addClass('topnav_out');
+			var index=$(this).index();
+			$(this).find('ul').css('left', index*104);
+		}, function() {
+			$('.topnav').removeClass('topnav_out');
+		});
+	});
+</script>

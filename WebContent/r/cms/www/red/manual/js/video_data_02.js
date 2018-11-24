@@ -1,0 +1,11 @@
+[
+ {"car":"金牛座","videoid":"XMTU0ODkxMTYxNg==","title":"用户手册视频完整版","thumbnail":"/r/cms/www/red/manual/images/jn9.jpg","time":"1:12:35"},
+ {"car":"金牛座","videoid":"XMTU0ODg4OTUyMA==","title":"组合仪表","thumbnail":"/r/cms/www/red/manual/images/jn1.jpg","time":"07:20"},
+ {"car":"金牛座","videoid":"XMTU0ODg5Mzk2MA==","title":"行驶前检查","thumbnail":"/r/cms/www/red/manual/images/jn2.jpg","time":"11:50"},
+ {"car":"金牛座","videoid":"XMTU0ODg5NzU5Ng==","title":"启动与驾驶","thumbnail":"/r/cms/www/red/manual/images/jn3.jpg","time":"21:32"},
+ {"car":"金牛座","videoid":"XMTU0ODkyNTk3Mg==","title":"驾驶辅助系统","thumbnail":"/r/cms/www/red/manual/images/jn4.jpg","time":"18:02"},
+ {"car":"金牛座","videoid":"XMTU0ODkyODY4OA==","title":"sync系统","thumbnail":"/r/cms/www/red/manual/images/jn5.jpg","time":"09:10"},
+ {"car":"金牛座","videoid":"XMTU0ODkzMDYwNA==","title":"应急措施","thumbnail":"/r/cms/www/red/manual/images/jn6.jpg","time":"03:02"},
+ {"car":"金牛座","videoid":"XMTU0ODkzMjc1Ng==","title":"用车小常识","thumbnail":"/r/cms/www/red/manual/images/jn7.jpg","time":"00:42"},
+ {"car":"金牛座","videoid":"XMTU0ODkzNzE0MA==","title":"片头","thumbnail":"/r/cms/www/red/manual/images/jn8.jpg","time":"01:00"}
+ ]

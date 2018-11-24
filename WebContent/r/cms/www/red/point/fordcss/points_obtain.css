@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.ob_box{
+	margin: 10px 0 0 40px;
+	padding: 66px 0 126px 0px;
+	width: 920px;
+	height: 926px;
+	background: url(../images/points/ob_001.png) no-repeat 0 0;
+}
+.ob_title{
+	margin-bottom: 10px;
+}
+.ob_title p{
+	font-size: 14px;
+    line-height: 23px;
+    text-align: center;
+}
+.ob_table{
+	padding: 0 36px 0 30px;
+}
+.ob_table h3{
+	text-align: center;
+	color: #ffa71e;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 24px;
+}
+.table_item {
+	width: 100%;
+}
+.table_item table{
+	width: 100%;
+	border: 0
+}
+.bgheader_first{
+	background: url(../images/points/t_001_left.png) no-repeat 0 0;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	color: #fff;
+	border-right: 1px solid #fd9f0f;
+}
+.bgheader_last{
+	background: url(../images/points/t_001_right.png) no-repeat 0 0;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	color: #fff
+}
+.bgheader{
+	background-color: #fbad33;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	color: #fff;
+	border-top-color:#fd9f0f;
+	border-right: 1px solid #fd9f0f;
+}
+.bgwhite{
+	background: #f2e3c1;
+	height: 32px;
+	line-height: 32px;
+	font-size: 14px;
+	text-align: center;
+	border: 1px solid #fd9f0f;
+	border-top-width: 0;
+	border-left-width: 0;
+}
+.bgwhite_light{
+	background: #f6ecd5;
+}
+.bgwhite_first{
+	border-left: 1px solid #fd9f0f;
+}
+.bgmulti {
+	font-size: 12px;
+	line-height: 32px;
+}
+.bglast_first{
+	background: url(../images/points/t_002_left.png) no-repeat 0 0;
+	height: 33px;
+	line-height: 33px;
+	font-size: 14px;
+	text-align: center;
+	border-right: 1px solid #fd9f0f;
+}
+.bglast_last{
+	background: url(../images/points/t_002_right.png) no-repeat 0 0;
+	height: 33px;
+	line-height: 33px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.ob_button{
+	padding: 65px 0 0 0;
+	text-align: center;
+}
+.bgbutton{
+	width: 214px;
+	height: 42px;
+	background: url(../images/points/p_btn.png) no-repeat 0 0;
+	border: none;
+	font-family:Microsoft Yahei,Arial,Verdana;
+	font-size: 18px;
+	color: #fff;
+	font-weight: 600;
+	*margin:0 5px;
+}
+.ob_des{
+	padding-top: 160px;
+}
+.ob_complay{
+	text-align: center;
+	font-size: 12px;
+	color: #999
+}
+

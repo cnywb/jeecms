@@ -1,0 +1,195 @@
+<script src="${resSys}/front.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var title=$("title").text();
+var hostname=window.location.hostname;
+var cmshostname="www.changanfordclub.com";
+var bbshostname="bbs.changanfordclub.com";
+if((cmshostname==hostname||bbshostname==hostname)&&title!="经销商专区-福域"&&title!="问卷调研"&&window.location.protocol=="http:"){
+    window.location.href= window.location.href.replace(/http:/, "https:");
+}else if((cmshostname==hostname||bbshostname==hostname)&&(title=="经销商专区-福域"||title=="问卷调研")&&window.location.protocol=="https:"){
+    window.location.href= window.location.href.replace(/https:/, "http:");//经销商专区的百度地图不支持https
+}
+
+$(document).ready(function(){
+	   $("body").click(function(){//页面里点击时让车辆保养计算器的下拉列表消失
+	    $('#cartype').hide();
+		$('#buyyear').hide();
+		$('#buymouth').hide();
+		$('#carlic').hide();
+		$("#byyear").show();
+		  $("#bymouth").show();
+		  $("#bylic").show();
+	   });
+});
+	$(function(){
+		StandardTaxRate();
+		}
+	);
+		var trstr="";
+		var nextstrstr="";
+	function showYcAjax(){
+var carname = $("#bycx").text();
+var carlic =$("#bylic").text();
+var nowdate = new Date();
+var butime=$("#byyear").text()+"年"+$("#bymouth").text()+"月";
+
+		$("#miandiv").load("/${res}/loaddiv/byjsq2.html",function(){
+			$("#carname").text(carname);
+			$("#lic").text(carlic+"公里");
+			$("#buytime").text("购买时间"+butime);
+			$("#showresule").append(trstr);
+			$("#shownext").append(nextstrstr);
+			});
+		
+	}
+	var carname;
+	var xmlObj;
+	function StandardTaxRate(){
+   $.ajaxSetup({ cache: false });
+   $.ajax({
+        url: "/${res}/xml/demo.xml",
+        dataType: 'xml',
+        type: 'GET',
+        timeout: 2000,
+        error: function(xml)
+        {
+           
+        },
+        success: function(xml)
+        {
+        	xmlObj=$(xml);
+            if ($(xml) != null) {
+                    for (var i = 0; i < $(xml).find("test > car").length; i++) {
+                    	var liId="cartype_"+i;
+                        $("#cartype").append("<li id=\""+liId+"\" onclick=\"doStopBubble(this,event);doCarTypeChoose('"+liId+"');\">" + $(xml).find("test > car:eq(" + i + ")").attr("name") + "</li>");
+                    }
+                }
+         
+            }
+    });
+};
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+function doCarTypeChoose(liId){
+	    carname=$("#"+liId).text();
+		$("#bycx").text(carname);
+		$("#cartype").hide();
+		var imgsrc =xmlObj.find("test > car[name='"+ carname+"']").attr("img");
+		$("#cgimg").attr("src",imgsrc);
+		$("#carlic").empty();
+		for (var i = 0; i < xmlObj.find("test > car[name='" + carname + "'] > lic").length; i++) {
+			var liId="carlic_"+i;
+         $("#carlic").append("<li id=\""+liId+"\" onclick=\"doStopBubble(this,event);doCarLiChoose('"+liId+"');\" >" + xmlObj.find("test > car[name='" + carname + "'] > lic:eq(" + i + ")").attr("name") + "</li>");
+        }
+		 $("#byyear").show();
+		  $("#bymouth").show();
+		  $("#bylic").show();
+}
+
+function doCarLiChoose(liId){
+	var bylicText=$("#"+liId).text();
+	$("#bylic").text(bylicText);
+	$("#carlic").hide();
+	trstr="";
+	nextstrstr="";
+	var nowdate = new Date();
+	var yearv=$("#byyear").text();
+	var mouthv=$("#bymouth").text();
+	var divmouth=(nowdate.getFullYear() - yearv)*12 +(nowdate.getMonth()+1-mouthv);
+	for (var i = 0; i < xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item").length; i++) {
+		var resultval=xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("result");
+	  if(resultval.search(/更换/)!= -1){
+        trstr+="<tr><td>" + xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("project")+"</td><td>" +xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("result")+"</td><td>请咨询当地经销商</td></tr>";
+	  }else{
+	  nextstrstr+="<tr><th>"+xmlObj.find("test > car[name='" + carname + "'] > lic[name='"+bylicText+"'] >item:eq(" + i + ")").attr("project")+"</th><tr>";
+	  }
+  }
+	 
+}
+
+function doBuyYearChoose(year){
+	$("#byyear").text($(year).text());
+	$("#buyyear").hide();
+	$("#bylic").show();
+}
+function doBuyMouthChoose(mouth){
+	$("#bymouth").text($(mouth).text());
+	$("#buymouth").hide();
+	$("#bylic").show();
+}
+
+function jsddm_open()
+{	jsddm_canceltimer();
+	jsddm_close();
+	ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');
+	if($(this).find('ul').size()>0){//如果有子菜单,则显示子菜单背景
+		 $("#navhome").addClass("topnavout");
+	}
+}
+
+function jsddm_close()
+{	if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');
+          $("#navhome").removeClass("topnavout");
+}
+
+function jsddm_timer()
+{	closetimer = window.setTimeout(jsddm_close, timeout);}
+
+function jsddm_canceltimer()
+{	if(closetimer)
+	{	window.clearTimeout(closetimer);
+		closetimer = null;}}
+
+$(document).ready(function()
+{	$('#jsddm > li').bind('mouseover', jsddm_open);
+	$('#jsddm > li').bind('mouseout',  jsddm_timer);});
+
+document.onclick = jsddm_close;
+  </script>
+<nav id="navhome" class="topnav">
+	<ul id="jsddm">
+<li class="home"><a href="${base}/index.jhtml">首页</a></li>
+
+
+<li class="normal"><a href="${base}/news/index.htm">用车养车</a>
+<ul >
+<li><a href="${base}/world/index.htm">行车宝典</a> | <a href="${base}/review/index.htm">爱车养护</a> | <a href="${base}/${res}/download/yongchezhinan.zip">用车指南下载</a>  | <a href="${base}/media/mapFileDownload.jspx">地图升级下载</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="${base}/veido/index.htm">售后服务</a>
+<ul>
+<li><a href="${base}/gfbyjy/index.htm">官方保养建议</a> | <a href="${base}/byjsq/index.htm">保养计算器</a> | <a href="${base}/cyljk/index.htm">常用零件库</a> | <a href="${base}/m/index.htm">品牌精品</a> | <a href="${base}/competitive/index.jspx">汽车附件</a>| <a href="${base}/QC/689.htm?">QC流程</a> | <a href="${base}/dljyxsym/index.htm">服务增值业务</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="${base}/picture/index.htm">互动问答</a>
+<ul  class="qa">
+<li><a href="${base}/fybk/index.htm">福域百科</a> | <a href="${base}/wjdy/index.htm">在线调研</a> | <a href="${base}/topickpk/index.htm">话题PK</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="${bbsurl}${base}/index.jhtml">福域论谈</a>
+<ul class="lunt">
+<li><a href="${bbsurl}${base}/fordactivity/index.jhtml">活动专版</a> | <a href="${bbsurl}${base}/fordfox/index.jhtml">车型板块</a> | <a href="${bbsurl}${base}/fordbanwuqu/index.jhtml">事务板块</a></li>
+</ul>
+</li>
+
+
+<li class="normal"><a href="${base}/wldc/index.jhtml">精彩活动</a></li>
+
+
+<li class="normal"><a href="${base}/cxjs/index.htm">车型鉴赏</a></li>
+
+
+<li class="normal"><a href="${base}/guestbook.jspx">经销商专区</a></li>
+	</ul>
+	
+</nav>

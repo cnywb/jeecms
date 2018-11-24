@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>长安福特</title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/css/pages/query.css">
+</head>
+<body>
+<div class="viewport">
+	<header class="header">
+		<img src="${base}/r/cms/www/red/wxpoints/images/header.png" alt="">
+		<div class="tip">积分查询</div>
+	</header>
+	<div class="box">
+		<h3 class="box-title">车主信息</h3>
+		<div class="box-from">
+			<label class="one-u-sm-4">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+			<div class="one-u-sm-8">
+				<input type="text" class="input-text" name="name" id="name"  value="${vname!}" autocomplete="off" maxlength="50" placeholder="">
+			</div>
+		</div>
+		<div class="box-from">
+			<label class="one-u-sm-4">手机号码：</label>
+			<div class="one-u-sm-8">
+				<input type="text" class="input-text"  value="${vmobile!}" name="mobile" id="mobile" autocomplete="off" maxlength="11" placeholder="">
+			</div>
+		</div>
+		[#if (vins??&&vins?size > 0)]
+			[#list vins as vin ]
+			[#if vin_index==0]
+				<div class="box-from addvin">
+					<label class="one-u-sm-4" data-index="0"><span class="add-icon"></span>VIN码：</label>
+					<div class="one-u-sm-8">
+						<input type="text" class="input-text" name="vin1" id="vin1"  autocomplete="off" maxlength="17" placeholder=""  value="${vin!}">
+					</div>
+				</div>
+			[#else]
+				<div class="box-from addvin hide">
+					<label class="one-u-sm-4" data-index="${vin_index}"><span class="remove-icon"></span>VIN码：</label>
+					<div class="one-u-sm-8">
+						<input type="text" class="input-text" name="vin2" id="vin2" autocomplete="off" maxlength="17" placeholder="" value="${vin!}">
+					</div>
+				</div>
+			[/#if]
+			[/#list]
+		[#else]
+			<div class="box-from">
+				<label class="one-u-sm-4" data-index="0"><span class=""></span>VIN码：</label>
+				<div class="one-u-sm-8">
+					<input type="text" class="input-text" name="vin1" id="vin1" autocomplete="off" maxlength="17" placeholder="">
+				</div>
+			</div>
+		[/#if]
+	</div>
+	<div class="info">
+		<h3 class="info-title">积分信息</h3>
+		<ul class="info-result">
+			<li><div class="info-result-item">现有积分</div></li>
+			<li><div class="info-result-item">[#if unifiedUser??]${unifiedUser.currentPoint!}[#else]0[/#if]</div></li>
+		</ul>
+	</div>
+	<ul class="query-btn">
+		<li><a href="${base}/wxpoints/queryview.jhtml?openId=${openId}&recordType=0" class="btn-left">积分累积记录</a></li>
+		<li><a href="${base}/wxpoints/queryview.jhtml?openId=${openId}&recordType=1" class="btn-right">积分消费记录</a></li>
+	</ul>
+</div>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/zepto.min.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/js/pages/query.js"></script>
+</body>
+</html>

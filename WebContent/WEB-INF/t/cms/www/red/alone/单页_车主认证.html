@@ -1,0 +1,675 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>车主认证-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css"> 
+
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+
+<script src="/${res}/fordjs/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+<link rel="stylesheet" href="/plugins/kindeditor4/plugins/code/prettify.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor4/kindeditor.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor4/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="/plugins/jcrop/css/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript" src="/plugins/jcrop/js/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script type="text/javascript">
+String.prototype.trim = function() {
+	   return this.replace(/^\s+|\s+$/g,"");
+	}
+	function showBlock(){
+		$.blockUI({
+	        message: '<h1>正在执行操作,请稍后...</h1>',
+	        css: {
+	            border: 'none',                   // 无边界
+	            width:"180px",
+	            top:"50%",                        // 高居中
+	            left:"50%"                        // 左居中
+	       }
+	    });
+	}
+	function showPop(ele){
+		$("#"+ele).show().css("top",$(window).scrollTop()+0.5*$(window).height());
+		$("#gray_box").show();
+	}
+	
+	function closePop(){
+		$(".pop").hide()
+		$("#gray_box").hide();
+	}
+	
+	//tab切换
+	function changeDV1(id){
+		var dvnum=3;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('list'+i).className="";
+		document.getElementById('jtab'+i).style.display="none";
+		}
+		document.getElementById('list'+id).className="out";
+		document.getElementById('jtab'+id).style.display="block";
+	}
+	//验证必填项不能为空
+	function checkFields(){
+		var vname = $("#vname").val().trim();
+		var vmobile = $("#vmobile").val().trim();
+		var vvin = $("#vvin").val().trim();
+		if(vname == ""){
+			showNameError();
+			return false;
+		}
+		if(!validateMobilePhoneNo(vmobile)){
+			showPhoneError();
+			return false;
+		}
+		if(!validateVin(vvin)){
+			showVinError();
+			return false;
+		}
+		return true;
+	}
+	
+    function getUrlParam(name) {  
+        var reg = new RegExp('(^|&)'+name+'=([^&]*)(&|$)');  
+        var r = window.location.search.substr(1).match(reg);  
+        if (r != null){  
+            return unescape(r[2]);  
+        }  
+        return null;  
+    }
+    
+ 
+ function initManualCert(){
+	var vvin=$("#vvin").val();
+	
+	if(vvin!=""){
+	
+		showManualApplicationContent();
+		closePop();
+	}
+	 
+ }   
+    
+$(document).ready(function(){
+	initManualCert();
+	if($.browser.msie){
+		var html=$(".btn_addPic").html();
+		$(".upload-btn").html(html);
+	}
+	initCarOwnerAuthenApp();
+	initEditor();
+	$(".pop .close").click(function(){
+		var id=$("#tempInfo_id").val();
+		if(id!=""){
+			loadTempInfoToForm();
+			showManualApplicationContent();
+		}
+		    closePop();
+	});
+	$("#popup_go_upload").click(function(){showManualApplicationContent();closePop();});
+	$("#popup_ok").click(function(){closePop();});
+	$("#popup_go_refresh").click(function(){
+		var id=$("#tempInfo_id").val();
+		if(id!=""){
+			updateTempInfo(true);//修改暂存申请信息状态
+		}else{
+		    window.location.reload();
+		}
+	});
+	$("#popup_save_temp_info").click(function(){submitTempInfo();});
+	showContinueApplication();
+});	
+
+img = new Image();//用来得到原始尺寸
+function initEditor(){//初始化图片上传组件
+	KindEditor.ready(function(K) {
+		var uploadbutton = K.uploadbutton({
+			button : K('#upload-file')[0],
+			fieldName : 'imgFile',
+			url : '/common/kindeditor/upload.jhtml?dir=image',
+			afterUpload : function(data) {
+				if (data.error === 0) {
+					var url = K.formatUrl(data.url, 'absolute');
+					K('#imgUrl').val(url);
+					img.src=url;
+					$("#ori_image").attr("src",url);
+					$("#crop_preview").attr("src",url);
+					initJcrop();
+				}else{
+					showCommonPopup("操作失败","<br>未成功提交。可能是图片格式有误、大小超出或者不可识别的其他情况。");
+					$("#popup_ok").val("重新提交");
+				}
+			},
+			afterError : function(str) {
+				showCommonPopup("操作失败","<br>未成功提交。可能是图片格式有误、大小超出或者不可识别的其他情况。");
+				$("#popup_ok").val("重新提交");
+			}
+		});
+		uploadbutton.fileBox.change(function(e) {
+			uploadbutton.submit();
+		});
+	});
+}
+	function initCarOwnerAuthenApp(){
+			$("#submit_app").click(function(){
+				cutImage();
+		});
+	}
+	function submitData(){
+		if(!checkFields()){
+			return;
+		}
+		showBlock();
+		var requestJson={};
+		requestJson["vvin"]=$("#vvin").val().trim();
+		requestJson["vname"]=$("#vname").val().trim();
+		requestJson["vmobile"]=$("#vmobile").val().trim();
+		 $.ajax( {//提交数据
+				url : '/czrz/carOwnerCheckAjax.jspx',
+				type : 'post',
+				dataType:'json',
+				data: requestJson,
+				success : function(result) {
+					$.unblockUI();
+					var msg=result.status
+				    if(msg == "1"){
+				    	showAuthenSuccess();
+					}else if(msg == "3"){
+						showVinHasBeenAuthened();
+					}else if(msg == "4"){
+						showPhoneNotCorrect();
+			   		}else if(msg == "5"){
+			   			showNameNotCorrect();
+					}else if(msg == "6"){
+						showNameAndPhoneNotCorrect();
+					}else if(msg == "7"){
+						showVinNotExist();
+					}else if(msg=="99"){
+						alert("用户未登录！");
+					}
+		      },error:function(){
+		    	  showCommonPopup("操作失败","系统错误请稍后再试!");
+		     }
+		});
+	}
+	
+	/*
+	  提交用认证申请
+	*/
+	function submitManualData(){
+		var requestJson={};
+		requestJson["vvin"]=$("#vvin").val().trim();
+		requestJson["vname"]=$("#vname").val().trim();
+		requestJson["vmobile"]=$("#vmobile").val().trim();
+		requestJson["certImageUrl"]=$("#imgUrl").val().trim();
+		requestJson["tempInfoId"]=$("#tempInfo_id").val().trim();
+		//tempInfoId
+		 $.ajax( {//提交数据
+				url : '/member/carownerauthen/add.jspx',
+				type : 'post',
+				dataType:'json',
+				data: requestJson,
+				success : function(result) {
+					$.unblockUI();
+					if(result.status==0){
+						showCommonPopup("操作失败","该车已经被认证过!请勿再认证!");
+					}else if(result.status==1){
+						showCommonPopup("操作失败","该车正在申请认证中,请勿重复提交申请!");
+					}else if(result.status==2){
+						showCommonPopup("操作成功","恭喜您已成功提交，稍后我们的客服人员将电话通知您认证结果，<br>点击“确定”可继续添加新车辆。<br><br>");
+						$("#popup_go_refresh").val("确定").show();
+						$("#popup_ok").hide();
+					}else if(result.status==99){
+						showCommonPopup("操作失败","用户未登录!");
+					}else if(result.status==4){
+						showCommonPopup("操作失败","姓名不能为空!");
+					}else if(result.status==5){
+						showCommonPopup("操作失败","手机号不能为空!");
+					}else if(result.status==6){
+						showCommonPopup("操作失败","证件照片不能为空!");
+					}else if(result.status==7){
+						showCommonPopup("操作失败","VIN码不能为空!");
+					}else if(result.status==8){
+						showCommonPopup("操作失败","手机格式错误。请输入正确的11位数字!");
+					}		
+		      },error:function(){
+		    	  $.unblockUI();
+		    	  showCommonPopup("操作失败","系统错误请稍后再试!");
+		     }
+			});
+	}
+	
+	function submitTempInfo(){
+		var requestJson={};
+		requestJson["vvin"]=$("#vvin").val().trim();
+		requestJson["vname"]=$("#vname").val().trim();
+		requestJson["vmobile"]=$("#vmobile").val().trim();
+		$.ajax( {//提交数据
+				url : '/member/carownerauthen/saveTempInfo.jspx',
+				type : 'post',
+				dataType:'json',
+				data: requestJson,
+				success : function(result) {
+					doAfterSaveTempInfo();
+		      },error:function(){
+		    	  $.unblockUI();
+		    	  showCommonPopup("操作失败","系统错误请稍后再试!");
+		     }
+			});
+	}
+	
+	//将暂存状态的申请信息变为失效状态
+	function updateTempInfo(isRefresh){
+		var requestJson={};
+		requestJson["id"]=$("#tempInfo_id").val().trim();
+		$.ajax( {//提交数据
+				url : '/member/carownerauthen/updateTempInfo.jspx',
+				type : 'post',
+				dataType:'json',
+				data: requestJson,
+				success : function(result) {
+				if(isRefresh==true){
+					  window.location.reload();
+				}
+		      },error:function(){
+		    	  showCommonPopup("操作失败","系统错误请稍后再试!");
+		     }
+			});
+	}
+	function cutImage(){
+		if($("#imgUrl").val()==""){
+			showCommonPopup("操作失败","请上传您的行驶证照片！");return;
+		}
+		if(!checkFields()){
+			return;
+		}
+		showBlock();
+		var requestJson={};
+		var orgW=img.width;
+		var orgH=img.height;
+		var imgW=$("#ori_image").attr("width");
+		var imgH=$("#ori_image").attr("height");
+		var wRatio=orgW/imgW;
+		var w=$("#w").val();
+		var h=$("#h").val();
+		var y1=$("#y1").val();
+		var x1=$("#x1").val();
+		if(w==""||w=="0"){
+			requestJson["imgWidth"]=orgW;
+		}else{
+			requestJson["imgWidth"]=parseInt(w*wRatio);
+		}
+		if(h==""||h=="0"){
+			requestJson["imgHeight"]=orgH;
+		}else{
+			requestJson["imgHeight"]=parseInt(h*wRatio);
+		}
+		requestJson["imgSrcPath"]=$("#imgUrl").val();
+		requestJson["imgTop"]=parseInt(y1*wRatio);
+		requestJson["imgLeft"]=parseInt(x1*wRatio);
+		requestJson["reMinWidth"]=parseInt(w*wRatio);
+		requestJson["reMinHeight"]=parseInt(h*wRatio);
+		requestJson["imgScale"]=1;
+		requestJson["uploadNum"]=1;
+		 $.ajax( {//提交数据
+				url : '/member/imageCutAjax.jspx',
+				type : 'post',
+				dataType:'json',
+				data: requestJson,
+				success : function(result) {
+					if(result.status==1){
+						submitManualData();
+					}else{
+						 alert("裁剪图片错误请稍后再试！");
+					}	
+		      },error:function(){
+		    	  alert("系统错误请稍后再试！");
+		     }
+			});
+	
+}
+	
+	//简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
+	function showCoords(obj){
+		$("#x1").val(obj.x);
+		$("#y1").val(obj.y);
+		$("#x2").val(obj.x2);
+		$("#y2").val(obj.y2);
+		$("#w").val(obj.w);
+		$("#h").val(obj.h);
+	}
+
+
+    jcrop_api=null;
+	flag=false;
+	function initJcrop(){
+	 if(flag==false){
+		 flag=true;
+		 doInitJcrop();
+	 }else{
+		 $(".jcrop-holder img").attr("src",$("#imgUrl").val());//刷新 jcrop的图片
+	 }
+   }
+	
+	function doInitJcrop(){
+		 $("#ori_image").Jcrop({setSelect:[0,0,299,0],
+			onChange:showPreview,
+			onSelect:showPreview,
+			aspectRatio:1.5,
+			keySupport:false//此属性为了避免在ie下卡死
+		},function(){
+		    jcrop_api=this;
+		  });	
+	}
+	
+	
+	function showPreview(coords){
+		showCoords(coords);
+		if(parseInt(coords.w) > 0){
+			//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到
+			var rx = $("#preview_box").width() / coords.w; 
+			var ry = $("#preview_box").height() / coords.h;
+			//通过比例值控制图片的样式与显示
+			$("#crop_preview").css({
+				width:Math.round(rx * $("#ori_image").width()) + "px",	//预览图片宽度为计算比例值与原图片宽度的乘积
+				height:Math.round(rx * $("#ori_image").height()) + "px",	//预览图片高度为计算比例值与原图片高度的乘积
+				marginLeft:"-" + Math.round(rx * coords.x) + "px",
+				marginTop:"-" + Math.round(ry * coords.y) + "px"
+			});
+		}
+	}
+//显示手动上传证件内容
+function showManualApplicationContent(){
+	$("#vname").attr("readonly","readonly").css({"color":"#A0A0A0"});
+	$("#vmobile").attr("readonly","readonly").css({"color":"#A0A0A0"});
+	$("#vvin").attr("readonly","readonly").css({"color":"#A0A0A0"});
+	var id=$("#tempInfo_id").val();
+	if(id!=""){
+		loadTempInfoToForm();
+	}
+	$("#tr_submitData").hide();
+	$(".section-title").show();
+	$(".upload-container").css({"visibility":"visible"});
+	$(".upload-submit").show();
+}	
+
+function loadTempInfoToForm(){
+	$("#vname").val($("#tempInfo_vname").val());
+	$("#vmobile").val($("#tempInfo_vmobile").val());
+	$("#vvin").val($("#tempInfo_vvin").val());
+}
+function doAfterSaveTempInfo(){
+	$("#vname").attr("readonly","readonly").css({"color":"#A0A0A0"});
+	$("#vmobile").attr("readonly","readonly").css({"color":"#A0A0A0"});
+	$("#vvin").attr("readonly","readonly").css({"color":"#A0A0A0"});
+	closePop();
+}
+	//校验win码
+	function validateVin(vin){
+		if(vin.length!=17){
+			return false;
+		}
+		var prefix=vin.substring(0,3).toUpperCase();
+		if(prefix!="LVS"&&prefix!="LVR"){
+			return false;
+		}
+		
+		var endstr=vin.substring(11,17);
+		var reg1=/^\d+$/;
+		var reg2=/^[A-Za-z]+$/;
+		if(!endstr.match(reg1)){
+			return false;
+		}
+		var middlestr=vin.substring(10,11);
+		if(!middlestr.match(reg2)){
+			return false;
+		}
+		return true;
+	}
+	
+	function validateMobilePhoneNo(mobilePhoneNo){
+		var reg=/^((19[0-9])|(16[0-9])|(14[0-9])|(17[0-9])|(13[0-9])|(15[^4,\D])|(18[0-9]))\d{8}$/;
+		return mobilePhoneNo.match(reg);
+	}
+	function showVinError(){
+		$("#popup_title").html("<br>VIN码格式错误");
+		$("#popup_content").html("<br>请输入以LVS / LVR开头，倒数第7位为字母，最后6位为数字，<br>共17位的VIN码。【例如LVS（R）HCFDB3DE123456 】");
+		$("#popup_ok").val("重新填写VIN码").show();
+		$("#popup_go_upload").hide();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").hide();
+		showPop("cert");
+	}
+	function showPhoneError(){
+		$("#popup_title").html("<br>重新填写手机号");
+		$("#popup_content").html("<br>手机格式不正确。请输入正确的11位数字。<br>");
+		$("#popup_ok").val("重新填写手机号").show();
+		$("#popup_go_upload").hide();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").hide();
+		showPop("cert");
+	}
+	function showNameError(){
+		$("#popup_title").html("<br>重新填写姓名");
+		$("#popup_content").html("<br>姓名不能为空。<br>");
+		$("#popup_ok").val("重新填写姓名").show();
+		$("#popup_go_upload").hide();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").hide();
+		showPop("cert");
+	}
+	
+	function showVinNotExist(){
+		$("#popup_title").html("操作失败");
+		$("#popup_content").html("<br>该VIN码不存在。如您确认信息无误，请锁定信息，并上传<br>《车辆行驶证》图片。如有疑议，请拨打400电话。<br><font style=\"font-size:15px\">*您上传的图片我们会进行加密处理,不会泄露给任何第三方组织及个人。</font>");
+		$("#popup_ok").val("重新填写VIN码").show();
+		$("#popup_go_upload").show();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").show();
+		showPop("cert");
+	}
+	
+	function showVinHasBeenAuthened(){
+		$("#popup_title").html("<br>操作失败");
+		$("#popup_content").html("<br>该VIN码已被认证。请使用已认证账户登录，如有疑议，请拨打400电话。<br>");
+		$("#popup_ok").val("确定").show();
+		$("#popup_go_upload").hide();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").hide();
+		showPop("cert");
+	}
+	
+	function showNameNotCorrect(){
+		$("#popup_title").text("操作失败");
+		$("#popup_content").html("很抱歉，您填写的姓名不正确，请重新填写；<br>如您确认信息无误，请锁定信息，并上传《车辆行驶证》图片。<br/><font style=\"font-size:15px\">*您上传的图片我们会进行加密处理,不会泄露给任何第三方组织及个人。</font>");
+		$("#popup_ok").val("重新填写姓名").show();
+		$("#popup_go_upload").show();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").show();
+		showPop("cert");
+	}
+	
+	function showPhoneNotCorrect(){
+		$("#popup_title").text("操作失败");
+		$("#popup_content").html("很抱歉，您填写的手机号码不正确，请重新填写；<br>如您确认信息无误，请锁定信息，并上传《车辆行驶证》图片。<br/><font style=\"font-size:15px\">*您上传的图片我们会进行加密处理，不会泄露给任何第三方组织及个人。</font>");
+		$("#popup_ok").val("重新填写手机号").show();
+		$("#popup_go_upload").show();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").show();
+		showPop("cert");
+	}
+	
+	function showNameAndPhoneNotCorrect(){
+		$("#popup_title").text("操作失败");
+		$("#popup_content").html("很抱歉，您填写的手机号码与姓名都不正确，请重新填写；<br>如您确认信息无误，请锁定信息，并上传《车辆行驶证》图片。<br/><font style=\"font-size:15px\">*您上传的图片我们会进行加密处理,不会泄露给任何第三方组织及个人。</font>");
+		$("#popup_ok").val("重新填写").show();
+		$("#popup_go_upload").show();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").show();
+		showPop("cert");
+	}
+	
+	function showAuthenSuccess(){
+		$("#popup_title").html("<br>操作成功");
+		$("#popup_content").html("<br>恭喜您认证成功！<br>");
+		$("#popup_ok").hide();
+		$("#popup_go_upload").hide();
+		$("#popup_go_refresh").hide();
+		$("#popup_save_temp_info").hide();
+		showPop("cert");
+		setTimeout("reload()",3000);
+	}
+	function reload(){
+		window.location.reload();
+	}
+	function showCommonPopup(title,content){
+		$("#popup_go_refresh").hide();
+		$("#popup_title").text(title);
+		$("#popup_content").html(content);
+		$("#popup_ok").val("确定").show();
+		$("#popup_go_upload").hide();
+		$("#popup_save_temp_info").hide();
+		showPop("cert");
+	}
+	
+	function showContinueApplication(){
+		var id=$("#tempInfo_id").val();
+		if(id!=""){
+			$("#popup_title").html("<br>温馨提示");
+			$("#popup_content").html("<br>您有未完成的认证申请</font><br>");
+			$("#popup_go_upload").show();
+			$("#popup_go_refresh").show();
+			$("#popup_ok").hide();
+			$("#popup_save_temp_info").hide();
+			showPop("cert");
+		}
+	}
+</script>
+  <script> 
+// 解决ie下 html5标签问题,没有这个代码ie下顶栏有问题
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>车主认证</h1>
+	<img src="/${res}/images/img01.png" alt="" style="float: left; overflow: hidden; zoom: 1;" />
+	<article class="ctan de_event certi" style="padding-bottom: 50px;">
+		<h2><span>个人信息</span></h2>
+		
+		<section class="logins">
+			
+			<table cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td colspan="2"><span><strong class="red" style=" margin: 0 0 0 18px;">*</strong>为必填信息，请与购车合同上的信息保持一致，确保认证顺利完成。</span></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding: 4px 0; line-height: 20px;"></td>
+				</tr>
+				<tr>
+					<th width="110" style="letter-spacing:-1px;"><span><strong class="red">*</strong>姓名：</span></th>
+					<td><input type="text"   name="vname" id="vname" value="[#if vname??]${vname}[/#if]" class="uname fl" ><span>（购车合同的姓名）</span></td>
+				</tr>
+				<tr>
+					<th width="110" style="letter-spacing:-1px;"><span><strong class="red">*</strong>手机：</span></th>
+					<td><input type="text"  name="vmobile" id="vmobile" value="[#if vmobile??]${vmobile}[/#if]" class="uname fl"><span id="mobile_phone_hint">（常用手机号）</span></td>
+				</tr>
+				<tr>
+					<th width="110" style="letter-spacing:-1px;"><span><strong class="red">*</strong>车辆VIN码：</span></th>
+					<td><input type="text"  name="vvin" id="vvin" value="[#if vvin??]${vvin}[/#if]" class="uname fl"><span style="letter-spacing: -2px;">（添加新车，请输入新车的VIN码）</span></td>
+				</tr>
+			
+				<tr id="tr_submitData">
+				<th></th>
+					<td><input src="/${res}/images/btn_rz.jpg" alt="" value="" onclick="submitData();"  type="image"></td>
+				</tr>
+				<tr style="visibility: hidden;">
+				<td  colspan="2" >
+				        <b>x1</b><input type="text" size="4" id="x1" />
+                    	<b class="ml5">y1</b><input type="text" size="4" id="y1" />
+                    	<b class="ml5">x2</b><input type="text" size="4" id="x2" />
+                    	<b class="ml5">y2</b><input type="text" size="4" id="y2" />
+                    	<b class="ml5">w</b><input type="text" size="4" id="w" />
+                    	<b class="ml5">h</b><input type="text" size="4" id="h" />
+                    	<input type="hidden" id="imgUrl" >
+   				</td>
+				</tr>
+			</table>
+		</section>
+		<section class="regist">
+				<img src="/${res}/images/renzimg_02.jpg" alt="" width="402" height="212">			
+		</section>
+		
+	<div class="clearfix" ></div>
+          <div class="section-title" style="display: none;">上传行驶证</div>
+          <div class="upload-container" style="visibility: hidden;" ><!-- 此处不能用display: none;否则会无法初始化editor -->
+        	<div class="big-upload">
+        	<img alt="" id="ori_image" src="/${res}/images/big-upload-img-cover.gif" width="299" height="204" />
+        	</div>
+            <div class="small-upload" id="preview_box" style="overflow: hidden;">
+            <img id="crop_preview"  src="/${res}/images/small-upload-img-cover.gif"/>
+            </div>
+            <div class="upload-text">上传《中华人民共和国机动车行驶证》页（如右图）, <br />格式：jpg或gif，图片大小：小于2M<br />确保“车辆识别代号”项清晰可识别</div>
+            <div class="upload-btn"><a class="btn_addPic" href="javascript:void(0);" ><img src="/${res}/images/browse-btn.jpg" /><input id="upload-file" class="filePrew" title="支持jpg、jpeg、gif、png格式，文件小于5M" tabindex="3" type="button"  name="pic" size="3" ></a></div>
+         </div>
+        <div class="upload-submit"  style="display: none; "><img src="/${res}/images/submit-btn.gif" id="submit_app"  /></div>
+	</article>
+</article>
+</div>
+<div class="pop" id="cert">
+	<div class="close"><img src="/${res}/images/pop-close.gif" /></div>
+    <div class="text">
+    	<span id="popup_title" style="font-size:18px"></span>
+    	<font id="popup_content" style="font-size:18px"></font>
+    </div>
+    <div class="btn">
+        <input type="submit"  class="pb1" id="popup_ok" style="display: none;" value=""  />
+        <input type="submit" class="pb1" id="popup_go_upload" style="display: none;" value="立刻上传行驶证" />
+        <input type="submit" class="pb1" id="popup_go_refresh" style="display: none;" value="重新认证" />
+        <input type="submit" class="pb1" id="popup_save_temp_info"  style="display: none;" value="稍后上传行驶证" />
+    </div>
+</div>
+<div id="gray_box"></div>
+<input type="hidden" id="tempInfo_id" value="[#if tempInfo??]${tempInfo.id}[/#if]">
+[#if tempInfo??]
+<input type="hidden" id="tempInfo_vname" value="${tempInfo.vname}">
+<input type="hidden" id="tempInfo_vvin" value="${tempInfo.vvin}">
+<input type="hidden" id="tempInfo_vmobile" value="${tempInfo.vmobile}">
+[/#if]
+
+[#include "../include/页脚信息栏.html"/]
+
+</body>
+</html>

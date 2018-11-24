@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-lazy-init="true">
+	
+	<bean id="dynamicAct" class="com.jeecms.cms.action.front.DynamicPageAct"/>
+	<bean id="tagAct" class="com.jeecms.cms.action.front.TagAct"/>
+	<bean id="topicAct" class="com.jeecms.cms.action.front.TopicAct"/>
+	<bean id="searchAct" class="com.jeecms.cms.action.front.SearchAct"/>
+	<bean id="voteAct" class="com.jeecms.cms.action.front.VoteAct"/>
+	<bean id="friendlinkAct" class="com.jeecms.cms.action.front.FriendlinkAct"/>
+	
+	<bean id="contentCountAct" class="com.jeecms.cms.action.front.ContentCountAct"/>
+	<bean id="attachmentAct" class="com.jeecms.cms.action.front.AttachmentAct"/>
+	<bean id="commentAct" class="com.jeecms.cms.action.front.CommentAct"/>
+	<bean id="guestbookAct" class="com.jeecms.cms.action.front.GuestbookAct"/>
+	<bean id="rssAct" class="com.jeecms.cms.action.front.RssAct"/>
+	<bean id="csiCustomAct" class="com.jeecms.cms.action.front.CsiCustomAct"/>
+	<bean id="advertisingAct" class="com.jeecms.cms.action.front.AdvertisingAct"/>
+	
+	<bean id="casLoginAct" class="com.jeecms.cms.action.member.CasLoginAct"/>  
+	<!--<bean id="casLoginAct" class="com.jeecms.bbs.action.front.CasLoginAct"/>-->
+	<bean id="loginAct" class="com.jeecms.cms.action.member.LoginAct"/>
+	<bean id="memberAct" class="com.jeecms.cms.action.member.MemberAct"/>
+	<bean id="contributeAct" class="com.jeecms.cms.action.member.ContributeAct"/>
+	<bean id="fckAct" class="com.jeecms.cms.action.member.FckAct"/>
+	<bean id="registerAct" class="com.jeecms.cms.action.member.RegisterAct"/>
+	<bean id="forgotPasswordAct" class="com.jeecms.cms.action.member.ForgotPasswordAct"/>
+	<bean id="imageCutAct" class="com.jeecms.cms.action.member.ImageCutAct"/>
+	<bean id="imageUploadAct" class="com.jeecms.cms.action.member.ImageUploadAct"/>
+	<bean id="commentMemberAct" class="com.jeecms.cms.action.member.CommentMemberAct"/>
+	<bean id="guestbookMemberAct" class="com.jeecms.cms.action.member.GuestbookMemberAct"/>
+	<bean id="collectionMemberAct" class="com.jeecms.cms.action.member.CollectionMemberAct"/>
+	<bean id="messageAct" class="com.jeecms.cms.action.member.MessageAct"/>
+	<bean id="authenticationCarOwnerAct" class="com.jeecms.cms.action.member.AuthenticationCarOwnerAct" />
+	<bean id="repairOrderAct" class="com.jeecms.cms.action.member.RepairOrderAct" />
+	
+
+	<bean id="siteFlowAct" class="com.jeecms.cms.action.front.CmsSiteFlowAct"/>
+	<bean id="resumeAct" class="com.jeecms.cms.action.member.ResumeAct"/>
+	<bean id="docAct" class="com.jeecms.cms.action.member.DocAct"/>
+	<bean id="visualAct" class="com.jeecms.cms.action.front.VisualAct"/>
+	
+	<bean id="dynamicBbsPageAct" class="com.jeecms.bbs.action.front.DynamicBbsPageAct"/>
+	
+    <bean id="bbsPostAct" class="com.jeecms.bbs.action.front.BbsPostAct"/>
+	<bean id="bbsTopicAct" class="com.jeecms.bbs.action.front.BbsTopicAct"/>
+	<bean id="bbsregisterAct" class="com.jeecms.bbs.action.front.RegisterAct"/>
+	<bean id="userPostAct" class="com.jeecms.bbs.action.member.UserPostAct"/>
+	<bean id="bbsKeepSession" class="com.jeecms.bbs.action.front.BbsKeepSession"/>
+	<bean id="bbsMagicAct" class="com.jeecms.bbs.action.front.BbsMagicAct"/>
+	<bean id="friendAct" class="com.jeecms.bbs.action.member.FriendAct"></bean>
+	<bean id="reportFrontAct" class="com.jeecms.bbs.action.member.BbsReportFrontAct"></bean>
+	<bean id="bbsTopicSearchAct" class="com.jeecms.bbs.action.front.BbsTopicSearchAct"/>
+	<bean id="bbsMessage" class="com.jeecms.bbs.action.member.MessageAct"/>
+	
+	<bean id="memberCarAct" class="com.jeecms.bbs.action.member.MemberCarAct"/>
+	<bean id="memberFavoriteAct" class="com.jeecms.bbs.action.member.MemberFavoriteAct"/>
+	<bean id="carImageCutAct" class="com.jeecms.bbs.action.member.CarImageCutAct"/>	
+	<bean id="carImageUploadAct" class="com.jeecms.bbs.action.member.CarImageUploadAct"/>
+	<bean id="welcomeAct" class="com.jeecms.bbs.action.WelcomeAct"/>
+	<bean id="editorController" class="com.jeecms.common.kindeditor.EditorController"/>
+	<bean id="carOwnerAuthenApplicationAct" class="com.jeecms.cms.action.member.CarOwnerAuthenApplicationAct"/>
+	<bean id="carOwnerAuthenInfoAct" class="com.jeecms.cms.action.member.CarOwnerAuthenInfoAct"/>
+	<bean id="memberStoryAct" class="com.jeecms.cms.action.campaign.sfdj.MemberStoryAct"/>
+	<bean id="memberStoryPraiseAct" class="com.jeecms.cms.action.campaign.sfdj.MemberStoryPraiseAct"/>
+	<bean id="luckyDrawAct" class="com.jeecms.cms.action.campaign.luckydraw.LuckyDrawAct"/>
+	<bean id="luckyDrawAwardAct" class="com.jeecms.cms.action.campaign.luckydraw.LuckyDrawAwardAct"/>
+	<bean id="luckyDrawRuleAct" class="com.jeecms.cms.action.campaign.luckydraw.LuckyDrawRuleAct"/>
+	<bean id="answerContestAct" class="com.jeecms.cms.action.campaign.answercontest.AnswerContestAct"/>
+	<bean id="dealerAct" class="com.jeecms.cms.action.dealer.DealerAct"/>
+	<!-- 积分规则 -->
+	<bean id="pointRuleAct" class="com.jeecms.point.action.point.PointRuleAct"/>
+	<!-- 积分管理 -->
+	<bean id="pointIncomeAct"  class="com.jeecms.point.action.point.PointIncomeAct"/>
+	<!-- 积分订单管理 -->
+	<bean id="pointOrderAct" class="com.jeecms.point.action.order.PointOrderAct"/>
+	<!-- 精品附件管理 -->
+	<bean id="competitiveProductAct" class="com.jeecms.point.action.competitive.CompetitiveProductAct"/>
+	<!-- 积分商品管理 -->
+	<bean id="pointProductAct" class="com.jeecms.point.action.product.PointProductAct"/>
+	<!-- 抽奖操作-->
+	<bean class="com.jeecms.point.action.lottery.LotteryAct"/>
+	<!-- 积分规则管理 -->
+	<bean id="PointIntegralAct" class="com.jeecms.point.action.point.PointIntegralAct"/>
+	<!-- 积分兑换管理 -->
+	<bean id="PointWardAct" class="com.jeecms.point.action.ward.PointWardAct"/>
+	<!-- 刮刮奖 -->
+	<bean id="guaGuaCardAct" class="com.jeecms.point.action.guaguacard.GuaGuaCardAct"/>
+	
+	
+	<bean id="bbsTopicDraftAct" class="com.jeecms.bbs.action.front.BbsTopicDraftAct"/>
+	<bean id="bbsForumModeratorApplicationAct" class="com.jeecms.bbs.action.front.BbsForumModeratorApplicationAct"/>
+	<bean id="bbsForumModeratorAct" class="com.jeecms.bbs.action.front.BbsForumModeratorAct"/>
+    <bean id="imageController" class="com.jeecms.common.image.ImageController"/>
+	<bean id="surveyAct" class="com.jeecms.cms.action.survey.SurveyAct"/>
+    <bean id="fileDownloadAct" class="com.jeecms.cms.action.media.FileDownloadAct"/>
+ 	<bean id="potentialCustomerInfoAct" class="com.jeecms.cms.action.infocollection.PotentialCustomerInfoAct"/>
+ 	<bean id="authenAndRegisterAct" class="com.jeecms.cms.action.member.AuthenAndRegisterAct"/>
+ 	<!-- 微信 -->
+ 	<!-- 微信产品 -->
+	<bean id="weiXinPointProductAction" class="com.jeecms.wxpoint.action.WeiXinPointProductAction"/>
+	<!--微信抽奖-->
+	<bean id="weiXinLotteryAct" class="com.jeecms.wxpoint.action.WeiXinLotteryAct"/>
+	<!-- 微信积分 -->
+	<bean id="weiXinPointAction" class="com.jeecms.wxpoint.action.WeiXinPointAction"/>
+	<!-- 问卷调查 -->
+	<bean id="weiXinSurveyAction" class="com.jeecms.wxpoint.action.WeiXinSurveyAction"/>
+	
+	<bean id="carRecallAct" class="com.jeecms.cms.action.recall.CarRecallAct"/>
+	<bean id="ownerManualAct" class="com.jeecms.cms.action.manual.OwnerManualAct"/>
+	<bean id="maintenanceAct" class="com.jeecms.cms.action.maintenance.MaintenanceAct"/>
+	
+</beans>

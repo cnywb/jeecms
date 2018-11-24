@@ -1,0 +1,172 @@
+body, form, div, span, ul, ol, li, p, pre, dl, dt, dd, h1, h2, h3, h4, h5, h6, em, a, fieldset, legend, address, label, textarea, select, input, figure, table, th, td, b, i {
+    margin: 0;
+    padding: 0
+}
+
+body, button, input, select, textarea {
+    font-family: "microsoft yahei";
+}
+
+fieldset, img {
+    border: 0
+}
+
+ul, li {
+    list-style: none
+}
+
+em, i {
+    font-style: normal
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+a:focus, input, button, select, textarea {
+    outline: none;
+    font-size: 100%
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-variant: normal
+}
+
+input, select, img {
+    vertical-align: middle
+}
+
+legend {
+    display: none
+}
+
+textarea {
+    resize: none
+}
+
+button {
+    cursor: pointer
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #d5c1b4;
+}
+
+.header {
+	background: url(Header.jpg);
+	width: 640px;
+	height: 394px;
+}
+.formBg {
+	background: url(formBg.jpg);
+	width: 640px;
+	height: 614px;
+	position: relative;
+}
+
+.formRow {
+	width: 500px;
+	position: absolute;
+	left: 50%;
+	margin-left: -250px;
+}
+.formName {
+	top: 40px;
+}
+.formMobile {
+	top: 120px;
+}
+.formSelect {
+	top:200px;
+}
+.dealerSelect {
+	top: 280px;
+	text-align: right;
+}
+.labelTxt {
+	color: #6f4321;
+	font-size: 32px;
+	text-align: right;
+	padding: 5px;
+	width: 130px;
+	font-weight: 600;
+	display: inline-block;
+}
+.formInput {
+    background:#fff; border: none;
+    padding:15px;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    font-size: 32px;
+    width: 300px;
+    
+}
+.formInputHolder {
+	width:330px;
+	position: absolute;
+	top: 0px;
+	right: 5px;
+	color: #7d7d7d;
+}
+.nameInput {
+	width: 200px;
+}
+
+.dropdown {
+	width: 150px;
+	display: inline-block;
+    height: 65px;
+    padding: 5px 6px;
+    font-size: 32px;
+    line-height: 40px;
+    color: #555555;
+    vertical-align: middle;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.dealer {width: 330px;}
+
+select option {
+	font-size: 22px;
+}
+.submitBtn {
+	top: 380px;
+	text-align: center;
+}
+.Htips {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background: rgba(0,0,0,0.9);
+	color: #FFF;
+	font-size: 32px;
+	line-height: 4em;
+	z-index: 9999;
+}
+div#orientLayer {
+    position: absolute;
+    width: 100%;
+    display: block;
+    z-index: 900;
+    background: url('change.jpg') no-repeat;
+    background-size: cover;
+    height: 100%;
+}

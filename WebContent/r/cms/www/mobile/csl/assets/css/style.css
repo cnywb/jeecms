@@ -1,0 +1,534 @@
+html,body{width:100%; height:100%;}
+body{font-family:"mircrosoft yahei","微软雅黑","ST-Heiti",Tahoma, Verdana, Arial, Geneva, sans-serif; background:#060e13;}
+img{border:none;}
+ul,li,dd,dl{margin:0; padding:0; list-style: none;}
+.dn{display:none;}
+.db{display:block;}
+.ab{position:absolute;}
+.ab00{position:absolute;left: 0;top:0;}
+.ab01{position:absolute;left: 0;bottom:0;}
+.ab10{position:absolute;right: 0;top:0;}
+.ab11{position:absolute;right: 0;bottom:0;}
+.tc {text-align: center;}
+
+
+@font-face {
+    font-family: 'OCRAStd';
+    src: url('../fonts/OCRAStd.eot');
+    src: url('../fonts/OCRAStd.eot') format('embedded-opentype'),
+         url('../fonts/OCRAStd.woff2') format('woff2'),
+         url('../fonts/OCRAStd.woff') format('woff'),
+         url('../fonts/OCRAStd.ttf') format('truetype'),
+         url('../fonts/OCRAStd.svg#OCRAStd') format('svg');
+}
+.loading {
+  width: 100%;
+  height: 100%;
+  color: #FFFFFF;
+  font-size: 1.8rem;
+}
+.loaderNum {
+  width: 200px;
+  left: 220px;
+  top:450px;
+
+}
+#myvideo {
+	width:640px;
+	height: 1030px;
+}
+.layer {
+	background-color:rgba(0,0,0,0.8) ;
+	width: 100%;
+	height: 100%;
+}
+.selectBg {
+	top: 90px;
+	left: 35px;
+}
+.selectTeamWrap {
+	width: 490px;
+	height: 490px;
+	left: 88px;
+	top: 290px;
+	overflow: hidden;
+}
+.swiper-container-horizontal>.swiper-pagination {
+    bottom: 35px;
+    left: 0;
+    width: 100%;
+}
+.selectTeam {
+	opacity: 0;
+	z-index: 99;
+}
+.selectTeamWrap ul {
+	list-style: none;
+}
+.selectTeamWrap ul li {
+	float: left;
+	height: 200px;
+    margin-right: 2px;
+    margin-left: 2px;
+	margin-bottom: 10px;
+	display: block;
+}
+.selectTeamWrap ul li  img {
+	pointer-events: none;
+}
+.selectConfirm {
+	margin-left: -118px;
+	left: 50%;
+	top: 780px;
+}
+.clubIco {
+	/*z-index: 66;*/
+}
+.gameTips {
+	background: none;
+	z-index: 99;
+	width: 100%;
+	height: 40%;
+}
+.selectedBg {
+	/*z-index: 55;*/
+}
+.icoPosi1 {
+	left: 84px;
+    top: 265px;
+}
+.icoPosi2 {
+	left: 237px;
+    top: 264px;
+}
+.icoPosi3 {
+	left: 389px;
+    top: 264px;
+}
+.icoPosi4 {
+	left: 84px;
+    top: 472px;
+}
+.icoPosi5 {
+	left: 237px;
+    top: 472px;
+}
+.icoPosi6 {
+    left: 389px;
+    top: 472px;
+}
+.tip1 {
+	left: 290px;
+	top: 90px;
+	animation: tip1 10s linear infinite 0s;
+	-webkit-animation: tip1 10s linear infinite 0s;
+	opacity: 0;
+}
+.tip2 {
+	left: 300px;
+	top: 320px;
+	animation: tip2 10s linear infinite 0s;
+	-webkit-animation: tip2 10s linear infinite 0s;
+	opacity: 0;
+}
+.tip3 {
+	left: 364px;
+	top: 470px;
+	animation: tip3 10s linear infinite 0s;
+	-webkit-animation: tip3 10s linear infinite 0s;
+	opacity: 0;
+}
+@keyframes tip1{
+	0%{opacity: 0;}
+	6%{opacity: 1;}
+	27%{opacity: 1;}
+	33%{opacity: 0;}
+	100%{opacity: 0;}
+}
+@-webkit-keyframes tip1{
+	0%{opacity: 0;}
+	6%{opacity: 1;}
+	27%{opacity: 1;}
+	33%{opacity: 0;}
+	100%{opacity: 0;}
+}
+@keyframes tip2{
+	0%{opacity: 0;}
+	33%{opacity: 0;}
+	39%{opacity: 1;}
+	60%{opacity: 1;}
+	66%{opacity: 0;}
+	100%{opacity: 0;}
+}
+@-webkit-keyframes tip2{
+	0%{opacity: 0;}
+	33%{opacity: 0;}
+	39%{opacity: 1;}
+	60%{opacity: 1;}
+	66%{opacity: 0;}
+	100%{opacity: 0;}
+}
+@keyframes tip3{
+	0%{opacity: 0;}
+	66%{opacity: 0;}
+	73%{opacity: 1;}
+	94%{opacity: 1;}
+	100%{opacity: 0;}
+}
+@-webkit-keyframes tip3{
+	0%{opacity: 0;}
+	66%{opacity: 0;}
+	73%{opacity: 1;}
+	94%{opacity: 1;}
+	100%{opacity: 0;}
+}
+.video-responsive {
+    position: relative;
+    width: 100%;
+    height: 1040px;
+}
+
+.video-wrapper {
+    position: relative;
+    height: 1030px;
+    width: 640px;
+    overflow: hidden;
+}
+
+.canvas, .video {
+    height: 1030px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #000;
+    cursor: pointer;
+    z-index: 5;
+    }
+
+#masker {
+	z-index: 99;
+}
+
+.tipBg {
+	    left: 6px;
+    top: 183px;
+}
+
+
+.Gameover {
+	z-index: 100;
+}
+
+.gameOverCopy {
+	width: 600px;
+	left: 20px;
+	top:260px;
+	text-align: center;
+	font-size: 1.3rem;
+	color: #FFFFFF;
+}
+
+.successCopy {
+	width: 600px;
+	left: 20px;
+	top:260px;
+	text-align: center;
+	font-size: 1.3rem;
+	color: #FFFFFF;
+}
+
+.submitOkCopy {
+    width: 600px;
+    left: 20px;
+    top: 440px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+}
+.gameoverBg {
+	left: 35px;
+	top: 85px;
+}
+.ruleBg {
+	left: 35px;
+	top: 85px;
+}
+.overCircle {
+	left: 30px;
+	top: 246px;
+	animation: carCircle 4s linear infinite;
+	-webkit-animation: carCircle 4s linear infinite;
+}
+.circleCar {
+    left: 112px;
+    top: 350px;
+    animation: carCircle 3s linear infinite;
+    -webkit-animation: carCircle 3s linear infinite;
+}
+.circleCarBg {
+    left: -8px;
+    top: 214px;
+}
+.circleCardot {
+    left: 58px;
+    top: 229px;
+    animation: carDot 3s linear infinite;
+    -webkit-animation: carDot 3s linear infinite;
+    opacity: 0.3;
+}
+
+@-webkit-keyframes carDot{
+	0%{opacity: 0.3;}
+	30%{opacity: 0.3;}
+	40%{opacity: 1;}
+	50%{opacity: 1;}
+	60%{opacity: 0.3;}
+	100%{opacity: 0.3;}
+}
+
+@keyframes carDot{
+	0%{opacity: 0.3;}
+	30%{opacity: 0.3;}
+	40%{opacity: 1;}
+	50%{opacity: 1;}
+	60%{opacity: 0.3;}
+	100%{opacity: 0.3;}
+}
+
+
+@-webkit-keyframes carCircle{
+	from{transform: rotate(0);}
+	to{transform: rotate(-360deg);}
+}
+
+@keyframes carCircle{
+	from{transform: rotate(0);}
+	to{transform: rotate(-360deg);}
+}
+
+.btn_again, .btn_setForm {
+    left: 204px;
+    top: 748px;
+}
+
+.btn_submit {
+    left: 204px;
+    top: 782px;
+}
+.btn_playAgain {
+	left: 204px;
+	top: 820px;
+}
+.btn_preOrder,.btn_share {
+	left: 194px;
+	top: 785px;
+}
+.overTips {
+	width: 600px;
+	left: 20px;
+	top:460px;
+	text-align: center;
+	font-size: 1.6rem;
+	color: #FFFFFF;
+}
+.leftTimes {
+	width: 200px;
+	color:#FFFFFF;
+	left: 260px;
+    top: 505px;
+}
+.leftTimes span{
+	font-family: "OCRAStd";
+	font-size: 5.5rem;
+}
+
+.successA, .successB, .successAForm, .successBForm, .submitOk,.preOrderForm, .shareLay, .loader{
+	z-index: 100;
+}
+
+.award {
+    left: 104px;
+    top: 310px;
+}
+
+/*input区域*/
+.inputBlock {
+	background: transparent;
+	border: none;
+	font-size: 1.4rem;
+	border-radius: 0;
+	-webkit-box-shadow:inset 0;
+	-moz-box-shadow:inset 0;
+	box-shadow:inset 0;
+	color: #FFFFFF;
+	padding: 0px;
+	outline: none;
+	width: 290px;
+}
+
+.selectArea {
+	width: 350px;
+    border: none;
+    height: 1.8rem;
+    border-radius: 0px;
+    text-indent: .3rem;
+    -webkit-appearance: none;
+    background: transparent;
+	outline: none;
+	font-size: 1.4rem;
+	color: #FFFFFF;
+}
+
+.successAForm .inputName {
+    top: 354px;
+    left: 170px;
+}
+.successAForm .inputMobi {
+    top: 468px;
+    left: 170px;
+}
+.successAForm .inputCity {
+	top: 578px;
+    left: 170px;
+}
+.successAForm .inputDealer {
+	top: 690px;
+    left: 170px;
+}
+.successBForm .inputName {
+    top: 392px;
+    left: 170px;
+}
+.successBForm .inputMobi {
+    top: 515px;
+    left: 170px;
+}
+
+.successBForm .inputAdd {
+    top: 641px;
+    left: 170px;
+}
+.preOrderForm .inputName {
+    top: 350px;
+    left: 148px;
+    width:150px;
+}
+.preOrderForm .inputMobi {
+    top: 350px;
+    left: 374px;
+    width:150px;
+}
+
+.score {
+	width: 250px;
+	height: 250px;
+	font-family: "OCRAStd";
+	font-size: 3.8rem;
+    left: 44px;
+    top: 27px;
+    color: #FFFFFF;
+    letter-spacing: -8px;
+    font-weight: 100;
+}
+
+.score p {
+	margin-top:0;
+	margin-bottom:33px;
+}
+.buyCar {
+	left: 148px;
+	top: 450px;
+}
+.province {
+	left: 148px;
+	top: 550px;
+	width: 150px;
+}
+.city {
+	left: 374px;
+	top: 550px;
+	width: 150px;
+}
+.dealer {
+	left: 148px;
+    top: 659px;
+}
+
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #FFFFFF;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #FFFFFF;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #FFFFFF;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #FFFFFF;
+}
+
+.shareTip {
+	right:10px;
+	top: 10px;
+}
+
+.logo {
+	z-index: 99999;
+	right: 30px;
+	top: 43px;
+}
+.daojishi {
+    left: 270px;
+    top: 488px;
+}
+
+.djsCopy span{
+    font-family: "OCRAStd";
+    font-size: 5.8rem;
+    letter-spacing: -10px;
+    color: #FFFFFF;
+}
+
+.djsCopy {
+    left: 268px;
+    top: 538px;
+}
+
+.go {
+    left: 256px;
+    top: 492px;
+}
+.swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 100%;
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #FFFFFF;}
+
+.ruleBtn {
+	left:285px;
+	top:850px;
+}
+.ruleLay {
+	z-index: 9999999;
+}
+.videoCanvas {width: 640px;height:1030px}
+
+
+.Gameover .btn_preOrder {
+    left: 194px;
+    top: 817px;
+}

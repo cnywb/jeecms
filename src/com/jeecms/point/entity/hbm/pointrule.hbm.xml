@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 	"-//Hibernate/Hibernate Mapping DTD//EN" 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.jeecms.point.entity">
+ 	<class name="PointRule" table="P_POINT_RULE">
+		<id name="id" type="java.lang.Long" column="POINT_RULE_ID">
+		 	<generator class="sequence">
+		 		<param name="sequence">SEQ_P_POINT_RULE_ID</param>
+		 	</generator>
+		</id>
+		<property name="pointRuleNo"     column="POINT_RULE_NO"    type="string"           not-null="true" length="100"/>
+		<property name="pointNum"        column="POINT_NUM"        type="java.lang.Long"   not-null="false" length="19"/>		
+		<property name="pointRuleName"   column="POINT_RULE_NAME"  type="string"           not-null="true" length="128"/>
+		<property name="showOrder"       column="SHOW_ORDER"       type="integer"          not-null="true" length="50"/>
+		<property name="cycle"  		 column="POINT_CYCLE"      type="integer"          not-null="false" length="19"/>
+		<property name="cycleTime"  	 column="POINT_CYCLE_TIME" type="integer"          not-null="false" length="19"/>
+		<property name="maxPointNum"     column="POINT_CYCLE_MAX_POINT_NUM"  type="java.lang.Long"   not-null="false" length="19"/>
+		<property name="maxPointNumMemo"            column="MAX_POINTNUM_MEMO"             type="string"           not-null="false" length="128"/>
+		<property name="memo"            column="MEMO"             type="string"           not-null="false" length="128"/>
+		<property name="pointType"       column="POINT_TYPE"       type="integer"          not-null="true" length="10"/>
+		<property name="expiryDateType"  column="EXPIRY_DATE_TYPE" type="integer"          not-null="true" length="10"/>
+		<property name="channel" 		 column="CHANNEL" 		  type="integer"          not-null="true" length="10"/>
+		<property name="createdId"       column="CREATED_ID"       type="java.lang.Long"  length="19"/>
+		<property name="createdDate"     column="CREATED_DATE"     type="java.util.Date"/>
+		<property name="updatedId"       column="UPDATED_ID"       type="java.lang.Long"  length="19"/>
+		<property name="updatedDate"     column="UPDATED_DATE"     type="java.util.Date"/>
+ 	</class>
+</hibernate-mapping>

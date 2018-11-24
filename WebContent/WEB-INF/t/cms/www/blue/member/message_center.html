@@ -1,0 +1,326 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script>
+
+$(document).ready(function(){
+	var base=location.protocol+"//"+window.location.hostname+":"+window.location.port;
+	base=base.replace("bbs", "www");
+	var guestbooklink=$("#a_guestbook").attr("href");
+	guestbooklink=base+"/"+guestbooklink;
+	$("#a_guestbook").attr("href",guestbooklink)
+});
+	//tab切换
+	function changeDV1(id){
+		var dvnum=7;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('page'+i).className="";
+		document.getElementById('pagelist'+i).style.display="none";
+		}
+		document.getElementById('page'+id).className="out";
+		document.getElementById('pagelist'+id).style.display="block";
+	}
+	
+</script>
+
+<style type="text/css">
+
+.line_01{
+	width:330px;
+	float:left;
+	margin:35px 0 0
+}
+
+.line_01 h3{
+	font-size:16px
+}
+
+.line_01 h3 em{
+	font-size:12px;
+	color:#999;
+	margin:0 0 0 15px
+}
+
+.line_02{
+	width:330px;
+	float:right;
+	margin:35px 0 0
+}
+
+.msgbox{
+	margin:15px 0 0
+}
+
+.msgbox ul li{
+	width:98px;
+	height:98px;
+	float:left;
+	margin:12px 12px 0 0;
+	font-weight:800;
+	position:relative;
+	text-align:center;
+	-moz-border-radius:15px 15px 15px 15px;
+	-webkit-border-radius:15px 15px 15px 15px;
+	border-radius:15px 15px 15px 15px
+}
+
+.msgbox ul li sub{
+	display:block;
+	width:0;
+	height:0;
+	overflow:hidden;
+	border:9px solid #fff;
+	border-color:#b3e2c2 #fff #fff #b3e2c2;
+	position:absolute;
+	bottom:0;
+	right:0;
+	-moz-border-radius:9px 0 0 0;
+	-webkit-border-radius:9px 0 0 0;
+	border-radius:9px 0 0 0
+}
+
+.msgbox ul li small{
+	width:11px;
+	height:11px;
+	background:url(http://img3.bitautoimg.com/uimg/qichetong/images2014/user_Remind.gif) no-repeat 0 0;
+	overflow:hidden;
+	position:absolute;
+	top:10px;
+	right:10px
+}
+
+.msgbox ul li em{
+	font-size:30px;
+	display:block;
+	line-height:40px;
+	margin:15px 0 0
+}
+
+.msgbox ul li strong{
+	font-size:16px;
+	display:block
+}
+
+.msgbox ul li a:link,.msgbox ul li a:visited{
+	color:#fff;
+	text-decoration:none
+}
+
+.msgbox ul li a strong{
+	color:#fff
+}
+
+.msgbox ul li.lt{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_g.png");
+}
+
+.msgbox ul li.lt sub{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_g.png");
+}
+
+.msgbox ul li.wd{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_g.png");
+}
+
+.msgbox ul li.wd sub{
+	border-color:#b0e1e6 #fff #fff #b0e1e6
+}
+
+.msgbox ul li.kb{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_g.png");
+}
+
+.msgbox ul li.kb sub{
+	border-color:#b1cdf3 #fff #fff #b1cdf3
+}
+
+.msgbox ul li.esc{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_g.png");
+}
+
+.msgbox ul li.esc sub{
+	border-color:#ffe1ab #fff #fff #ffe1ab
+}
+
+.msgbox ul li.ych{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_g.png");
+}
+
+.msgbox ul li.ych sub{
+	border-color:#fecdac #fff #fff #fecdac
+}
+
+.msgbox ul li.qct{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_g.png");
+}
+
+.msgbox ul li.qct sub{
+	border-color:#f6b4b9 #fff #fff #f6b4b9
+}
+
+.msgbox ul li.xw{
+	background:#db79b9
+}
+
+.msgbox ul li.xw sub{
+	border-color:#edbcdc #fff #fff #edbcdc
+}
+
+.msgbox ul li.yhxx{
+	background-image: url("/r/cms/www/blue/bbs_forum/images/message_center_icon_y.png");
+}
+
+.msgbox ul li.yhxx sub{
+	border-color:#efdcbf #fff #fff #efdcbf
+}
+
+.msgbox ul li.sp{
+	background:#7c73cb
+}
+
+.msgbox ul li.sp sub{
+	border-color:#beb9e5 #fff #fff #beb9e5
+}
+
+.msgbox ul li.spsq{
+	background:#53a5e4
+}
+
+.msgbox ul li.spsq sub{
+	border-color:#a9d2f2 #fff #fff #a9d2f2
+}
+
+.msgbox ul li.cyh{
+	background:#ed715c
+}
+
+.msgbox ul li.cyh sub{
+	border-color:#f6b8ae #fff #fff #f6b8ae
+}
+</style>
+
+</head>
+<body>
+[#include "../include/head.html"/]
+    <!--header--> 
+[#include "../include/页头.html"/]	
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>个人主页</h1>
+	[#include "会员中心页_导航.html"/]
+	<article class="selfpage de_event self"  style="height: 400px" >
+		<section id="pagelist5" class="tabpage none" style="display: block;">
+	   <div class="line_box">
+        <div class="line_01">
+            <h3>
+                系统消息<em><!-- 0条新消息 --></em></h3>
+            <div class="msgbox">
+                <ul>
+                    
+                            <li class="lt">
+                                <a href="replyToMe.jhtml">
+                                    <em>${replyToMeCount}</em>
+                                    <strong>论坛</strong>
+                                </a>
+                              
+                            </li>
+                        
+                            <li class="wd">
+                                <a href="member/myguestbook.jspx?pageNo=1" id="a_guestbook">
+                                    <em>${guestbookCount}</em>
+                                    <strong>问答</strong>
+                                </a>
+                              
+                            </li>
+                        
+                            <li class="kb">
+                                <a href="myremind.jhtml">
+                                    <em>${sysMessageCount}</em>
+                                    <strong>提醒</strong>
+                                </a>
+                                
+                            </li>
+                        
+                            <li class="esc">
+                                <a href="/topic/myTopicDraft.jspx">
+                                    <em>${topicDraftCount}</em>
+                                    <strong>草稿箱</strong>
+                                </a>
+                              
+                            </li>
+                        
+                            <li class="ych">
+                                <a href="friendApply.jhtml">
+                                    <em>${friendshipCount}</em>
+                                    <strong>好友请求</strong>
+                                </a>
+                            
+                            </li>
+                        
+                            <!-- <li class="qct">
+                                <a href="system0.html">
+                                    <em>1</em>
+                                    <strong>系统</strong>
+                                </a>
+                               
+                            </li> -->
+                        
+                        
+                </ul>
+            </div>
+        </div>
+        <div class="line_01 line_02">
+            <h3>
+                用户消息<em><!-- 0条新消息 --></em></h3>
+            <div class="msgbox">
+                <ul>
+                    <li class="yhxx"><a href="myMsg.jhtml"><em>
+                        ${userMessageCount}</em><strong style="padding-left: 12px">用户消息</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+   
+    
+			
+	
+	<br><br><br><br>
+		</section>
+	</article>
+</article>
+</div>
+<!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+
+
+</body>
+</html>

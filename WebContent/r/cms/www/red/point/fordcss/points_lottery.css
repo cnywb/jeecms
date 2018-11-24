@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+.l_box {
+	margin: 10px 0 0 40px;
+}
+.r_lottery {
+	padding: 60px 0 0 0px;
+	width: 920px;
+	height: 570px;
+	background: url(../images/points/l_001.png) no-repeat 0 0;
+}
+.g_lottery {
+	position: relative;
+}
+.g_lottery_wheel {
+	width: 514px;
+	height: 514px;
+	position: absolute;
+	top: 1px;
+	left: 190px;
+	z-index: 3;
+}
+.g_lottery_wheel_trigger {
+	cursor: pointer;
+	width: 146px;
+	height: 146px;
+	position: absolute;
+	top: 184px;
+	left: 376px;
+	z-index: 7;
+}
+.g_lottery_wheel_arrow {
+	width: 64px;
+	height: 64px;
+	position: absolute;
+	top: 132px;
+	left: 416px;
+	z-index: 5;
+}
+.g_lottery_tag{
+	width: 830px;
+	height: 76px;
+	background: url(../images/points/l_004.png) no-repeat 0 0;
+	position: absolute;
+	top: 216px;
+	left: 38px;
+	z-index: 1
+}
+.lottery_tag_left{
+	float: left;
+	width: 140px;
+	color: #fff;
+	font-size: 14px;
+	text-align: right;
+	padding-top: 18px;
+}
+.lottery_tag_right{
+	float: right;
+	width: 118px;
+	color: #fff;
+	font-size: 14px;
+	padding-top: 18px;
+	padding-right: 30px;
+}
+.r_winners{
+	width: 920px;
+	height: 232px;
+	background: url(../images/points/l_002.png) no-repeat 0 0;
+	margin-top: 24px;
+}
+.r_winners h3{
+	text-align: center;
+	color: #ffa71e;
+	font-size: 16px;
+    font-weight: 600;
+	padding-top: 50px;
+}
+.winners_list{
+	padding: 10px 14px 0;
+	overflow: hidden;
+	float: left;
+}
+.winners_list li{
+	float: left;
+	width: 89px;
+	padding-bottom: 20px;
+	text-align: center;
+	font-size: 14px;
+}
+.r_prize{
+	width: 920px;
+	height: 672px;
+	background: url(../images/points/l_003.png) no-repeat 0 0;
+	margin-top: 24px;
+	padding-bottom: 30px;
+}
+.prize_list{
+	padding:100px 0 0 14px;
+	overflow: hidden;
+}
+.prize_list li{
+	float: left;
+	width: 256px;
+	margin-left: 30px;
+	margin-bottom: 10px;
+	position: relative;
+}
+.prize_list img{
+	width: 100%;
+	height: 140px;
+}
+.prize_list li p{
+	text-align: center;
+	font-weight: 400
+}
+.prize_list li p.p_title{
+	padding-top: 5px;
+}
+.prize_list li p.p_point{
+	color: #ffa71e
+}
+.r_des {
+    padding-top: 60px;
+}
+.r_des p {
+    font-size: 14px;
+    line-height: 23px;
+    text-align: center;
+}
+.r_complay {
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 15px;
+}
+

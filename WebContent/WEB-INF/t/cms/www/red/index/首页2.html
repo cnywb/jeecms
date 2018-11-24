@@ -1,0 +1,37 @@
+<link href='/${res}/css/visual.css' type='text/css' rel='stylesheet' /><div class="column100" id="block_1_1">
+			<div class="dragbox" id="box_1_1">
+				
+				<div class="dragbox-content">[@cms_topic_list count='1'  descLen='35' append='...']
+	   [#list tag_list as t]
+		<dl class="list[#if t_index=0] line[#else] mt5[/#if] box">
+			<dt><a href="${base}/topic/${t.id}.jspx" target="_blank">${t.name}</a></dt>
+			<dd class="pic"><a href="${base}/topic/${t.id}.jspx"><img src="${t.titleImg!site.defImg}"></a></dd>
+			<dd class="text">[@text_cut s=t.description len=descLen append=append/]</dd>
+		</dl>
+		[/#list]
+[/@cms_topic_list]</div>
+			</div>
+</div><div class="column33" id="block_12_1">
+			<div class="dragbox" id="box_12_1">
+				
+				<div class="dragbox-content">[@cms_content_list channelId='11' count='1' typeId='4' descLen='60' append='...' channelOption='1']
+		[#list tag_list as a]		
+		<li class="toptext[#if a_index gt 0] line[/#if]">
+		  <a href="${a.url}" title="${a.title}" target="_blank"><h3>${a.stit}</h3></a>
+		  <p style="white-space:normal;">[@text_cut s=a.desc len=descLen append=append/]</p>
+		</li>
+		
+		[/#list]
+[/@cms_content_list]</div>
+			</div>
+</div>
+<div class="column66" id="block_12_2">
+			<div class="dragbox" id="box_12_2">
+				
+				<div class="dragbox-content">[@cms_content_list typeId='2' count='4' titLen='10' channelOption='1' channelId='42']
+	[#list tag_list as a]
+        <li><a href="${a.url}" title="${a.title}" target="_blank"><img src="${a.typeImg!site.defImg}" alt="${a.title}"></a><span><a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.stit len=titLen append=append/]</a></span></li>
+	[/#list]
+[/@cms_content_list]	</div>
+			</div>
+</div>

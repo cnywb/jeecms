@@ -1,0 +1,101 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id){
+		var dvnum=7;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('page'+i).className="";
+		document.getElementById('pagelist'+i).style.display="none";
+		}
+		document.getElementById('page'+id).className="out";
+		document.getElementById('pagelist'+id).style.display="block";
+	}
+	
+</script>
+
+</head>
+<body>
+[#include "../include/head.html"/]
+    <!--header--> 
+[#include "../include/页头.html"/]	
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>个人主页</h1>
+	[#include "会员中心页_导航.html"/]
+	<article class="selfpage de_event self">
+		<section id="pagelist5" class="tabpage none" style="display: block;">
+		<ul class="inftab">
+		        <li class="bodl"><a href="myMsg.jhtml"   id="xiaox1">好友留言</a></li>
+				<li class="bodl"><a href="myLeaveMessage.jhtml"   id="xiaox1">我的留言</a></li>
+				<li><a href="sendMsg.jhtml"  class="out" id="xiaox2">发送留言</a></li>
+			</ul>
+			<div class="xxbox block" id="xixlist2">
+			<form action="sendMsg.jhtml" method="post">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td>
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td width="80" class="vtop">用户名：</td>
+									<td><input name="u" value="${username!}"/></td>
+								</tr>
+								<tr>
+									<td width="80" class="vtop">内容：</td>
+									<td><textarea name="content" rows="6" cols="70"></textarea></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+									<input type="hidden" [#if type??]value="${type!}"[#else]value='1'[/#if] name="msgType"/>
+     								<input type="submit" value="发送"/>
+     								</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td height="43"></td>
+					</tr>
+				</table>
+				</form>
+			</div>
+		</section>
+	</article>
+</article>
+</div>
+<!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+
+
+</body>
+</html>

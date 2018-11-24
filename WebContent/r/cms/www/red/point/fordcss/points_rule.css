@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.r_activity{
+	margin: 10px 0 0 40px;
+	padding: 66px 0 0 10px;
+	width: 910px;
+	height: 162px;
+	background: url(../images/points/r_002.png) no-repeat 0 0;
+}
+.r_activity_prizes{
+	margin: 27px 0 0 40px;
+	padding: 66px 0 0 10px;
+	width: 910px;
+	height: 270px;
+	background: url(../images/points/r_003.png) no-repeat 0 0;
+}
+.r_activity_rule{
+	margin: 27px 0 0 40px;
+	padding: 66px 0 160px 0;
+	width: 920px;
+	height: 166px;
+	background: url(../images/points/r_005.png) no-repeat 0 0;
+}
+.r_activity_box{
+	padding-left: 28px;
+	float: left;
+	width: 250px;
+}
+.r_activity_box_m{
+	width: 286px;
+}
+.r_activity_box_caption{
+	font-size: 18px;
+	font-weight: 400;
+	color: #ffa71e
+}
+.r_activity_box_des{
+	line-height: 24.5px;
+	font-size: 14px;
+}
+.r_activity_list{
+	clear: both;
+	padding:23px 0 0 30px;
+}
+.r_activity_list p{
+	float: left;
+	padding:10px 30px 0 0;
+	font-size: 14px;
+}
+.r_activity_list span{
+	float: left;
+	margin-top: 4px;
+	overflow: hidden;
+}
+.r_activity_first{
+	float: left;
+	width: 20px;
+	height: 27px;
+	background: url(../images/points/r_004.png) no-repeat 0 0;
+}
+.r_activity_second{
+	float: left;
+	width: 20px;
+	height: 27px;
+	background: url(../images/points/r_004.png) no-repeat 0 -30px;
+}
+.r_activity_third{
+	float: left;
+	width: 20px;
+	height: 27px;
+	background: url(../images/points/r_004.png) no-repeat 0 -57px;
+}
+.r_rule_box{
+	text-align: center;
+}
+.r_comply_box{
+	padding-top: 26px;
+	text-align: center;
+}
+.r_comply_box_des{
+	text-align: center;
+	color: #969594;
+	font-size: 12px;
+}
+

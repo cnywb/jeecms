@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="FordRepair" table="FORD_REPAIR">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="repairId" type="java.lang.String" column="REPAIR_ID" length="30"/>
+		<property name="vcarId" column="VCAR_ID" type="string" not-null="false" length="30"/>
+		<property name="vroId" column="VRO_ID" type="string" not-null="false" length="30"/>
+		<property name="vbillId" column="VBILL_ID" type="string" not-null="false" length="30"/>
+		<property name="vsstId" column="VSST_ID" type="string" not-null="false" length="60"/>
+		<property name="vsstName" column="VSST_NAME" type="string" not-null="false" length="200"/>
+		<property name="vvin" column="VVIN" type="string" not-null="false" length="60"/>
+		<property name="vmodel" column="VMODEL" type="string" not-null="false" length="80"/>
+		<property name="vlicenseNmb" column="VLICENSE_NMB" type="string" not-null="false" length="40"/>
+		<property name="vrepairDate" column="VREPAIR_DATE" type="string" not-null="false" length="20"/>
+		<property name="vfinishDate" column="VFINISH_DATE" type="string" not-null="false" length="20"/>
+		<property name="vbillDate" column="VBILL_DATE" type="string" not-null="false" length="20"/>
+		<property name="vbillStatus" column="VBILL_STATUS" type="string" not-null="false" length="40"/>
+		<property name="vrepairType" column="VREPAIR_TYPE" type="string" not-null="false" length="40"/>
+		<property name="nmileage" column="NMILEAGE" type="long" not-null="false" length="10"/>
+		<property name="nlaborFee" column="NLABOR_FEE" type="double" not-null="false" length="18"/>
+		<property name="nrepairMaterialFee" column="NREPAIR_MATERIAL_FEE" type="double" not-null="false" length="18"/>
+		<property name="nsaleMaterialFee" column="NSALE_MATERIAL_FEE" type="double" not-null="false" length="18"/>
+		<property name="naddItemFee" column="NADD_ITEM_FEE" type="double" not-null="false" length="18"/>
+		<property name="noverItemFee" column="NOVER_ITEM_FEE" type="double" not-null="false" length="18"/>
+		<property name="nrepairFee" column="NREPAIR_FEE" type="double" not-null="false" length="18"/>
+		<property name="nbalanceFee" column="NBALANCE_FEE" type="double" not-null="false" length="18"/>
+		<property name="vnotes" column="VNOTES" type="string" not-null="false" length="400"/>
+		<property name="vcreated" column="VCREATED" type="string" not-null="false" length="100"/>
+		<property name="dcrtDate" column="DCRT_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vupdated" column="VUPDATED" type="string" not-null="false" length="100"/>
+		<property name="dupDate" column="DUP_DATE" type="timestamp" not-null="false" length="19"/>
+	</class>
+</hibernate-mapping>
+		

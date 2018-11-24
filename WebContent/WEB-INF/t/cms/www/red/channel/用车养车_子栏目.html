@@ -1,0 +1,106 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>${channel.title!channel.name}</title>
+<link href="../css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="../js/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>${channel.name!}<span>${channel.description!}</span></h1>
+	<article class="ctan">
+		<section>
+			
+<h2 class="h201">推荐文章</h2>
+			<div class="art art01">
+				<div class="top">
+				[@cms_content_list count='1' orderBy='4' titLen='18' channelId=channel.id channelOption='1']
+                [#list tag_list as a]
+					<div class="fl">
+						[#if a.typeImg??]
+            <a href="${a.url}" target="_blank" class="pic">
+            <img src="${a.typeImg!site.typeImg}" />
+            </a>
+            [/#if]
+						</div>
+					<div class="fr deb">
+						<h3><a style="COLOR: #81ba2f" href="${a.url}" target="_blank" >[@text_cut s=a.title len=titLen /]</a><em>[${channel.title!channel.name}]</em></h3>
+						<p>[@text_cut s=a.desc len=140 append='...'/]</p>
+						
+					</div>
+				[/#list]
+                [/@cms_content_list]
+				</div>
+			</div>
+<h2>${channel.name!}</h2>
+<div class="art">
+		[@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+        [#list tag_pagination.list as a]
+				<dl>
+					<dt><a href="${a.url}" title="${a.title}">[@text_cut s=a.title len=22 /]<em> [${channel.title!}]</em></a><span>NEW</span></dt>
+					<dd>${a.releaseDate}</dd>
+				</dl>
+		[/#list]
+     
+        <div class="pagesite">[@cms_pagination sysPage='1'/]</div>
+        [/@cms_content_page]
+	
+</div>		
+		</section>
+		<aside><img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在关注</h3>
+				<ul>
+					[@cms_content_list count='4' orderBy='9' titLen='18' channelId='11,12,13,14,49,50,61,64,67'  channelOption='1']
+                [#list tag_list as a]
+					<li><a href="${a.url}">[@text_cut s=a.title len=titLen /]</a></li>
+				[/#list]
+                [/@cms_content_list]
+					<li class="last"><a href="${base}/gfbyjy/index.htm">官方保养建议</a></li>
+				</ul>
+			</div>
+			<img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				[#include "../include/投票栏.html"/]
+				
+				
+			</div>
+			
+			
+		</aside>
+	</article>
+</article>
+</div>
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>

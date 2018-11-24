@@ -1,0 +1,35 @@
+<ul class="dw">
+		[#if user??]
+		<li><a href="${base}/czrz/index.htm"><img src="${base}/r/cms/www/red/images/czrz.png" alt="" /></a></li>
+			[@car_owners userid=bbsUser.id]
+			[#if carowners.group.id==2]
+			<li><a href="${base}/member/service_history.jspx"><img src="${base}/r/cms/www/red/images/wbjl.png" alt="" /></a></li>
+			<li><a href="${base}/member/allDealElec.jspx"><img src="${base}/r/cms/www/red/images/dzzh.png" alt="" /></a></li>
+			
+			[#else]
+			<li><a href="#"><img src="${base}/r/cms/www/red/images/wbjl.png" alt=""  onclick="javascript:alert('请认证后再查看!')"/> </a></li>
+			<li><a href="#"><img src="${base}/r/cms/www/red/images/dzzh.png" alt="" onclick="javascript:alert('请认证后再查看!')"/></a></li>
+			[/#if]
+			[/@car_owners]
+		[#else]
+		<li><a href="#"><img src="${base}/r/cms/www/red/images/czrz.png" alt="" onclick="javascript:alert('请登陆后再认证!')"/></a></li>
+		<li><a href="#"><img src="${base}/r/cms/www/red/images/wbjl.png" alt=""  onclick="javascript:alert('请登陆认证后再查看!')"/> </a></li>
+		<li><a href="#"><img src="${base}/r/cms/www/red/images/dzzh.png" alt="" onclick="javascript:alert('请登陆认证后再查看!')"/></a></li>
+		[/#if]
+		<li id="userCurrentPoint">
+			<a href="#"><img src="${base}/r/cms/www/red/point/images/jfcx.png" alt="" onclick="javascript:alert('请认证后再查看!')"/><h3 style="width:64px;font-size:18px;color:#fff;text-align:center;position:absolute;top:245px;left:3px;z-index: 5;">&nbsp;</h3></a>
+		</li>
+		<script type=""  language="">
+		$(function(){
+			  $.get("${base}/points/personal/point.jhtml", function(result){
+			 	$("#userCurrentPoint").html('');
+			    if(result){			    	
+			    	$("#userCurrentPoint").html('<a href="${mainurl}${base}/points/personal/index.jhtml"><img   src="${base}/r/cms/www/red/point/images/dqjf.png">'+
+			    	'<h3 style="width:64px;font-size:18px;color:#fff;text-align:center;position:absolute;top:245px;left:3px;z-index: 5;">'+result+'</h3></a>');
+			    }else{
+			    	 $("#userCurrentPoint").html('<a href="#"><img src="${base}/r/cms/www/red/point/images/jfcx.png" alt="" onclick="javascript:alert(\'请认证后再查看!\')"/></a>');
+			    }
+			  });
+		});
+		</script>
+</ul>

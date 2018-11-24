@@ -1,0 +1,75 @@
+<ul class="tabfj">
+ [#list pagination.list as m]
+	 <li>
+	 		<a href="javascript:void(0);"
+	 			id="${m.id!}"
+	 			data-productId="${m.id!}",
+	 			data-productname="${m.productName!}" 
+	 			data-imageurl="${m.imgUrl!}"
+	 			data-price="[#if user??&&user.group.id==2]${m.price?string.currency}元[#else]认证车主可见价格[/#if]"
+	 			data-applicablemodels="${m.applicableModels!}"
+	 			data-intro="${m.briefIntroduction!}"
+	 			>
+	 		<img src="${m.imgUrl}" width="152" height="112"><span style="width:100px; white-space:nowrap; text-overflow:ellipsis;">${m.productName}</span><br>
+			<span>
+				[#if user??&&user.group.id==2]
+					${m.price?string.currency}
+				[#else]
+					认证车主可见价格
+				[/#if]
+			</span>
+			</a>
+	</li>
+	<input type="hidden" id="t706" value="${m.applicableModels}">
+	<input type="hidden" id="d706" value="${m.briefIntroduction}">
+ [/#list]
+</ul>
+<div class="f_page">
+[#if pagination.totalCount gt 0]
+	<a href="javascript:void(0)", onclick="goTo('page/${pagination.prePage}.jspx')">上一页</a>
+	<a href="javascript:void(0)", onclick= "goTo('page/${pagination.nextPage}.jspx')">下一页</a>
+	<span>第${pagination.pageNo}页</span>
+	<span>共${pagination.totalCount}件</span>
+	<span>共${pagination.totalPage}页</span>
+[#else]
+     <div class="f_nodata">没有查找到精品附件</div>	   
+[/#if]
+[#if pagination.totalCount   lte 4 &&  pagination.totalCount gte 1]
+     <div class="f_nodata200">&nbsp;&nbsp;&nbsp;</div>
+[/#if]
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".tabfj").find("a").on("click",function(){
+	 	var $this=$(this);
+		var productId=$this.attr('id');
+		var productName=$this.data('productname');
+		var price=$this.data('price');
+		var imageURL=$this.data('imageurl');
+		var applicableModels=$this.data('applicablemodels');
+		var intro=$this.data('intro');
+		console.log("+productId+"+productId+" productName:"+productName+" price:"+" imageURL:"+imageURL+" applicableModels:"+applicableModels+" intro:"+intro);
+		var title=$(".tab .out .sp02").text();
+		$("#lmmc").text(isEmpty(title)?"精口品附件":title);
+		$("#imageUrl").attr("src",imageURL);
+	  	$("#modal_name").text(productName);
+	  	$("#modal_model").text(applicableModels);
+	  	$("#modal_price").text(price);
+	  	$("#modal_intro").text(intro);
+	  	$(".zzc").show();	
+	    updateBrowse(productId);
+	});
+});
+
+function isEmpty(o){
+		return o===null ||o=== undefined ? true : /^[\s\xa0]*$/.test(o);
+}
+function updateBrowse(productId){
+		$.ajax({
+            url :' ${base}/competitive/update.jspx?productId='+productId,      
+            async : false,
+            type : 'get',
+         	timeout:5000
+        });
+}
+</script>

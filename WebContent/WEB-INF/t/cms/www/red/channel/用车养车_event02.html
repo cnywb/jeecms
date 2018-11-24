@@ -1,0 +1,53 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>长安福特秋季健检 精彩活动-福域</title>
+
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+<script src="/${res}/js/swfobject.js"></script>
+
+<style type="text/css" media="screen">
+  html, body, #flashcontent { height:100%; }
+  body { margin:0; padding:0; overflow:hidden; }
+</style>
+<script type="text/javascript">
+
+$(document).ready(function(){
+var so = new SWFObject("/${res}/flash/movie_qjjj.swf", "flash", "100%", "100%", "9");
+so.write("flashcontent");
+
+$("#flash").focus();
+});
+
+</script>
+</head>
+<body >
+
+	<div id="flashcontent"></div>
+
+
+</body>
+</html>

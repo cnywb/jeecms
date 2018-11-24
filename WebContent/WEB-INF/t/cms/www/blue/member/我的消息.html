@@ -1,0 +1,147 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id){
+		var dvnum=7;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('page'+i).className="";
+		document.getElementById('pagelist'+i).style.display="none";
+		}
+		document.getElementById('page'+id).className="out";
+		document.getElementById('pagelist'+id).style.display="block";
+	}
+	
+	$(document).ready(function(){
+		var typeId=$("#typeId").val();
+		if(typeId=="2"){
+			$("#xiaox1").removeClass("out");
+			$("#xiaox2").addClass("out");
+		}
+		$("span").each(function(){
+			if($(this).text()=="好友留言"){
+				$(this).parent().addClass("out");
+			}
+		});
+	});
+</script>
+<script>
+    	function ajax_delete(id){
+			$.post("ajax_delete_msg.jhtml",{"mid":id},function(data){
+				if(data.success){
+					$("#m"+id).remove();
+				}else{
+					alert("操作失败");
+				}
+			},"json");
+        }
+    	function checkOutMessage(divId,megId){
+    		$("#"+divId).toggle();
+    		$.post("updateMessageToIsRead.jhtml",{"id":megId},function(data){},"json");
+    	}
+    </script>
+    
+ <style type="text/css">
+.box2{background-color:#EEEEEE;width:700px;height:auto;margin:5px 15px;position:relative;border:1px solid #CCCCCC;border-radius: 5px;}
+.box2 .jt{position:absolute;color:#CCCCCC;left:50px;top:-12px;font-size:22px;font-family:arial,verdana,sans-serif;}
+.box2 .jt2{position:absolute;color:#EEEEEE;top:1px;left:0;}
+</style>
+</head>
+<body>
+[#include "../include/head.html"/]
+    <!--header--> 
+[#include "../include/页头.html"/]
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]	
+<article class="main ycyc">
+	<h1>个人主页</h1>
+	[#include "会员中心页_导航.html"/]
+	<article class="selfpage de_event self">
+		<section id="pagelist5" class="tabpage none" style="display: block;">
+			<ul class="inftab">
+				<li class="bodl"><a href="myMsg.jhtml"  class="out" id="xiaox1">好友留言</a></li>
+				<li class="bodl"><a href="myLeaveMessage.jhtml"  id="xiaox2">我的留言</a></li>
+				<li><a href="sendMsg.jhtml"  id="xiaox3">发送留言</a></li>
+			</ul>
+			<div class="xxbox block" id="xixlist1">
+				<table cellpadding="0" cellspacing="0" width="100%" class="listtable">
+				 [@mymsg_page userId=bbsUser.id count=10 typeId=typeId]
+     				[#list tag_pagination.list as msg]
+					<tr>
+						<td class="aleft"><img src="/${res}/bbs_forum/images/page_img02.gif" alt=""></td>
+					</tr>
+					<tr>
+						<td class="bg01">
+							<table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td width="" class="pleft">
+										<span id="m${msg.id}">
+							     	[#if msg.sys]
+							     		<span style="color:blue">系统消息</span>:${(msg.content)!}　<span style="padding:0 40px 0 40px"></span>${msg.createTime?string("yyyy-MM-dd HH:mm")}　<span style="padding:0 60px 0 60px"></span><a href="reply.jhtml?mid=${msg.id}" class="gon">查看</a><span style="padding:0 60px 0 60px"></span>
+							     	[#else]
+								     	<span style="color:blue">[#if msg.sender.id==bbsUser.id]您[#else]${msg.sender.username!}[/#if]</span>
+								     	对
+								     	<span style="color:blue">[#if msg.receiver.id==bbsUser.id]您[#else]${msg.receiver.username!}[/#if]</span>
+								     	说:
+								     	 [@text_cut s=msg.content append='...' len=10/] 　<span style="padding:0 40px 0 40px"></span>${msg.createTime?string("yyyy-MM-dd HH:mm")}　<span style="padding:0 60px 0 60px"></span><a href="reply.jhtml?mid=${msg.id}" class="gon">[#if msg.sender.id==bbsUser.id]继续发送[#else]回复[/#if]</a><a href="javascript:void(0);" onclick="checkOutMessage('sp_meg_${msg.id}','${msg.id}');">查看</a><span style="padding:0 60px 0 60px"></span>
+							     	[/#if]
+							     	　　<a href="javascript:ajax_delete('${msg.id}')" class="delete">删除</a><br/>
+							     		</span>
+							     		   	<div style="display: none;" class="box2" id="sp_meg_${msg.id}"><span class="jt">◆<span class="jt2">◆</span></span>${(msg.content)!}</div>
+							     	</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td height="2"></td>
+					</tr>
+					[/#list]
+     				[/@mymsg_page]
+				</table>
+				<ul class="page">
+					<li class="num"> [@mymsg_page userId=bbsUser.id count=10 typeId=typeId]
+				     [#include "../tag/topic.html"/]
+				    [/@mymsg_page]
+				    </li>
+				</ul>
+				</div>
+		</section>
+	</article>
+</article>
+</div>
+<!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+
+<input type="hidden" value="${(typeId)!}" id="typeId">
+
+</body>
+</html>

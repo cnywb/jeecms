@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.infocollection">
+
+	<class name="PotentialCustomerInfo" table="POTENTIAL_CUSTOMER_INFO">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_POTENTIAL_CUSTOMER_INFO_ID</param></generator>
+		</id>
+		<property name="carOwnerName" column="CAR_OWNER_NAME" type="string" not-null="true"/>
+		<property name="carOwnerMobilePhoneNo" column="CAR_OWNER_MOBILE_PHONE_NO" type="string" />
+		<property name="carModel" column="CAR_MODEL" type="string" />
+		<property name="customerName" column="CUSTOMER_NAME" type="string" />
+		<property name="customerMobilePhoneNo" column="CUSTOMER_MOBILE_PHONE_NO" type="string" />
+		<property name="customerProvince" column="CUSTOMER_PROVINCE" type="string" />
+		<property name="customerCity" column="CUSTOMER_CITY" type="string" />
+		<property name="channel" column="CHANNEL" type="string" not-null="true"/>
+		<property name="intentionalCarModel" column="INTENTIONAL_CAR_MODEL" type="string" />								
+        <property name="customerGender" column="CUSTOMER_GENDER" type="string" />		
+        <property name="activityName" column="ACTIVITY_NAME" type="string" />
+        <property name="intentionalDealer" column="INTENTIONAL_DEALER" type="string" />	
+        <property name="intentionalBuyDateRange" column="INTENTIONAL_BUY_DATE_RANGE" type="string" />
+        <property name="carOwnerProvince" column="CAR_OWNER_PROVINCE" type="string" />
+        <property name="carOwnerCity" column="CAR_OWNER_CITY" type="string" />
+        <property name="carOwnerDealer" column="CAR_OWNER_DEALER" type="string" />
+        <property name="carOwnerBuyTime" column="CAR_OWNER_BUY_TIME" type="string" />
+        <property name="fileUrl" column="FILE_URL" type="string" />
+        <property name="vin" column="VIN" type="string" />
+        <property name="wechatId" column="WECHAT_ID" type="string" />				
+        <property name="budget" column="BUDGET" type="string" />				
+		<property
+			name="intentionalBuyDate"
+			column="INTENTIONAL_BUY_DATE"
+			type="timestamp"
+			not-null="false"
+			/>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+	
+	
+</hibernate-mapping>
+		

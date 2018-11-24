@@ -1,0 +1,149 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>用车养车-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+	<ul class="dw">
+		<li><a href="#"><img src="/${res}/images/czrz.png" alt="" /></a></li>
+		<li><a href="#"><img src="/${res}/images/zxkf.png" alt="" /></a></li>
+	</ul>
+<article class="main ycyc">
+	<h1>用车养车</h1>
+	<div class="ban"><img src="/${res}/images/y_banner.png" alt=""><a href="/${res}/download/yongchezhinan.zip"></a></div>
+	<article class="ctan">
+		<section>
+			<h2>行车宝典</h2>
+			<div class="art">
+				<div class="top">
+				[@cms_content_list count='1' orderBy='6' titLen='18' channelId='12' channelOption='1']
+                [#list tag_list as a]
+					<div class="fl">
+						[#if a.typeImg??]
+            <a href="${a.url}" class="pic">
+            <img src="${a.typeImg!site.typeImg}" />
+            </a>
+            [/#if]
+						</div>
+					<div class="fr deb">
+						<h3>[@text_cut s=a.title len=titLen /]<em>[行车宝典]</em></h3>
+						<p>[@text_cut s=a.desc len=140 append='...'/]</p>
+						
+					</div>
+				[/#list]
+                [/@cms_content_list]
+				</div>
+				[@cms_content_list count='6' orderBy='6' titLen='18' channelId='12'  channelOption='1']
+                [#list tag_list as a]
+				<dl>
+					<dt><a href="${a.url}" title="${a.title}">
+                [@text_cut s=a.title len=titLen /]
+                </a></dt>
+				</dl>
+				 [/#list]
+                [/@cms_content_list]
+				<a href="${base}/world/index.htm" class="more"><img src="/${res}/images/more.gif" alt=""></a>
+				
+				</div>
+ <!-- 精彩专题_end-->
+			<h2>爱车养护</h2>
+					<div class="art">
+				<div class="top">
+				[@cms_content_list count='1' orderBy='4' titLen='18' channelId='14'  channelOption='1']
+                [#list tag_list as a]
+					<div class="fl"> <a href="${a.url}"><img src="${a.typeImg!site.typeImg}" alt=""></a></div>
+					<div class="fr deb">
+						<h3>[@text_cut s=a.title len=titLen /]<em>[爱车养护]</em></h3>
+						<p>[@text_cut s=a.desc len=140 append='...'/]</p>
+						
+					</div>
+				[/#list]
+                [/@cms_content_list]
+				</div>
+				[@cms_content_list count='8' orderBy='4' titLen='18' channelId='14'  channelOption='1']
+                [#list tag_list as a]
+				<dl>
+					<dt><a href="${a.url}" title="${a.title}">
+                [@text_cut s=a.title len=titLen /]
+                </a></dt>
+				</dl>
+				 [/#list]
+                [/@cms_content_list]
+				<a href="${base}/review/index.htm" class="more"><img src="/${res}/images/more.gif" alt=""></a>
+				
+				</div>
+		</section>
+		<aside><img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在关注</h3>
+				<ul>
+					[@cms_content_list count='4' orderBy='9' titLen='18' channelId='11,12,13,14,49,50,61,64,67'  channelOption='1']
+                [#list tag_list as a]
+					<li><a href="${a.url}">[@text_cut s=a.title len=titLen /]</a></li>
+				[/#list]
+                [/@cms_content_list]
+					<li class="last"><a href="${base}/gfbyjy/index.htm">官方保养建议</a></li>
+				</ul>
+			</div>
+			<img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在讨论</h3>
+				<h4>冬天启动车辆后？</h4>
+				<p>一直以来，冬天启动车辆后是否<br>
+					可以立即上路行驶困扰众多爱车<br>
+					的车主。</p>
+				<p>一直以来，冬天启动车辆后是否<br>
+					可以立即上路行驶困</p>
+				<ul class="zff">
+					<li><a href="#"><img src="/${res}/images/zhf.jpg" alt=""></a></li>
+					<li class="fr"><a href="#"><img src="/${res}/images/ff.jpg" alt=""></a></li>
+				</ul>
+				<a href="#" class="more"><img src="/${res}/images/more.gif" alt=""></a> </div>
+			
+		</aside>
+	</article>
+</article>
+<footer>
+	<nav>
+		<ul>
+			<li><a href="#" class="tit">用车养车</a><a href="#">行车宝典</a><a href="#">爱车养护</a><a href="#">用车指南下载</a></li>
+			<li><a href="#" class="tit">售后服务</a><a href="#">官方保养建议</a><a href="#">保养计算器</a><a href="#">真假配件</a> <a href="#">精品附件</a> <a href="#">QC流程</a> <a href="#">售后产品</a></li>
+			<li><a href="#" class="tit">互动问答</a><a href="#">常见Q&amp;A</a><a href="#">福域百科</a><a href="#">在线调研</a><a href="#">话题PK</a></li>
+			<li><a href="#" class="tit">福域论坛</a><a href="#">热门话题</a><a href="#">长安福特活动专版</a><a href="#">车型板块</a> <a href="#">兴趣板块</a> <a href="#">事务板块</a></li>
+			<li><a href="#" class="tit">精彩活动</a><a href="#">最新活动</a><a href="#">往期回顾</a></li>
+			<li><a href="#" class="tit">车型鉴赏</a></li>
+			<li class="last"><a href="#" class="tit">经销商专区</a><a href="#">经销商查询</a><a href="#">升级服务请您监督</a><a href="#">经销商活动</a></li>
+		</ul>
+		<p><a href="#">隐私权保护声明</a> | <a href="#">版权保护</a> | <a href="#">网站地图</a> | <a href="#">联系我们</a> | <a href="#">24小时客服热线</a> ©2013福特汽车（中国）有限公司 沪ICP备05031283号</p>
+	</nav>
+</footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<h2><span>${user.username}</span>[#if user.group.id==2]<img src="/${res}/images/self_rz.jpg" alt="" class="fl">[#else]<img src="/${res}/images/self_wrz.jpg" alt="" class="fl">[/#if]</h2>
+<div class="detail">
+	<ul class="fl">
+		<li class="fl">[#if user.userImg??]
+         	   	[#if user.userImg!=""]
+              		<img src="${user.userImg!}" />
+              [#else]
+              		<img src="/${res}/img/member/member-phtot.gif"/>
+              	 [/#if]
+             [#else]
+             <img src="/${res}/img/member/member-phtot.gif"/>
+             [/#if]</li>
+		<li class="fr"><a href="${base}/czrz/index.htm">[#if user.group.id==1]车主认证[#else]添加车辆[/#if]</a><br><a href='javascript:;' onclick="$('.overlay').show();" >车主个人信息完善</a><br><a href="${base}/member/pwd.jspx">修改密码</a></li>
+	</ul>
+	<div class="fr">
+		<p class="tright"></p>
+		<p>好友留言：[@mymsg_page userId=bbsUser.id count=10 typeId=1 ]<a href="${bbsurl}${base}/member/myMsg.jhtml">${msgCount}</a> [/@mymsg_page]条      系统提醒：[@mymsg_page userId=bbsUser.id count=10 typeId=4 ]<a href="${bbsurl}${base}/member/myremind.jhtml">${msgCount}</a> [/@mymsg_page]条    好友请求：[@friend_apply_page userId=bbsUser.id count=5]<a href="${bbsurl}${base}/member/friendApply.jhtml">${tag_pagination.totalCount}</a>[/@friend_apply_page]条</p>
+		<ul>
+			<li><a href="${bbsurl}${base}/member/index.jhtml"><img src="/${res}/images/btn_lt.gif" alt=""></a></li>
+			<li><a href="${bbsurl}${base}/member/sendMsg.jhtml"><img src="/${res}/images/btn_fs.gif" alt=""></a></li>
+			<li><a href="${bbsurl}${base}/member/myfriend.jhtml"><img src="/${res}/images/btn_haoy.gif" alt=""></a></li>
+		</ul>
+	</div>
+</div>
+

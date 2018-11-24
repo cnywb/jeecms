@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.campaign.sfdj">
+	<class name="MemberStory" table="MEMBER_STORY">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_MEMBER_STORY_ID</param></generator>
+		</id>
+		<property name="imageUrl" column="IMAGE_URL" type="string" not-null="true" />
+		<property name="content" column="CONTENT" type="string" not-null="true"/>
+		<property name="status" column="STATUS" type="integer" not-null="true" />
+		<property name="praiseCount" column="PRAISE_COUNT" type="integer" not-null="false" />
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		
+		<property
+			name="processTime"
+			column="PROCESS_TIME"
+			type="timestamp"
+			not-null="false"
+			/>
+		<many-to-one
+			name="creater"
+			column="creater_id"
+			class="com.jeecms.cms.entity.main.CmsUser"
+			not-null="true"
+			>
+		</many-to-one>
+				
+	</class>
+</hibernate-mapping>
+		

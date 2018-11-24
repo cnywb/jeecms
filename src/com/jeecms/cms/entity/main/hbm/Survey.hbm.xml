@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.survey">
+
+	<class name="Survey" table="SURVERY">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_SURVERY_ID</param></generator>
+		</id>
+		<property name="participantType" column="PARTICIPANT_TYPE" type="integer" not-null="true"/>
+		<property name="name" column="NAME" type="string" not-null="true"/>
+		<property name="code" column="CODE" type="string" not-null="true"/>
+		<property name="memo" column="MEMO" type="string" />
+		<property name="status" column="STATUS" type="integer" not-null="true" />
+        <property
+			name="startTime"
+			column="START_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		 <property
+			name="endTime"
+			column="END_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+	<class name="SurveyQuestionGroup" table="SURVERY_QUESTION_GROUP">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_SURVERY_QUESTION_GROUP_ID</param></generator>
+		</id>
+        <property name="name" column="NAME" type="string" not-null="true"/>
+		<property name="code" column="CODE" type="string" not-null="true" unique="true"/>
+		
+		<many-to-one
+			name="survey"
+			column="SURVERY_ID"
+			class="Survey"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+	
+	
+		<class name="SurveyQuestion" table="SURVERY_QUESTION">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_SURVERY_QUESTION_ID</param></generator>
+		</id>
+        <property name="name" column="NAME" type="string" not-null="true"/>
+		<property name="code" column="CODE" type="string" not-null="true" unique="true"/>
+		<property name="sequence" column="SEQ" type="integer" not-null="true"/>
+		<property name="type" column="TYPE" type="integer" not-null="true"/>
+		<many-to-one
+			name="group"
+			column="SURVERY_QUESTION_GROUP_ID"
+			class="SurveyQuestionGroup"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>
+	
+		
+		
+		<class name="SurveyAnswer" table="SURVERY_ANSWER">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_SURVERY_ANSWER_ID</param></generator>
+		</id>
+        <property name="name" column="NAME" type="string" not-null="true"/>
+		<property name="code" column="CODE" type="string" not-null="true" unique="true"/>
+		<property name="sequence" column="SEQ" type="integer" not-null="true"/>
+		<property name="needMemo" column="NEED_MEMO" type="java.lang.Boolean" not-null="true"/>
+		<many-to-one
+			name="question"
+			column="SURVERY_QUESTION_ID"
+			class="SurveyQuestion"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>	
+		
+	
+	<class name="SurveyAnswerSheet" table="SURVERY_ANSWER_SHEET">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_SURVERY_ANSWER_SHEET_ID</param></generator>
+		</id>
+        <property name="answerMemo" column="ANSWER_MEMO" type="string" />
+	    <property name="sheetNo" column="SHEET_NO" type="string" />
+		<many-to-one
+			name="answer"
+			column="SURVERY_ANSWER_ID"
+			class="SurveyAnswer"
+			not-null="true"
+			>
+		</many-to-one>
+		<many-to-one
+			name="user"
+			column="user_id"
+			class="com.jeecms.cms.entity.main.CmsUser"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>	
+		
+	
+	<class name="SurveyLog" table="SURVERY_LOG">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ID"
+			>
+			<generator class="sequence"><param name="sequence">SEQ_SURVERY_LOG_ID</param></generator>
+		</id>
+   		<many-to-one
+			name="survey"
+			column="SURVERY_ID"
+			class="Survey"
+			not-null="true"
+			>
+		</many-to-one>
+		<many-to-one
+			name="user"
+			column="user_id"
+			class="com.jeecms.cms.entity.main.CmsUser"
+			not-null="true"
+			>
+		</many-to-one>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+		<property
+			name="updateTime"
+			column="UPDATE_TIME"
+			type="timestamp"
+			not-null="true"
+			/>
+	</class>	
+	
+	
+</hibernate-mapping>
+		

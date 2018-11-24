@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+     <!--移动端版本兼容 -->
+    <script type="text/javascript">
+              
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 1136;
+        var ua = navigator.userAgent;
+        if(window.screen.width== 640) {
+          //  document.write('<link href="css/style.css" rel="stylesheet" />');
+        }
+        if(/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if(version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        	} else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <!--移动端版本兼容 end -->
+  <title>福特锐界 | 挑战不可能 挑战精神永不落幕</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  	<!-- 强制使用webkit内核 -->
+  <meta name="renderer" content="webkit">
+  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Ford EDGE"/>
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="assets/css/jquery.fullPage.css">
+  <link rel="stylesheet" href="assets/css/animate.css"/>
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<div id="fullpage">
+    <div class="section edge-mission1">
+    	<div class="edge-mainFrame">
+    		<div class="edge-Logos"><img src="assets/i/logo.png" class="am-img-responsive"></div>
+    		<div class="edge-subLogos"><img src="assets/i/logo2.png" class="am-img-responsive"></div>
+    		<div class="edge-sologan"><img src="assets/i/sologanMain.png" class="am-img-responsive"></div>
+    		<div class="edge-arrow edge-aniArrow"><img src="assets/i/arrow.png" class="am-img-responsive"></div>
+    		<div class="edge-footTxt">挑战我的不可能</div>
+    		<div class="edge-mission1Title"><img src="assets/i/thirdtxt2.png" class="am-img-responsive">	
+    		</div>
+    		<div class="edge-takePic"></div>
+    		<div class="edge-missionNotice">留下信息，预约试驾即可赢取车模<br>
+				完成四个任务，更有神秘大礼
+	    	</div>
+    	<div class="edge-shareBtn"><img src="assets/i/btn_share.png" class="am-img-responsive"></div>
+    	<div class="edge-yyBtn"><img src="assets/i/btn_yy.png" class="am-img-responsive"></div>
+    	
+    </div>
+    </div>
+</div>
+<div class='popup' style='display:none'>	
+	<div class="setinfo edge-formFrame">
+	<a href='javascript:;' class='close'><img src='assets/i/closeBtn.png' class="am-img-responsive"/></a>
+		<form>
+		<p class="am-text-center" style="margin-top:80px"><img src="assets/i/feedbackTitle.png" width="70%"></p>
+		<p class="am-text-center"><img src="assets/i/applyPic.png"></p>
+		<p class="am-text-center"><img src="assets/i/applyTxt.png"></p>
+		<p class='sbtitle' style='margin-top: 25px;'><span>手机号：</span><span class="edge-Input"><input type='text' maxlength='11' class='mobile'/></span></p>
+		<p class='sbtitle'><span>姓名：</span><span class="edge-Input"><input type='text' class='name'/></span></p>
+		<p class="am-text-center"><a href='javascript:;' class='commit'><img src="assets/i/submitBtn.png" style="width: 30%;"></a></p>
+	</form>
+	</div>
+</div>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/jquery.easings.min.js"></script>
+<script src="assets/js/jquery.slimscroll.min.js"></script>
+<script src="assets/js/jquery.fullPage.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="assets/js/wechat.js"></script>
+<script src="assets/js/setInfo.js"></script>
+<script src="assets/js/uploadPhoto.js"></script>
+<script>
+	
+	(function($){
+		$('#fullpage').fullpage();
+		})(jQuery);
+</script>
+</body>
+</html>

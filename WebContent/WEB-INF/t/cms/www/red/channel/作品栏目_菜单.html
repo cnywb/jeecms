@@ -1,0 +1,118 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>${channel.title!channel.name}</title>
+<link href="../css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="../js/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>${channel.title!channel.name}<span>${channel.description!}</span></h1>
+	<article class="ctan">
+		<section>
+			
+<h2 class="h201">最新问题</h2>
+			<div class="art art01">
+				<div class="top">
+				[@cms_guestbook_page siteId=site.id count='5' checked='1']
+                [#list tag_pagination.list as m]
+					<div class="fl">
+						[#if m.member?? && m.member.userImg??]
+                        [#if m.member.userImg!=""]
+                        <img src="${guestbook.member.userImg!}"  height="50" width="50"/>
+                        [#else]
+                        <img src="/${res}/img/member/member-phtot.gif" height="50" width="50"/>
+                        [/#if]
+                        [#else]
+                        <img src="/${res}/img/member/member-phtot.gif" height="50" width="50"/>
+                        [/#if]
+						
+						</div><a href="Q&A/图库栏目_子栏目.html">${channel.title!channel.name} - ${site.name} - Powered by JEECMS</a>
+					<div class="fr deb">
+						<h3>[@text_cut s=m.title len=titLen /]<em>[${channel.title!channel.name}]</em></h3>
+						<p>[@text_cut s=m.contentHtml len=140 append='...'/]</p>
+						
+					</div>
+				[/#list]		   
+                <div class="pagesite">[@cms_pagination sysPage='1'/]</div>
+                [/@cms_guestbook_page]
+				</div>
+			</div>
+<h2>常见问题</h2>
+<div class="art">
+		[@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+        [#list tag_pagination.list as a]
+				<dl>
+					<dt><a href="${a.url}" title="${a.title}">[@text_cut s=a.title len=22 /]<em> [养车专家]</em></a><span>NEW</span></dt>
+					<dd>2013-08-10</dd>
+				</dl>
+		[/#list]
+     
+        <div class="pagesite">[@cms_pagination sysPage='1'/]</div>
+        [/@cms_content_page]
+	
+</div>		
+		</section>
+		<aside><img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在关注</h3>
+				<ul>
+					<li><a href="#">行车安全</a></li>
+					<li><a href="#">车辆常识</a></li>
+					<li><a href="#">小窍门</a></li>
+					<li><a href="#">养车知识</a></li>
+					<li class="last"><a href="#">官方保养建议</a></li>
+				</ul>
+			</div>
+			<img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在讨论</h3>
+				<h4>冬天启动车辆后？</h4>
+				<p>一直以来，冬天启动车辆后是否<br>
+					可以立即上路行驶困扰众多爱车<br>
+					的车主。</p>
+				<p>一直以来，冬天启动车辆后是否<br>
+					可以立即上路行驶困</p>
+				<ul class="zff">
+					<li><a href="#"><img src="/${res}/images/zhf.jpg" alt=""></a></li>
+					<li class="fr"><a href="#"><img src="/${res}/images/ff.jpg" alt=""></a></li>
+				</ul>
+				<a href="#" class="more"><img src="/${res}/images/more.gif" alt=""></a> </div>
+			
+		</aside>
+	</article>
+</article>
+</div>
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>

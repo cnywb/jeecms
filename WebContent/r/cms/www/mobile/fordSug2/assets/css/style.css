@@ -1,0 +1,610 @@
+html,body{width:100%; height:100%;background-color: #000000;color: #FFFFFF;}
+body{font-family:"mircrosoft yahei","微软雅黑","ST-Heiti",Tahoma, Verdana, Arial, Geneva, sans-serif; background:#96d7ed;}
+img{border:none;}
+ul,li,dd,dl{margin:0; padding:0; list-style: none;}
+.dn{display:none;}
+.db{display:block;}
+.ab{position:absolute;}
+.ab00{position:absolute;left: 0;top:0;}
+.ab01{position:absolute;left: 0;bottom:0;}
+.ab10{position:absolute;right: 0;top:0;}
+.ab11{position:absolute;right: 0;bottom:0;}
+.tc {text-align: center;}
+
+.mainPage {
+    max-width: 640px;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+    -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+}
+.loading {
+	background-color: #ffbb23;
+	width: 100%;
+	height: 100%;
+}
+.loadingTxt {
+	color: #FFFFFF;
+	width: 50%;
+	left: 50%;
+	margin-left: -25%;
+	top: 55%;
+	font-size: 2.5rem;
+}
+.loadingCavas {
+	width: 100px;
+	height:100px;
+	left: 50%;
+	margin-left: -50px;
+	top: 40%;
+}
+.oneBalloon {
+	left: -25px;
+	top: 326px;
+	animation: upDown 4s infinite linear;
+	-webkit-animation: upDown 4s infinite linear;
+}
+.oneCloud1 {
+	top: 460px;
+	left: 50px;
+	animation: leftRight 10s infinite linear 1s;
+	-webkit-animation: leftRight 10s infinite linear 1s;
+}
+.oneCloud2 {
+	top: 647px;
+	right: 50px;
+	animation: leftRight2 14s infinite linear 0s;
+	-webkit-animation: leftRight2 14s infinite linear 0s;
+}
+.oneCloud3 {
+	top: 428px;
+	right: -30px;
+	animation: leftRight 6s infinite linear 3s;
+	-webkit-animation: leftRight 6s infinite linear 3s;
+}
+.oneBigheart {
+	right: 10px;;
+	top: 387px;
+	animation: upDown2 2s infinite linear;
+	-webkit-animation: upDown2 2s infinite linear;
+}
+.oneMotianlun {
+	right: 83px;;
+	top: 466px;;
+	animation: zhuan 7s infinite linear;
+	-webkit-animation: zhuan 7s infinite linear;
+}
+.oneHeart {
+	right: 188px;;
+	top: 611px;
+}
+.oneBoat {
+	top: 928px;
+	left:30px;
+	animation: oneboatMov 15s infinite linear;
+	-webkit-animation: oneboatMov 15s infinite linear;
+}
+.oneBuilding {
+	top: 824px;
+	left:0px;
+}
+.oneRule {
+	top: 447px;
+	left: 257px;
+}
+.oneArrow {
+	right: 10px;
+	top: 757px;
+	//animation: arrow 1500ms infinite ease-in-out;
+	//-webkit-animation: arrow 1500ms infinite ease-in-out;
+}
+
+
+
+.twoBalloon {
+	top: 492px;
+	right: 32px;
+	animation: upDown 4s infinite linear;
+	-webkit-animation: upDown 4s infinite linear;
+}
+.twoCloud1 {
+	left: 218px;
+	top: 90px;
+	animation: leftRight 10s infinite linear 1s;
+	-webkit-animation: leftRight 10s infinite linear 1s;
+}
+.twoCloud2 {
+	left: 320px;
+	top: 134px;
+	animation: leftRight2 14s infinite linear 0s;
+	-webkit-animation: leftRight2 14s infinite linear 0s;
+}
+.twoCloud3 {
+	right: 10px;
+	top: 180px;
+	animation: leftRight 6s infinite linear 3s;
+	-webkit-animation: leftRight 6s infinite linear 3s;
+}
+.twoMotianlun {
+	top: 560px;
+	left: 6px;
+	animation: zhuan 7s infinite linear;
+	-webkit-animation: zhuan 7s infinite linear;
+}
+.twoArrow {
+	right: 2px;
+    top: 625px;
+    right: 2px;
+    top: 616px;
+    transform: rotate(-15deg);
+	//animation: arrow 1500ms infinite ease-in-out;
+	//-webkit-animation: arrow 1500ms infinite ease-in-out;
+}
+
+.threeCloud1 {
+	left: 5px;
+	top: 246px;
+	animation: leftRight 10s infinite linear 0s;
+	-webkit-animation: leftRight 10s infinite linear 0s;
+}
+.threeCloud2 {
+	right: 156px;
+	top: 269px;
+	animation: leftRight2 14s infinite linear 0s;
+	-webkit-animation: leftRight2 14s infinite linear 0s;
+}
+.threeCloud3 {
+	right: 27px;
+	top: 156px;
+	animation: leftRight 16s infinite linear 0s;
+	-webkit-animation: leftRight 16s infinite linear 0s;
+}
+.threesktA {
+	left: 190px;
+	top: 225px;
+	animation: leftRight 6s infinite linear 0s;
+	-webkit-animation: leftRight 6s infinite linear 0s;
+}
+.threesktB {
+	left: 250px;
+	top: 627px;
+	animation: leftRight2 5s infinite linear 0s;
+	-webkit-animation: leftRight2 5s infinite linear 0s;
+}
+.threeBoat  {
+	left: 88px;
+	top: 885px;
+	animation: oneboatMov 15s infinite linear;
+	-webkit-animation: oneboatMov 15s infinite linear;
+}
+.threeArrow {
+	right: 4px;
+    top: 666px;
+right: 4px;
+    top: 666px;
+    transform: rotate(-15deg);
+	//animation: arrow 1500ms infinite ease-in-out;
+	//-webkit-animation: arrow 1500ms infinite ease-in-out;
+}
+
+.fourCloud1 {
+	left: 152px;
+	top: 92px;
+	animation: leftRight 10s infinite linear 0s;
+	-webkit-animation: leftRight 10s infinite linear 0s;
+}
+.fourCloud2 {
+	left: 308px;
+	top: 138px;
+	animation: leftRight2 14s infinite linear 0s;
+	-webkit-animation: leftRight2 14s infinite linear 0s;
+}
+.fourCloud3 {
+	right: 42px;
+	top: 602px;
+	animation: leftRight 16s infinite linear 0s;
+	-webkit-animation: leftRight 16s infinite linear 0s;
+}
+.fourBoatA {
+	left: 207px;;
+	top: 210px;
+	animation: fourboatMov 15s infinite linear;
+	-webkit-animation: fourboatMov 15s infinite linear;
+}
+.fourBalloon {
+	top:60px;
+	right: 204px;
+	animation: upDown 4s infinite linear;
+	-webkit-animation: upDown 4s infinite linear;
+}
+.fourBoatB {
+	right: 27px;;
+	top: 170px;
+	animation: upDown2 2s infinite linear;
+	-webkit-animation: upDown2 2s infinite linear;
+}
+.fourBoatE {
+	left: 144px;;
+	top: 728px;
+	animation: leftRight3 14s infinite linear 0s;
+	-webkit-animation: leftRight3 14s infinite linear 0s;
+}
+.fourBoatD {
+	right: 36px;;
+	top: 518px;
+	animation: upDown2 8s infinite linear 0s;
+	-webkit-animation: upDown2 8s infinite linear 0s;
+}
+.fourBoatC {
+	left: 35px;;
+	top: 500px;
+	animation: leftRight3 6s infinite linear 0s;
+	-webkit-animation: leftRight3 6s infinite linear 0s;
+}
+.fourArrow {
+	    right: -19px;
+    top: 378px;
+    transform: rotate(-36deg);
+	//animation: arrow 1500ms infinite ease-in-out;
+	//-webkit-animation: arrow 1500ms infinite ease-in-out;
+}
+
+.overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,.7);
+	z-index: 999;
+}
+
+.ruleDetail {
+	left: 50%;
+	margin-left: -241px;
+	top: 130px;
+}
+
+@-webkit-keyframes upDown {
+	0%{-webkit-transform: translateY(-10px);}
+	50%{-webkit-transform: translateY(10px);}
+	100%{-webkit-transform: translateY(-10px);}
+}
+
+@keyframes upDown {
+	0%{transform: translateY(-10px);}
+	50%{transform: translateY(10px);}
+	100%{transform: translateY(-10px);}
+}
+
+@-webkit-keyframes upDown2 {
+	0%{-webkit-transform: translateY(-5px);}
+	50%{-webkit-transform: translateY(5px);}
+	100%{-webkit-transform: translateY(-5px);}
+}
+
+@keyframes upDown2 {
+	0%{transform: translateY(-5px);}
+	50%{transform: translateY(5px);}
+	100%{transform: translateY(-5px);}
+}
+
+@-webkit-keyframes leftRight {
+	0%{-webkit-transform: translateX(-0px);}
+	50%{-webkit-transform: translateX(50px);}
+	100%{-webkit-transform: translateX(-0px);}
+}
+
+@keyframes leftRight {
+	0%{transform: translateX(-0px);}
+	50%{transform: translateX(50px);}
+	100%{transform: translateX(-0px);}
+}
+
+@-webkit-keyframes leftRight2 {
+	0%{-webkit-transform: translateX(0px);}
+	50%{-webkit-transform: translateX(-60px);}
+	100%{-webkit-transform: translateX(0px);}
+}
+
+@keyframes leftRight2 {
+	0%{transform: translateX(0px);}
+	50%{transform: translateX(-60px);}
+	100%{transform: translateX(0px);}
+}
+
+@-webkit-keyframes leftRight3 {
+	0%{-webkit-transform: translateX(0px);}
+	50%{-webkit-transform: translateX(-30px);}
+	100%{-webkit-transform: translateX(0px);}
+}
+
+@keyframes leftRight3 {
+	0%{transform: translateX(0px);}
+	50%{transform: translateX(-30px);}
+	100%{transform: translateX(0px);}
+}
+
+@-webkit-keyframes zhuan {
+	from{-webkit-transform: rotate(0deg)}
+	to{-webkit-transform: rotate(360deg);}
+}
+
+@keyframes zhuan {
+	from{transform: rotate(0deg);}
+	to{transform: rotate(360deg);}
+}
+
+@keyframes oneboatMov {
+	0%{transform: translateX(0px) scaleX(1)}
+	45%{transform: translateX(385px) scaleX(1)}
+	50%{transform: translateX(385px) scaleX(-1)}
+	95%{transform: translateX(0px) scaleX(-1)}
+	100%{transform: translateX(0px) scaleX(1)}
+}
+
+@-webkit-keyframes oneboatMov {
+	0%{-webkit-transform: scaleX(1) translateX(0px)}
+	45%{-webkit-transform: scaleX(1) translateX(385px)}
+	50%{-webkit-transform: scaleX(-1) translateX(385px)}
+	95%{-webkit-transform: scaleX(-1) translateX(0px)}
+	100%{-webkit-transform: scaleX(1) translateX(0px)}
+}
+
+@keyframes fourboatMov {
+	0%{transform: translateX(0px) scaleX(-1)}
+	45%{transform: translateX(185px) scaleX(-1)}
+	50%{transform: translateX(185px) scaleX(1)}
+	95%{transform: translateX(0px) scaleX(1)}
+	100%{transform: translateX(0px) scaleX(-1)}
+}
+
+@-webkit-keyframes fourboatMov {
+	0%{-webkit-transform: scaleX(-1) translateX(0px)}
+	45%{-webkit-transform: scaleX(-1) translateX(185px)}
+	50%{-webkit-transform: scaleX(1) translateX(185px)}
+	95%{-webkit-transform: scaleX(1) translateX(0px)}
+	100%{-webkit-transform: scaleX(-1) translateX(0px)}
+}
+
+@-webkit-keyframes arrow {
+	from{-webkit-transform: translateX(0);opacity: 1;}
+	to{-webkit-transform: translateX(20px);opacity:0}
+}
+
+@keyframes arrow {
+	from{transform: translateX(0);opacity: 1;}
+	to{transform: translateX(20px);opacity:0}
+}
+
+
+/*input区域*/
+.inputBlock {
+background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0;
+    -moz-box-shadow: inset 0;
+    box-shadow: inset 0;
+    color: #000000;
+    padding: 4px;
+    outline: none;
+    width: 290px;
+}
+
+.selectArea {
+	width: 330px;
+    border: none;
+    height: 1.8rem;
+    border-radius: 0px;
+    text-indent: .3rem;
+    -webkit-appearance: none;
+    background: transparent;
+	outline: none;
+}
+
+.inputName {
+	    top: 61px;
+    left: 103px;
+    width: 130px;
+}
+.inputMobi {
+	top: 63px;
+    left: 364px;
+    width: 130px;
+}
+
+.ownerCar{
+	left: 151px;
+    top: 124px;
+}
+.inputVin {
+	left: 250px;
+    top: 186px;
+    width: 200px;
+}
+.inputsuggName {
+	top: 65px;
+    left: 100px;
+    width: 138px;
+}
+.inputsuggMobi {
+	top: 65px;
+    left: 365px;
+    width: 138px;
+}
+
+.City {
+	    top: 188px;
+    left: 362px;
+    width: 140px;
+}
+
+.province {
+	    top: 188px;
+    left: 193px;
+    width: 140px;
+}
+.buyCar {
+	top: 127px;
+    left: 194px;
+}
+.dealTime {
+top: 247px;
+    left: 194px;
+    width: 280px;
+}
+.btnSuggest {
+	    /* margin: 5px auto; */
+    display: block;
+    top: 927px;
+    left: 225px;
+	
+}
+.carOne {
+	width: 640px;
+	height: 897px;
+	left: 0;
+	top: -42px;
+}
+.hand {
+	top: 497px;
+    left: 202px;
+}
+.success {
+	left: 50%;
+	margin-left: -242px;
+	top: 246px;
+	}
+.formTop {
+	margin: 0 auto;
+}
+.pageForm {
+	background-color: #8ec789;
+}
+.owerField {
+	width: 549px;
+	height: 246px;
+	margin: 0 auto;
+	background: url(../i/owerFormBg.png?1) no-repeat;
+	position: relative;
+	margin-bottom:7px;
+}
+.formWrap {
+	width: 549px;
+	height: 640px;
+	overflow-y: auto;
+left:45px;
+top:283px;
+}
+.pers {
+	background: url(../i/tForm.png?1) no-repeat;
+	width: 549px;
+	height: 337px;
+	margin: 0 auto;
+	position: relative;
+}
+.addpp {
+	right: 45px;
+    bottom: 20px;
+}
+.delpp {
+	right: 45px;
+    bottom: 20px;
+}
+
+.slogo {
+	bottom: 25px;
+	right: 25px;
+}
+
+.confirmPop {
+	width: 483px;
+	height: 494px;
+	left: 50%;
+	margin-left: -242px;
+	top: 200px;
+	background: url(../i/confirmBg.png) no-repeat;
+}
+.confirmCopy {
+	width: 380px;
+	text-align: center;
+	left: 50%;
+	top: 125px;
+	margin-left: -190px;
+	color: #000000;
+}
+.confirm {
+	bottom: 95px;
+	left: 112px;
+}
+.close {
+	right: 20px;
+	top: 20px;
+}
+.tccopy {
+	left: 12px;
+	bottom: 12px;
+}
+.carBody {
+	top: 456px;
+	left: 204px;
+}
+.carbg {
+	top: 514px;;
+	left: 177px;
+}
+.wheelF {
+	left: 225px;
+    top: 514px;
+    animation: zhuan2 0.5s infinite linear;
+	-webkit-animation: zhuan2 0.5s infinite linear;
+}
+.wheelB {
+	left: 371px;
+    top: 513px;
+    animation: zhuan2 0.5s infinite linear;
+	-webkit-animation: zhuan2 0.5s infinite linear;
+}
+@-webkit-keyframes zhuan2 {
+	from{-webkit-transform: rotate(0deg)}
+	to{-webkit-transform: rotate(-360deg);}
+}
+
+@keyframes zhuan2 {
+	from{transform: rotate(0deg);}
+	to{transform: rotate(-360deg);}
+}
+
+.loadingCloudA {
+	left: 120px;
+	top: 420px;
+	animation: leftRight 3s infinite linear 1s;
+	-webkit-animation: leftRight 3s infinite linear 1s;
+}
+.loadingCloudB {
+	left: 180px;
+	top: 384px;
+	animation: leftRight 4s infinite linear 1s;
+	-webkit-animation: leftRight 4s infinite linear 1s;
+}
+	
+.loadingCloudC {
+	left: 450px;
+	top: 389px;
+	animation: leftRight 2s infinite linear 1s;
+	-webkit-animation: leftRight 2s infinite linear 1s;
+}
+.carTwo {
+	left:0;
+    top: 0px;
+}
+.carThree {
+	left:0;
+    top: 0px;
+}
+
+.tccopy2 {
+	left: 12px;
+	bottom: 32px;
+}

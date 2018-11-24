@@ -1,0 +1,223 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-size:66.3%}
+fieldset,img{border:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{text-decoration: underline;color:#000;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea,img{vertical-align:middle;outline:none;}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+html,body{height:100%;min-height: 1000px;}
+body{font-family"Microsoft YaHei","å¾®è½¯é›…é»‘",sans-serif;}
+a:hover{text-decoration:none;}
+
+.formwrap h2{
+	font-size:40px;
+	text-align:center;
+	height: 70px;
+	padding-top: 30px;
+	border-bottom: 2px solid;
+	width: 600px;
+	left: 20px;
+}
+
+.formwrap {
+    width: 640px;
+    margin-left: -320px;
+    left: 50%; 
+    background-size: 100%;
+    height: 800px;
+    position: relative;
+    min-height: 800px;
+}
+
+.dn{
+	display:none;
+}
+
+.pdz{
+	padding-left: 0px;
+    padding-right: 0px; 
+    margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+html, body{ margin:0;  }
+
+.notice{
+	left: 60px;
+	top: 800px;
+	text-align: center;
+	width: 500px !important;
+}
+
+.inputForm {
+	width: 520px;
+	height: 47px;
+	position: absolute;
+	background: transparent;
+	/* border: 1px solid; */
+	font-size: 25px;
+} 
+
+.inputNotice{
+	top: 620px;
+	left:60px;
+	height:150px;
+	overflow: auto;
+}
+
+.txttlp{
+	left:60px;
+	top: 260px;
+}
+
+.txtnm{
+	left:60px;
+	top: 130px;
+}
+
+.txtnts{
+	top: 580px;
+	left:60px;
+}
+
+.sexRadio{
+    left: 120px;
+    top: 280px;
+}
+
+.styleRadio{
+	left: 20px;
+	top: 680px;
+	height: 350px !important;
+	width: 100% !important;
+}
+
+.ltArea{
+	float:left;
+	width: 46%;
+}
+
+.rtArea{
+	width:49%;
+	float: left;
+}
+ 
+.txtshang{
+	left: 60px;
+	top: 390px;
+}
+
+.inputName{
+	left: 60px;
+	top: 180px;
+}
+.inputMobi{
+	left: 60px;
+	top: 310px;
+}
+.inputsuggName {
+	left: 194px;
+    top: 235px;
+	width: 106px;
+}
+.inputsuggMobi {
+	left: 425px;
+	top: 235px;
+	width: 131px;
+}
+.selectArea {
+	font-size: 30px;
+	position: absolute;
+	/* border: none; */
+	width: 340px;
+	height: 50px;
+	border-radius: 0px;
+	/* text-indent: 5px; */
+	/* -webkit-appearance: none; */
+	/* background: transparent; */
+	/* color: #FFFFFF; */
+} 
+.City {
+	width: 115px;
+	left: 444px;
+	top: 280px;
+}
+.province {
+    width: 230px;
+    left: 60px;
+    top: 440px;
+}
+
+.dealer {
+    left: 60px;
+    top: 500px;
+    width: 520px;
+}
+
+.dealTime {
+left: 228px;
+    top: 367px;
+}
+.formsubmitBtn {
+    left: 191px;
+    top: 608px;
+    position: absolute;
+}
+.chk {
+    left: 90px;
+    top: 415px;
+    position: absolute;
+} 
+
+.chk2 {
+    left: 98px;
+    top: 388px;
+    position: absolute;
+}
+
+.City2 {
+	width: 115px;
+	left: 444px;
+	top: 164px;
+}
+.province2 {
+	width: 474px;
+	left: 120px;
+	top: 422px;
+}
+.dealTime2 {
+    left: 40px;
+    top: 1002px;
+    width: 556px;
+}
+.dealer2 {
+    left: 216px;
+    top: 292px;
+}
+ 
+
+.formsubmitBtn2 {left: 260px;top: 950px;position: absolute;font-size: 30px;}
+ 
+.city{
+	width: 230px;
+	left: 350px;
+	top: 440px;
+} 
+ 
+.submit{
+	margin:0 auto;
+}
+.submit img{
+	top: 1440px;
+	position: absolute;
+}

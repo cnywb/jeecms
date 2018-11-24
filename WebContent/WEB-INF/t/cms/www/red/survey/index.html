@@ -1,0 +1,230 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>问卷调查-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css">
+<link href="/${res}/survey/css/index.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+
+<![endif]-->
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/blue/bbs_forum/js/prototype.js"></script>
+<script type="text/javascript" src="/r/cms/www/blue/bbs_forum/js/md5.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/${res}/survey/js/index.js" ></script>
+<script>
+function showSwitchService(o){
+	var list=$('div[id^=switch_L]');
+	list.hide();
+	document.getElementById(o).style.display="block";
+	document.body.style.overflow = 'hidden';
+	document.body.style.position = 'relative';
+	var imgTcWidth = $('.imgTc img.bigphoto').width() / 2+30;
+	$('.imgTc').css({
+            'margin-left': -imgTcWidth,
+        });
+	if(imgTcWidth<518){ 
+					$('.imgTc').css({
+            'margin-left': -274,
+        });
+				}
+}
+function hideSwitchService(o){
+	document.getElementById(o).style.display="none";
+	document.body.style.overflow = 'auto';
+}
+
+</script>
+</head>
+<body>
+
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>问卷调查</h1>
+	<article class="ctan carjs">
+		<img src="/${res}/survey/images/qntopImg.png" alt="">
+		<div class="art" style=" padding:0 0 80px;">
+		    <div class="qnTopbanner"><img src="/${res}/survey/images/qa_topBanner_${code!}.jpg" alt="车主满意度调查"></div>
+                    <div class="qnbox">
+                    <a  id="a_submit" href="javascript:void(0);" class="qnSubmit"><img src="/${res}/survey/images/submit02.jpg" alt="提交"></a>
+                    </div>
+		    </div>
+		
+	</article>
+</article>
+<div id="switch_L11" style="display:block">
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L11')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner.png" alt=""></h2>
+			<div class="pbox">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td height="118" align="left">为了让您更好的享受我们的售后服务。请完成问卷调查，即可赢得积分或精美礼品。</td>
+					</tr>
+				</table>
+				<div class="qnPopBtn"><a href="javascript:void(0);" onClick = "hideSwitchService('switch_L11')"><img src="/${res}/survey/images/startBtn.jpg" alt="开始问卷调查"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	<div id="switch_L12" style="display:none">
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L12')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner.png" alt=""></h2>
+			<div class="pbox">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td height="118" align="center">感谢您的参与！<br>点击立即抽奖，赢取丰厚奖品！</td>
+					</tr>
+				</table>
+				<div class="qnPopBtn"><a href="javascript:void(0);" onClick = "doLuckyDraw();"><img src="/${res}/survey/images/choujiangBtn.jpg" alt="立即抽奖"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	<div id="switch_L13" style="display:none">
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L13')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner.png" alt=""></h2>
+			<div class="pbox">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td height="118" align="center"><span>恭喜您！获得<b id="p_point"></b>积分<br /></span>您可以<a style=" color: #F79906;" href="/points/product/index.jhtml">点击这里</a>进行积分抽奖或积分兑换。</td>
+					</tr>
+				</table>
+				<div class="qnPopBtn"><a href="/points/personal/index.jhtml" onClick = "hideSwitchService('switch_L13')"><img src="/${res}/survey/images/jifenBtn.jpg" alt="查看我的积分"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	<div id="switch_L14" style="display:none">
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L14')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner.png" alt=""></h2>
+			<div class="pbox">
+				<table cellpadding="0" cellspacing="0" width="100%" style=" margin-bottom: 10px;">
+					<tr>
+						<td height="75" align="center"><span>恭喜您！获得<b style="font-size: 22px;">福域精美礼品！</b><br /><i style=" font-style: normal; font-size: 14px;">正确填写信息，我们会在7个工作日内，将礼品快递给您。</i></span></td>
+					</tr>
+					<tr>
+						<td height="35">
+							<ul>
+								<li class="fl"><span>姓名</span><input type="text" id="update_realname" name="realname" value="[#if user??&&user.realname??]${user.realname}[/#if]" /></li>
+								<li class="fr"><span>手机</span><input type="text" id="update_mobile" name="mobile" value="[#if user??&&user.mobile??]${user.mobile}[/#if]" /></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<ul>
+								<li><span>地址</span><input type="text" id="update_comefrom" name="comefrom" value="[#if user??&&user.comefrom??]${user.comefrom}[/#if]" style="width: 310px;" /></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+				</table>
+				<div class="qnPopBtn"><a href="javascript:void(0);" onClick = "doUpdateProfile();"><img src="/${res}/survey/images/confirmBtn.jpg" alt="确 定"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	<div id="switch_L15" style="display:none">
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L15')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner.png" alt=""></h2>
+			<div class="pbox">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td height="118" align="center">您的问卷还未完成，请继续完成</td>
+					</tr>
+				</table>
+				<div class="qnPopBtn"><a href="javascript:void(0);" onClick = "hideSwitchService('switch_L15')"><img src="/${res}/survey/images/jixuBtn.jpg" alt="继续完成"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	
+		<div id="switch_L16" style="display:none">
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L16')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner.png" alt=""></h2>
+			<div class="pbox">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td height="118" align="center" ></td>
+					</tr>
+				</table>
+				<div class="qnPopBtn"><a href="javascript:void(0);" onClick = "hideSwitchService('switch_L16')"><img src="/${res}/survey/images/confirmBtn.jpg" alt="确定"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	<div id="switch_L17" style="display:none;">
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L17')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner02.png" alt=""></h2>
+			<div class="pbox">
+				<p class="qnred">您还没有登录，请先登录</p>
+				<ul class="qnlogin">
+					<li><span>用户名</span><input type="text" id="login_username" value="" /></li>
+					<li><span>密码</span><input type="password" id="login_password"  value="" /></li>
+					<li><span>验证码</span><input type="text" id="login_validatecode"  value="" /><img id="captcha" src="/captcha.svl" width="67" height="30" onclick="this.src='/captcha.svl?d='+new Date()"></li>
+				</ul>
+						
+				<div class="qnPopBtn"><a href="javascript:void(0);" onClick = "doLogin();"><img src="/${res}/survey/images/confirmBtn.jpg" alt="确 定"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	[#if canAddPoint??&&canAddPoint==false]
+	<div id="switch_L18" >
+		<div class="qnpop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L18')" class="close"><img src="/${res}/survey/images/close.png" alt="" width="38"></a>
+			<h2><img src="/${res}/survey/images/popup_banner.png" alt=""></h2>
+			<div class="pbox">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td height="118" align="center">提示：您今天的积分上限已满，您可以继续回答问卷，但积分将不被记录，谢谢！</td>
+					</tr>
+				</table>
+				<div class="qnPopBtn"><a href="javascript:void(0);" onClick = "hideSwitchService('switch_L18')"><img src="/${res}/survey/images/jixuBtn.jpg" alt="继续完成"></a></div>
+			</div>
+		</div>
+		<div class="qnblack_overlay"></div>
+	</div>
+	[/#if]
+	
+</div>
+<input type="hidden" id="user_id" value="[#if user??]${user.id}[/#if]">
+<input type="hidden" id="group_id" value="[#if user??]${user.group.id}[/#if]">
+<input type="hidden" id="surveyId" value="[#if t??]${t.id}[/#if]" />
+<input type="hidden" id="surveyCode" value="[#if t??]${t.code}[/#if]" />
+<input type="hidden" id="enable" value="[#if enable??]${enable}[/#if]" />
+<input type="hidden" id="msg" value="[#if msg??]${msg}[/#if]" />
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>

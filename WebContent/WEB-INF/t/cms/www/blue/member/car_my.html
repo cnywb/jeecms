@@ -1,0 +1,267 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id) {
+		var dvnum = 7;
+		for ( var i = 1; i <= dvnum; i++) {
+			document.getElementById('page' + i).className = "";
+			document.getElementById('pagelist' + i).style.display = "none";
+		}
+		document.getElementById('page' + id).className = "out";
+		document.getElementById('pagelist' + id).style.display = "block";
+	}
+</script>
+<script>
+	function ajax_delete(id) {
+		$.post("ajax_delete_msg.jhtml", {
+			"mid" : id
+		}, function(data) {
+			if (data.success) {
+				$("#m" + id).remove();
+			} else {
+				alert("操作失败");
+			}
+		}, "json");
+	}
+	
+	var v_userCarVosSize=${userCarVosSize};
+	$(document).ready(function(){
+		for(var i=0;i<v_userCarVosSize;i++){
+			$("#selectImageSrc"+i).bind("click",function(){
+				 var imageId=this.id.substr("selectImageSrc".length,this.id.length);
+				$("#uploadFile"+imageId).click();
+			});
+			
+			$("#uploadFile"+i).bind("change",function(){
+				var imageId=this.id.substr("uploadFile".length,this.id.length);
+				$("#imagePath"+imageId).text(this.value);
+				$("#uploadImgPath"+imageId).val(this.value);
+			});
+			
+			
+			$("#submitImage"+i).bind("click",function(){
+				var imageId=this.id.substr("submitImage".length,this.id.length);
+				var imagePath=$("#uploadImgPath"+imageId).val();
+				if($.isEmpty(imagePath)){
+					alert("请爱车选择图片！");
+					return;
+				}
+				$("#userCarForm"+i).submit();
+			});
+		}
+	});
+	
+	
+	(function($){
+		$.isEmpty=function(str){
+			return str===null ||str=== undefined ? true : /^[\s\xa0]*$/.test(str);
+		};
+		$.between=function(s,left, right) {
+		      var startPos = s.indexOf(left);
+		      var endPos = s.indexOf(right);
+		      var start = startPos + left.length;
+		      return endPos > startPos ?  s.slice(start, endPos) : "";
+		 };
+		 $.StringUtils={
+			isEmpty:function(str){
+				return str===null ||str=== undefined ? true : /^[\s\xa0]*$/.test(str);
+			},
+		 	isNotEmpty:function(str){
+		 		return $.StringUtils.isEmpty(str)?false:true;
+			}
+		 };
+	})(jQuery);
+</script>
+
+</head>
+<body>
+	[#include "../include/head.html"/]
+	<!--header-->
+	[#include "../include/页头.html"/]
+	<article class="main ycyc">
+		<h1>个人主页</h1>
+		[#include "会员中心页_导航.html"/]
+		<article class="selfpage de_event self">
+			<section id="pagelist5" class="tabpage none" style="display: block;">
+				<ul class="inftab">
+					<li class="bodl"><a href="car_my.jhtml" id="lcar1" class="out">我的爱车</a>
+					</li>
+					<li class="bodl"><a href="carfriend.jhtml" id="lcar2">好友的爱车</a>
+					</li>
+					<li><a href="car_focus.jhtml" id="lcar3">关注的车型</a></li>
+				</ul>
+				<div class="lovec block" id="lcarlist1">
+					[#include "car_image_upload.html"/]
+					[#list userCarVos as userCarVo]
+						 [#if userCarVosSize>1&&userCarVosSize> (userCarVo_index+1)]
+							<div class="acbox GLHY_Box">
+						[#else]
+							<div class="GLHY_Box">
+						[/#if]
+							<div>
+								<div class="acpic">
+									[#if (userCarVo.ocarImg)??]
+									<img id="preImg${userCarVo_index}" src="${userCarVo.ocarImg}" alt="" width="385" height="264"  > 
+									<a href="car_my_deleteimage.jhtml?imageId=${userCarVo.id!}">
+										<img src="/${res}/bbs_member/img/AC_Delete.png" alt=""> 
+									</a>
+									[#else]
+										<img  id="preImg${userCarVo_index}" src="/${res}/bbs_member/img/AC_IMG.jpg" alt="" width="385" height="264">
+									[/#if]
+									<p>${userCarVo.vproduct!} ${userCarVo.purchasedDateZh!}购入</p>
+								</div>
+								<dl>
+									<dt>修改爱车信息</dt>
+									<dt class="s_dt">车型：</dt>
+									<dd>
+										<div class="YJBK">
+											<b class="rtop"><b class="r2"></b><b class="r1"></b> </b>
+											<div class="nifty YJBK_select">
+												<span>[#if userCarVo.vproduct??]${userCarVo.vproduct}[/#if]</span>
+												<ul style="display: none">
+													<li><a href="">福克斯两厢1.8MT</a></li>
+													<li><a href="">福克斯两厢1.8MT</a></li>
+													<li><a href="">福克斯两厢1.8MT</a></li>
+												</ul>
+											</div>
+											<b class="rbottom"><b class="r1"></b><b class="r2"></b> </b>
+										</div>
+									</dd>
+									<dt class="s_dt">购车时间：</dt>
+									<dd>
+										<div class="YJBK">
+											<b class="rtop"><b class="r2"></b><b class="r1"></b> </b>
+											<div class="nifty YJBK_select">
+												<span>${userCarVo.purchasedDate!}</span>
+												<ul style="display: none">
+													<li><a href="">2010-01</a></li>
+													<li><a href="">2010-01</a></li>
+													<li><a href="">2010-01</a></li>
+												</ul>
+											</div>
+											<b class="rbottom"><b class="r1"></b><b class="r2"></b> </b>
+										</div>
+									</dd>
+									<form id="userCarForm${userCarVo_index}" action="car_my_uploadimage.jhtml"  method="post">
+									<dt class="s_dt">图片上传：</dt>
+									<dd class="TPSC">
+										 <div class="YJBK">
+										 	<b class="rtop"><b class="r2"></b><b class="r1"></b></b>
+											<div class="nifty" id="imagePath${userCarVo_index}">
+											</div>
+											<b class="rbottom"><b class="r1"></b><b class="r2"></b></b>
+											<input size="14"   type="file" id="uploadFile${userCarVo_index}" style="height:24px;opacity:0;filter:alpha(opacity=0);position:absolute;right:5px;top:-5px; *top:50px; *left:10px;"/>
+											<input type="hidden"  name="uploadImgPath" id="uploadImgPath${userCarVo_index}"/>
+											<input type="hidden"  name="uploadImgPath" id="uploadImgPath${userCarVo_index}"/>
+										</div> 
+										<a href="javascript:void(0)"  id="selectImageSrc${userCarVo_index}">
+											<img src="/${res}/bbs_member/img/AC_Btn_ll.gif" /> 
+										</a> 
+										<a href="javascript:void(0)" onclick="upload(${userCarVo_index});">
+											<img src="/${res}/bbs_member/img/AC_Btn_sc.gif" />
+										</a>
+									</dd>
+									<dt class="s_dt">
+										<input type="image"  id="submitImage${userCarVo_index}" src="/${res}/bbs_member/img/submit02.jpg" alt="" value="">
+										<input type="hidden" id="zoomWidth${userCarVo_index}" value="${image_width}" size="5"/>
+										<input type="hidden" id="zoomHeight${userCarVo_index}" value="${image_heigth}" size="5"/>
+										<input type="hidden"  name="imageId"  value="${userCarVo.id!}" id="imageId${userCarVo_index}"/>
+										<input type="hidden"  name="productCode"  value="${userCarVo.vproductCode!}"/>
+										<input type="hidden"  name="carId"  value="${userCarVo.carId}"/>
+										<input type="hidden"  name="purchasedDate"  value="${userCarVo.purchasedFullDate!}"/>
+									</dt>
+									</form>
+								</dl>
+							</div>
+						</div>
+						[/#list]
+						
+						<!--  
+				<div class="GLHY_Box">
+					<div class="acpic">
+						<img src="/${res}/bbs_member/img/AC_IMG.jpg" alt="" width="385" height="264">
+					</div>
+					<dl>
+						<dt>添加爱车信息</dt>
+						<dt class="s_dt">车型：</dt>
+						<dd>
+							<div class="YJBK">
+							<b class="rtop"><b class="r2"></b><b class="r1"></b></b>
+							<div class="nifty YJBK_select">
+								<span>请选择车型</span>
+								<ul style="display:none">
+									<li><a href="">福克斯两厢1.8MT</a></li>
+									<li><a href="">福克斯两厢1.8MT</a></li>
+									<li><a href="">福克斯两厢1.8MT</a></li>
+								</ul>
+							</div>
+							<b class="rbottom"><b class="r1"></b><b class="r2"></b></b>
+							</div>
+						</dd>
+						<dt class="s_dt">购车时间：</dt>
+						<dd>
+							<div class="YJBK">
+							<b class="rtop"><b class="r2"></b><b class="r1"></b></b>
+							<div class="nifty YJBK_select">
+								<span>请选择时间</span>
+								<ul style="display:none">
+									<li><a href="">2010-01</a></li>
+									<li><a href="">2010-01</a></li>
+									<li><a href="">2010-01</a></li>
+								</ul>
+							</div>
+							<b class="rbottom"><b class="r1"></b><b class="r2"></b></b>
+							</div>
+						</dd>
+						<dt class="s_dt">图片上传：</dt>
+						<dd class="TPSC">
+							<div class="YJBK">
+							<b class="rtop"><b class="r2"></b><b class="r1"></b></b>
+							<div class="nifty"></div>
+							<b class="rbottom"><b class="r1"></b><b class="r2"></b></b>
+							</div><a href="#"><img src="/${res}/bbs_member/img/AC_Btn_ll.gif" /></a><a href="#">
+							<img src="/${res}/bbs_member/img/AC_Btn_sc.gif" /></a>
+						</dd>
+						<dt class="s_dt"><input type="image" src="/${res}/bbs_member/img/submit02.jpg" alt="" value=""></dt>
+					</dl>
+				</div>
+				-->
+			  </div>
+			</section>
+		</article>
+	</article>
+	<!--footer-->
+	[#include "../include/页脚.html"/]
+	<!--footer-->
+</body>
+</html>

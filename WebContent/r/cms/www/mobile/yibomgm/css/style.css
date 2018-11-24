@@ -1,0 +1,242 @@
+html, body {padding: 0;margin: 0;-webkit-user-select: none;user-select: none;font-size: 62.5%;width: 640px;overflow-y: hidden;color:#fff;font-family: "Microsoft YaHei";}
+h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, ul, li { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: baseline; background: transparent; }
+ul { list-style: none; }
+* { -webkit-box-sizing: border-box; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+p, img { padding: 0; margin: 0; border: none; }
+.dn { display: none; }
+.logo { top: 40px; right: 40px; z-index: 1; }
+.logo1 { top: 40px; left: 40px; z-index: 1; }
+.float { position: absolute; }
+img { -webkit-touch-callout: none; }
+
+/*公用*/
+#top { width: auto; height: 24px; background-color: #000001; position: absolute; left: 6px; right: 6px; top: 0px; }
+#right { width: 24px; height: auto; background-color: #000001; position: absolute; top: 0px; bottom: 0px; right: 0px; }
+#bottom { width: auto; height: 24px; background-color: #000001; position: absolute; left: 6px; right: 6px; bottom: -1px; }
+#left { width: 24px; height: auto; background-color: #000001; position: absolute; top: 0px; bottom: 0px; left: 0px; }
+
+/*开始页*/
+.init{/* margin-left:-50%; */background: #152546;overflow: hidden;width: 100%;height: 100%;margin-left: -50%;}
+.init .bg { top: 0; left: 50%; pointer-events: none; margin-left: -320px; }
+.init .t1 { left: 50%; margin-left: -109px; top: 120px; }
+.init .t2 { margin-left: -230px; top: 742px; left: 50%; }
+.init .c1 { left: 50%; margin-left: -258px; top: 320px; pointer-events: none; }
+
+/*汽车开出来*/
+.init .c1.active { -webkit-animation-name: carin; -webkit-animation-duration: 0.4s; -webkit-animation-iteration-count: 1; -webkit-animation-timing-function: linear; animation-name: carin; animation-duration: 0.4s; animation-iteration-count: 1; animation-timing-function: linear; }
+@-webkit-keyframes carin {
+	0% { -webkit-transform: scale(0) translate(0, -800px); transform: scale(0) translate(0, -800px); }
+	50% { -webkit-transform: scale(0.5) translate(0, -300px); transform: scale(0.5) translate(0, -300px); }
+	100% { -webkit-transform: scale(1) translate(0, 0); transform: scale(1) translate(0, 0); }
+}
+@keyframes carin {
+	0% { -webkit-transform: scale(0) translate(0, -800px); transform: scale(0) translate(0, -800px); }
+	50% { -webkit-transform: scale(0.5) translate(0, -300px); transform: scale(0.5) translate(0, -300px); }
+	100% { -webkit-transform: scale(1) translate(0, 0); transform: scale(1) translate(0, 0); }
+}
+.init .c2 { left: 50%; margin-left: -45px; top: 260px; width: 90px; }
+.init .btn {margin-left: -180px;left: 50%;top: 800px;width: 360px;}
+
+/*开始游戏页面*/
+.start {background: #152546;width: 100%;overflow: hidden;margin-left: -50%;height: 100%;}
+.start .bgimg{height: 100%;}
+.start .visualbtn {/*background: #ff0000;*/width: 750px; height: 100%; top:0;left: 0; z-index: 100; display: block; }
+.start .title { margin-left: -162px; left: 50%; top: 180px; }
+.start .tip {left: 50%;margin-left: -128px;bottom: 40px;animation: upDown 1s infinite linear;-webkit-animation: upDown 1s infinite linear;}
+.start .car {left: 50%;top: 350px;margin-left: -48%;}
+.start .car.active{-webkit-animation:carmove 5s ease infinite;animation:carmove 5s ease infinite;}
+.start .road { top: 0; left: 0; }
+.start .road .bg {top: 0;left: 0;}
+.start .road .r1 {top: 0;margin-left: 0px;}
+.start .road .r2 {top: 40px;margin-left: 0px;}
+.start .road .r3 {top: 40px;margin-left: 120px;}
+
+.start .road .r2.active {-webkit-animation:roadmove 1s linear infinite;animation:roadmove 1s linear infinite;}
+.start .road .r3.active {-webkit-animation:roadmove 1s linear infinite;animation:roadmove 1s linear infinite;}
+
+.start .stars {top: 0;left: 0;width: 100%;overflow: hidden;} 
+
+.start .ss { background: url('../img/g2/ss.png')repeat 20% 0; }
+.start .ss.active{-webkit-animation: STAR-MOVE  25s linear infinite; -moz-animation: STAR-MOVE  25s linear infinite; -ms-animation: STAR-MOVE  25s linear infinite; animation: STAR-MOVE  25s linear infinite; top: 0; left: 0; height: 100%; width: 300%; }
+.start .ss2 { background: url('../img/g2/ss2.png')repeat 25% 0; }
+.start .ss2.active{-webkit-animation: STAR-MOVE  5s linear infinite; -moz-animation: STAR-MOVE  5s linear infinite; -ms-animation: STAR-MOVE  25s linear infinite; animation: STAR-MOVE  25s linear infinite; top: 0; left: 0; height: 100%; width: 300%; }
+
+.start .stars .s1 { top: 90px; margin-left: 240px; }
+.start .stars .s2 { top: 420px; margin-left: 120px; }
+.start .stars .s3 { top: 480px; margin-left: 580px; }
+.start .stars .s4 { top: 90px; margin-left: 240px; }
+.start .stars .s5 { top: 200px; margin-left: 110px;}
+.start .stars .s6 { top: 140px; margin-left: 170px;}
+.start .stars .s7 { top: 590px; margin-left: 70px; }
+.start .stars .s8 { top: 90px; margin-left: 240px; }
+
+.start .stars .s1.active{animation: starflash 1s infinite linear; -webkit-animation: starflash 1s infinite linear; }
+.start .stars .s2.active{animation: starflash 2s infinite linear; -webkit-animation: starflash 2s infinite linear; }
+.start .stars .s3.active{animation: starflash 1s infinite linear; -webkit-animation: starflash 1s infinite linear; }
+.start .stars .s4.active{animation: starflash 1s infinite linear; -webkit-animation: starflash 1s infinite linear; }
+.start .stars .s5.active{animation: starflash 3s infinite linear; -webkit-animation: starflash 3s infinite linear; }
+.start .stars .s6.active{animation: starflash 3s infinite linear; -webkit-animation: starflash 3s infinite linear; }
+.start .stars .s7.active{animation: starflash 2s infinite linear; -webkit-animation: starflash 2s infinite linear; }
+.start .stars .s8.active{animation: starflash 2s infinite linear; -webkit-animation: starflash 2s infinite linear; }
+
+
+.start .lights { top: 0; left: 0; }
+
+.start .lights .l1 { top: 750px; margin-left: 440px;display: none;}
+.start .lights .l1.active{ display: block;animation: slidestar 1s infinite linear; -webkit-animation:  slidestar 1s infinite linear;}
+.start .lights .l2 { top: 360px; margin-left: 100px;display: none;}
+.start .lights .l2.active{ display: block;animation: slidestar 1s infinite linear; -webkit-animation:  slidestar 1s infinite linear;}
+.start .lights .l3 { top: 40px; margin-left: 140px;display: block;}
+.start .lights .l3.active{ display: block;animation: slidestar 5s infinite linear; -webkit-animation:  slidestar 5s infinite linear; }
+.start .lights .l4 { top: 90px; margin-left: 220px;display: none;}
+.start .lights .l4.active{ display: block;animation: slidestar 1s infinite linear; -webkit-animation:  slidestar 1s infinite linear;}
+.start .lights .l5 { top: 50px; margin-left: 240px;display: none;}
+.start .lights .l5.active{ display: block;animation: slidestar 3s infinite linear; -webkit-animation:  slidestar 3s infinite linear;}
+.start .lights .l6 { top: 790px; margin-left: 490px;display: block;}
+.start .lights .l6.active{ display: block;animation: slidestar 3s infinite linear; -webkit-animation:  slidestar 3s infinite linear;}
+.start .lights .l7 { top: 490px; margin-left: 440px;display: none;}
+.start .lights .l7.active{ display: block;animation: slidestar 2s infinite linear; -webkit-animation:  slidestar 2s infinite linear;}
+.start .lights .l8 { top: 90px; margin-left: -50px;display: block;}
+.start .lights .l8.active{ display: block;animation: slidestar 8s infinite linear; -webkit-animation:  slidestar 8s infinite linear;}
+.start .lights .l9 { top: 590px; margin-left: -20px;display: none;}
+.start .lights .l9.active{ display: block;animation: slidestar 3s infinite linear; -webkit-animation:  slidestar 3s infinite linear;}
+.start .lights .l10 { top: 90px; margin-left: 60px;display: none;}
+.start .lights .l10.active{ display: block;animation: slidestar 3s infinite linear; -webkit-animation:  slidestar 3s infinite linear;}
+.start .lights .l11 { top: 620px; margin-left: 400px;display: none;}
+.start .lights .l11.active{ display: block;animation: slidestar 3s infinite linear; -webkit-animation:  slidestar 3s infinite linear;}
+
+.start .planets{top: 0; left: 0; width: 100%; height: 100%;}
+.start .planets .p1 {background: url('../img/g2/planet1.png')no-repeat top left;background-attachment: fixed;height: 100%;width: 200%;}
+.start .planets .p1.active{-webkit-animation: planetmove 10s linear infinite; -moz-animation: planetmove 10s linear infinite; -ms-animation: planetmove 10s linear infinite; animation: planetmove 10s linear infinite; }
+.start .planets .p2 {background: url('../img/g2/planet2.png')no-repeat bottom;/* background-attachment: fixed; */height: 100%;width: 200%;top:0;left: 0;}
+.start .planets .p2.active{-webkit-animation: planetmove2 6s linear infinite; -moz-animation: planetmove2 6s linear infinite; -ms-animation: planetmove2 6s linear infinite; animation: planetmove2 6s linear infinite; } 
+/*游戏结束*/
+.start .score1{top: 100px;left: 70px;font-size: 50px;}
+.end{width: 640px;height: 100%;overflow: hidden;margin-left: -50%;} 
+.end .title{top:200px;left:50%;margin-left:-176px;}
+.end .btngroup{width: 100%;bottom: 120px;}
+.end .btngroup .invite{left:50%;top: -85px;margin-left: -168px;}
+.end .btngroup .replay{left:50%;top: 0;margin-left: -168px;}
+.end .btngroup .score{left:50%;top: -140px;margin-left: -110px;}
+.end .btngroup .score .score2{left: 14px;top: 0px;font-size: 30px;line-height: 57px;}
+
+/*提交页面*/
+.submit {background: #152546;height: 100%;margin-left: -50%;width: 100%;}
+.submit .bg { top: 50px; left: 0; }
+.submit .downup { top: 710px; left: 50%; }
+#wrapper { top: 305px; left: 60px; height: 450px; overflow-y: auto; position: relative; width: 540px; -webkit-overflow-scrolling: touch;   /*pointer-events: none;*/        /* Desired element height */ }
+;
+.submit .addgroup { }
+
+/* 这是针对缺省样式 (必须的) 
+.submit .addgroup::-webkit-scrollbar { width: 2%; } 
+.submit .addgroup::-webkit-scrollbar-thumb:vertical { background-color: #fff; width: 10px;}
+.submit .addgroup::-webkit-scrollbar-thumb { border-radius: 10px; background-color: rgba(0, 0, 0, 0.2); }
+*/
+.submit .addgroup .add1 {/* top: 0; *//* left: 0; */position: relative; height: 460px; }
+.submit .addgroup .add1 .bg { top: 0; left: 0; }
+.submit .addgroup .add1 .addbtn { top: 390px; left: 318px; }
+.submit .addgroup .add2 {/* top: 378px; *//* left: 0; */position: relative; height: 460px; }
+.submit .addgroup .add2 .bg { top: 0; left: 0; }
+.submit .addgroup .add2 .addbtn { top: 380px; left: 318px; }
+.submit .addgroup .add3 {/* top: 760px; *//* left: 0; */position: relative; height: 460px; }
+.submit .addgroup .add3 .bg { top: 0; left: 0; }
+.submit .addgroup .add3 .addbtn { top: 345px; left: 380px; }
+.submit .agree { top: 750px; }
+.submit .submitbtn { top: 810px; margin-left: 70px; }
+.submit .rulebtn { top: 900px; left: 70px; }
+.submit .form-control { -webkit-appearance: none; width: 165px; height: 32px; position: absolute; background: transparent; color: #FFFFFF; border: none; font-size: 18px; }
+.submit .name { top: 264px; left: 144px; }
+.submit .tel { top: 264px; left: 404px; }
+.submit .addgroup .name1, .submit .addgroup .name2, .submit .addgroup .name3 { top: 105px; left: 80px; }
+.submit .addgroup .tel1, .submit .addgroup .tel2, .submit .addgroup .tel3 { top: 105px; left: 344px; }
+.submit .addgroup .buyingDealerProvince1, .submit .addgroup .buyingDealerProvince2, .submit .addgroup .buyingDealerProvince3 { top: 164px; left: 200px; width: 310px; }
+.submit .addgroup .buyingDealerCity1, .submit .addgroup .buyingDealerCity2, .submit .addgroup .buyingDealerCity3 { top: 223px; left: 200px; width: 310px; }
+.submit .addgroup .cartype1, .submit .addgroup .cartype2, .submit .addgroup .cartype3 { top: 283px; left: 200px; width: 310px; }
+.submit .addgroup .maybebuytime1, .submit .addgroup .maybebuytime2, .submit .addgroup .maybebuytime3 { top: 341px; left: 200px; width: 310px; }
+.success { background: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; z-index: 2; margin-left: -50%; }
+.success .notice { top: 10%; left: 50%; margin-left: -274px; }
+.rule { background: rgba(0, 0, 0, 0.7); width: 100%; height: 100%; z-index: 2; margin-left: -50%; }
+.rule .notice { top: 10%; left: 50%; margin-left: -274px; }
+#play { position: absolute; right: 21px; bottom: 22px; z-index: 10; background-image: url(../img/music.png); background-position: center center; background-size: 100% 100%; background-repeat: no-repeat; z-index: 101; width: 94px; height: 90px; }
+#play.paused { background-image: url(../img/music_off.png); }
+@-webkit-keyframes upDown {
+	0% { transform: translateY(10px); opacity: 0; }
+	50% { opacity: 1; }
+	100% { transform: translateY(-10px); opacity: 0; }
+}
+@keyframes upDown {
+	0% { transform: translateY(10px); opacity: 0; }
+	50% { opacity: 1; }
+	100% { transform: translateY(-10px); opacity: 0; }
+}
+@-webkit-keyframes starflash {
+	0% { transform: scale(0.7); opacity: 0; }
+	50% { opacity: 1; }
+	100% { transform: scale(1.1); opacity: 0; }
+}
+@keyframes starflash {
+	0% { transform: scale(0.7); opacity: 0; }
+	50% { opacity: 1; }
+	100% { transform: scale(1.1); opacity: 0; }
+}
+@-webkit-keyframes slidestar {
+	0% { transform: translate(0, 0); opacity: 0; }
+	50% { transform: translate(-120px, 200px); opacity: 1; }
+	100% { transform: translate(-240px, 400px); opacity: 0; }
+}
+@keyframes slidestar {
+	0% { transform: translate(0, 0); opacity: 0; }
+	50% { transform: translate(-120px, 200px); opacity: 1; }
+	100% { transform: translate(-240px, 400px); opacity: 0; }
+}
+@-webkit-keyframes STAR-MOVE {
+	0% { background-position: 0% 5%; opacity: 0.8; } 
+	100% { background-position: -220% 500%; opacity: 1; }
+}
+@keyframes STAR-MOVE {
+	0% { background-position: 0% 5%; opacity: 0.8; }  
+	100% { background-position: -220% 500%; opacity: 1; }
+}
+
+@-webkit-keyframes planetmove {
+	0% { background-position: 0% 5%; opacity: 0.8; } 
+	100% { background-position: 420% 500%; opacity: 1; }
+}
+@keyframes planetmove {
+	0% { background-position: 0% 5%; opacity: 0.8; }  
+	100% { background-position: 420% 500%; opacity: 1; }
+}
+
+@-webkit-keyframes planetmove2 {
+	0% { background-position: 80% 50%; opacity: 0.8; }  
+	100% { background-position: 0% 300%; opacity: 1; }
+}
+@keyframes planetmove2 {
+	0% { background-position: 80% 50%; opacity: 0.8; }  
+	100% { background-position: 0% 300%; opacity: 1; }
+}
+
+@keyframes roadmove{
+	0% { transform: translate(300px, -530px); opacity: 1; }
+	50% { transform: translate(-400px, 660px); opacity: 1; }
+	100% { transform: translate(-650px, 1090px); opacity: 1; }
+}
+@-webkit-keyframes roadmove{ 
+0% { transform: translate(300px, -530px); opacity: 1; }
+	50% { transform: translate(-400px, 660px); opacity: 1; }
+	100% { transform: translate(-650px, 1090px); opacity: 1; }
+}
+
+@keyframes carmove{
+	0%{transform:translate(0,0);opacity(1);}
+	50%{transform:translate(20px,-20px);opacity(0);}
+	100%{transform:translate(0,0);opacity(1);}
+}
+
+@-webkit-keyframes carmove{
+	0%{transform:translate(0,0);opacity(1);}
+	50%{transform:translate(20px,-20px);opacity(0);}
+	100%{transform:translate(0,0);opacity(1);}
+}
+

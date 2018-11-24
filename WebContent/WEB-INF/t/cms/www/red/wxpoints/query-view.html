@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>长安福特</title>
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="yes" name="apple-touch-fullscreen">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/lib/one/one.all.src.css">
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/wxpoints/css/pages/query-view.css">
+</head>
+<body>
+<div class="viewport">
+	<div class="view">
+		<ul class="view-tab">
+			[#if recordType==0]
+				<a href="${base}/wxpoints/queryview.jhtml?openId=${openId}&recordType=0">
+					<li class="active">积分累积记录</li>
+				</a>
+				<a href="${base}/wxpoints/queryview.jhtml?openId=${openId}&recordType=1">
+					<li>积分消费记录</li>
+				</a>
+			[#else]
+				<a href="${base}/wxpoints/queryview.jhtml?openId=${openId}&recordType=0">
+					<li >积分累积记录</li>
+				</a>
+				<a href="${base}/wxpoints/queryview.jhtml?openId=${openId}&recordType=0">
+					<li class="active">积分消费记录</li>	
+				</a>
+			[/#if]
+		</ul>
+		<div class="view-table">
+			[#if recordType==0]
+			<table cellpadding="0" cellspacing="0" data-index="1">
+				<tr>
+					<th>获取日期</th>
+					<th>积分来源</th>
+					<th>积分数值</th>
+					<th>积分有效期</th>
+				</tr>
+				[#if points??&&points?size>0]
+					[#list points as point]
+	    				[#if point_index%2==0]
+	            			<tr>
+	            				<td><div class="bgwhite bgwhite_first">${(point.incomeDate?string('yyyy-MM-dd'))!}</div></td>
+	            				<td><div class="bgwhite">${point.pointRuleName!}</div></td>
+	            				<td><div class="bgwhite">${point.pointNum!}</div></td>
+	            				<td><div class="bgwhite">${(point.expiryDate?string('yyyy-MM-dd'))!}</div></td>
+	            			</tr>
+	        			[#else]
+	            			<tr>
+	            				<td><div class="bgwhite bgwhite_light bgwhite_first">${(point.incomeDate?string('yyyy-MM-dd'))!}</div></td>
+	            				<td><div class="bgwhite bgwhite_light">${point.pointRuleName!}</div></td>
+	            				<td><div class="bgwhite bgwhite_light">${point.pointNum!}</div></td>
+	            				<td><div class="bgwhite bgwhite_light">${(point.expiryDate?string('yyyy-MM-dd'))!}</div></td>
+	            			</tr>
+	        			[/#if]
+	    			[/#list]
+    			[/#if]
+			</table>
+			[#else]
+			<table cellpadding="0" cellspacing="0" data-index="0">
+				<tr>
+					<th>消费日期</th>
+					<th>消费行为</th>
+					<th>消费积分</th>
+				</tr>
+				[#if points??&&points?size gt 0]
+					[#list points as point]
+	    				[#if point_index%2==0]
+	            			<tr>
+	            				<td><div class="bgwhite bgwhite_first">${(point.incomeDate?string('yyyy-MM-dd'))!}</div></td>
+	            				<td><div class="bgwhite">${point.pointRuleName!}</div></td>
+	            				<td><div class="bgwhite">${point.pointNum!}</div></td>
+	            			</tr>
+	        			[#else]
+	            			<tr>
+	            				<td><div class="bgwhite bgwhite_light bgwhite_first">${(point.incomeDate?string('yyyy-MM-dd'))!}</div></td>
+	            				<td><div class="bgwhite bgwhite_light">${point.pointRuleName!}</div></td>
+	            				<td><div class="bgwhite bgwhite_light">${point.pointNum!}</div></td>
+	            			</tr>
+	        			[/#if]
+	    			[/#list]
+    			[/#if]
+			</table>
+			[/#if]
+		</div>
+		<form id="tableForm" action="queryview.jhtml?openId=${openId}&recordType=${recordType}" method="post"> 
+        	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="pagination" >
+				 <tr>
+					   <td align="center" class="warp_c_pro">
+					   [#if pagination??&&pagination.totalCount gt 0]
+							[#if pagination.firstPage]
+							上一页
+							[#else]
+							<a href="javascript:void(0)", onclick="_gotoPage('${pagination.prePage}')">上一页</a>
+							[/#if]
+							[#if pagination.lastPage]
+							下一页
+							[#else]
+							<a href="javascript:void(0)", onclick= "_gotoPage('${pagination.nextPage}')">下一页</a>
+							[/#if]
+							<span>第${pagination.pageNo}页</span>
+							<span>共${pagination.totalCount}条</span>
+							<span>共${pagination.totalPage}页</span>
+					   [#else]
+					   		没有查找数据		   
+					   [/#if]
+					   </td>
+					</tr>
+				</table>
+				 <input type="hidden" name="page" value="1"/>
+				 <input type="hidden" name="rows" value="10"/>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/zepto.min.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/lib/one/one.all.min.js"></script>
+<script type="text/javascript" src="${base}/r/cms/www/red/wxpoints/js/pages/query-view.js"></script>
+<script type="text/javascript">
+function _gotoPage(page) {
+	try{
+		var tableForm = document.getElementById("tableForm");
+		if(page!=null && typeof(page)!="undefined" && page!=0){
+			$("input[name=page]").val(page);
+		}
+		tableForm.onsubmit=null;
+		tableForm.submit();
+	} catch(e) {
+		alert('_gotoPage方法出错');
+	}
+}
+</script>
+</body>
+</html>

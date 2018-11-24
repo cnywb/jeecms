@@ -1,0 +1,151 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>常用零件库 售后服务-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/fordjs/respond.min.js"></script>
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+	<ul class="dw">
+		<li><a href="#"><img src="/${res}/images/czrz.png" alt="" /></a></li>
+		<li><a href="#"><img src="/${res}/images/zxkf.png" alt="" /></a></li>
+	</ul>
+
+<article class="main ycyc" style="margin-bottom: 0;">
+	<h1>常用零件库<span>常用零件透明价，享受服务更安心</span></h1>
+	<article class="ctan">
+		<section>
+			<div id="tabs">
+  <ul>
+  	 [@cms_topic_list channelId='64' count='7' recommend='1' descLen='35' append='...']
+                [#list tag_list as t]
+    <li><a href="#tabs-${t.id}"><span class="sp01"></span><span class="sp02">${t.name}</span></a></li>
+   [/#list]
+                [/@cms_topic_list]
+  </ul>
+   [@cms_topic_list channelId='64' count='7' recommend='1' descLen='35' append='...']
+                [#list tag_list as t]
+  <div id="tabs-${t.id}">
+   <div class="tabbox" id="box01" style="margin-bottom: 100px;">
+					<table cellpadding="0" cellspacing="0" width="100%" class="table03">
+						<tr>
+							<th width="196">定期保养项目</th>
+							<th width="255">零件名称</th>
+							<th width="243">零件费用（含税）（元）</th>
+						</tr>
+						
+						[@cms_content_list topicId='${t.id}' channelId='65']
+						[#list tag_list as g]
+						<tr class="grey">
+							<td>更换</td>
+							<td>${g.title}</td>
+								<td>[#if user??]<span>${g.description}元</span>[#else]<span>认证车主可见价格</span>[/#if]</td>
+						</tr>
+						[/#list]
+						[/@cms_content_list]
+						
+						[@cms_content_list topicId='${t.id}' channelId='66']
+						[#list tag_list as g]
+						<tr class="grey">
+							<td>检查<br>
+							<td>${g.title}</td>
+							<td>[#if user??]<span>${g.description}元</span>[#else]<span>认证车主可见价格</span>[/#if]</td>
+						</tr>
+						[/#list]
+						[/@cms_content_list]
+					</table>
+				</div>
+  </div>
+   [/#list]
+   [/@cms_topic_list]
+  </div>
+</div>
+		</section>
+		<aside>
+			<div class="baoy">
+				<img src="/${res}/images/carby01.png" alt="">
+				<div class="bg">
+					<ul class="sel">
+						<li><span><a href="#"></a>选择保养车型</span><ul class="option">
+							<li>选择保养车型</li>
+							<li>选择保养车型</li>
+						</ul></li>
+						<li><span><a href="#"></a>选择购买时间</span></li>
+						<li><span><a href="#"></a>选择公里数</span></li>
+					</ul>
+					<input type="image" src="/${res}/images/confirm.jpg" alt="确 定" value="确 定">
+				</div>
+			</div>
+			<ul class="link">
+				<li><a href="#"><img src="/${res}/images/gfby.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/dljy.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/ycjh.png" alt=""></a></li>
+				<li><a href="#"><img src="/${res}/images/qc.png" alt=""></a></li>
+			</ul>
+		</aside>
+	</article>
+</article>
+<footer>
+	<nav>
+		<ul>
+			<li><a href="#" class="tit">用车养车</a><a href="#">行车宝典</a><a href="#">爱车养护</a><a href="#">用车指南下载</a></li>
+			<li><a href="#" class="tit">售后服务</a><a href="#">官方保养建议</a><a href="#">保养计算器</a><a href="#">真假配件</a> <a href="#">精品附件</a> <a href="#">QC流程</a> <a href="#">售后产品</a></li>
+			<li><a href="#" class="tit">互动问答</a><a href="#">常见Q&amp;A</a><a href="#">福域百科</a><a href="#">在线调研</a><a href="#">话题PK</a></li>
+			<li><a href="#" class="tit">福域论坛</a><a href="#">热门话题</a><a href="#">长安福特活动专版</a><a href="#">车型板块</a> <a href="#">兴趣板块</a> <a href="#">事务板块</a></li>
+			<li><a href="#" class="tit">精彩活动</a><a href="#">最新活动</a><a href="#">往期回顾</a></li>
+			<li><a href="#" class="tit">车型鉴赏</a></li>
+			<li class="last"><a href="#" class="tit">经销商专区</a><a href="#">经销商查询</a><a href="#">升级服务请您监督</a><a href="#">经销商活动</a></li>
+		</ul>
+		<p><a href="#">隐私权保护声明</a> | <a href="#">版权保护</a> | <a href="#">网站地图</a> | <a href="#">联系我们</a> | <a href="#">24小时客服热线</a> ©2013福特汽车（中国）有限公司 沪ICP备05031283号</p>
+	</nav>
+</footer>
+
+<!--弹出层-->
+<article class="zzc">
+	<section class="popup">
+		<h2><a href="javascript:void(0);" onClick="$('.zzc').hide();" class="close"><img src="/${res}/images/close.gif" alt=""></a>经典福克斯精品附件</h2>
+		<ul>
+			<li class="fl"><img src="/${res}/images/photo06.jpg" alt=""></li>
+			<li class="fr"><p>附件名称：福克斯绒质地垫<br>
+				适用车型：两箱、三箱</p>
+			<p>高级环保阻燃材料，无异味，易清洁；贴合原车尺寸和裁剪；特有专用定位孔，防止滑动，令脚步更舒适，驾驶更轻松</p>
+			</li>
+		</ul>
+	</section>
+</article>
+
+</body>
+</html>

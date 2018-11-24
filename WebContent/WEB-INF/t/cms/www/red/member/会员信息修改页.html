@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员信息修改 - ${site.name} - Powered by JEECMS</title>
+<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="${base}/r/cms/www/red/css/member.css" />
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css"/>
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/plugins/kindeditor4/plugins/code/prettify.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor4/kindeditor.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor4/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="/plugins/jcrop/css/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript" src="/plugins/jcrop/js/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/r/cms/www/red/js/area.js"></script>
+<style type="text/css">
+
+table input {
+  width: 195px;
+  height: 26px;
+  padding: 0 5px;
+  border-radius: 5px;
+  background: none;
+  border: 1.5px solid #949494;
+    margin: 5px 0;
+}
+
+span.radio {
+  background: url('/r/cms/www/red/images/radio.png') no-repeat;
+  width: 22px;
+  height: 22px;
+  position: relative;
+  background-size: 100%;
+  display: block;
+  float: left;
+  margin: 0 8px;
+    cursor: pointer;
+}
+
+span.radio_on{  background: url('/r/cms/www/red/images/radio_on.png') no-repeat;}
+
+span.selectcon {
+  background: url('/r/cms/www/red/images/select_bg.png') no-repeat;
+  width: 47px;
+  height: 26px;
+  display: block;
+  background-size: 100%;
+  line-height: 26px;
+  overflow: hidden;
+  padding: 0 15px 0 5px;
+  position: absolute;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input.Wdate {
+  background: url('/r/cms/www/red/images/caleder.png') no-repeat;
+  width: 197px;
+  height: 26px;
+  display: block;
+  background-size: 100%;
+  border: none;
+}
+#jvForm select {
+  width: 67px;
+  height: 26px;
+  opacity: 0;
+  position: relative;
+}
+#jvForm td{line-height: 26px;}
+label {
+    width: 65px;
+    float: left;
+    position: relative;
+    line-height: 24px;
+}
+
+input:invalid, textarea:invalid {
+    background-color: #fff;
+}
+
+</style>
+<script>
+	$(function(){
+		
+		$('span.radio').click(function(e){
+			$('span.radio').removeClass('radio_on')
+			$(this).addClass('radio_on')
+		})
+		$('select').change(function(e){
+			var selval=$(this).val();
+			$(this).prev().html(selval)
+			console.log($(this).prev())
+		})
+	})
+</script>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+	
+});
+
+
+//简单的事件处理程序，响应自onChange,onSelect事件，按照上面的Jcrop调用
+function showCoords(obj){
+	$("#x1").val(obj.x);
+	$("#y1").val(obj.y);
+	$("#x2").val(obj.x2);
+	$("#y2").val(obj.y2);
+	$("#w").val(obj.w);
+	$("#h").val(obj.h);
+}
+
+
+jcrop_api=null;
+flag=false;
+function initJcrop(imgSrc){
+ if(flag==false){
+	 flag=true;
+	 doInitJcrop();
+ }else{
+	 $(".jcrop-holder img").attr("src",imgSrc);//刷新 jcrop的图片
+ }
+}
+
+function doInitJcrop(){
+	 $("#ori_image").Jcrop({setSelect:[0,0,90,90],
+		onChange:showPreview,
+		onSelect:showPreview,
+		aspectRatio:1,
+		allowResize:true,
+		keySupport:false//此属性为了避免在ie下卡死
+	},function(){
+	    jcrop_api=this;
+	  });	
+}
+
+
+function showPreview(coords){
+	showCoords(coords);
+	if(parseInt(coords.w) > 0){
+		//计算预览区域图片缩放的比例，通过计算显示区域的宽度(与高度)与剪裁的宽度(与高度)之比得到
+		var rx = $("#preview_box").width() / coords.w; 
+		var ry = $("#preview_box").height() / coords.h;
+		//通过比例值控制图片的样式与显示
+		$("#crop_preview").css({
+			width:Math.round(rx * $("#ori_image").width()) + "px",	//预览图片宽度为计算比例值与原图片宽度的乘积
+			height:Math.round(rx * $("#ori_image").height()) + "px",	//预览图片高度为计算比例值与原图片高度的乘积
+			marginLeft:"-" + Math.round(rx * coords.x) + "px",
+			marginTop:"-" + Math.round(ry * coords.y) + "px"
+		});
+	}
+}
+img = new Image();//用来得到原始尺寸
+function initEditor(){//初始化图片上传组件
+	KindEditor.ready(function(K) {
+			var uploadbutton = K.uploadbutton({
+			button : K('#upload-file')[0],
+			fieldName : 'imgFile',
+			url : '/common/kindeditor/upload.jhtml?dir=image',
+			afterUpload : function(data) {
+				if (data.error === 0) {
+					$("#ori_image").show();
+					var url = K.formatUrl(data.url, 'absolute');
+					K('#imgUrl').val(url);
+					$("#uploadImgPath1").val(url);
+					img.src=url;
+					var orgW=img.width;
+					var orgH=img.height;
+					$("#ori_image").attr("src",url);
+					$("#crop_preview").attr("src",url);
+					initJcrop(url);
+				}else{
+					alert("上传图片出错!");
+				}
+			},
+			afterError : function(str) {
+				
+			}
+		});
+		uploadbutton.fileBox.change(function(e) {
+			uploadbutton.submit();
+		});
+	});
+}
+
+$(document).ready(function(){
+   $("#ori_image").hide();
+   $("#imgUrl").val("");
+   initEditor();
+   $("#btn_save").click(function(){
+	   var newPhoto=$("#imgUrl").val();
+	   if(newPhoto!=""){
+		   cutImage();
+	   }else{
+		   $("#jvForm").submit();
+	   }
+   });
+});
+
+function showBlock(){
+	$.blockUI({
+        message: '<h1>正在执行操作,请稍后...</h1>',
+        css: {
+            border: 'none',                   // 无边界
+            width:"180px",
+            top:"50%",                        // 高居中
+            left:"50%"                        // 左居中
+       }
+    });
+}
+function cutImage(){
+	if($("#imgUrl").val()==""){
+		alert("请上传照片！");return;
+	}
+	var requestJson={};
+	var orgW=img.width;
+	var orgH=img.height;
+	var imgW=$("#ori_image").css("width");
+	var imgH=$("#ori_image").css("height");
+	imgW=imgW.substring(0,imgW.indexOf("px"));
+	imgH=imgH.substring(0,imgH.indexOf("px"));
+	var wRatio=orgW/imgW;
+	var w=$("#w").val();
+	var h=$("#h").val();
+	var y1=$("#y1").val();
+	var x1=$("#x1").val();
+	if(w*wRatio>imgW){
+		alert("裁剪宽度必须小于等于图片实际宽度,请重新调整!");return;
+	}
+    if(h*wRatio>imgH){
+    	alert("裁剪高度必须小于等于图片实际高度,请重新调整!");return;
+	}
+    showBlock();
+    if(w==""||w=="0"){
+		requestJson["imgWidth"]=orgW;
+	}else{
+		requestJson["imgWidth"]=parseInt(w*wRatio);
+	}
+	if(h==""||h=="0"){
+		requestJson["imgHeight"]=orgH;
+	}else{
+		requestJson["imgHeight"]=parseInt(h*wRatio);
+	}
+	requestJson["imgSrcPath"]=$("#imgUrl").val();
+	requestJson["imgTop"]=parseInt(y1*wRatio);
+	requestJson["imgLeft"]=parseInt(x1*wRatio);
+	requestJson["reMinWidth"]=parseInt(w*wRatio);
+	requestJson["reMinHeight"]=parseInt(h*wRatio);
+	requestJson["imgScale"]=1;
+	requestJson["uploadNum"]=1;
+	 $.ajax( {//提交数据
+			url : '/member/imageCutAjax.jspx',
+			type : 'post',
+			dataType:'json',
+			data: requestJson,
+			success : function(result) {
+				$.unblockUI();
+				if(result.status==1){
+					 $("#jvForm").submit();
+				}else{
+					 alert("裁剪图片错误请稍后再试！");
+				}	
+	      },error:function(){
+	    	  $.unblockUI();
+	    	  alert("系统错误请稍后再试！");
+	     }
+		});
+}
+</script>
+
+ 
+
+</head>
+
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+ <div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+	<ul class="dw">
+		<li><a href="/czrz/index.htm"><img src="/${res}/images/czrz.png" alt=""></a></li>
+		<li><a href="/member/service_history.jspx"><img src="/${res}/images/wbjl.png" alt=""></a></li>
+		<li><a href="/member/allDealElec.jspx"><img src="/${res}/images/dzzh.png" alt=""></a></li>
+		<li>
+				<a href="${base}/points/personal/index.jhtml"><img  alt="" src="${base}/r/cms/www/red/point/images/dqjf.png">
+					<h3 id="userCurrentPoint"  style="width:64px;font-size:18px;color:#fff;text-align:center;position:absolute;top:245px;left:3px;z-index: 5;"></h3>
+					<script type=""  language="">
+					$(function(){
+						 $.get("${base}/points/personal/point.jhtml", function(result){
+						    $("#userCurrentPoint").html(result);
+						  });
+					});
+					</script>
+				</a>
+		</li>
+	</ul>
+	<article class="main ycyc">
+	<h1>个人中心</h1>
+	<img src="/${res}/images/img01.png" alt="" style="float: left; overflow: hidden; zoom: 1;" />
+	<article class="ctan de_event self" style="padding-bottom: 50px;">
+		<h2><span>${user.username}</span>[#if user.group.id==2]<img src="/${res}/images/self_rz.jpg" alt="" class="fl">[#else]<img src="/${res}/images/self_wrz.jpg" alt="" class="fl">[/#if]</h2>
+		<div class="detail">
+			<ul class="fl">
+				<li class="fl" style="text-align: center;">
+				<div   id="preview_box" style="overflow: hidden;width: 90px;height:90px;margin-left: 20px">
+				[#if user.userImg??]
+	          	    	[#if user.userImg!=""]
+	               		<img id="crop_preview"  height="90" width="90" src="${user.userImg!}" />
+	                 [#else]
+	               		<img  id="crop_preview"   height="90" width="90" src="/${res}/img/member/member-phtot.gif"/>
+	               	 [/#if]
+               [#else]
+               <img  id="crop_preview"    height="90" width="90" src="/${res}/img/member/member-phtot.gif"/>
+               [/#if]
+               </div>
+               <br />
+               <input type="button" id="upload-file" value="上传照片" />
+               </li>
+				<li class="fr"><a href="${base}/czrz/index.htm">[#if user.group.id==1]车主认证[#else]添加车辆[/#if]</a><br><a href="${base}/member/pwd.jspx">修改密码</a></li>
+			</ul>
+     	<div class="mc_content">   
+      <form id="jvForm" action="profile.jspx" method="post">
+     <table align="center" border="0" cellpadding="5" cellspacing="1" width="65%" style='border-left: 1px solid #CCC;'>
+       <tbody><tr>
+         <td align="right" height="25" width="150">真实姓名：</td>
+         <td><input name="realname" id="realname" value="${user.realname!?html}" maxlength="100" class="" type="text"> </td>
+       </tr>
+       <tr>
+         <td align="right" height="25">性别：</td>
+		 <td>
+			<label><span class="radio" value="0" ></span>男</label>
+			<label><span class="radio" value="1" ></span>女</label> 
+			<label><span class="radio" value="2" ></span>保密</label>
+		 </td>
+       </tr>
+       <tr style="display: none;" >
+         <td height="25" align="right" bgcolor="#f6fbff">性别：</td>
+		 <td bgcolor="#FFFFFF">
+         [@p.radio name="gender" value=user.gender list={"true":"男","false":"女","":"保密"}/]
+		 </td>
+       </tr>
+       <tr>
+         <td align="right" height="25">出生日期：</td>
+         <td><input id="birthday" name="birthday" value="${(user.birthday?string('yyyy-MM-dd'))!}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate" realvalue="" type="text" /></td>
+       </tr>
+       <tr>
+         <td align="right" height="25">车牌号码：</td>
+         <td><input id="drivingLicense" name="drivingLicense" value="${user.userExt.drivingLicense!?html}"  type="text" /></td>
+       </tr> 
+		<tr>
+         <td align="right" height="25">联系电话：</td>
+         <td><input id="mobile" name="mobile" value="${user.mobile!?html}" maxlength="255"  type="text" /></td>
+       </tr> 	
+		<tr>
+         <td align="right" height="25">联系地址：</td>
+         <td>
+		 <label style="padding: 0 5px 0 0;">
+			 <span class="provinceVal selectcon">[#if user.userExt.province??]${user.userExt.province!?html}[#else]省[/#if]</span>
+			
+			 <select  class="province " id="s_province">
+			
+			 </select>
+			 <input  type="hidden"  name="province" id="province" value="${user.userExt.province!?html}" />
+			 <input  type="hidden"  name="city" id="city" value="${user.userExt.city!?html}"/>
+			 <input  type="hidden"  name="county" id="county" value="${user.userExt.county!?html}"/>
+		 </label>
+		 <label style="padding: 0 5px 0 0;">
+			 <span class="cityVal selectcon">[#if user.userExt.city??]${user.userExt.city!?html}[#else]市[/#if]</span>
+			 <select  class="city" id="s_city">
+				
+			 </select>
+		 </label>
+		 <label style="padding: 0 5px 0 0;">
+			 <span class="areaVal selectcon">[#if user.userExt.county??]${user.userExt.county!?html}[#else]县[/#if]</span>
+			 <select  class="area"  id="s_county">
+			 </select>
+		 </label>
+		 </td>
+       </tr> 
+		<tr>
+		<td align="right" height="25"></td>
+        <td><input  id="comefrom"  name="comefrom" value="${user.comefrom!?html}" maxlength="255" class="" type="text"></td>
+       </tr>	
+		<tr>
+		<td align="right" height="25">电子邮件：</td>
+        <td><input id="email" name="email" value="${user.email!?html}" maxlength="255" class="" type="Email">
+        <input id="uploadImgPath1" name="userImg" style="width:220px" value="${user.userImg!}" type="hidden"/>
+        </td>
+       </tr>	   
+       <tr>
+       <td align="right" height="25"></td>
+         <td style="padding-top: 25px;" height="25">
+		 <img  id="btn_save" src="/${res}/images/commit.jpg"  />
+         </td>
+       </tr>
+     </tbody>
+     </table>
+         <table>
+                         <tr style="visibility: hidden;">
+				               <td  colspan="2" bgcolor="#f6fbff" >
+				                <b>x1</b><input type="text" size="4" id="x1" />
+                    	      <b class="ml5">y1</b><input type="text" size="4" id="y1" />
+                    	      <b class="ml5">x2</b><input type="text" size="4" id="x2" />
+                    	      <b class="ml5">y2</b><input type="text" size="4" id="y2" />
+                    	      <b class="ml5">w</b><input type="text" size="4" id="w" />
+                    	      <b class="ml5">h</b><input type="text" size="4" id="h" />
+                    	      <input type="hidden" id="imgUrl"  />
+   			                  </td>
+				            </tr>
+				     <tr>
+						<td  colspan="2" bgcolor="#f6fbff"><img alt="" id="ori_image" src=""   /></td>
+					</tr>
+     
+     </table>
+  </form>
+    
+	
+	
+    </div>
+</div>
+</article>
+</article>
+</div>
+<footer>
+	<nav>
+		<ul>
+			<li><a href="#" class="tit">用车养车</a><a href="#">行车宝典</a><a href="#">爱车养护</a><a href="#">用车指南下载</a></li>
+			<li><a href="#" class="tit">售后服务</a><a href="#">官方保养建议</a><a href="#">保养计算器</a><a href="#">真假配件</a> <a href="#">精品附件</a> <a href="#">QC流程</a> <a href="#">售后产品</a></li>
+			<li><a href="#" class="tit">互动问答</a><a href="#">常见Q&amp;A</a><a href="#">福域百科</a><a href="#">在线调研</a><a href="#">话题PK</a></li>
+			<li><a href="#" class="tit">福域论坛</a><a href="#">热门话题</a><a href="#">长安福特活动专版</a><a href="#">车型板块</a> <a href="#">兴趣板块</a> <a href="#">事务板块</a></li>
+			<li><a href="#" class="tit">精彩活动</a><a href="#">最新活动</a><a href="#">往期回顾</a></li>
+			<li><a href="#" class="tit">车型鉴赏</a></li>
+			<li class="last"><a href="#" class="tit">经销商专区</a><a href="#">经销商查询</a><a href="#">升级服务请您监督</a><a href="#">经销商活动</a></li>
+		</ul>
+		<p><a href="#">隐私权保护声明</a> | <a href="#">版权保护</a> | <a href="#">网站地图</a> | <a href="#">联系我们</a> | <a href="#">24小时客服热线</a> ?2013福特汽车（中国）有限公司 沪ICP备05031283号</p>
+	</nav>
+</footer>
+
+<script >
+
+$(function(){
+
+	$('span.radio').click(function(e){//自定义单选按钮点中事件
+		$('span.radio').removeClass('radio_on');
+		$(this).addClass('radio_on');
+		checkRadio($(this).attr("value")*1);
+	})
+	$('select').change(function(e){//自定义下拉菜单事件
+		var selval=$(this).val();
+		$(this).prev().html(selval);
+		console.log($(this).prev());
+	})
+	
+	//从隐藏的原生单选按钮中读取选中值
+	var gender=$("input[name='gender']:checked").val();
+	if(gender==""){
+		checkCustomRadio(2);
+	}else if(gender=="true"){
+		checkCustomRadio(0);
+	}else if(gender=="false"){
+		checkCustomRadio(1);
+	}
+	_init_area();
+	$("#s_province").change(function(){
+		$("#s_city").prev().html("");
+		$("#province").val($(this).val());
+		$("#city").val("");
+		$("#s_county").prev().html("");
+		$("#county").val("");
+	});
+$("#s_city").change(function(){
+	$("#city").val($(this).val());
+	$("#s_county").prev().html("");
+	$("#county").val("");
+});
+$("#s_county").change(function(){
+	$("#county").val($(this).val());
+});
+	
+	
+})
+//选中自定义的单选按钮
+function checkCustomRadio(idx){
+	$(".radio").each(function(index,domEle){
+		if(index==idx){
+			$('span.radio').removeClass('radio_on');
+			$(this).addClass('radio_on');
+		}
+	});
+}
+//选中原生的单选按钮
+function checkRadio(idx){
+	$("input[name='gender']").each(function(index,domEle){
+		if(index==idx){
+		$(this).attr('checked', 'true');
+		}
+	});
+}
+
+function doSubmit(){
+	
+	$('#jvForm').submit();
+}
+</script>
+</body>
+</html>

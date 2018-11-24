@@ -1,0 +1,24 @@
+<div class="slide_box">
+	<ul>
+		[#if user??]
+			<li><a href="${base}/czrz/index.htm"><img src="/${res}/images/czrz.png" alt="" /></a></li>
+			[#if user.group.id==2]
+				<li><a href="${base}/member/service_history.jspx"><img src="/${res}/images/wbjl.png" alt="" /></a></li>
+				<li><a href="${base}/member/allDealElec.jspx"><img src="/${res}/images/dzzh.png" alt="" /></a></li>
+				<li><a href="${base}/points/personal/index.jhtml"><img  alt="" src="/${res}/point/images/dqjf.png">
+						<h3>[#if unifiedUser??]${unifiedUser.currentPoint!}[/#if]</h3>
+					</a>
+				</li>
+			[#else]
+				<li><a href="#"><img src="/${res}/images/wbjl.png" alt=""  onclick="javascript:alert('请认证后再查看!')"/></a></li>
+				<li><a href="#"><img src="/${res}/images/dzzh.png" alt="" onclick="javascript:alert('请认证后再查看!')"/></a></li>
+				<li><a href="#"><img src="/${res}/point/images/jfcx.png" alt="" onclick="javascript:alert('请认证后再查看!')"/></a></li>
+			[/#if]
+		[#else]
+			<li><a href="#"><img src="/${res}/images/czrz.png" alt="" onclick="javascript:alert('请登陆后再认证!')"/></a></li>
+			<li><a href="#"><img src="/${res}/images/wbjl.png" alt=""  onclick="javascript:alert('请登陆认证后再查看!')"/></a></li>
+			<li><a href="#"><img src="/${res}/images/dzzh.png" alt="" onclick="javascript:alert('请登陆认证后再查看!')"/></a></li>
+			<li><a href="#"><img alt="" src="/${res}/point/images/jfcx.png" onclick="javascript:alert('请登陆认证后再查看!')"><h3></h3></a></li>
+		[/#if]
+	</ul>
+</div>

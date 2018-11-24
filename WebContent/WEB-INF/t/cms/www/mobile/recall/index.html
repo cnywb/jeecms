@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]>
+<html class="no-js iem7"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>车辆召回查询</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="renderer" content="webkit">
+    <script src="/r/cms/www/mobile/recall/js/dpi.js"></script>
+	<link rel="stylesheet" href="/r/cms/www/mobile/recall/css/reset.css" />
+    <link rel="stylesheet" href="/r/cms/www/mobile/recall/css/style.css"/>
+    
+    <script type="text/javascript">
+    function validateVin(vin){
+    	vin=vin.toUpperCase();
+    	if(vin.length!=17){
+    		return false;
+    	}
+    	var prefix=vin.substring(0,3).toUpperCase();
+    	if(prefix!="LVS"&&prefix!="LVR"){
+    		return false;
+    	}
+    	
+    	var endstr=vin.substring(11,17);
+    	var reg1=/^\d+$/;
+    	var reg2=/^[A-Za-z]+$/;
+    	if(!endstr.match(reg1)){
+    		return false;
+    	}
+    	var middlestr=vin.substring(10,11);
+    	if(!middlestr.match(reg2)){
+    		return false;
+    	}
+    	return true;
+    }
+    
+    function doSubmit(){
+    	var vin=$("#vin").val();
+      	if(validateVin(vin)==false){
+       		$("#error_tip").show();
+    		return ;
+    	}else{
+    		$("#vin").val($("#vin").val().toUpperCase());
+    		$("#form").submit();
+    	}
+    }
+    
+    </script>
+
+</head>
+	<body>
+		<div class="header">
+			<div class="container">
+				<div class="row">
+					<div class="headIco"><img src="/r/cms/www/mobile/recall/i/topIco.png" class="responsive_img"> </div>
+					<div class="headTitle">车辆<br>召回查询</div>
+				</div>
+			</div>
+		</div>
+		<div class="mainWrap">
+			<div class="container">
+				<div class="row" >
+					<p class="titleTxt">请正确输入您的VIN码，以查询您的车辆是否在召回范围内：</p>
+				</div>
+				<div class="row">
+				<form  id="form" action="queryCarRecallForMobile.jspx" method="post">
+					<input class="formField" type="text" id="vin" name="vin" required="" maxlength="17" placeholder="VIN码 " autocomplete="off"/>
+				</form>
+				</div>
+				<div class="row">
+					<a href="javascript:;" onclick="doSubmit();" class="btn">查 询</a>
+				</div>
+				<div class="row" id="error_tip" style="display: none;">
+					<p class="wrongTip" >请输入正确的17位VIN码。</p>
+				</div>
+				<div class="row">
+					<a href="###" class="btnQuestion" id="searchFAQ"><img src="/r/cms/www/mobile/recall/i/icoQuestion.png">  如何查询VIN码</a>
+				</div>
+				 [#if dataList??]
+				<div class="row">
+					<p class="titleTxt">查询结果如下：</p>
+				</div>
+				 [#if dataList?size==0]
+				<div class="row">
+					<p class="resaultTxt">
+						您的车辆不在召回范围，请放心使用。<br>
+						如果您有任何疑问，请与我们的授权经销商联系。
+					</p>
+				</div>
+				[/#if]
+				 [#if dataList?size!=0]
+				<div class="row">
+					<p class="resaultTxt resaultRed">
+						您的车辆属于[#list dataList as t]${t.reason}[/#list]范围，<br>
+						请您及时联系我们的授权经销商预约处理。
+					</p>
+				</div>
+				[/#if]
+				[/#if] 
+				<div class="row">
+					<a href="http://fe.huangu001.cn/index.php?g=Wap&m=Supplier&a=supplierlistgetlat&token=jvvktf1390570573&wecha_id=oULu_jvWWdwb32yCUGyGfbVKkua0" class="btnQuestion"><img src="/r/cms/www/mobile/recall/i/icoFind.png">  查询当地经销商</a>
+				</div>
+			</div>
+		</div>
+		<div class="popup">
+			<div class="popupContentWrap">
+				<div class="titleTxt popupTitle">如何查询VIN码</div>
+				<div class="popupMain">
+					<p class="popupTxt">查询方法一: 机动车行驶证</p>
+					<img src="/r/cms/www/mobile/recall/i/xsz.jpg">
+					<p class="popupTxt">查询方法二: 前挡风玻璃左侧</p>
+					<img src="/r/cms/www/mobile/recall/i/vin2.jpg">
+				</div>
+				<a href="###" class="btnQuestion" id="backBtn"><img src="/r/cms/www/mobile/recall/i/icoFind.png">  返回查询</a>
+			</div>
+		</div>
+		<script src="/r/cms/www/mobile/recall/js/jquery.min.js"></script>
+		<script src="/r/cms/www/mobile/recall/js/index.js"></script>
+	</body>
+</html>

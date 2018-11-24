@@ -1,0 +1,8 @@
+<div id="hotlink">
+ 友情链接:
+  [@cms_friendlink_list]
+  [#list tag_list as link]
+  <a href="${link.domain}" onclick="$.get('${base}/friendlink_view.jspx?id=${link.id}')" target="_blank">${link.name}</a>
+  [/#list]
+  [/@cms_friendlink_list]
+</div>

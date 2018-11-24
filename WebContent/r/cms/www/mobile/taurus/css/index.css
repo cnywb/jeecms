@@ -1,0 +1,1178 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-size:66.3%}
+fieldset,img{border:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{text-decoration: underline;color:#000;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea{vertical-align:middle;outline:none}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+html,body{height:100%;}
+body{font-family"Microsoft YaHei","微软雅黑",sans-serif; background: #000;}
+a:hover{text-decoration:none;}
+
+.page {
+    position: relative;
+    height: 100%;
+    background: url(../images/part/bg.jpg) no-repeat;
+    background-size: 100%;
+    display: block;
+    width: 100%;
+}
+img.logo2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 26;
+}
+.landing{
+    position: absolute;
+    height: 100%;
+    background: url(../images/doorbg.jpg) no-repeat;
+    background-size: cover;
+    display: block;
+    width: 100%;
+    top: 0;
+    z-index:25;
+}
+img.door {
+    position: absolute;
+    left: 617px;
+    top: 217px;
+    z-index: 19;
+}
+.landing a{
+    top: 115px;
+    position: relative;
+    width: 165px;
+    margin: 0 auto;
+    display: block;
+    z-index: 2;
+}
+.line{ position: absolute;}
+.landing .btnblur {
+	top: 360px;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    -webkit-animation: bs linear 1s infinite;
+  	-moz-animation: bs linear 1s infinite;
+  	animation: bs linear 1s infinite;
+}
+
+.partBtnBlur {
+	-webkit-animation: pb linear 1s infinite;
+  	-moz-animation: pb linear 1s infinite;
+  	animation: pb linear 1s infinite;
+}
+
+
+@-webkit-keyframes pb {
+0% {
+opacity: .5; 
+}
+25% {
+opacity: .8; 
+}
+50% {
+opacity: 1; 
+}
+75% {
+opacity: .8; 
+}
+100% {
+opacity: .5; 
+}
+}
+
+@-webkit-keyframes bs {
+0% {
+opacity: 0; 
+}
+25% {
+opacity: 1; 
+}
+50% {
+opacity: 1; 
+}
+75% {
+opacity: .3; 
+}
+100% {
+opacity: 0; 
+}
+}
+
+.landing .btnblur .btnOutGlow {
+	width: 165px;
+}
+
+.rightContent {
+    position: absolute;
+    width: 119px;
+    height: 388px;
+    float: right;
+    right: 0;
+    top: 56px;
+    overflow: hidden;
+    z-index: 23;
+}
+.rightContentCover {
+	position: absolute;
+	width: 119px;
+    height: 400px;
+    right: 0;
+    top: 14px;
+    overflow: hidden;
+    z-index: 24;
+    background: rgba(221,112,112,0.0);
+}
+.partlist li{
+    position: relative;
+    width: 57px;
+    height: 88px;
+    margin-top: 40px;
+	display: block;
+}
+
+.partlist li.icon_car1 {
+    background: url(../images/icon/icon_car1.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car1.on {
+    background: url(../images/icon/icon_car1_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car2 {
+    background: url(../images/icon/icon_car2.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car2.on {
+    background: url(../images/icon/icon_car2_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car3 {
+    background: url(../images/icon/icon_car3.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car3.on {
+    background: url(../images/icon/icon_car3_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car4 {
+    background: url(../images/icon/icon_car4.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car4.on {
+    background: url(../images/icon/icon_car4_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car5.on {
+    background: url(../images/icon/icon_car5_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car5 {
+    background: url(../images/icon/icon_car5.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car6.on {
+    background: url(../images/icon/icon_car6_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car6 {
+    background: url(../images/icon/icon_car6.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car7.on {
+    background: url(../images/icon/icon_car7_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car7 {
+    background: url(../images/icon/icon_car7.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car8.on {
+    background: url(../images/icon/icon_car8_on.png) no-repeat;
+    background-size: 100%;
+}
+.partlist li.icon_car8 {
+    background: url(../images/icon/icon_car8.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li{
+    position: relative;
+    width: 66px;
+    height: 64px;
+    margin: 7px 0;
+    display: block;
+}
+.selectcolor{
+    height: 285px;
+    top: 40px;
+    width: 124px;
+    right: 0px;
+}
+.colorlist li.color1{
+    background: url(../images/car/icon_1.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color1.on{
+    background: url(../images/car/icon_1on.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color2{
+    background: url(../images/car/icon_2.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color2.on{
+    background: url(../images/car/icon_2on.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color3{
+    background: url(../images/car/icon_3.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color3.on{
+    background: url(../images/car/icon_3on.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color4{
+    background: url(../images/car/icon_4.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color4.on{
+    background: url(../images/car/icon_4on.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color5{
+    background: url(../images/car/icon_5.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color5.on{
+    background: url(../images/car/icon_5on.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color6{
+    background: url(../images/car/icon_6.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color6.on{
+    background: url(../images/car/icon_6on.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color7{
+    background: url(../images/car/icon_7.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color7.on{
+    background: url(../images/car/icon_7on.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color8{
+    background: url(../images/car/icon_8.png) no-repeat;
+    background-size: 100%;
+}
+.colorlist li.color8.on{
+    background: url(../images/car/icon_8on.png) no-repeat;
+    background-size: 100%;
+}
+
+.carColor{
+position: absolute;
+top:0;
+z-index: 22;
+}
+img.light {
+    position: absolute;
+    top: 0!important;
+	z-index: 17;
+}
+.lighton{
+    top: 0;
+    position: absolute;
+	z-index: 18;
+	
+}
+.partbtn,.colorbtn {
+    position: absolute;
+    width: 35px;
+    right: 77px;
+    float: right;
+    top: 30px;
+    z-index: 20;
+display: block;
+}
+.colorbtn {
+ right: 74px;
+ top: 12px;
+}
+.colorbtn a.bottom {
+    position: absolute;
+    top: 335px;
+float: left;
+    left: 0;
+}
+.partbtn  a.top{
+    width: 34px;
+    padding: 10px 0 10px 0;
+}
+.partbtn  a.bottom {
+    position: absolute;
+    top: 445px;
+    float: left;
+    left: 0;
+    width: 34px;
+    padding: 10px 0;
+}
+img.logo {
+    position: absolute;
+	z-index: 26;
+}
+
+a.apply {
+    position: absolute;
+    bottom: 32px;
+    left: 126px;
+    z-index: 93;
+    width: 79px;
+    height: 100px;
+    display: none;
+}
+.sharecontent a {
+        bottom: 19px;
+    float: left;
+    position: absolute;
+    width: 165px;
+    z-index: 2;
+    left: 0px;
+}
+.copy1{
+    font: 24.48px/30px 'Microsoft YaHei';
+    color: #58595b;
+    top: 130px;
+    text-align: center;
+    position: absolute;
+	z-index: 3;
+	width: 100%;
+	display: none;
+}
+/*.part1 p.copy2 {
+    font: 16px/17px 'Microsoft YaHei';
+    color: #58595b;
+    top: 135px;
+    text-align: center;
+    position: absolute;
+	z-index: 3;
+}*/
+.copy2{
+    font: 18px/20px 'Microsoft YaHei';
+    color: #58595b;
+    top: 168px;
+    text-align: center;
+    position: absolute;
+	z-index: 3;
+	width: 100%;
+	display: none;
+}
+
+.carLayer {
+	position: absolute;
+}
+.part1 {
+	width: 100%;
+}
+
+.part1,.part2,.part3,.part4,.part5,.part6,.part7,.part8,.part9 {
+	z-index: 100;
+}
+
+.part1  img.fdj {
+    position: absolute;
+    top: 150px;
+    left: -4px;
+}
+
+.part1 section .line {
+	position:absolute;
+	top:-80px;
+	}
+
+.carLayer  img.fdj_on {
+    position: absolute;
+    top: 240px;
+    left: 397px;
+    z-index: 2;
+}
+.part1 section {
+    position: absolute;
+    top: -315px;
+    width: 130px;
+    left: 401px;
+}
+.part2 section {
+    position: absolute;
+    width: 377px;
+    left: 401px;
+    top: -436px;
+}
+.pageContent {
+	position: absolute;
+	top:0;
+	width: 100%;
+}
+.pageContent .p8{
+    position: absolute;
+    z-index: 1;
+    top:0;
+}
+img.zy_on {
+    position: absolute;
+    top: 0;
+    z-index: 15;
+}
+
+img.cart3on {
+	position: absolute;
+	top: 0;
+	z-index: 16;
+}
+
+img.zy {
+    position: relative;
+    top: -60px;
+}
+
+
+
+img.cs {
+    position: absolute;
+    top: -88px;
+    left: -134px;
+	z-index: 3;
+}
+.part6 section{
+    position: absolute;
+    width: 377px;
+    left: 627px;
+    top: -305px;
+}
+
+.partlist,.colorlist {
+    position: relative;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,0.75);
+    width: 100%;
+    height: 100%;
+	z-index: 240;
+}
+.popup a.close {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+
+form {
+    position: relative;
+    width: 385px;
+    margin: 90px auto 0;
+    color: #fff;
+}
+
+form .title{
+    font: 23.89px/32.43px '微软雅黑';
+}
+form .sbtitle {
+    font: 23.89px/46.93px '微软雅黑';
+    margin-top: 5px;
+    position: relative;
+    float: left;
+}
+form  .sbtitle span{
+width: 100px;
+    display: block;
+    float: left;
+}
+form input {
+    width: 285px;
+    height: 35px;
+    position: relative;
+    border: none;
+    border-radius: 5px;
+	text-align: center;
+}
+span.icon {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background: url(../images/cycle.png) no-repeat;
+    background-size: 100%;
+    display: block;
+    float: left;
+    margin-right: 15px;
+    margin-top: 4px;
+}
+span.icon.on{
+ background: url(../images/cycle_on.png) no-repeat;
+}
+form .man,form .woman{
+    position: relative;
+    display: inline-block;
+    font: 20.48px/32.43px '微软雅黑';
+    width: 83px;
+    left: 75px;
+    top: 4px;
+    margin: 0 22px;
+float:left
+}
+form a.commit {
+    position: relative;
+    width: 170px;
+    height: 35px;
+    background-color: #fff;
+    display: inline-block;
+    text-align: center;
+    font: 23.89px/34px '微软雅黑';
+    border-radius: 5px;
+    top: 80px;
+    left: 100px;
+}
+
+.open {
+    position: absolute;
+    width: 95px;
+    right: 45px;
+    top: 385px;
+    background: url(../images/icon/clockon.png) no-repeat;
+    background-size: 100%;
+    display: block;
+    height: 133px;
+	z-index: 30;
+	-webkit-animation: bs linear 1s infinite;
+  	-moz-animation: bs linear 1s infinite;
+  	animation: bs linear 1s infinite;
+}
+
+.open a {display: block;width: 95px;height: 133px;}
+
+.pageContent>div p,.pageContent>div section {display:none;z-index: 100;}
+img.cs_on {
+      position: absolute;
+	  z-index: 3;
+    	top: 0;
+}
+a.getphoto,a.done {
+    position: absolute;
+    bottom: 32px;
+	left: 19px;
+}
+
+a.apply2 {
+    position: absolute;
+    bottom: 32px;
+    left: 19px;
+    z-index: 93;
+}
+
+.slidewrap {
+    position: relative;
+    width: 5000px;
+    height: 100%;
+    display: block;
+}
+
+.slide {
+    position: relative;
+    width: 1136px;
+    height: 536px;
+    display: block;
+	float: left;
+}
+.slidebg{
+position: absolute;
+top:0
+}
+img.userImg {
+    position: relative;
+    top: 18px;
+    float: right;
+    display: block;
+    right: 41px;
+    width: 80px;
+}
+.slide:nth-child(4) textarea,.slide:nth-child(3) textarea{
+top: 331px;
+color: #58595b;
+}
+.slide:nth-child(4) .nickname,.slide:nth-child(3) .nickname{
+
+color: #58595b;
+}
+.slidewrap>div textarea {
+    position: relative;
+    width: 334px;
+    height: 161px;
+    top: 359px;
+    background: none;
+    border: none;
+    float: right;
+    right: -47px;
+    display: block;
+    background-size: 100%;
+    font: 22px/38px '微软雅黑';
+    letter-spacing: 1px;
+    overflow: hidden;
+    color: #FFFFFF;
+    
+}
+span.nickname {
+    position: absolute;
+    top: 480px;
+    right: 80px;
+    float: right;
+    font: 22.55px/50px '微软雅黑';
+    color: #fff;
+    font-style: italic;
+}
+
+.button {
+    position: absolute;
+    top: 180px;
+    width: 96%;
+    display: block;
+    left: 2%;
+}
+
+.button a.lbtn {
+    position: relative;
+    width: 15px;
+    height: 74px;
+    background: url(../images/L_btn.png) no-repeat;
+    display: block;
+	float: left;
+}
+
+.button a.rbtn {
+    position: relative;
+    width: 15px;
+    height: 74px;
+    background: url(../images/R_btn.png) no-repeat;
+    display: block;
+	float: right;
+}
+
+.getimages {
+    position: relative;
+    width: 1136px;
+    overflow: hidden;
+    display: block;
+}
+.lightIn{-webkit-animation:fadein 0.5s infinite ;-moz-animation:fadein 0.5s infinite;-o-transform:fadein 0.5s infinite ;animation:fadein 0.5s infinite;}
+
+
+.lightIn2{-webkit-animation:fadein 1s infinite ;-moz-animation:fadein 1s infinite;-o-transform:fadein 1s infinite ;animation:fadein 1s infinite;}
+
+@-webkit-keyframes fadein{
+    100%{opacity:0}
+	50%{opacity:1}
+    0%{opacity:0}
+}
+
+@-moz-keyframes fadein{
+    100%{opacity:0}
+	50%{opacity:1}
+    0%{opacity:0}
+}
+@-o-keyframes fadein{
+    100%{opacity:0}
+	50%{opacity:1}
+    0%{opacity:0}
+}
+@keyframes fadein{
+    100%{opacity:0}
+	50%{opacity:1}
+    0%{opacity:0}
+}
+
+.success p{
+    font: 23.89px/40.43px '黑体';
+    color: #fff;
+    text-align: center;
+    top: 140px;
+    position: relative;
+}
+.success a{
+    font: 23.89px/40px '黑体';
+    color: #000;
+    background: #fff;
+    height: 40px;
+    width: 170px;
+    display: block;
+    text-align: center;
+    border-radius: 6px;
+    margin: 0 auto;
+    position: relative;
+    top: 220px;
+}
+img.tcshadow {
+    z-index: 6;
+    position: absolute;
+	display:none;
+}
+
+
+.music {
+	position: absolute;
+    width: 200px;
+    height: 40px;
+    z-index: 30;
+    top: 254px;
+    left: 417px;
+}
+
+.music img{
+position: absolute;
+}
+
+img.shake {
+    position: absolute;
+    top: 0;5
+    z-index: 2;
+    display: block;
+}
+div#orientLayer {
+    position: absolute;
+    width: 1136px;
+    display: block;
+    z-index: 100;
+    background: url('../images/change.jpg') no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.ploading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: block;
+    z-index: 2222;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    padding-top: 16%;
+}
+
+.partlist li img {
+    top: -2px;
+    position: relative;
+display:none
+}
+img.ppz  {
+    position: relative;
+    top: 0;
+    margin-top: -35px;
+}
+
+.part2 section .line {
+	position: absolute;
+	left: 0;
+	top: -80px;
+}
+
+.part3 section {
+    position: absolute;
+    width: 552px;
+    top: -259px;
+    left: 393px;
+}
+
+.part3 section img.ppz {
+	position: absolute;
+	top: 0;
+	margin-top: 0;
+	left: 0;
+}
+
+.part3 section .line {
+	position: absolute;
+	left: 0;
+	top: -30px;
+}
+
+.part5 section .line {
+	position: absolute;
+	left: 0;
+	top: -60px;
+}
+
+.part6 section .line {
+	position: absolute;
+	left: 0px;
+	top: -120px;
+}
+
+
+.part4 section,.part5 section,.part7 section{
+    display: block;
+    top: -280px;
+    z-index: 4;
+	position: absolute;
+    width: 552px;
+    left: 393px;
+}
+
+.part4 section img.ppz {
+	position: absolute;
+	top: 0;
+	margin-top: 0;
+	left: 0;
+}
+
+.part4 section .line {
+	position: absolute;
+	left: 0;
+	top: -30px;
+}
+
+
+.ppzscale {-webkit-animation:bord 2s ease-out 0s normal forwards; ;-moz-animation:bord 1s  ease-out 0s normal forwards;;-o-transform:bord 1s  ease-out 0s normal forwards; ;animation:bord 1s  ease-out 0s normal forwards;;}
+@-webkit-keyframes bord{
+    100%{-webkit-transform: scale(0.5)}
+	0%{-webkit-transform: scale(1)}
+}
+
+@-moz-keyframes bord{
+    100%{-moz-transform:  scale(0.5)}
+	0%{-moz-transform:  scale(1)}
+}
+@-o-keyframes bord{
+    100%{-o-transform: scale(0.5)}
+	0%{-o-transform:  scale(1)}
+}
+@keyframes bord{
+    100%{transform: scale(0.5)}
+	0%{transform: scale(1)}
+}
+
+a.rule {
+    position: absolute;
+    font: 18.89px/26px '微软雅黑';
+    top: 282px;
+    left: 166px;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.ruletxt  p{
+    text-align: center;
+    color: #fff;
+    margin-top: 4%;
+    font-size: 28px;
+    font-weight: bold;
+}
+img.sharecard {
+    position: absolute;
+}
+
+.soundWave1 {
+	width:56px;
+	height: 43px;
+	background: url(../images/wave2.png) no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+    opacity: 0;
+    text-align: center;
+    -webkit-animation: sw linear 1s infinite;
+  	-moz-animation: sw linear 1s infinite;
+  	animation: sw linear 1s infinite;
+}
+
+@-webkit-keyframes sw {
+0% {
+opacity: 0; 
+}
+25% {
+opacity: 1; 
+}
+50% {
+opacity: 1; 
+}
+75% {
+opacity: .3; 
+}
+100% {
+opacity: 0; 
+}
+}
+
+.soundWave2 {
+	width:56px;
+	height: 43px;
+	background: url(../images/wave3.png) no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+    opacity: 0;
+    text-align: center;
+    -webkit-animation: swthree linear 1s infinite;
+  	-moz-animation: swthree linear 1s infinite;
+  	animation: swthree linear 1s infinite;
+}
+
+@-webkit-keyframes swthree {
+0% {
+opacity: 0; 
+-webkit-transform: scale(1);
+}
+45% {
+opacity: 1; 
+-webkit-transform: scale(1.1);
+}
+46% {
+opacity: 1; 
+-webkit-transform: scale(1.15);
+}
+85% {
+opacity: .3; 
+-webkit-transform: scale(1.2);
+}
+100% {
+opacity: 0; 
+-webkit-transform: scale(1.4);
+}
+}
+
+.soundWave3 {
+	width:56px;
+	height: 43px;
+	background: url(../images/wave4.png) no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+    opacity: 0;
+    text-align: center;
+    -webkit-animation: swthree linear 1s infinite;
+  	-moz-animation: swthree linear 1s infinite;
+  	animation: swthree linear 1s infinite;
+}
+
+@-webkit-keyframes swthree {
+0% {
+opacity: 0; 
+-webkit-transform: scale(1);
+}
+55% {
+opacity: 1; 
+-webkit-transform: scale(1.1);
+
+}
+65% {
+opacity: 1; 
+-webkit-transform: scale(1.15);
+}
+90% {
+opacity: .3; 
+-webkit-transform: scale(1.2);
+}
+100% {
+opacity: 0; 
+-webkit-transform: scale(1.4);
+}
+}
+.soundWavedot {
+	width:56px;
+	height: 43px;
+	background: url(../images/wave1.png) no-repeat;
+	position: absolute;
+	top: 0;
+	left: 0;
+    opacity: 1;
+}
+
+.soundwave {
+	width: 56px;
+	height: 43px;
+	position: absolute;
+}
+.shiftlight {
+	position: absolute;
+	z-index: 120;
+	display: none;
+}
+
+.arrow {
+	position: absolute;
+	top: 160px;
+	left: 715px;
+	-webkit-animation: arrowAmi linear 1s infinite;
+  	-moz-animation: arrowAmi linear 1s infinite;
+  	animation: arrowAmi linear 1s infinite;
+}
+
+@-webkit-keyframes arrowAmi {
+0% {
+opacity: 1; 
+left: 715px;
+}
+100% {
+opacity: 0; 
+left: 785px;
+}
+}
+
+
+.shiftCircle {
+	position: absolute;
+	z-index: 120;
+	display: block;
+	width: 64px;
+	height:46px;
+	overflow: hidden;
+	background-image: url(../images/circ.png);
+	-webkit-animation: auto-circle 1s step-end infinite;
+	display: none;
+}
+
+
+     
+@-webkit-keyframes auto-circle{
+                0%{
+                  background-position-x:0;
+                }
+                7%{
+                  background-position-x:-64px;
+                }
+                14%{
+                  background-position-x:-128px;
+                }
+                21%{
+                  background-position-x:-192px;
+                }
+                28%{
+                  background-position-x:-256px;
+                }
+                35%{
+                  background-position-x:-320px;
+                }
+                42%{
+                  background-position-x:-384px;
+                }
+                49%{
+                  background-position-x:-448px;
+                }
+                56%{
+                  background-position-x:-512px;
+                }
+                63%{
+                  background-position-x:-576px;
+                }
+                70%{
+                  background-position-x:-640px;
+                }
+                77%{
+                  background-position-x:-704px;
+                }
+                84%{
+                  background-position-x:-768px;
+                }
+                91%{
+                  background-position-x:-832px;
+                }
+                100%{
+                  background-position-x:-896px;
+                }
+            }
+
+.selectInput {
+	font-size: 12px;
+	
+}
+
+.ningbanshou {
+  	transform-origin: 25px 25px;
+  	-webkit-animation-name: banshou;
+    -webkit-animation-duration: 1000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-animation-name: banshou;
+    -moz-animation-duration: 1000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    -ms-animation-name: banshou;
+    -ms-animation-duration: 1000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: banshou;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/*@-webkit-keyframes banshou {
+	0%{
+        transform: rotate(315deg);
+      }
+	50%{
+        transform:rotate(360deg);
+      }
+	100%{
+        transform:rotate(315deg);
+      }
+}*/
+
+@-ms-keyframes banshou { 
+        from { 
+            -ms-transform: rotate(315deg); 
+        } to { 
+            -ms-transform: rotate(360deg); 
+        }
+    }
+    @-moz-keyframes banshou { 
+        from { 
+            -moz-transform: rotate(315deg); 
+        } to { 
+            -moz-transform: rotate(360deg); 
+        }
+    }
+    @-webkit-keyframes banshou { 
+        from { 
+            -webkit-transform: rotate(315deg); 
+        } to { 
+            -webkit-transform: rotate(360deg); 
+        }
+    }
+    @keyframes banshou { 
+        from { 
+            transform: rotate(315deg); 
+        } to { 
+            transform: rotate(360deg); 
+        }
+    }
+
+
+.selectcolor{z-index:110;}
+
+.loadTxt {
+	padding-top:40px
+	font-size: 18px;
+	font-family: "microsoft yahei",'ST Heiti';
+}

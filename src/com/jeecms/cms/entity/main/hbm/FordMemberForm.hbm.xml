@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.main">
+	<class name="FordMemberForm" table="FORD_MEMBER_FORM">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="vformId" type="java.lang.String" column="VFORM_ID" length="30"/>
+		<property name="vcustomerid" column="VCUSTOMER_ID" type="string" not-null="false" length="10"/>
+		<property name="vcarid" column="VCAR_ID" type="string" not-null="false" length="20"/>
+		<property name="vcontactpid" column="VCONTACTP_ID" type="string" not-null="false" length="10"/>
+		<property name="vformName" column="VFORM_NAME" type="string" not-null="false" length="80"/>
+		<property name="vvin" column="VVIN" type="string" not-null="false" length="30"/>
+		<property name="vformTel" column="VFORM_TEL" type="string" not-null="false" length="20"/>
+		<property name="vcreated" column="VCREATED" type="string" not-null="false" length="50"/>
+		<property name="dcrtDate" column="DCRT_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vupdated" column="VUPDATED" type="string" not-null="false" length="50"/>
+		<property name="dupDate" column="DUP_DATE" type="timestamp" not-null="false" length="19"/>
+		<property name="vnotes" column="VNOTES" type="string" not-null="false" length="300"/>
+		<property name="vdmsOwnerId" column="VDMS_OWNER_ID" type="string" not-null="false" length="20"/>
+	</class>
+</hibernate-mapping>

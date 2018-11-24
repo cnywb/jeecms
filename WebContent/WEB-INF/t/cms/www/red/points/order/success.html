@@ -1,0 +1,95 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>商品积分兑换</title>
+<link href="/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/red/fordjs/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+
+<div id="miandiv">
+	<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+
+<article class="main ycyc">
+	<h1>精品附件</h1>
+	
+	<article class="ctan">
+	<section>
+	<div>
+		<section id="pagelist" class="tabpage art">
+		<div class="tabbox">
+		<ul class="tabfj">
+		 	[#if noauthuser=="0"]
+		 		未认证车主，不能兑换商品
+		 	[/#if]
+		 	[#if enoughpoint=="0"]
+		 		用户积分不足，努力发贴吧；
+		 	[/#if]
+		</ul>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		  <tr>
+		   <td align="center" class="pn-sp">
+		   		用户积分：${userpoint!}
+		   </td>
+		    <td align="center" class="pn-sp">
+		   		产品名称：${product.title!}
+		   </td>
+		    <td align="center" class="pn-sp">
+		   		产品所需兑换的积分：${product.pointNum!}
+		   </td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			<form id="tableForm" action="../exchangesave.jspx" method="post">
+				产品ID：<input type="text" name="productId" value="${product.id!}"  readonly/><br/>
+						收货人姓名：<input type="text" name="sendee" value="11"/><br/>
+						手机：<input type="text" name="mobilePhoneNo" value="12"/><br/>
+						电话：<input type="text" name="phoneNo" value="12"/><br/>
+						省：<input type="text" name="province" value="12"/><br/>
+						市：<input type="text" name="city" value="12"/><br/>
+						县：<input type="text" name="disrict" value="12"/><br/>
+						详细地址：<input type="text" name="address" value="12"/><br/>
+						邮编：<input type="text" name="zipCode" value="12"/><br/>
+						备注：<input type="text" name="memo" value=""/><br/>
+						<button type="submit">确认兑换</button>
+			</form>
+			</td>
+		</tr>
+		</table>
+		</div>
+		</section>
+   </section>
+	</article>
+	 
+</article>
+
+</div>
+</div>
+
+ 
+</body>
+</html>

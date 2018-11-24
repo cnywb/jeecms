@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <title>个人主页-福域</title>
+    <script src="/${res}/js/jquery-1.js"></script>
+    <script>
+
+        $(function(){
+            $("#btn_query").click(function(){
+                var data = {};
+                data["activityCode"]=$("#activityCode").val();
+                $.ajax({
+                    url:"${base}/lottery/queryCount.jspx",
+                    type:"POST",
+                    data:data,
+                    success:function(retval){
+                        if(retval!==""){
+                            var str = retval.split(":");
+                            var flag = str[0];
+                            console.log(flag);
+                            alert(str[1]);
+                        }else{
+                            alert("系统异常!");
+                        }
+
+
+                    },error:function(retval){
+                        console.log(retval);
+                        alert("系统异常!");
+                    }
+
+                })
+            });
+
+            $("#btn_lotty").click(function(){
+                var data = {};
+                data["activityCode"]=$("#activityCode").val();
+                $.ajax({
+                    url:"${base}/lottery/lottery.jspx",
+                    type:"POST",
+                    data:data,
+                    success:function(retval){
+                        if(retval!==""){
+                            var str = retval.split(":");
+                            var flag = str[0];
+                            console.log(flag);
+                            alert(str[1]);
+                        }else{
+                            alert("系统异常!");
+                        }
+
+                    },error:function(retval){
+                        console.log(retval);
+                        alert("系统异常!");
+                    }
+
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+
+        <p>查询用户的抽奖次数</p>
+        <p>
+            <label for="activityCode">活动代码:</label>
+            <input type="text" name="activityCode" id="activityCode"/>
+        </p>
+        <p>
+            <input type="button" value="查询剩余抽奖次数" id="btn_query"/>
+            <input type="button" value="模拟抽奖" id="btn_lotty"/>
+        </p>
+
+
+
+
+</body>
+</html>

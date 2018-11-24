@@ -1,0 +1,90 @@
+<script type="text/javascript">
+var title=$("title").text();
+var hostname=window.location.hostname;
+var cmshostname="www.changanfordclub.com";
+var bbshostname="bbs.changanfordclub.com";
+if((cmshostname==hostname||bbshostname==hostname)&&title!="经销商专区-福域"&&title!="分享主题"&&title!="发表主题"&&title!="主题预览"&&window.location.protocol=="http:"){
+    window.location.href= window.location.href.replace(/http:/, "https:");//需要https协议
+}else if((cmshostname==hostname||bbshostname==hostname)&&(title=="经销商专区-福域"||title=="分享主题"||title=="发表主题"||title=="主题预览")&&window.location.protocol=="https:"){
+    window.location.href= window.location.href.replace(/https:/, "http:");//经销商专区的百度地图不支持https
+}
+
+
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+function jsddm_open()
+{	jsddm_canceltimer();
+	jsddm_close();
+	ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');
+	if($(this).find('ul').size()>0){//如果有子菜单,则显示子菜单背景
+   		 $("#navhome").addClass("topnavout");
+   	}
+}
+
+function jsddm_close()
+{	if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');
+          $("#navhome").removeClass("topnavout");
+}
+
+function jsddm_timer()
+{	closetimer = window.setTimeout(jsddm_close, timeout);}
+
+function jsddm_canceltimer()
+{	if(closetimer)
+	{	window.clearTimeout(closetimer);
+		closetimer = null;}}
+
+$(document).ready(function()
+{	$('#jsddm > li').bind('mouseover', jsddm_open);
+	$('#jsddm > li').bind('mouseout',  jsddm_timer);});
+
+document.onclick = jsddm_close;
+</script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+</script>
+<nav class="topnav"  id="navhome">
+	<ul  id="jsddm">
+		<li class="home"><a href="${mainurl}${base}/index.jhtml"">首页</a></li>
+		<li class="normal"><a href="${mainurl}${base}/news/index.htm">用车养车</a>
+			<ul>
+				<li><a href="${mainurl}${base}/world/index.htm">行车宝典</a> | <a href="${mainurl}${base}/review/index.htm">爱车养护</a> | <a href="${mainurl}${base}/r/cms/www/red/download/yongchezhinan.zip">用车指南下载</a>  | <a href="${mainurl}${base}/media/mapFileDownload.jspx">地图升级下载</a></li>
+			</ul>
+		</li>
+		<li class="normal"><a href="${mainurl}${base}/veido/index.htm">售后服务</a><ul class="shfw">
+				<li><a href="${mainurl}${base}/gfbyjy/index.htm">官方保养建议</a> | <a href="${mainurl}${base}/byjsq/index.htm">保养计算器</a> | <a href="${mainurl}${base}/cyljk/index.htm">常用零件库</a> | <a href="${mainurl}${base}/competitive/index.jspx">精品附件</a> | <a href="${mainurl}${base}/QC/689.htm?">QC流程</a> | <a href="${mainurl}${base}/dljyxsym/index.htm">道路救援</a></li>
+			</ul></li>
+		<li class="normal"><a href="${mainurl}${base}/picture/index.htm">互动问答</a><ul class="qa">
+				<li><a href="${mainurl}${base}/fybk/index.htm">福域百科</a> | <a href="${mainurl}${base}/wjdy/index.htm">在线调研</a> | <a href="${mainurl}${base}/topickpk/index.htm">话题PK</a></li>
+			</ul></li>
+		<li class="normal" ><a href="${base}/" >福域论谈</a>
+		<ul class="lunt">
+		<li><a href="${base}/fordactivity/index.jhtml">活动专版</a> | <a href="${base}/fordfox/index.jhtml">车型板块</a> | <a href="${base}/fordbanwuqu/index.jhtml">事务板块</a></li>
+		</ul>
+		</li>
+		
+		<li class="normal"><a href="${mainurl}${base}/wldc/index.jhtml">精彩活动</a></li>
+		<li class="normal"><a href="${mainurl}${base}/cxjs/index.htm">车型鉴赏</a></li>
+		<li class="normal"><a href="${mainurl}${base}/guestbook.jspx">经销商专区</a></li>
+	</ul>
+	 
+</nav>
+	<!--
+<div>
+	<div class="wrapper" style="margin-top:5px !important; margin-top:12px;">
+	<div class="dhlheader">
+	  <div class="dhlmenu"> <a title="JEECMS官方网站" href="${base}/" class="logo" id="logo"></a>
+		<ul class="dhlmenu-list">
+		 <li class="dhlmenu-list-index current"><a href="${base}/" >首页</a></li>
+	  <li><a href="http://www.jeecms.com" target="_blank">官网</a></li>
+	  <li><a href="http://www.jeecms.com/buy/index.htm" target="_blank">购买</a></li>
+	  <li><a href="http://www.jeecms.com/service/index.htm" target="_blank">服务</a></li>
+	  <li id="search" class=""><a href="${base}/topic/search.jhtml">主题搜索</a></li>
+	  [#if bbsMember??]<li><a href="${base}/bbsmember/index.htm" target="_blank">用户中心</a></li>[/#if]
+		</ul>
+	  </div>
+	</div>
+	</div>
+</div>
+  -->

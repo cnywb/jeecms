@@ -1,0 +1,399 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<link href="/r/cms/www/red/fordcss/recall/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<script> 
+// 解决ie下 html5标签问题,没有这个代码ie下顶栏有问题
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+
+<script src="/${res}/fordjs/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+$(function() {
+	var sWidth = $("#focus").width(); //获取焦点图的宽度（显示面积）
+	var len = $("#focus ul li").length; //获取焦点图个数
+	var index = 0;
+	var picTimer;
+	
+	//以下代码添加数字按钮和按钮后的半透明条，还有上一页、下一页两个按钮
+	var btn = "<div class='btnBg'></div><div class='btn'>";
+	for(var i=0; i < len; i++) {
+		btn += "<span></span>";
+	}
+	btn += "</div>";
+	$("#focus").append(btn);
+	$("#focus .btnBg").css("opacity",0.5);
+
+	//为小按钮添加鼠标滑入事件，以显示相应的内容
+	$("#focus .btn span").css("opacity",0.4).mouseover(function() {
+		index = $("#focus .btn span").index(this);
+		showPics(index);
+	}).eq(0).trigger("mouseover");
+
+	
+
+	//本例为左右滚动，即所有li元素都是在同一排向左浮动，所以这里需要计算出外围ul元素的宽度
+	$("#focus ul").css("width",sWidth * (len));
+	
+	//鼠标滑上焦点图时停止自动播放，滑出时开始自动播放
+	$("#focus").hover(function() {
+		clearInterval(picTimer);
+	},function() {
+		picTimer = setInterval(function() {
+			showPics(index);
+			index++;
+			if(index == len) {index = 0;}
+		},4000); //此4000代表自动播放的间隔，单位：毫秒
+	}).trigger("mouseleave");
+	
+	//显示图片函数，根据接收的index值显示相应的内容
+	function showPics(index) { //普通切换
+		var nowLeft = -index*sWidth; //根据index值计算ul元素的left值
+		$("#focus ul").stop(true,false).animate({"left":nowLeft},300); //通过animate()调整ul元素滚动到计算出的position
+		//$("#focus .btn span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
+		$("#focus .btn span").stop(true,false).animate({"opacity":"0.6"},300).eq(index).stop(true,false).animate({"opacity":"1"},300); //为当前的按钮切换到选中的效果
+	}
+});
+
+function showContent(){
+	document.getElementById("flashContent").style.display="none";
+	location.reload();
+}
+
+$(document).ready(function(){
+	initBuyYear();
+  if($.browser.msie){//解决ie下的各种问题
+	  $("#mainHeader").before("<br/>");//mainHeader与导航菜单靠得太近
+      $("#bycx").click(function(){//辆保养计算器下拉列表被其它两个挡住的问题
+    	  $("#byyear").hide();
+    	  $("#bymouth").hide();
+    	  $("#bylic").hide();
+      });
+      $("#byyear").click(function(){
+    	  $("#bylic").hide();
+      });
+      $("#bymouth").click(function(){
+    	  $("#bylic").hide();
+      });
+      $("#bymouth").css({"font-size":"1em"});
+      $("#byyear").css({"font-size":"1em"});
+  }
+}); 
+//阻止冒泡事件
+function doStopBubble(obj,evt) {  
+	 var e=(evt)?evt:window.event; //判断浏览器的类型，在基于ie内核的浏览器中的使用cancelBubble  
+	 if (window.event) {  
+	 e.cancelBubble=true;  
+	 } else {  
+	 e.stopPropagation();  
+	 }  
+}  
+
+function initBuyYear(){
+   var myDate = new Date();
+   var y=myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+   var yOffset=y*1-2007;
+   for(var i=0;i<yOffset;i++){
+    $("#buyyear").append('<li onclick="doStopBubble(this,event);doBuyYearChoose(this);">'+(2008+i)+'</li>');
+   }
+}
+
+</script>
+<style type="text/css" media="screen">
+  #flashContent { 
+	  width:100%; 
+	  height:100%; 
+	  position:absolute;
+	  border-color:black;
+	  z-index:9999;top:0px;left:0px;
+  }
+  body { height:100%; background-color: #ffffff;}
+</style>
+</head>
+<body>
+
+[#include "../include/页头顶栏.html"/]
+<div id="daohang">[#include "../include/页头导航栏.html"/]</div>
+<div id="miandiv">
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<div id="mainHeader" style="width:1003px; margin: 54px auto 0; overflow: hidden;zoom: 1;"><img src="/${res}/images/img01.png" alt="" style="float: left;" /></div>
+<article class="main">
+	<section class="banner" >
+		<div class="baoy"  >
+			<h2><img src="/${res}/images/carby.png" alt=""></h2>
+			<div class="bg"  >
+				<ul id="" class="sel">
+					<li onClick="doStopBubble(this,event);$('#cartype').show();$('#buyyear').hide();$('#buymouth').hide();$('#carlic').hide();"><span id="bycx" >选择保养车型</span>
+					<ul  id="cartype" class="option" >
+					</ul>
+					</li>
+					<li class="dayy">
+						<ul>
+							<li class="fl"  onClick="doStopBubble(this,event);$('#buyyear').show();$('#cartype').hide();$('#buymouth').hide();$('#carlic').hide()"><span id="byyear"><a href="#"></a>购买年份</span>
+								<ul id="buyyear" class="option" >
+									
+					        	</ul>
+							</li>
+							<li class="fr"  onClick="doStopBubble(this,event);$('#buymouth').show();$('#cartype').hide();$('#buyyear').hide();$('#carlic').hide()" ><span id="bymouth" ><a href="#"></a>购买月份</span>
+								<ul id="buymouth" class="option">
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">1</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">2</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">3</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">4</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">5</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">6</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">7</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">8</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">9</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">10</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">11</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">12</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+										
+					<li onClick="doStopBubble(this,event);$('#carlic').show();$('#cartype').hide();$('#buyyear').hide();$('#buymouth').hide()" ><span id="bylic">选择公里数</span><ul id="carlic" class="option" >
+					</ul></li>
+					
+				</ul>
+				<input type="image" src="/${res}/images/confirm.jpg" alt="确 定" onClick="showYcAjax()" value="确 定">
+			</div>
+		</div>
+		<div id="focus">
+			<ul class="slideshow" id="slidesImgs">
+                                    [@cms_content_list count='5' orderBy='4' typeId='2' titLen='18' channelOption='1' channelId='11']
+                                    [#list tag_list as a]
+                                    <li>
+                                        <a href="${a.link!}" target="_blank">
+                                        <img src="${a.typeImg!site.defImg}" alt="${a.title}" width="100%" />
+                                        </a>
+                                     <!--   <span class="title">
+                                        [@text_cut s=a.title len=titLen /]
+                                        </span>-->
+                                    </li>
+                                    [/#list]
+                                    [/@cms_content_list]
+                                    </ul>
+		</div>
+
+		[@cms_content_list count='1' orderBy='4' typeId='2' titLen='10' channelId='13' channelOption='1']
+                [#list tag_list as a]
+                <a href="${a.url}" target="_blank" class="ba02">
+                <img src="${a.typeImg!site.defImg}" alt="${a.title}" width="100%" />
+                </a>
+                [/#list]
+                [/@cms_content_list]
+	</section>
+	<article class="ctan">
+		<section>
+			<ul>
+				<li class="fenl fl"><img src="/${res}/images/xczj.png" alt=""></li>
+				<li class="wenz fr">
+					<div class="art">
+				<div class="top">
+				[@cms_content_list count='1' orderBy='4' titLen='18' channelId='12' channelOption='1']
+                [#list tag_list as a]
+					<div class="fl"> <a href="${a.url}" target="_blank"><img src="${a.typeImg!site.typeImg}" alt=""></a></div>
+					<div class="fr deb">
+						<h3><a href="${a.url}" target="_blank" style="color: #81BA2F;">[@text_cut s=a.title len=titLen /]</a></h3>
+						<p>[@text_cut s=a.desc len=140 append='...'/]</p>
+						
+					</div>
+				[/#list]
+                [/@cms_content_list]
+				</div>
+<dl>
+					<dt><a href="${base}/neiye/index.htm" title="雨刮有问题？自己来诊断！">
+              发动机保养
+                </a></dt>
+                <dd>2013-12-10 12:10:44</dd>
+				</dl>
+				[@cms_content_list count='6' orderBy='6' titLen='18' channelId='12'  channelOption='1']
+                [#list tag_list as a]
+				<dl>
+					<dt style="width:300px;"><a href="${a.url}" title="${a.title}" target="_blank" >
+                [@text_cut s=a.title len=titLen /]
+                </a></dt><dd>${a.releaseDate}</dd>
+				</dl>
+				 [/#list]
+                [/@cms_content_list]
+				<a href="${base}/world/index.htm" class="more"><img src="/${res}/images/more.gif" alt=""></a>
+				
+				</div>
+				</li>
+			</ul>
+			<ul class="ul04">
+			<li class="fenl fl"><img src="/${res}/images/fwzy.png" alt=""></li>
+				<li class="wenz fr">
+					<div class="art">
+				<div class="top">
+				[@cms_content_list count='1' orderBy='4' titLen='18' channelId='74'  channelOption='1']
+                [#list tag_list as a]
+					
+					<div class="fl deb">
+						<h3><a href="${a.url}" target="_blank" style="color: #81BA2F;">[@text_cut s=a.title len=26 /]<em></em></a></h3>
+						<p>[@text_cut s=a.desc len=140 append='...'/]</p>
+						
+					</div>
+					<div class="fr"> <a href="${a.url}" target="_blank"><img src="${a.typeImg!site.typeImg}" alt=""></a></div>
+				[/#list]
+                [/@cms_content_list]
+				</div>
+				[@cms_content_list count='8' orderBy='4' titLen='18' channelId='74'  channelOption='1']
+                [#list tag_list as a]
+				<dl>
+					<dt><a href="${a.url}" title="${a.title}" target="_blank">
+                [@text_cut s=a.title len=titLen /]
+                </a></dt><dd>${a.releaseDate}</dd>
+				</dl>
+				 [/#list]
+                [/@cms_content_list]
+				<a href="${base}/veido/index.htm" class="more"><img src="/${res}/images/more.gif" alt=""></a>
+				
+				</div>
+				</li>
+			</ul>
+			<ul>
+				<li class="fenl fl"><img src="/${res}/images/ltbz.png" alt=""></li>
+				<li class="wenz fr">
+					<div class="art">
+						<div class="top">
+						[@activity_topic count='1']
+					    	[#list tag_list as topic]
+							<div class="fl"><a href="${bbsurl}${topic.url}"  title="${topic.title!?html}"><img src="/${res}/images/photo03.jpg" alt=""></a></div>
+							<div class="fr deb">
+							
+								<h3><a href="${bbsurl}${topic.url}"  title="${topic.title!?html}" style="color: #81BA2F;">${topic.title!?html}</a></h3>
+								<p> [@text_cut s=topic.firstPost.contentHtml len=100 append="..."/]</p>
+								<p><span>回复</span>(${topic.replyCount!}) <span>浏览</span>([@topic_vcount topicId=topic.id]${viewCount!}[/@topic_vcount])</p>
+							
+							</div>
+							[/#list]
+					        [/@activity_topic]
+						</div>
+						[@activity_topic count='4']
+					    [#list tag_list as topic]
+						<dl>
+							<dt><a href="${bbsurl}${topic.url}"  title="${topic.title!?html}">[@text_cut s=topic.title?html len=16 append="..."/]</a><span>NEW</span></dt>
+							<dd>[${topic.createTime!?string("yyyy-MM-dd")}]</dd>
+						</dl>
+						 [/#list]
+					     [/@activity_topic]
+						<a href="${bbsurl}${base}/index.jhtml" class="more"><img src="/${res}/images/more.gif" alt=""></a>
+					</div>
+				</li>
+			</ul>
+			<ul class="ul04">
+				<li class="fenl fl"><img src="/${res}/images/yhzj.png" alt=""></li>
+				<li class="wenz fr">
+					<div class="art">
+				<div class="top">
+				[@cms_content_list count='1' orderBy='4' titLen='18' channelId='14'  channelOption='1']
+                [#list tag_list as a]
+					
+					<div class="fl deb">
+						<h3><a href="${a.url}" target="_blank" style="color: #81BA2F;">[@text_cut s=a.title len=titLen /]<em>[养车专家]</em></a></h3>
+						<p>[@text_cut s=a.desc len=140 append='...'/]</p>
+						
+					</div>
+					<div class="fr"> <a href="${a.url}" target="_blank"><img src="${a.typeImg!site.typeImg}" alt=""></a></div>
+				[/#list]
+                [/@cms_content_list]
+				</div>
+				[@cms_content_list count='8' orderBy='4' titLen='18' channelId='14'  channelOption='1']
+                [#list tag_list as a]
+				<dl>
+					<dt><a href="${a.url}" title="${a.title}" target="_blank">
+                [@text_cut s=a.title len=titLen /]
+                </a></dt><dd>${a.releaseDate}</dd>
+				</dl>
+				 [/#list]
+                [/@cms_content_list]
+				<a href="${base}/review/index.htm" class="more"><img src="/${res}/images/more.gif" alt=""></a>
+				
+				</div>
+				</li>
+			</ul>
+		</section>
+		<aside>
+		    <img src="/${res}/images/img02.png" alt="" style="*float:left;">
+		    <form action="recall/queryCarRecall.jspx" id="form_query" method="post">
+			<div class="box1 box">
+				<h3>车辆召回查询</h3>
+				<h4><p>请正确输入您的VIN码，以查询<br />您的车辆是否在召回范围内：<br />
+				                   
+                                    <input type="text" name="vin" />
+                                    
+                                    <a href="javascript:;" onclick="$('#form_query').submit();" target="_self"><img style="margin: 10px 0 15px 10px;" src="/r/cms/www/red/images/sy_btn_cx.jpg" /></a><br/>
+                                    <a class="bk_notice" href="recall/queryCarRecall.jspx" target="_self">如何查询VIN码</a>
+                                    </p> 
+                                </h4>  
+
+                                
+			</div>
+			</form>
+			<img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在关注</h3>
+				<ul>
+					[@cms_content_list count='4' orderBy='9' titLen='18' channelId='11,12,13,14,49,50,61,64,67'  channelOption='1']
+                [#list tag_list as a]
+					<li><a href="${a.url}">[@text_cut s=a.title len=titLen /]</a></li>
+				[/#list]
+                [/@cms_content_list]
+					<li class="last"><a href="${base}/gfbyjy/index.htm">官方保养建议</a></li>
+				</ul>
+			</div>
+			<img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				[#include "../include/投票栏.html"/]
+				
+				
+			</div>
+			[#include "../include/共用右栏3.html"/]
+		</aside>
+	</article>
+</article>
+</div>
+</div>
+[#include "../include/页脚信息栏.html"/]
+
+</body>
+</html>

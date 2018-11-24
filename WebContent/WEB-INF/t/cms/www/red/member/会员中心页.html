@@ -1,0 +1,242 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人中心-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style02.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/fordjs/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+<script>
+	$(function() {
+		
+		//$("#showmesg").load("myguestbook.jspx");
+		});
+	//tab切换
+	function changeDV1(id,count){
+		//var dvnum=3;
+		for(var i=1;i<=count;i++){
+		document.getElementById('card'+i).className="";
+		document.getElementById('cardlist'+i).style.display="none";
+		}
+		document.getElementById('card'+id).className="out";
+		document.getElementById('cardlist'+id).style.display="block";
+	}
+</script>
+
+<style type="text/css">
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.overlay  a.close {
+  position: relative;
+  float: right;
+  right: 10px;
+  z-index: 1;
+  top: 10px;
+}
+.overlay  .content {
+  position: relative;
+  width: 625px;
+  height: 270px;
+  background: #fff;
+  border-radius: 7px;
+  margin:15% auto;
+  display: block;
+}
+.overlay p {
+  font: 18px/25px '宋体';
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.6;
+  padding: 40px 0;
+}
+
+.overlay .content .btn_userinfo,.overlay .content .btn_carinfo {
+  display: block;
+  width: 100%;
+  margin: 10px auto;
+  position: relative;
+  width: 164px;}
+.overlay .shadow {
+  position: fixed;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
+label {
+  width: 65px;
+  float: left;
+    position: relative;
+}
+</style>
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>个人中心</h1>
+	<img src="/${res}/images/img01.png" alt="" style="float: left; overflow: hidden; zoom: 1;" />
+	<article class="ctan de_event self" style="padding-bottom: 50px;">
+		[#include "../include/member.html"]
+		[#if user.group.id== 2]
+		<div class="cardbox">
+			<ul>
+			    [#list carInfo! as car]
+				<li><a href="javascript:void(0);" onClick="changeDV1('${car.count}',${size})" class="out" id="card${car.count}"><span class="sp02">车辆${car.count}</span></a></li>
+				[/#list]
+				<!-- 
+				<li><a href="javascript:void(0);" onClick="changeDV1('2')" id="card2"><span class="sp02">车辆二</span></a></li>
+				<li><a href="javascript:void(0);" onClick="changeDV1('3')" id="card3"><span class="sp02">车辆三</span></a></li>
+				 -->
+			</ul>
+			[#list carInfo! as car]		
+			<div [#if car.count==1] class="chelx block" [#else] class="chelx none" [/#if] id="cardlist${car.count}">
+				<p>车辆：${car.carType!}     VIN码：${car.vin!}      车牌号码：${car.licenseNumber!}</p>
+				<div class="dcard fl">
+					<img src="/${res}/images/self_img07.gif" alt="" style="float: left; overflow: hidden; zoom: 1;">
+					<h3>维修保养记录</h3>
+					[#list car.repairs as repair]
+					<img src="/${res}/images/self_img03.gif" alt="" style="padding-left: 22px;float: left; overflow: hidden; zoom: 1;">
+					<dl>
+						<dt>${repair.vsstName!}</dt>
+						<dd>${repair.vrepairDate} </dd>
+						<!-- <dd>${repair.vrepairDate[0..3]}-${repair.vrepairDate[4..5]}-${repair.vrepairDate[6..7]} </dd> -->
+					</dl>
+					[/#list]
+					<a href="${base}/member/service_history.jspx" class="all">查看所有维修记录</a>
+				</div>
+				<div class="dcard fr">
+					<img src="/${res}/images/self_img07.gif" alt="" style="float: left; overflow: hidden; zoom: 1;">
+					<h3>电子帐户查询</h3>
+					[#list car.tempDeals as deal]
+					<img src="/${res}/images/self_img03.gif" alt="" style="padding-left: 22px;float: left; overflow: hidden; zoom: 1;">
+					<dl>
+						<dt>${deal.campaignCode!} 代金券${deal.amount!}元</dt>
+						<dd>&nbsp;</dd>
+					</dl>
+					[/#list]
+					<a href="${base}/member/allDealElec.jspx" class="all">查看全部</a>
+				</div>
+			</div>
+			[/#list]			
+		</div>
+		[/#if]
+		<h2 class="notice">活动提醒</h2>
+		<div class="hdtx">
+			<ul>
+				[@cms_content_list count='3' recommend='1' orderBy='2' typeId='2' titLen='10' channelId='58' channelOption='1']
+                [#list tag_list as a]
+				<li><a href="${a.link!}"><img src="${a.typeImg!site.defImg}" alt=""><span>${a.desc!}</span></a></li>
+				[/#list]
+    		[/@cms_content_list]
+			</ul>
+			<a href="${base}/wldc/index.jhtml" class="all">查看全部</a>
+		</div>
+		<div class="kaca">
+			<div class="fl">
+				<img src="/${res}/images/self_img04.gif" alt="" style="float: left; overflow: hidden; zoom: 1;">
+				<h3>推荐调研</h3>
+				<ul>
+					[@cms_vote_list  siteId=site.id]
+                [#list tag_list as vote]
+					<li><img src="/${res}/images/self_img05.gif" alt=""><span><a href="${base}/vote.jspx?voteId=${vote.id}">[@text_cut s=vote.title?html len=20 append="..."/]</a></span></li>
+					[/#list]
+                [/@cms_vote_list]
+				</ul>
+				
+			</div>
+			<div id="showmesg" class="fr">
+				<img src="/${res}/images/self_img04.gif" alt="" style="float: left; overflow: hidden; zoom: 1;">
+				<h3>我的留言</h3>
+				<ul>[@cms_guestbook_page siteId=site.id count='2' q=q  userId=user.id]
+				    [#list tag_pagination.list as m]
+					<li><img src="/${res}/images/self_img05.gif" alt=""><span><font>(${m.ctg.name})</font><a href="${base}/member/guestbook_detail.jspx?id=${m.id}">[@text_cut s=m.title?html len=15 append="..."/]</a>
+					[#if m.replayTime??]
+					<font color="green">（已解决）</font>
+					[#else]
+					<font color="#A0A0A0">（未解决）</font>
+					[/#if]
+					</span>
+					</li>
+					[/#list]
+					[/@cms_guestbook_page]
+				</ul>
+				<a href="myguestbook.jspx?pageNo=1" class="all">查看所有留言</a>
+			</div>
+		</div>	
+		<div class="kaca" style="margin-bottom: 0;">
+			<div class="fl">
+				<img src="/${res}/images/self_img04.gif" alt="" style="float: left; overflow: hidden; zoom: 1;">
+				<h3>我的主题</h3>
+				<ul>
+				[@my_topic createrId=bbsUser.id tpl='0' topLevel='0' count='2']
+      			 [#list tag_pagination.list as topic]
+					<li><img src="/${res}/images/self_img05.gif" alt=""><span><a href="${bbsurl}${topic.url!}" >[@text_cut s=topic.title?html len=10 append="..."/]</a></span></li>
+				 [/#list]
+    			 [/@my_topic]
+				</ul>
+				<a href="${bbsurl}${base}/member/mytopic.jhtml" class="all">查看所有主题</a>
+			</div>
+			<div class="fr">
+				<img src="/${res}/images/self_img04.gif" alt="" style="float: left; overflow: hidden; zoom: 1;">
+				<h3>我的回复</h3>
+				<ul>
+				 [@my_reply createrId=bbsUser.id  topLevel='0' count='2' tpl='0']
+ 				[#list tag_pagination.list as topic]
+					<li><img src="/${res}/images/self_img05.gif" alt=""><span><a href="${bbsurl}${topic.url!}" >[@text_cut s=topic.title?html len=10 append="..."/]</a></span></li>
+				[/#list]
+   				[/@my_reply]
+				</ul>
+				<a href="${bbsurl}${base}/member/mypost.jhtml"" class="all" >查看所有回复</a>
+			</div>
+		</div>		
+		
+	</article>
+</article>
+
+</div>
+
+<div class='overlay' style="display: none;" >
+	<div class='shadow'></div>
+	<div class='content'>
+		<a href='javascript:;' onclick="$('.overlay').hide();" class='close'><img src='/${res}/images/close.jpg' /  ></a>
+		[#if user.group.id== 2]
+		<p><!-- 提示信息：完善个人信息后即可获得积分，<br>积分累积可用于积分兑换以及抽奖！--></p> 
+		[/#if]
+		[#if user.group.id==1]
+		<p><!-- 提示信息：完善个人信息后即可获得积分，<br>积分会在您完成车主认证后被正式激活，<br>积分累积可用于积分兑换以及抽奖！--></p> 
+		[/#if]
+
+		<a href="${base}/member/profile.jspx" class='btn_userinfo'><img src='/${res}/images/a1_btn1.jpg' /></a>
+		<a href="${base}/member/carInfoUpdate.jspx" class='btn_carinfo'><img src='/${res}/images/a1_btn2.jpg' /></a>
+	</div>
+</div>
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 	"-//Hibernate/Hibernate Mapping DTD//EN" 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.jeecms.point.entity">
+ 	 <class name="PointOrderDetails" table="P_ORDER_DETAILS">
+		<id name="id" type="java.lang.Long" column="ORDER_DETAILS_ID">
+		 	<generator class="sequence">
+		 		<param name="sequence">SEQ_P_ORDER_DETAILS_ID</param>
+		 	</generator>
+		</id>		 
+		<property name="userId"    		   column="USER_ID"      			type="java.lang.Long"  not-null="false" length="19"/>
+		<property name="productId"  	   column="PRODUCT_ID"     			type="java.lang.Long" />
+		<property name="productSnapshotId" column="PRODUCT_SNAPSHOT_ID"         	type="java.lang.Long"  />
+		<property name="pointNum"   	  column="POINT_NUM"      			type="java.lang.Long"/>		 
+		<property name="payoutPointNum"   column="PAYOUT_POINT_NUM"    type="java.lang.Long"/>
+		<property name="payoutDate"   	  column="PAYOUT_DATE"        type="java.util.Date"/>
+		<property name="createdId"        column="CREATED_ID"        type="java.lang.Long"  not-null="true" length="19"/>
+		<property name="createdDate"      column="CREATED_DATE"      type="java.util.Date"/>
+		<property name="updatedId"        column="UPDATED_ID"        type="java.lang.Long"          not-null="true" length="19"/>
+		<property name="updatedDate"      column="UPDATED_DATE"      type="java.util.Date"/>	
+		
+		<property name="productNo"     column="PRODUCT_NO"   type="string"           not-null="true" length="30"/>
+		<property name="info"   column="PRODUCT_INTRO" type="string"           not-null="true" length="4000"/>
+		<property name="title"       column="TITLE"      type="string"          not-null="true" length="256"/>
+		<property name="subTitle"  		 column="SUBTITLE"     type="string"         not-null="true" length="256"/>
+		<property name="price"            column="PRICE"            type="java.lang.Double"           not-null="true" precision="10" scale="2"/>
+		<property name="lotteryStockNum"       column="LOTTERY_STOCK_NUM"      type="java.lang.Long"          not-null="true" length="11"/>
+		<property name="exchangeStockNum"       column="EXCHANGE_STOCK_NUM"      type="java.lang.Long"          not-null="true" length="11"/>
+		<property name="seckillStockNum"       column="SECKILL_STOCK_NUM"      type="java.lang.Long"          not-null="true" length="11"/>
+		<property name="status"       column="STATUS"      type="java.lang.Integer"          not-null="true" length="1"/>
+		<property name="channel"       column="CHANNEL"      type="java.lang.Integer"          not-null="true" length="1"/>
+		<property name="imageSmallURL"       column="IMG_S_URL"      type="string"         length="512"/>
+		<property name="imageMiddleURL"       column="IMG_M_URL"      type="string"           length="512"/>
+		<property name="imageLargeURL"       column="IMG_L_URL"      type="string"        length="512"/>
+		<property name="memo"            column="MEMO"      type="string"          not-null="false" length="512"/>
+		<property name="showOrder"       column="SHOW_ORDER"        type="integer"          not-null="false" />	 
+		<property name="categoryId"      column="CATEGORY_ID"   type="java.lang.Long"  not-null="false" length="19"/>
+		<many-to-one name="pointOrder"   class="PointOrder" column="ORDER_ID"  fetch="select"/>
+ 	</class>	
+</hibernate-mapping>

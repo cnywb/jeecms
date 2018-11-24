@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 	"-//Hibernate/Hibernate Mapping DTD//EN" 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.jeecms.point.entity">
+ 	<class name="PointActivity" table="P_ACTIVITY">
+		<id name="id" type="java.lang.Long" column="ACTIVITY_ID">
+		 	<generator class="sequence">
+		 		<param name="sequence">SEQ_P_ACTIVITY_ID</param>
+		 	</generator>
+		</id>
+		<property name="startTime"     column="START_TIME"   type="java.util.Date" />
+		<property name="endTime"     column="END_TIME"   type="java.util.Date" />
+
+		<property name="type"   column="ACTIVITY_TYPE" type="string"  />
+		<property name="probability1"       column="PROBABILITY1"      type="java.lang.Integer"   length="5"/>
+		<property name="probability2"  		 column="PROBABILITY2"     type="java.lang.Integer"      length="10"/>
+		<property name="name"            column="ACTIVITY_NAME"            type="string"   length="256"/>
+		<property name="code"            column="CODE"            type="string"   length="20"/>
+		<property name="costPoints"  		 column="COSTPOINTS"     type="java.lang.Integer"      length="10"/>
+		<property name="lotteryLimitForDay"  		 column="LOTTERY_LIMIT_FORDAY"     type="java.lang.Integer"      length="10"/>
+		<property name="status"  		 column="STATUS"     type="java.lang.Boolean"    />
+		
+		<property name="createdId"       column="CREATED_ID"       type="java.lang.Long"  length="19"/>
+		<property name="createdDate"     column="CREATED_DATE"     type="java.util.Date"/>
+		<property name="updatedId"       column="UPDATED_ID"       type="java.lang.Long"  length="19"/>
+		<property name="updatedDate"     column="UPDATED_DATE"     type="java.util.Date"/>
+		<property name="killStartTime"     column="KILL_START_TIME"   type="java.lang.Integer" />
+		<property name="killEndTime"     column="KILL_END_TIME"   type="java.lang.Integer" />
+		<property name="killOfWeek"       column="KILL_OF_WEEK"      type="java.lang.String"   length="200"/>
+
+	</class>
+
+	<class name="PointLotteryHistory" table="P_LOTTERY_HISTORY">
+		<id name="id" type="java.lang.Long" column="LOTTERY_HISTORY_ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_P_LOTTERY_HISTORY_ID</param>
+			</generator>
+		</id>
+
+		<property name="userId"   column="USERID" type="java.lang.Long"  />
+		<property name="lotteryDate"     column="LOTTERY_DATE"   type="java.util.Date" />
+		<property name="acitvityCode"            column="ACITVITY_CODE"            type="string"   length="30"/>
+		<property name="lotteryResult"            column="LOTTERYRESULT"            type="string"   length="256"/>
+		<property name="userName"            column="USER_NAME"            type="string"   length="60"/>
+		<property name="isLotteried"            column="ISLOTTERIED"            type="java.lang.Boolean"  />
+		<property name="productId"            column="PRODUCT_ID"            type="java.lang.Long"   />
+		<property name="vin"  	 		column="VIN"             type="string"   length="30"/>
+		<property name="openId"  	 	column="OPENID"         type="string"   length="30"/>
+		<property name="createdId"       column="CREATED_ID"       type="java.lang.Long"  length="19"/>
+		<property name="createdDate"     column="CREATED_DATE"     type="java.util.Date"/>
+		<property name="updatedId"       column="UPDATED_ID"       type="java.lang.Long"  length="19"/>
+		<property name="updatedDate"     column="UPDATED_DATE"     type="java.util.Date"/>
+	</class>
+
+</hibernate-mapping>

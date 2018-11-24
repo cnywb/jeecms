@@ -1,0 +1,568 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>幸福之家 - 福域</title>
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+
+<script src="/r/cms/www/red/fordjs/respond.min.js"></script>
+<script src="/r/cms/www/blue/bbs_forum/js/prototype.js"></script>
+<script type="text/javascript" src="/r/cms/www/blue/bbs_forum/js/md5.js"></script>
+<script type="text/javascript" src="/${res}/campaign/sfdj/js/jquery-1.4.2.min.js"></script>
+<link rel="stylesheet" href="/plugins/kindeditor4/plugins/code/prettify.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor4/kindeditor.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor4/lang/zh_CN.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<link href="/${res}/campaign/sfdj/css/boilerplate.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/${res}/campaign/sfdj/css/main.css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/${res}/campaign/sfdj/js/jquery.masonry.js"></script>
+<script type="text/javascript" src="/${res}/campaign/sfdj/js/jquery.infinitescroll.js"></script>
+<script type="text/javascript" src="/${res}/campaign/sfdj/js/index.js"></script>
+<link rel="stylesheet" href="/plugins/highslide/highslide.css" />
+<script charset="utf-8" src="/plugins/highslide/highslide-with-gallery.js"></script>
+
+<script type="text/javascript">
+var title=$("title").text();
+var hostname=window.location.hostname;
+var cmshostname="www.changanfordclub.com";
+var bbshostname="bbs.changanfordclub.com";
+if((cmshostname==hostname||bbshostname==hostname)&&window.location.protocol=="https:"){
+    window.location.href= window.location.href.replace(/https:/, "http:");//经销商专区的百度地图不支持https
+}
+</script>
+<script type="text/javascript">
+//<![CDATA[
+hs.registerOverlay({
+	html: '<div class="closebutton" onclick="return hs.close(this)" title="关闭"></div>',
+	position: 'top right',
+	fade: 2 // fading the semi-transparent overlay looks bad in IE
+});
+
+
+hs.graphicsDir = '/plugins/highslide/graphics/';
+hs.wrapperClassName = 'borderless';
+//]]>
+</script>
+
+<script> 
+// 解决ie下 html5标签问题,没有这个代码ie下顶栏有问题
+   (function() {
+     if (! 
+     /*@cc_on!@*/
+     0) return;
+     var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+     var i= e.length;
+     while (i--){
+         document.createElement(e[i])
+     } 
+})() 
+</script>
+<style type="text/css">
+.filePrew {  
+	display: block;  
+	position: absolute;  
+	top: 0;  
+	left: 0;  
+	width: 125px;  
+	height: 40px;  
+	font-size: 100px; /* 增大不同浏览器的可点击区域 */  
+	opacity: 0; /* 实现的关键点 */  
+	filter:alpha(opacity=0);/* 兼容IE */  
+}
+</style>
+<script type="text/javascript">
+var isWidescreen=screen.width>=1280; 
+if(isWidescreen){document.write("<style type='text/css'>.demo{width:1020px;}</style>");}
+</script>
+
+<script type="text/javascript">
+
+var totalPage=${pagination.totalPage};
+function item_masonry(){ 
+	$('.item img').load(function(){ 
+		$('.infinite_scroll').masonry({ 
+			itemSelector: '.masonry_brick',
+			columnWidth:325,
+			gutterWidth:15								
+		});		
+	});
+		
+	$('.infinite_scroll').masonry({ 
+		itemSelector: '.masonry_brick',
+		columnWidth:325,
+		gutterWidth:15								
+	});	
+}
+
+$(function(){
+
+	function item_callback(){ 
+		item_masonry();	
+	}
+	item_callback();  
+
+	$('.item').fadeIn();
+	var sp = 1
+	$(".infinite_scroll").infinitescroll({
+		navSelector  	: "#more",
+		nextSelector 	: "#more a",
+		itemSelector 	: ".item",
+		
+		loading:{
+			img: "/${res}/campaign/sfdj/images/masonry_loading_1.gif",
+			msgText: ' ',
+			finishedMsg: '木有了',
+			finished: function(){
+				sp++;
+				if(sp>=totalPage){ //到第10页结束事件
+					$("#more").remove();
+					$("#infscr-loading").hide();
+					$(window).unbind('.infscr');
+				}
+			}	
+		}
+		
+	},function(newElements){
+		var $newElems = $(newElements);
+		$('.infinite_scroll').masonry('appended', $newElems, false);
+		$newElems.fadeIn();
+		item_callback();
+		return;
+	});
+
+});
+
+function showSwitchService(o){
+	var list=$('div[id^=switch_L]');
+	list.hide();
+	document.getElementById(o).style.display="block";
+	document.body.style.overflow = 'hidden';
+	document.body.style.position = 'relative';
+}
+function hideSwitchService(o){
+	document.getElementById(o).style.display="none";
+	document.body.style.overflow = 'auto';
+}
+</script>
+
+
+<style type="text/css">
+.ke-button-common-custom {
+    height: 23px;
+    line-height: 23px;
+    overflow: visible;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #FFF;
+    font-family: "微软雅黑";
+    font-size: 15px;
+    cursor: pointer;
+    
+}
+</style>
+</head>
+
+<body>
+[#include "head.html"/]
+	<div class="wrap">
+    	<h2>幸福之家</h2>
+		<div class="zhufuk">
+			<div class="zhufnr">
+				<img src="/${res}/campaign/sfdj/images/rules.png" alt="活动规则" usemap="#Map" class="rulesbtn">
+				<map name="Map">
+					<area shape="rect" coords="16,6,125,92" href="javascript:void(0);" onClick="showAwardRule();return false;">
+					<area shape="rect" coords="4,92,41,135" href="javascript:void(0);" onClick="showSwitchService('switch_L1');return false;">
+				</map>
+
+				<ul>
+					<li class="fl"><textarea id="story_content" cols="1" rows="1" placeholder="输入祝福语并上传全家福(限定5000字以内)，图片文件大小：小于2M"></textarea></li>
+					<li class="fr"><a href="javascript:void(0);" id="delegate_btn_upload_image"><img  src="/${res}/campaign/sfdj/images/shangc.png" ></a><br><a href="javascript:void(0);" id="btn_save" ><img src="/${res}/campaign/sfdj/images/submit.png" alt=""></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="demo clearfix">
+	
+			
+	<div class="item_list infinite_scroll">
+  [#list pagination.list as m]
+		<div class="item masonry_brick">
+			<div class="item_t">
+				<div class="img">
+								<div><a href="${m.imageUrl}" class="highslide" onclick="return hs.expand(this,{wrapperClassName: 'borderless floating-caption', dimmingOpacity: 0.75, align: 'center'});"><img src="${m.imageUrl}" width="325"/></a><div class="highslide-caption" ></div></div>
+				
+					<!-- <a href="javascript:void(0);" onClick="showImgBox('${m.imageUrl}');"><img width="325" alt="" src="${m.imageUrl}" /></a> -->
+				</div>
+				<div class="title"><span>${m.creater.username}:<br>${m.content}</span></div>
+			</div>
+			<div class="item_b clearfix">
+				<div class="items_likes">
+					[#if user??][#if user.username=='admin']
+					[#if m.status==1]<font color="green">审核通过</font>[/#if]
+					[#if m.status==2]<font color="red">审核未通过</font>[/#if]
+				  [#if m.status==0]
+				   <a href="javascript:void(0);" onclick="memberStoryPass('${m.id}')"  >审核通过</a>
+				   <a href="javascript:void(0);" onclick="memberStoryUnPass('${m.id}')"  >审核不通过</a>
+				  [/#if]
+				[/#if]
+				[/#if]
+				[#if m.status==1]
+				    <a href="javascript:void(0);" onclick="goToShare('${m.id}')"  class="like_btn">分享</a>
+					<em class="bold" onclick="addMemberStoryPraise('${m.id}');" >${m.praiseCount}</em>
+				[/#if]
+					
+				</div>
+			</div>
+		  </div><!--item end-->
+	[/#list]	
+	</div>	
+					
+	<div id="more">
+	[#if pagination.totalPage>1]
+	<a href="page/2.jspx"></a>
+	[/#if]
+	
+	
+	</div>
+</div>
+    </div>
+	<div id="switch_L1" style="display: none;">
+		<div class="rulespop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L1')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt=""></a>
+			<h2 style="font-family: '微软雅黑'">活动规则</h2>
+			<div class="pbox">
+				<div style=" height: 400px; overflow: auto; margin: 0 18px;">
+				<p>2015年钟声敲响！长安福特在各位车主陪伴中，又度过新的一年。衷心感谢各位车主的一路追随！为答谢各位车主，长安福特”幸福之家ACTION——福域全家福活动幸福开启”，邀请您与您的家人一同参与，赢取福域新年大礼，为您送福到家！</p>
+				<p><b>活动时间：</b>2015年1月12日-2015年1月26日<br><b>抽奖时间：</b>2015年2月7日-2015年2月13日（中奖名单将于2月27日公布在福域论坛）
+</p>
+				<p><b>活动参与方式：</b><br>
+1.上传1张您的全家福照片，同时也可以留下您对家人、朋友的新年祝福即可参加抽奖；<br>
+2.对您心仪的全家福照片进行投票，一样有机会参与抽奖<br>
+注：全家福上传仅对福域认证车主开放，尚未认证的车友请先至福域网站http://www.changanfordclub.com/进行注册并认证即可参加活动。</p>
+				<p><b>活动奖品：</b><br>
+特等奖：参与上传全家福照片所获投票数TOP10车主可获重庆2天1夜游（2大人+1儿童）全程机票+酒店（含新年晚宴）<br>
+所有上传全家福车主及成功为TOP10车主投票的会员均有机会参与抽奖！<br>
+一等奖：3000元油卡1张<br>
+二等奖：1500元油卡1张<br>
+三等奖：瑞士军刀1个<br>
+四等奖：精美车模1台<br>
+五等奖：定制卡通拖鞋1双<br>
+六等奖：遥控汽车钥匙包1个<br>
+幸运奖：福特年终福袋1个<br>
+参与奖：Q版车型毛擦1个
+</p>
+<p><b>特别声明：</b><br>
+1.本次活动最终解释权归长安福特汽车有限公司所有；<br>
+2.本次活动中所发放的礼品由收到者本人自行申报缴纳个人所得税，与主办方无关。
+</p></div>
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	
+	
+	
+	<div id="switch_L2" style="display:none" >
+		<div class="tongypop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L2')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt=""></a>
+			<h2>用户登录</h2>
+			<p class="red">您还没有登录，请先登录</p>
+			<ul>
+				<li><span>用户名</span><input type="text"   id="login_username" name="username" value=""><img src="/${res}/campaign/sfdj/images/yonghm.gif" alt=""></li>
+				<li><span>密 码</span><input type="password" id="login_password" name="password" value=""><img src="/${res}/campaign/sfdj/images/mima.gif" alt=""></li>
+				<li><span>验证码</span><input type="text" id="login_validatecode" name="yanzm" value="" class="yanzm"><img id="img_captcha" src="/captcha.svl" width="67" height="30" onclick="this.src='/captcha.svl?d='+new Date()"></li>
+				<li class="linone"><input type="button" id="login_submit" value="确定" name="submit" class="tongybtn"></li>
+				<li class="linone">还不是福域用户？赶紧注册去！<input type="button" value="即刻注册" name="submit" class="tongybtn" onClick="hideSwitchService('switch_L2');showSwitchService('switch_L3');return false;"></li>
+			</ul>
+			
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	<div id="switch_L3" style="display:none">
+		<div class="tongypop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L3')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt=""></a>
+			<h2>用户注册</h2>
+			<ul class="regul">
+				<li><span>用户名</span><input type="text" id="reg_username" name="username" value=""></li>
+				<li class="linone tishi">用户名由3到14位的中文字符、英文字母、数字组成。</li>
+				<li><span>密 码</span><input type="password" id="reg_password"  value=""></li>
+				<li><span>确认密码</span><input type="password"   id="reg_cmf_password" value=""></li>
+				<li><span>Email</span><input type="text" id="reg_email" name="password" value=""></li>
+				<li><span>验证码</span><input type="text" id="reg_validatecode" value="" class="yanzm"><img id="reg_img_captcha" src="/captcha.svl" width="67" height="30" onclick="this.src='/captcha.svl?d='+new Date()"></li>
+				<li class="linone"><input type="button" id="reg_submit" value="注册" name="submit" class="tongybtn"></li>
+			</ul>
+			
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L3_1" style="display:none">
+		<div class="tongypop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L3_1')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt=""></a>
+			<h2>请填写联系方式</h2>
+			<ul class="regul">
+				<li><span>姓名:</span><input type="text" id="update_realname"  value="[#if user??&&user.realname??]${user.realname}[/#if]"></li>
+				<li><span>手机号码:</span><input type="text" id="update_mobile" value="[#if user??&&user.mobile??]${user.mobile}[/#if]"></li>
+				<li><span>联系地址:</span><input type="text" id="update_comefrom" value="[#if user??&&user.comefrom??]${user.comefrom}[/#if]"></li>
+				<li class="linone"><input type="button" id="update_profile_submit" value="确定" name="submit" class="tongybtn"></li>
+			</ul>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L4" style="display:none">
+		<div class="tongypop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L4')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt=""></a>
+			<h2>车主认证</h2>
+			<p class="red" style=" font-size: 14px; padding-left: 30px;">本次活动仅对福域认证车主开放，请先进行车主认证。</p>
+			<h3 class="webinfor"><span>个人信息</span></h3>
+			<p class="text">*为必填信息，请与购车合同上的信息保持一致，<br> 确保认证顺利完成。</p>
+			<ul class="regul renzul" style=" padding-top: 0;">
+				<li><span>*姓名</span><input type="text" id="vname" value=""></li>
+				<li class="linone tishi">（购车合同的姓名）</li>
+				<li><span>*手机</span><input type="text" id="vmobile"  value=""></li>
+				<li class="linone tishi">（常用手机号）</li>
+				<li><span>*车辆VIN码</span><input type="text" id="vvin" value=""></li>
+				<li class="linone tishi">（添加新车，请输入新车的VIN码）</li>
+				<li class="linone"><input type="button" value="立即认证" id="auth_submit" name="submit" class="tongybtn"></li>
+			</ul>
+			
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	<div id="switch_L5" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L5');window.location.reload();" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>上传成功</h2>
+			<div class="pbox">
+				<p>您的全家福照片，我们后台工作人员将于3个工作日内审核完毕。符合要求的照片审核通过后将会在活动页面显示。<br>如审核未通过会以站内信形式告知，请查收站内信信箱，并再次上传。如有不便，尽请谅解。</p>
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+
+	
+	<div id="switch_L6" style=" display: none;">
+		<div class="imgTc">
+			<img  id="showBoxBigPic"  alt="" class="bigphoto">
+			<ul class="btnul">
+				<li><input type="button" value="确定上传" name="submit" class="tongybtn"><input type="button" value="重新上传" name="submit" class="tongybtn"><input type="button" value="关闭" name="submit" class="tongybtn" onClick = "hideSwitchService('switch_L6')"></li>
+			</ul>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L7" >
+		<div class="tongypop tongypop02"  id="switch_L7_content" style="filter:alpha(opacity=0);">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L7')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox" >
+				<p>上传照片格式：jpg或gif，图片文件大小：小于2M,如有不便，敬请谅解！</p>
+				<p style=" padding: 0 17px 20px;" id="p_upload_confirm">
+				<input type="button" value="确定" id="btn_upload_image" />
+				<input type="hidden" value="确定" id="upload_hint_confirm" name="submit" class="tongybtn"> </p>
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L8" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L8')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox">
+				<p style="text-align: center;">您还没有上传照片哦~请上传您的照片。</p>
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L8_1" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L8_1')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox">
+				<p style="text-align: center;">您还没有输入祝福内容~请输入祝福内容。</p>
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L8_2" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L8_2')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox">
+				<p style="text-align: center;">祝福内容字数不能超过5000个文字。</p>
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L8_3" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L8_3')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox">
+				<p style="text-align: center;">对不起您已经送过祝福,请不要重复操作!<br>
+				"幸福之家"年终抽奖将于2月7日-2月14日在本活动页面开放.凡参与全家福上传的车主,及成功为TOP10车主投票的注册会员都有机会参与抽奖哦~敬请期待!</p>
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	<div id="switch_L9" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "window.location.reload();" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>点赞成功</h2>
+			<div class="pbox">
+				<p style="text-align: center;">感谢您的参与！
+				<br>
+				"幸福之家"年终抽奖将于2月7日-2月14日在本活动页面开放.凡参与全家福上传的车主,及成功为TOP10车主投票的注册会员都有机会参与抽奖哦~敬请期待!</p>
+	
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L10" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L10')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox">
+				<p>对不起您已经点赞成功，请不要重复操作，感谢您的参与！
+				<br>
+				"幸福之家"年终抽奖将于2月7日-2月14日在本活动页面开放.凡参与全家福上传的车主,及成功为TOP10车主投票的注册会员都有机会参与抽奖哦~敬请期待!</p>
+	
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+	
+	<div id="switch_L10_1" style="display:none">
+		<div class="tongypop tongypop02" >
+			<a href="javascript:void(0);" onClick="hideSwitchService('switch_L10_1')"  class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>分享</h2>
+			<div class="pbox">
+			<iframe style="height: 290px" id="share_frame" frameborder="no" border="0" marginwidth="50" marginheight="10" scrolling="no" allowtransparency="yes" style="width: 100%;" ></iframe> 
+			</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+<div id="btnc01">
+
+</div>
+
+
+
+	<div id="switch_award_rule" style="display: none;">
+		<div class="rulespop">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('switch_award_rule')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt=""></a>
+			<h2 style="font-family: '微软雅黑'">抽奖规则</h2>
+			<div class="pbox">
+				<div style=" height: 400px; overflow: auto; margin: 0 18px;">
+				<p><b>抽奖时间：</b>2015年2月7日-2015年2月13日</p>
+				<p><b>获奖名单公布时间：</b>2015年2月27日</p>
+				<p><b>抽奖须知：</b><br>
+1.凡参与全家福照片上传的认证车主或参与投票的用户都可以参加本次的抽奖。每个账号只有一次抽奖机会。<br>
+2.普通注册用户注册时未填写联系方式，请务必在抽奖前完善个人信息(手机号和收货地址)。未完善个人信息的用户将无法参加抽奖活动，敬请谅解！<br>
+3.若有同一用户名、同一手机号或者同一收货地址的，若出现多次中奖的情况，系统将自动识别为同一中奖用户，并以该用户首次抽中的奖品为准进行发放。<br>
+4.活动奖品由快递公司寄送，请各位用户务必前往个人中心，查看手机号码和收货地址是否填写正确。凡因手机号码、收货地址错填、漏填等原因造成奖品没有收到，福域将不承担补发。<br>
+5.奖品发送时间为2015年3月1日-3月31日，请中奖用户耐心等待。如4月20日前没有收到奖品，且提供联系方式正确的用户请及时和版主联系，经版主查实无误后将安排奖品补发。若在5月1日前没有及时联系版主的，视为自动放弃奖品。
+</p>
+<p><b>奖品设置：</b><br>
+一等奖：3000元油卡1张<br>
+二等奖：1500元油卡1张<br>
+三等奖：价值600元瑞士军刀1个<br>
+四等奖：价值300元精美车模1台<br>
+五等奖：价值100元定制卡通拖鞋1双<br>
+六等奖：遥控汽车钥匙包1个<br>
+幸运奖：福特年终福袋1个<br>
+参与奖：Q版车型毛擦1个
+</p>
+<p><b>特别声明：</b><br>
+1.本次活动最终解释权归长安福特汽车有限公司所有。<br>
+2.本次活动中所发放的礼品由收到者本人自行申报缴纳个人所得税。
+</p></div>
+<p style="padding: 0 17px 1px;"><input type="button" id="award_rule_confrim" value="确定" name="submit" class="tongybtn"></p>
+</div>
+		</div>
+		<div class="black_overlay02"></div>
+	</div>
+
+<div id="switch_L10_2" style="display: none;">
+		<div class="tongypop tongypop02" style=" width:740px; margin-left:-370px; top: 5%;">
+			<div class="pbox" style="width:auto; position:relative;background: none;">
+				<a href="javascript:void(0);" onClick = "hideSwitchService('switch_L10_2')" class="close" style=" z-index:999;"><img src="/${res}/campaign/sfdj/images/close02.png" alt=""></a>
+				<div id="flashcontent" style="height: 100%;width: 100%"> 
+				<object id="award_flash">
+				<embed src="/${res}/campaign/sfdj/flash/award_sfdj.swf"  width="740" height="740" wmode="transparent">
+				</object>
+				</div>
+			</div>
+		</div>
+		<div class="black_overlay02">
+		
+		</div>
+</div>
+
+ <div id="common_info_alert" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('common_info_alert')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox">
+			<p id="common_info_alert_content"></p>
+			<p style="padding: 0 17px 1px;"><input type="button" id="common_info_alert_confrim" onClick = "hideSwitchService('common_info_alert');$('#switch_L3_1').show();"  value="确定" name="submit" class="tongybtn"></p>
+		</div>
+		</div>
+		<div class="black_overlay02"></div>
+</div>
+ <div id="common_info_alert_1" style="display:none">
+		<div class="tongypop tongypop02">
+			<a href="javascript:void(0);" onClick = "hideSwitchService('common_info_alert_1')" class="close"><img src="/${res}/campaign/sfdj/images/close.png" alt="" width="38"></a>
+			<h2>温馨提醒</h2>
+			<div class="pbox">
+			<p id="common_info_alert_content_1"></p>
+			<p style="padding: 0 17px 1px;"><input type="button" id="common_info_alert_confrim_1" onClick = "hideSwitchService('common_info_alert_1');"  value="确定" name="submit" class="tongybtn"></p>
+		</div>
+		</div>
+		<div class="black_overlay02"></div>
+</div>
+<input type="hidden" id="story_image_url">
+<input type="hidden" id="user_id" value="[#if user??]${user.id}[/#if]">
+<input type="hidden" id="group_id" value="[#if user??]${user.group.id}[/#if]">
+<form id="shareForm" method="get" enctype="multipart/form-data" action="share.jspx" target="_blank" >
+<input type="hidden" name="id" id="share_id" value="" />
+<input type="hidden" name="bdUrl" id="bdUrl" value="" />
+</form>	
+	<div>
+	<a  id="hs_showbox" href="" class="highslide" onclick="return hs.expand(this,{dimmingOpacity: 0.75, align: 'center'});"></a>
+	<div class="highslide-caption" style="background-color: white;text-align: center;" >
+	<ul  class="btnul">
+				<li ><input type="button"  value="确定上传" name="submit" onclick="return hs.close(this);" class="tongybtn"><input type="button" value="重新上传"  onclick="hs.close(this);$('#switch_L7').show();" name="submit" class="tongybtn"></li>
+			</ul>
+	</div>
+	</div>
+	
+				
+</body>
+</html>

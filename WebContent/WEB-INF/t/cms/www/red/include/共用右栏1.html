@@ -1,0 +1,71 @@
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+//阻止冒泡事件
+function doStopBubble(obj,evt) {  
+	 var e=(evt)?evt:window.event; //判断浏览器的类型，在基于ie内核的浏览器中的使用cancelBubble  
+	 if (window.event) {  
+	 e.cancelBubble=true;  
+	 } else {  
+	 e.stopPropagation();  
+	 }  
+}  
+
+function initBuyYear(){
+	   var myDate = new Date();
+	   var y=myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+	   var yOffset=y*1-2007;
+	   for(var i=0;i<yOffset;i++){
+	    $("#buyyear").append('<li onclick="doStopBubble(this,event);doBuyYearChoose(this);">'+(2008+i)+'</li>');
+	   }
+}
+$(document).ready(function(){
+	initBuyYear();
+}); 
+</script>
+<aside>
+			<div class="baoy">
+			<img src="/${res}/images/carby01.png" alt="">
+			<div class="bg">
+				<ul id="" class="sel">
+					<li onClick="doStopBubble(this,event);$('#cartype').show();$('#buyyear').hide();$('#buymouth').hide();$('#carlic').hide()"><span id="bycx">选择保养车型</span><ul id="cartype" class="option" >
+					</ul></li>
+					<li class="dayy">
+						<ul>
+							<li class="fl" onClick="doStopBubble(this,event);$('#buyyear').show();$('#cartype').hide();$('#buymouth').hide();$('#carlic').hide()"><span id="byyear"><a href="#"></a>购买年份</span>
+								<ul id="buyyear" class="option" >
+								</ul>
+							</li>
+							<li class="fr" onClick="doStopBubble(this,event);$('#buymouth').show();$('#cartype').hide();$('#buyyear').hide();$('#carlic').hide()" ><span id="bymouth"><a href="#"></a>购买月份</span>
+								<ul id="buymouth" class="option">
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">1</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">2</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">3</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">4</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">5</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">6</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">7</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">8</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">9</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">10</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">11</li>
+									<li onclick="doStopBubble(this,event);doBuyMouthChoose(this);">12</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+										
+					<li onClick="doStopBubble(this,event);$('#carlic').show();$('#cartype').hide();$('#buyyear').hide();$('#buymouth').hide()" ><span id="bylic">选择公里数</span><ul id="carlic" class="option" >
+					</ul></li>
+					
+				</ul>
+				<input type="image" src="/${res}/images/confirm.jpg" alt="确 定" onClick="showYcAjax()" value="确 定">
+			</div>
+		</div>
+			<ul class="link">
+				<li><a href="${base}/gfbyjy/index.htm"><img src="/${res}/images/gfby.png" alt=""></a></li>
+				<li><a href="${base}/cyljk/index.htm"><img src="/${res}/images/cylj.png" alt=""></a></li>
+				<li><a href="${base}/dljyxs/index.htm"><img src="/${res}/images/dljy.png" alt=""></a></li>
+				<li><a href="${base}/dljy/index.htm"><img src="/${res}/images/ycjh.png" alt=""></a></li>
+				<li><a href="${base}/QC/689.htm?"><img src="/${res}/images/qc.png" alt=""></a></li>
+			</ul>
+		</aside>

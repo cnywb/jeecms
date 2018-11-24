@@ -1,0 +1,390 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;/* font-size:66.3%; */}
+fieldset,img{border:0;}
+ul,ol{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+a{text-decoration: none;color:#000;}
+a:hover{text-decoration: underline;color:#000;}
+small{font-size:12px;}
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-size:100%;}
+label,input,select,form img,button,textarea,img{vertical-align:middle;outline:none;}
+address,caption,cite,code,dfn,em,strong,th,optgroup{font-style:normal;font-weight:normal;}
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clear{display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clear{height:1%;}
+.clear{display:block;}
+/* End hide from IE-mac */
+
+html,body{height:100%;min-height: 1000px;}
+body{font-family"Microsoft YaHei","å¾®è½¯é›…é»‘",sans-serif;background: #1f2224;}
+a:hover{text-decoration:none;}
+
+.dn {
+    display: none;
+}
+
+.popup {
+    width: 100%;
+    height: 3572px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.7);
+    z-index: 350;
+}
+
+
+.ruleTxt {
+    position: absolute;
+    left: 50%;
+    margin-left: -240px;
+}
+
+.formwrap {
+    width: 640px;
+    margin-left: -320px;
+    left: 50%;
+    background: url(../images/bg.jpg) no-repeat;
+    background-size: 100%;
+    height: 3572px;
+    position: relative;
+    min-height: 3572px;
+}
+ 
+.pdz{
+	padding-left: 0px;
+    padding-right: 0px; 
+    margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+html, body{ margin:0;  }
+ 
+
+.inputForm {
+	width: 470px;
+	height: 47px;
+	position: absolute;
+	background: transparent;
+	color: #FFFFFF;
+	border: none;
+	font-size: 30px;
+} 
+
+.sexRadio{
+    left: 120px;
+    top: 780px;
+}
+
+.styleRadio{
+	left: 20px;
+	top: 1480px;
+	height: 260px !important;
+	width: 600px !important;
+}
+ 
+.gp1{
+	top:20px;
+	left:20px;
+	position: absolute;
+}
+
+.gp2{
+	top:70px;
+	left:20px;
+	position: absolute;
+}
+
+.gp3{
+	top:120px;
+	left:20px;
+	position: absolute;
+}
+
+.gp4{
+	top:170px;
+	left:20px;
+	position: absolute;
+}
+
+.gp5{
+	top:220px;
+	left:20px;
+	position: absolute;
+}
+
+.gp11{
+	top:270px;
+	left:20px;
+	position: absolute;
+}
+
+.gp13{
+	top:320px;
+	left:20px;
+	position: absolute;
+}
+
+.gp6{
+	top:20px;
+	left:320px;
+	position: absolute;
+}
+
+.gp16{
+	top:20px;
+	left: 180px;
+	position: absolute;
+}
+
+.gp7{
+	top:70px;
+	left:320px;
+	position: absolute;
+}
+
+ .gp8{
+	top:120px;
+	left:320px;
+	position: absolute;
+}
+
+.gp9{
+	top:170px;
+	left:320px;
+	position: absolute;
+}
+
+.gp10{
+	top:220px;
+	left:320px;
+	position: absolute;
+}
+
+.gp12{
+	top:270px;
+	left:320px;
+	position: absolute;
+}
+ 
+ 
+.inputName{
+	left: 122px;
+	top: 730px;
+}
+.inputMobi{
+	left: 122px;
+	top: 860px;
+} 
+.inputsuggName {
+	left: 194px;
+    top: 235px;
+	width: 106px;
+}
+.inputsuggMobi {
+	left: 425px;
+	top: 235px;
+	width: 131px;
+}
+.selectArea {
+	font-size: 30px;
+	position: absolute;
+	border: none;
+	width: 300px;
+	height: 50px;
+	border-radius: 0px;
+	text-indent: 5px;
+	-webkit-appearance: none;
+	background: transparent;
+	color: #FFFFFF;
+}
+.ownerCar {
+	left: 200px;
+	top: 141px;
+}
+
+.myStyle{
+	 left: 26px;
+	 top: 312px;
+}
+.City {
+	width: 115px;
+	left: 444px;
+	top: 280px;
+}
+.province {
+    width: 230px;
+    top: 950px;
+    left: 40px;
+}
+
+.dealer {
+    left: 40px;
+    top: 1334px;
+    width: 556px;
+}
+
+.dealTime {
+left: 228px;
+    top: 367px;
+}
+.formsubmitBtn {
+    left: 191px;
+    top: 608px;
+    position: absolute;
+}
+.chk {
+    left: 90px;
+    top: 415px;
+    position: absolute;
+}
+.giftPic {
+    left: 85px;
+    top: 460px;
+	position: absolute;
+}
+
+.chk2 {
+    left: 98px;
+    top: 388px;
+    position: absolute;
+}
+
+.City2 {
+	width: 115px;
+	left: 444px;
+	top: 164px;
+}
+.province2 {
+	width: 474px;
+	left: 120px;
+	top: 422px;
+} 
+.dealer2 {
+    left: 216px;
+    top: 292px;
+}
+
+.myYear {
+    left: 260px;
+    top: 249px;
+    width: 297px;
+}
+
+.formsubmitBtn2 {left: 40px;top: 575px;position: absolute;}
+
+.myMoney{
+	left: 40px;
+	top: 2114px;
+	width: 556px;
+} 
+
+.brandRadio{
+	top: 2240px;
+	left: 20px;
+	width: 600px;
+}
+
+.inputOther {
+    left: 140px;
+    top: 308px;
+    width: 250px;
+    border-bottom: 1px solid;
+}
+
+
+.timeRadio{
+	top: 1800px;
+    left: 20px;
+    width: 600px;
+}
+
+.driverRadio{
+	top: 1276px;
+	left: 230px;
+}
+
+.salery{
+	top: 1213px;
+	width:510px;
+	left:40px;
+}
+
+.age{
+	top: 1082px;
+	left:40px;
+	width: 510px;
+}
+
+.city{
+	    width: 204px;
+	    top: 950px;
+	    left: 340px;
+}
+.am-img-responsive{
+	width:100%;
+}
+
+input[type='radio'].radio {
+	opacity:0;
+	display:inline-block;
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	padding: 0 20px;
+}
+label.radio {
+	background:url(../images/ck.jpg) no-repeat;
+	height: 30px;
+	width: 40px;
+	padding-left: 45px;
+}
+label.radio.active{
+	background: url(../images/cked.jpg) no-repeat;
+}
+
+input[type='radio'].radio:checked + .radio {
+	background:url(../images/cked.jpg) no-repeat;
+} 
+
+
+input[type='checkbox'].radio {
+	opacity:0;
+	display:inline-block;
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	padding: 0 20px;
+}
+
+input[type='checkbox'].radio:checked + .radio {
+	background:url(../images/cked.jpg) no-repeat;
+}
+
+.submit{
+	margin:0 auto;
+	width:555px;
+}
+.submit img{
+	top: 2840px;
+	position: absolute;
+}
+
+
+.reasonRadio{
+	top: 2690px;
+	left: 20px;
+	width: 600px;
+}
+
+.arv4sRadio{
+	top: 2930px;
+	left: 20px;
+	width: 600px;
+}
+
+.infoRadio {
+    top: 3070px;
+    left: 20px;
+    width: 600px;
+}

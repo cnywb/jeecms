@@ -1,0 +1,656 @@
+/*样式重定义*/
+
+.body {
+	background-color: #000000;
+}
+
+/*公共类*/
+.dn {
+	display: none;
+}
+.edge-mainFrame {
+	background: url(../i/bg.png?1207) center center no-repeat;
+	background-size: 100% 100%;
+	height: 100%;
+	position: relative;
+}
+.edge-Logos {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 110px;
+    height:53px;
+}
+.edge-subLogos {
+	position: absolute;
+    width: 86px;
+    height: 52px;;
+    right: 40px;
+    top: 40px
+}
+
+.edge-sologan {
+	position: absolute;
+	width: 119px;
+	left:53px;
+	bottom: 42px;
+}
+
+.edge-arrow {
+	position: absolute;
+	width: 30px;
+	left:50%;
+	margin-left: -15px;
+	bottom: 20px;
+	
+}
+
+.edge-aniArrow {
+	-webkit-animation: aarrow linear 1s infinite;
+  	animation: aarrow linear 1s infinite;
+}
+
+@-webkit-keyframes aarrow {
+0% {
+opacity: .7; 
+bottom: 10px;
+}
+10% {
+opacity: 1; 
+bottom: 20px;
+}
+40% {
+opacity: 1; 
+bottom: 30px;
+}
+90% {
+opacity: 0; 
+bottom: 50px;
+}
+100% {
+opacity: 0;
+bottom: 50px; 
+}
+}
+
+.edge-footTxt {
+	display: block;
+	position: absolute;
+	bottom: 3px;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: 800;
+	color: #8d401e;
+	left: 50%;
+	width: 100px;
+	margin-left: -50px;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,0.9);
+    width: 100%;
+    height: 100%;
+	z-index: 940;
+}
+
+.success {
+    position: fixed;
+    top: 0;
+    background: rgba(0,0,0,0.9);
+    width: 100%;
+    height: 100%;
+	z-index: 941;
+}
+
+.popup a.close {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 21px;
+}
+
+.setinfo {
+	position: absolute;
+	width: 90%;
+	height: 90%;
+	left: 50%;
+	margin-left:-45%;
+	margin-top: 5%;
+}
+
+
+/* Firstpage */
+.edge-firstPage {
+	background: url(../i/firstBg.jpg?1207) center center;
+	background-size: 100% 100%;
+}
+
+.edge-firstTxt1 {
+	width: 75%;
+	position: absolute;
+	margin-left: -37.5%;
+	left:50%;
+	top:15%;
+}
+.edge-firstTxt2 {
+	width: 85%;
+	position: absolute;
+	margin-left: -42.5%;
+	left:50%;
+	top:54%;
+}
+.edge-firstTxt3 {
+	width: 333px;
+	position: absolute;
+	margin-left: -161px;
+	left:50%;
+	top:72%;
+}
+/* secondpage */
+.edge-secondPage {
+	background: url(../i/secondBg.jpg?1207) center center;
+	background-size: 100% 100%;
+}
+.edge-secondTxt1 {
+	width: 86%;
+	position: absolute;
+	margin-left: -43%;
+	left: 50%;
+	top:50%;
+}
+.edge-secondTxt2 {
+	width: 68%;
+	position: absolute;
+	margin-left: -34%;
+	left: 50%;
+	top:72%;
+}
+.edge-secondTxt3 {
+	width: 30%;
+	position: absolute;
+	margin-left: -15%;
+	left: 50%;
+	top:84%;
+}
+/* thirdPage */
+.edge-thirdPage {
+	background: url(../i/selectMissionBg.jpg?1207) center center;
+	background-size: 100% 100%;
+}
+.edge-thirdTxt1 {
+	width: 64%;
+	position: absolute;
+	margin-left: -32%;
+	left: 50%;
+	top:15%;
+}
+.edge-tracking {
+	position: absolute;
+	top: 401px;
+	left: 0;
+}
+.edge-thirdTxt2 {
+	width: 226px;
+	height: 156px;
+	position: absolute;
+
+	left: 45px;
+	top:371px;
+}
+.edge-thirdTxt3 {
+	width: 226px;
+	height: 156px;
+	position: absolute;
+	left: 85px;
+	top:723px;
+}
+.edge-thirdTxt4 {
+	width: 226px;
+	height: 156px;
+	position: absolute;
+	right: 104px;
+	top:596px;
+}
+.edge-thirdTxt5 {
+	width: 227px;
+	height: 156px;
+	position: absolute;
+	right:38px;
+	top:365px;
+}
+
+/*Mission One*/
+.edge-mission1 {
+	background: url(../i/missionBg.jpg?1207) center center;
+	background-size: 100% 100%;
+}
+
+.edge-mission1Title {
+	width: 493px;
+	height: 91px;
+	position: absolute;
+	margin-left: -39%;
+	left: 50%;
+	top:122px;
+}
+.edge-takePic {
+	width:321px;
+	height: 321px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -160px;
+	top: 293px;
+	background-image: url(../i/takePic.png?1207);
+	-webkit-animation: photoAni 1s step-end infinite;
+	animation: photoAni 1s step-end infinite;
+}
+@-webkit-keyframes photoAni{
+	            0%{
+                  background-position-x:0;
+                }
+	
+                10%{
+                  background-position-x:-321px;
+                }
+                50%{
+                  background-position-x:-642px;
+                }
+                90%{
+                  background-position-x:-963px;
+                }
+                100%{
+                  background-position-x:-1284px;
+                }
+            }
+.edge-missionOneTxt1 {
+	width: 463px;
+	height: 115px;
+	position: absolute;
+	margin-left: -231px;
+	left: 50%;
+	top:677px;
+}
+
+.edge-recording {
+	width:300px;
+	height: 300px;
+	position: absolute;
+	left: 50%;
+	margin-left:-150px;
+	background: url(../i/recording.png?1207);
+	top: 280px;
+}
+.edge-recordingAni {
+	-webkit-animation: recording 1s step-end infinite;
+	animation: recording 1s step-end infinite;
+}
+@-webkit-keyframes recording{
+	            0%{
+                  background-position-x:0;
+                }
+	
+                33%{
+                  background-position-x:-300px;
+                }
+                66%{
+                  background-position-x:-600px;
+                }
+                100%{
+                  background-position-x:0;
+                }
+            }
+.edge-missionOneUploadBtn {
+	width: 192px;
+	height: 74px;
+	position: absolute;
+	margin-left: -96px;
+	left: 50%;
+	top:835px;
+}
+.edge-missionNotice {
+	text-align: center;
+	font-size: 2.6rem;
+	color: #8d401e;
+	width: 500px;
+	position: absolute;
+	margin-left: -250px;
+	left: 50%;
+	top:645px;
+}
+
+.edge-shareBtn {
+	width: 192px;
+	position: absolute;
+	left: 113px;
+	top: 795px;
+}
+.edge-yyBtn {
+	width: 192px;
+	position: absolute;
+	right: 113px;
+	top: 795px;
+}
+.edge-formFrame {
+	background: url(../i/formBorder.png?1207) no-repeat center center;
+	background-size:100% 100% ;
+	}
+
+/*Mission Two*/
+
+.edge-record {
+	width:320px;
+	height: 320px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -160px;
+	top: 280px;
+	background-image: url(../i/record.png?1207);
+	-webkit-animation: recordAni 2s step-end infinite;
+	animation: recordAni 2s step-end infinite;
+}
+
+@-webkit-keyframes recordAni{
+	            0%{
+                  background-position-x:0;
+                }
+	
+                10%{
+                  background-position-x:-321px;
+                }
+                50%{
+                  background-position-x:-642px;
+                }
+                90%{
+                  background-position-x:-963px;
+                }
+                100%{
+                  background-position-x:-1284px;
+                }
+            }
+.edge-missionTwoTxt1 {
+	width: 447px;
+	position: absolute;
+	margin-left: -223px;
+	left: 50%;
+	top:677px;
+}
+
+.edge-missionTwoRecordBtn {
+	back
+	width: 192px;
+	height: 74px;
+	position: absolute;
+	margin-left: -96px;
+	left: 50%;
+	top:830px;
+}
+
+/*表单提交*/
+form {
+	width: 80%;
+	margin:0 auto;
+}
+
+form .title{
+}
+form .sbtitle {
+    margin-top: 5px;
+    position: relative;
+    color:#f2e9b6;
+}
+form .sbtitle span{
+	width: 25%;
+    display: inline-block;
+    font-size: 2rem;
+}
+
+form .sbtitle span.edge-Input {
+	width: 55%;
+}
+form input {
+    width: 100%;
+    height: 35px;
+    position: relative;
+    border: 2px solid #f2e9b6;
+    border-radius: 5px;
+	text-align: center;
+	background-color:#242930 ;
+}
+
+/*mission tree */
+.edge-map {
+	width:320px;
+	height: 320px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -160px;
+	top: 280px;
+	background-image: url(../i/missionMap.png?1207);
+	-webkit-animation: mapAni 1.5s step-end infinite;
+	animation: mapAni 1.5s step-end infinite;
+}
+
+@-webkit-keyframes mapAni{
+	            0%{
+                  background-position-x:0;
+                }
+	
+                25%{
+                  background-position-x:-320px;
+                }
+                50%{
+                  background-position-x:-640px;
+                }
+                75%{
+                  background-position-x:-960px;
+                }
+                100%{
+                  background-position-x:0px;
+                }
+            }
+
+.missionThree3txt {
+	width: 383px;
+	height: 116px;
+	background: url(../i/mission3Txt.png?1207);
+	left: 50%;
+	margin-left:-191px;
+	top:677px;
+	position: absolute;
+}
+.btnTrack {
+	background: url(../i/btn_track.png?1207);
+	width: 192px;
+	height: 74px;
+	left: 50%;
+	margin-left: -96px;
+	top:831px;
+	position: absolute;
+}
+
+.chinaMap {
+	width: 304px;
+	height: 297px;
+	position: absolute;
+	left: 50%;
+	margin-left: -152px;
+	top: 300px;
+}
+
+/*missibgsound4444*/
+
+.edge-mail {
+	width:320px;
+	height: 320px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -160px;
+	top: 280px;
+	background-image: url(../i/mail_ani.png?1207);
+	-webkit-animation: mapAni 1.5s step-end infinite;
+	animation: mapAni 1.5s step-end infinite;
+}
+.mission4txt {
+	width: 415px;
+	height: 74px;
+	background: url(../i/mission4Txt.png?1207);
+	left: 50%;
+	margin-left:-208px;
+	top:677px;
+	position: absolute;
+}
+.inputXY {
+	background: url(../i/btn_inputxy.png?1207);
+	width: 192px;
+	height: 74px;
+	left: 50%;
+	margin-left: -96px;
+	top:831px;
+	position: absolute;
+}
+.inputArea {
+	width: 358px;
+	height: 350px;
+	position: absolute;
+	top: 287px;
+	left: 168px;
+}
+
+#txtCanvas {
+	width: 358px;
+	height: 350px;
+	position: absolute;
+	top: 287px;
+	left: 168px;
+}
+
+.inputArea textarea {
+	position: absolute;;
+	left: 20px;
+	top: 40px;
+    border:0;  
+    background-color:transparent;  
+    overflow: hidden;
+    color: #666464;  
+    height: auto;  
+    font-size: 24px;
+    line-height: 38px;
+    color: #000;
+}
+.inputArea p {
+	font-size: 2rem;
+	color: #e9dfad;
+	text-align: center;
+	position: absolute;
+	top: -30px;
+	left: 55px;
+}
+
+.uploadPic {
+	position: absolute;
+	width: 340px;
+	height: 340px;
+	left: 50%;
+	margin-left: -170px;
+	top: 300px;
+}
+
+canvas {
+	background: transparent;
+}
+
+
+.edge-recordNotice {
+	width: 300px;
+	height: 30px;
+	text-align: center;
+	font-size:2rem;
+	position: absolute;
+	left: 50%;
+	margin-left: -150px;
+	top:515px;
+	color: #8d401e;
+}
+
+
+.ploading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2222;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    padding-top: 16%;
+    top: 0;
+}
+
+.share {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2228;
+    font-size: 30px;
+    color: #fff;
+    top: 0;
+    text-align: center;
+}
+.edge-sharetitle {
+	background: url(../i/shareTitle.png?1207);
+	width: 397px;
+	height: 91px;
+	position: absolute;
+	top: 167px;
+	left: 50%;
+	margin-left: -199px;
+}
+.wantChann {
+	background: url(../i/channBtn.png?1207);
+	width:192px;
+	height: 74px;
+	position: absolute;
+	top: 809px;
+	left: 50%;
+	margin-left: -96px;
+}
+.imgHold {
+	position: fixed;
+	width: 100%;
+	text-align:center;
+	top:354px;
+}
+.txthold {
+	position: fixed;
+	width: 280px;
+	margin-left: -140px;
+	left: 50%;
+	top: 273px;
+}
+.success p{
+    font: 23.89px/40.43px '黑体';
+    color: #fff;
+    text-align: center;
+    top: 140px;
+    position: relative;
+}
+.success a{
+    font: 23.89px/40px '黑体';
+    color: #000;
+    background: #fff;
+    height: 40px;
+    width: 170px;
+    display: block;
+    text-align: center;
+    border-radius: 6px;
+    margin: 0 auto;
+    position: relative;
+    top: 220px;
+}

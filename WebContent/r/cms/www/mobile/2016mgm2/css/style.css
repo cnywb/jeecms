@@ -1,0 +1,179 @@
+html, body {width: 100%;height: 100%;color: #FFFFFF;overflow-x:hidden;}
+body { font-family: "mircrosoft yahei", "ÃƒÂ¥Ã‚Â¾Ã‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¯ÃƒÂ©Ã¢â‚¬ÂºÃ¢â‚¬Â¦ÃƒÂ©Ã‚Â»Ã¢â‚¬Ëœ", "ST-Heiti", Tahoma, Verdana, Arial, Geneva, sans-serif; background: #ffffff; border: none; padding: 0; margin: 0; }
+img { border: none; }
+ul, li, dd, dl { margin: 0; padding: 0; list-style: none; }
+.dn { display: none; }
+.db { display: block; }
+.ab { position: absolute; }
+.ab00 { position: absolute; left: 0; top: 0; }
+.ab01 { position: absolute; left: 0; bottom: 0; }
+.ab10 { position: absolute; right: 0; top: 0; }
+.ab11 { position: absolute; right: 0; bottom: 0; }
+.tc { text-align: center; }
+input {width: 224px;height: 36px;}
+input, select {font-size: 1.8rem;border: none;-webkit-appearance: none;background: transparent;outline: none;}
+.rulebtn{right:50px;}
+.overlay{width:100%;height:100%;background:rgba(0,0,0,0.7);position:fixed;top: 0;left: 0;}
+.overlay img{margin: 20% 12%;} 
+.formWrap {width: 100%;left: 0;top: 480px;text-align: center;}  
+.formTop .txt{top: 150px;left: 50%;margin-left: -260px;}
+.formTop .scrobg1{top:170px;-webkit-animation-name: bgrotate;-webkit-animation-duration: 10s;-webkit-animation-iteration-count: infinite;-webkit-animation-timing-function: linear;animation-name: bgrotate;animation-duration: 10s;animation-iteration-count: infinite;animation-timing-function: linear;left: 0;}
+@-webkit-keyframes bgrotate1 {
+	from { -webkit-transform: translate(-3000px,0) }
+	to { -webkit-transform: translate(0,0) }
+} 
+@keyframes bgrotate1 {
+	from { -webkit-transform: translate(-3000px,0) }
+	to { -webkit-transform: translate(0,0) }
+} 
+.formTop .scrobg{top:170px;left: 0;animation: animatelt 10s  infinite linear;-webkit-animation: animatelt 24s infinite linear;background:url(../img/scroll.png);height: 280px;width: 750px;}
+@-webkit-keyframes animatelt{to {
+ background-position:4700px;
+}}
+@keyframes animatelt{to {
+ background-position: 4700px;
+}}
+.formTop{width: 100%;overflow-x:hidden;/* border: 4px solid #000000; */padding: 0;}
+.formTop .car{top:350px;margin-left: -127px;left: 50%;display: inline-block;}
+.formTop .cld1{
+	top: 120px;
+	right: 120px;
+	animation: leftRight 10s infinite linear 1s;
+	-webkit-animation: leftRight 10s infinite linear 1s;
+	}
+.formTop .cld2{
+	top: 80px;
+	left: 150px;
+	animation: leftRight2 7s infinite linear 1s;
+	-webkit-animation: leftRight2 7s infinite linear 1s;
+	}
+.formTop .bol1{top: 80px;left: 50px;
+    animation: upDown1 2s infinite linear;
+	-webkit-animation: upDown1 2s infinite linear;}	
+.formTop .bol2{top: 80px;left: 50px;
+    animation: upDown2 2s infinite linear;
+	-webkit-animation: upDown2 2s infinite linear;}	
+.inputName { top: 76px; left: 135px; }
+.inputMobi {top: 76px;left: 467px;}
+.inputVin { top: 146px; left: 299px; width: 394px; }
+.owerField { width: 750px; height: 200px; margin: 0 auto; background: url(../img/owerFormBg.png?1) no-repeat; position: relative; margin-bottom: 7px; }
+.pers { background: url(../img/tForm.png?1) no-repeat; width: 750px; height: 260px; margin: 0 auto; position: relative; }
+.inputsuggName { top: 86px; left: 138px; }
+.inputsuggMobi {top: 86px;left: 467px;}
+.selectArea {border: none;height: 42px;border-radius: 0px;text-indent: .3rem;-webkit-appearance: none;background: transparent;outline: none;width: 310px;}
+.province { top: 164px; left: 60px; }
+.City { top: 164px; left: 383px; }
+.addpp { top: 230px; right: 40px; }
+.slogo { top: 25px; right: 25px; }
+.logo2{top:25px;left:25px;}
+.txt1{margin: 20px 0;}
+.tip{/* top:920px; *//* left:50%; */margin-left:-20px;}
+.submit{
+    margin: 30px 0 30px;
+}
+
+@-webkit-keyframes upDown {
+	0%{-webkit-transform: translateY(-10px);}
+	50%{-webkit-transform: translateY(10px);}
+	100%{-webkit-transform: translateY(-10px);}
+}
+
+@keyframes upDown {
+	0%{transform: translateY(-10px);}
+	50%{transform: translateY(10px);}
+	100%{transform: translateY(-10px);}
+}
+
+@-webkit-keyframes upDown2 {
+	0%{-webkit-transform: translateY(-5px);}
+	50%{-webkit-transform: translateY(5px);}
+	100%{-webkit-transform: translateY(-5px);}
+}
+
+@keyframes upDown2 {
+	0%{transform: translateY(-5px);}
+	50%{transform: translateY(5px);}
+	100%{transform: translateY(-5px);}
+}
+
+@-webkit-keyframes leftRight {
+	0%{-webkit-transform: translateX(-0px);}
+	50%{-webkit-transform: translateX(50px);}
+	100%{-webkit-transform: translateX(-0px);}
+}
+
+@keyframes leftRight {
+	0%{transform: translateX(-0px);}
+	50%{transform: translateX(50px);}
+	100%{transform: translateX(-0px);}
+}
+
+@-webkit-keyframes leftRight2 {
+	0%{-webkit-transform: translateX(0px);}
+	50%{-webkit-transform: translateX(-60px);}
+	100%{-webkit-transform: translateX(0px);}
+}
+
+@keyframes leftRight2 {
+	0%{transform: translateX(0px);}
+	50%{transform: translateX(-60px);}
+	100%{transform: translateX(0px);}
+}
+
+@-webkit-keyframes leftRight3 {
+	0%{-webkit-transform: translateX(0px);}
+	50%{-webkit-transform: translateX(-30px);}
+	100%{-webkit-transform: translateX(0px);}
+}
+
+@keyframes leftRight3 {
+	0%{transform: translateX(0px);}
+	50%{transform: translateX(-30px);}
+	100%{transform: translateX(0px);}
+}
+
+/*刮刮卡*/ 
+.luckyDraw {
+	width:100%;
+	height: 100%;
+	position: fixed;
+	background: url(../img/bg.png) no-repeat;
+	top: 0;
+	left: 0;
+}
+#scratch {
+	width: 551px;
+	height: 280px;
+	border: 0px solid #ccc;
+	position: absolute;
+	border-radius: 10px;
+	left: 50%;
+	margin-left: -274px;
+	top: 540px;
+}
+.luckybg {position: absolute;top: 0;left: 0;}
+.notice {position: absolute;top: 432px;left: 56px;}
+.guakai {
+    position: absolute;
+    position: absolute;
+    top: 540px;
+    left: 100px;
+    }
+.unlucky {text-align: center;text-align: center;line-height: 6rem;font-size: 1.8rem;}
+#card {width: 551px;height: 280px;}
+#cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 551px;height: 280px;
+}
+.lucky {
+text-align: center;text-align: center;
+}
+.gongxi {
+	line-height: 4rem;font-size: 1.8rem;
+}
+.gongxiCode {
+	line-height: 1rem;font-size: 1.4rem;
+}
+

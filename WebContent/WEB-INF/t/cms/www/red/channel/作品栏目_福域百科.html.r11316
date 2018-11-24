@@ -1,0 +1,219 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>福域百科 互动问答-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/fordjs/respond.min.js"></script>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/common.js" type="text/javascript"></script>
+<script type="text/javascript">
+            $(function() {
+            $("#guestbookForm").validate( {
+            submitHandler : function(form) {
+            $(form).ajaxSubmit( {
+            "success" : function(data) {
+            if(data.status==0) {
+            alert("留言提交成功");
+            location.href=location.href;
+            } else if(data.status==1) {
+            alert("验证码错误");
+            $("#guestbookCaptcha").click();
+            } else if(data.status==2) {
+                alert("请先登录再进行此操作");
+            } else if(data.status==3) {
+                alert("只有认证车主才能进行此操作");
+            } else {
+            alert("留言提交失败");
+            }
+            },
+            "dataType" : "json"
+            });
+            }
+            });
+            });
+            
+            $(document).ready(function(){
+            	
+            	$("#queryStr").click(function(){
+            		if($(this).val()=="搜索百科问题"){
+            			$(this).val("");
+            		}
+               	});
+            	
+            	$("#content").click(function(){
+            		if($(this).val()=="输入问题描述......"){
+            			$(this).val("");
+            		}
+               	});
+               	$("#btn_queryStr").click(function(){
+            		var q=$("#queryStr").val();
+            		if(q=="搜索百科问题"){
+            			alert("请输搜索关键字！");
+            			return;
+            		}
+               		$("#q").val(q);
+            		$("#queryForm").submit();
+               	});
+            });
+</script>
+</head>
+<body>
+
+
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>福域百科<span>用车养车有难题？大家帮您来解答</span></h1>
+	<article class="ctan">
+		<section>
+			<h2 class="h201">最新问题</h2>
+			<div class="art art01">
+								<div class="top">
+				[@cms_guestbook_page siteId=site.id count='1' checked='1'  ctgId='1']
+                [#list tag_pagination.list as m]
+					<div class="fl">
+						<img src="/${res}/images/fuyu_photo.jpg" alt="">
+						</div>
+					<div class="fr deb">
+						<h3>[@text_cut s=m.title len=titLen /]<em>[${channel.title!channel.name}]</em></h3>
+						<p>[@text_cut s=m.contentHtml len=140 append='...'/]</p>
+						
+					</div>
+				[/#list]		   
+         [/@cms_guestbook_page]
+				</div>
+			</div>
+			<h2>常见问题</h2>
+			<div class="art">
+						[@cms_guestbook_page siteId=site.id count='10' checked='1'  q=q ctgId='1']
+                [#list tag_pagination.list as m]
+				<dl>
+					<dt><a href="${base}/member/guestbook_detail.jspx?id=${m.id}">[@text_cut s=m.title len=22 /]<em>[${channel.title!channel.name}]</em></a><span>NEW</span></dt>
+					<dd>${m.createTime!}</dd>
+				</dl>
+		[/#list]		   
+                <div class="pagesite">[@cms_pagination sysPage='1'/]</div>
+                [/@cms_guestbook_page]
+			</div>
+		</section>
+		<aside><img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3 class="h3_fu">域百科</h3>
+				
+				
+				<div align="center">
+				 <div class="hundred100">
+            <div class="lybCon">
+            <form id="guestbookForm" action="${base}/guestbook.jspx" method="post">
+            <table  width="96%" border="0" cellpadding="0" cellspacing="0" >
+            <tr style="display:none">
+            <td width="15%" height="35" align="right" bgcolor="#fafafa">类别：</td>
+            <td bgcolor="#FFFFFF">
+            <select name="ctgId" class="contactTex1">
+            [@cms_guestbook_ctg_list siteId=site.id ctgId='1']
+            [#list tag_list as ctg]
+            <option value="${ctg.id}">${ctg.name}</option>
+            [/#list]
+            [/@cms_guestbook_ctg_list]
+            </select>	          </td>
+            <td width="15%" align="right" bgcolor="#FAFAFA">电子邮箱：</td>
+            <td bgcolor="#FFFFFF">
+            <input type="text" name="email" class="contactTex1" maxlength="100"/>
+            </td>
+            </tr>
+          	<tr>
+          		<td width="25%" align="right" bgcolor="#fafafa" >问题标题</td>
+          		<td><input type="text" value="" name="title"></td>
+          		</tr>
+            <tr>
+            <p class="qus"><textarea style="margin-top:-10px;" name="content" id="content">输入问题描述......</textarea></p>
+            </tr>
+            
+            <tr>
+            <td width="25%" align="right" bgcolor="#fafafa" >验证码：</td>
+            <td colspan="3" bgcolor="#FFFFFF">
+            <div style="float:left;">
+            <input type="text" name="captcha" class="plcode" maxlength="20"/> 
+            </div>
+            <div style="float:left;">
+            <img id="guestbookCaptcha" src="${base}/captcha.svl" onClick="this.src='${base}/captcha.svl?d='+new Date()"/>
+            </div>
+            </td>
+            </tr>
+            <tr>
+            <td colspan="4" align="center" bgcolor="#FFFFFF">
+            <div class="clear-10"></div>
+            <input type="image"  src="/${res}/images/fabu.jpg" name="submit" />
+            </td>
+            </tr>
+            </table>
+            </form>                                           
+             
+            </div>
+        </div>
+       </div>
+				</br>
+				
+				<p class="search">
+				
+				<input type="text"  id="queryStr" value="搜索百科问题" name="">
+				
+				<a  id="btn_queryStr" href="javascript:void(0);"></a></p>
+			</div>
+			<img src="/${res}/images/img03.png" alt="" style="*float:left;">
+			<div class="box labox">
+				
+				
+				<h3>百科问答</h3>
+				<ul class="ul06">
+					 [@cms_guestbook_page siteId=site.id count='5' checked='1']
+                [#list tag_pagination.list as m]
+				[#if m.replayTime??]
+					<li class="ok"><span>已解决</span><a href="${base}/member/guestbook_detail.jspx?id=${m.id}">${m.title!}</a></li>
+					[#else]
+			<li><span>未解决</span><a href="${base}/member/guestbook_detail.jspx?id=${m.id}">${m.title!}</a></li>
+				[/#if]
+					[/#list]		   
+                <div class="pagesite">
+                     [@cms_pagination sysPage='1'/]
+                </div>
+                [/@cms_guestbook_page]
+				</ul>
+			</div>
+		</aside>
+	</article>
+</article>
+</div>
+
+[#include "../include/页脚信息栏.html"/]
+<form action="index.htm" method="post" id="queryForm">
+<input name="q" type="hidden" id="q">
+</form>
+
+</body>
+</html>

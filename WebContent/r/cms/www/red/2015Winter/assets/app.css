@@ -1,0 +1,122 @@
+body, form, div, span, ul, ol, li, p, pre, dl, dt, dd, h1, h2, h3, h4, h5, h6, em, a, fieldset, legend, address, label, textarea, select, input, figure, table, th, td, b, i {
+    margin: 0;
+    padding: 0
+}
+
+body, button, input, select, textarea {
+    font: 12px/1.5 Tahoma, Arial, '\5B8B\4F53'
+}
+
+fieldset, img {
+    border: 0
+}
+
+ul, li {
+    list-style: none
+}
+
+em, i {
+    font-style: normal
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+a:focus, input, button, select, textarea {
+    outline: none;
+    font-size: 100%
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-variant: normal
+}
+
+input, select, img {
+    vertical-align: middle
+}
+
+legend {
+    display: none
+}
+
+textarea {
+    resize: none
+}
+
+button {
+    cursor: pointer
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #ff891f;
+}
+
+.p1 {
+	background: url(../img/p1.jpg?14) center center;
+	background-size: cover;
+}
+.p2 {
+	background: url(../img/p2.jpg?14) center center;
+	background-size: cover;
+}
+.p3 {
+	background: url(../img/p3.jpg?14) center center;
+	background-size: cover;
+}
+.p4 {
+	background: url(../img/p4.jpg?14) center center;
+	background-size: cover;
+}
+.p5 {
+	background: url(../img/p5.jpg?123) center center;
+	background-size: cover;
+}
+.p6 {
+	background: url(../img/p6.jpg?14) center center;
+	background-size: cover;
+}
+.qcode {
+	width: 160px;
+	position: absolute;
+	left: 50%;
+	margin-left: -80px;
+	top: 200px;
+}
+.qcode img,.logo img,.sublogo img {width:100%}
+.logo {
+	width: 40px;
+	position: absolute;
+	right: 10px;
+	top: 15px;
+}
+
+.sublogo {
+	width: 60px;
+	position: absolute;
+	left: 15px;
+	top: 15px;
+}
+.popup {
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.9);
+	text-align: center;
+}
+

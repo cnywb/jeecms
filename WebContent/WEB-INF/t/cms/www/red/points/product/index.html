@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+<head>
+<title>福域积分换礼</title>
+[#include '../common/header.html']
+<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/nt.css">
+<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/pointsmall.css">
+<link rel="stylesheet" type="text/css" href="/${res}/point/fordcss/points_exchange.css">
+</head>
+<body>
+[#include '../common/bodyheader.html']
+	<div class="warp" id="warp">
+		<div class="warp_cen">
+			<h3 class="warp_c_title">福域积分换礼</h3>
+			<div class="c_bg_top"></div>
+			<div class="c_bg_body">
+				<div class="r_banner">
+					<img src="/${res}/point/images/points/p_banner.jpg" alt="" />
+					<div class="r_banner_tag">
+						<p class="r_banner_tag_title r_padding_top">长安福特“福域”联手官方微信“长安福特微客服”，倾情回馈广大车主！即日起在“福域”与微客服发帖、回帖、玩游戏…</p>
+						<p class="r_banner_tag_title">即获赠相应积分；通过累积、兑换、抽奖、秒杀…赢取享不尽的精美豪礼.</p>
+						<ul class="r_banner_tag_link">
+							<li class="left_link"><a href="${base}/points/integral/index.jhtml">积分规则</a></li>
+							<li class="middle_link"><a href="${base}/points/rule/index.jhtml">积分获取</a></li>
+							<li class="middle_link_red"><a href="${base}/points/ward/index.jhtml">积分兑换</a></li>
+							<li class="right_link"><a href="${base}/points/lottery/index.jhtml">积分抽奖</a></li>
+						</ul>
+					</div>
+				</div>
+				<ul class="store_list">
+					[#list productList as g]
+					<li>
+						<img src="${g.imageSmallURL!}" alt="" />
+						<p class="store_title">${g.title}</p>
+						<!--  <p class="store_des">${g.title}</p>-->
+						<h3 class="store_point">积分${g.pointNum}</h3>
+						<!--  <p class="store_btn"><img class="btnImage" data-productid="${g.id}"  data-proudcttitle="${g.title}" data-pointnum="${g.pointNum}" src="/${res}/point/images/btn.png"/></p> -->
+						<div class="store_btn">
+									[#if g.exchangeStockNum gt 0 ]
+										<button class="store_get" data-productid="${g.id}"  data-proudcttitle="${g.title}" data-pointnum="${g.pointNum}">兑换</button>
+									[#else]
+										 <button class="store_disable">兑换</button>
+									[/#if]
+						</div>
+						<div class="sanjiao"><span>&nbsp;</span><span class="spanbottom">库存${g.exchangeStockNum}件</span></div>
+					</li>
+					[/#list]
+				</ul>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="pagination">
+	                <form id="tableForm" action="index.jhtml" method="post">
+				    <tr>
+					   <td align="center" style="font-size:16px;">
+					   [#if pagination.totalCount gt 0]
+							[#if pagination.firstPage]
+							上一页
+							[#else]
+							<a href="javascript:void(0)", onclick="_gotoPage(null,'${pagination.prePage}')">上一页</a>
+							[/#if]
+							[#if pagination.lastPage]
+							下一页
+							[#else]
+							<a href="javascript:void(0)", onclick= "_gotoPage(null,'${pagination.nextPage}')">下一页</a>
+							[/#if]
+							<span>第${pagination.pageNo}页</span>
+							<span>共${pagination.totalCount}件</span>
+							<span>共${pagination.totalPage}页</span>
+					   [#else]
+					   		没有查找数据		   
+					   [/#if]
+					   </td>
+					   <input type="hidden" name="page" value="1"/>
+					   <input type="hidden" name="rows" value="9"/>
+					   <input type="hidden" name="categoryId" value="${categoryId}"/>
+					</tr>
+					</form>
+				</table>
+			</div>			
+			<div class="c_bg_bottom"></div>
+			<div class="space30"></div>
+		</div>
+	</div>
+[#include '../common/footer.html']
+[#include '../common/right.html']
+[#include '../common/modal.html']
+</body>
+<!-- Js start -->
+<script type="text/javascript" src="/${res}/point/fordjs/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery-validate-methods.js"></script>
+<script type="text/javascript" src="/${res}/point/fordjs/jquery.validate.messages_zh.min.js"></script>
+<script type="text/javascript" src="/plugins/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/r/cms/www/red/js/area.js"></script>
+<!-- Js End -->
+<script type="text/javascript">
+	var userAuth='您目前未认证车主身份，点击"<a href="${base}/czrz/index.htm">车主认证</a>",将跳转到车主认证页面';
+	var userPoint='您目前积分不足，点击"<a href="${base}/points/rule/index.jhtml">积分获取</a>"<br/>将告诉您如何获取积分';
+	var userNoLoin='您目前未登录，点击"<a href="${base}/login.jspx?returnUrl=${base}/points/product/index.jhtml">用户登录</a>",将跳转到用户页面';
+	var success='您礼品寄送地址已填写，礼品将在30天内寄出';
+	var noStock="您兑换的礼品库存不足，请选择其他礼品";
+	$(function(){
+		$('.subnav').hover(function() {
+			$('.topnav').addClass('topnav_out');
+			var index=$(this).index();
+			$(this).find('ul').css('left', index*104);
+		}, function() {
+			$('.topnav').removeClass('topnav_out');
+		});
+		
+		//弹出层
+		$('.store_get').click(function(event) {
+			//判断用户是否登录
+			var productid=$(this).data('productid'),title=$(this).data('producttitle'),pointnum=$(this).data('pointnum');
+			[#if user??&&user.group.id==2]
+				var currentPoint=$('#currentPoint').val();
+				if(currentPoint>=pointnum){
+					sendeeFunction(productid);
+				}else{
+					//提示用户积分不足
+					authModal(userPoint);
+				}
+			[#elseif user??]
+				//提示未认证
+				 authModal(userAuth);
+			[#else]
+				//提示未登录
+				 authModal(userNoLoin);
+			[/#if]
+		});
+	function startSubmit(){
+		var fade=$('<div id="loading-backdrop" class="loading-backdrop"><div class="loading"><div class="loading-dialog"><img src="/${res}/point/images/loading.gif" /></div><div></div>');
+		if ($('#loading-backdrop').size() === 0) {
+			$('body').append(fade);
+		}
+	}
+	function endSubmit(){
+	 	if ($('#loading-backdrop').size()>0) {
+	 		$('#loading-backdrop').remove();
+	 	}
+	}
+	
+	//用户授权提示页面
+	function authModal(message,callbackfn){
+		callbackfn=callbackfn||$.noop;
+		if ($('#modal-backdrop').size() === 0) {
+			var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+			$('body').append(fade);
+			$('#authmodal').show();
+			$('#modal-body-content').html(message);
+			$('#authmodal .modal-close,#authmodal .btn-confirm').click(function(event) {
+				$('#modal-backdrop').remove();
+				$('#authmodal').hide();
+				callbackfn.call(this);
+			});
+		}
+	}
+	//用户提示信息
+	function sendeeFunction(productid){
+	 	    $('#productId').val('');
+			$('#productId').val(productid);
+			if ($('#modal-backdrop').size() === 0) {
+				var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+				$('body').append(fade);
+				$('#myModal').show();
+				$('#myModal .modal-close').click(function(event) {
+					$('#modal-backdrop').remove();
+					$('#myModal').hide();
+				});
+				$('#myModal .btn-default').click(function(e){
+					 $('#jvForm').submit();
+				});
+			}
+	 }	
+		
+	 $('select').change(function(e){//自定义下拉菜单事
+		var selval=$(this).val();
+		$(this).prev().html(selval);
+		
+	 });
+	//从隐藏的原生单选按钮中读取选中值
+	_init_area();
+	$("#s_province").change(function(){
+		$("#s_city").prev().html("");
+		$("#province").val($(this).val());
+		$("#city").val("");
+		$("#s_county").prev().html("");
+		$("#county").val("");
+	});
+	$("#s_city").change(function(){
+		$("#city").val($(this).val());
+		$("#s_county").prev().html("");
+		$("#county").val("");
+	});
+	$("#s_county").change(function(){
+		$("#county").val($(this).val());
+	});
+	//验证省市县
+	 jQuery.validator.addMethod("addressCounty", function(value, element) { 
+           if($('#s_county').val()==''||$('#s_city').val()==''||$('#province').val()==''||$('#s_county').val()=='县'||$('#s_city').val()=='市'||$('#province').val()=='省'){
+           		return  false
+           } 
+           return true;
+    }, "请选择省市县"); 
+	
+	
+	//Ajax提交
+	function ajaxPost(url,data,successfn,errorfn,arg){
+   		successfn=successfn||$.noop;
+   		errorfn=errorfn||$.noop;
+   		$.ajax({
+            url : url,
+            type : 'post',              
+            data : data,
+            dataType:'json',
+        	timeout:12000,
+        	error :function(xhr, textStatus, error) {
+				errorfn.call(this,xhr,textStatus,error);
+			},
+            success:function(data) {
+            	successfn.call(this,data,arg);
+            }
+        });
+    };
+    
+    //Ajax提交表单
+    function ajaxSubmit(form){
+    	 startSubmit();
+    	 var data=$('#jvForm').serialize(),url='${base}/points/order/exchangesave.jspx';
+    	 ajaxPost(url,data,successfn,errorfn);
+    }
+    //暂时关闭
+   function colseModal(){
+  		$('#modal-backdrop').remove();
+		$('#myModal').hide();
+   }
+    //暂时关闭
+   function openModal(){
+   		var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+		$('body').append(fade);
+		$('#myModal').show();
+   }
+    //处理成功函数
+    function successfn(data,arg){
+    	endSubmit();
+    	//成功
+    	if(data.messageCode===0){
+    		colseModal();
+    		authModal(success,function(){
+    			location.reload();	
+    		});
+    	}else if(data.messageCode===1){
+    		//未登录
+    		colseModal();
+    		//积分不足
+    		authModal(userNoLogin,openModal);
+    	}else if(data.messageCode===2){
+    		//未认证
+    		colseModal();
+    		//积分不足
+    		authModal(userNoAuth,openModal);
+    	}else if(data.messageCode===3){
+    		colseModal();
+    		//积分不足
+    		authModal(userPoint);
+    	}else if(data.messageCode===4){
+    		colseModal();
+    		//库存不足
+    		authModal(noStock,openModal);
+    	}else{
+    		//失败
+    		authModal(data.message,openModal);
+    	}
+    }
+    //处理失败函数
+    function errorfn(xhr,textStatus,error){
+    	endSubmit();
+    }
+ 
+  	 $("#jvForm").validate({
+        //debug: true, //调试模式取消submit的默认提交功能    
+        submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form 
+            ajaxSubmit(form);
+        },
+        rules:{
+             sendee:{required:true},
+             mobilePhoneNo:{required:true,isMobile:true},
+             address:{required:true},
+             s_county:{addressCounty:true}
+        },
+        //如果验证控件没有message，将调用默认的信息
+        messages:{
+            sendee:{
+               	required:"请填写姓名"
+            },
+            mobilePhoneNo:{required:'请填写手机号',isMobile:'手机号不正确'},      
+            address:{required:'请填写详细地址'}
+        },
+         //设置错误信息存放标签
+        errorElement: "em",
+        //指定错误信息位置
+        errorPlacement: function (error, element) {
+        	if (element.attr('id')=='s_county') {		               
+                error.appendTo($('#countyErrorLabel'));
+   			 }else{
+             	error.insertAfter(element);
+             }
+        },
+         focusInvalid: false, 
+		 onkeyup:false,
+		 ignore: '',
+         success:function(e)
+         {	
+         	e.removeClass('valid');
+         }        
+    });
+ 
+});
+</script>
+<script type="text/javascript">
+function _gotoPage(categoryId,page) {
+	try{
+		var tableForm = document.getElementById("tableForm");
+		if(categoryId!=null && typeof(categoryId)!="undefined" && categoryId!=0){
+			$("input[name=categoryId]").val(categoryId);
+		}
+		if(page!=null && typeof(page)!="undefined" && page!=0){
+			$("input[name=page]").val(page);
+		}
+		tableForm.action="index.jhtml";
+		tableForm.onsubmit=null;
+		tableForm.submit();
+	} catch(e) {
+		alert('_gotoPage方法出错');
+	}
+}
+</script>
+<!-- 登录状态 -->
+[#include '../common/loginstatus.html']
+</html>

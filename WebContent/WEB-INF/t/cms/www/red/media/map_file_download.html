@@ -1,0 +1,127 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>地图升级下载 用车养车-福域</title>
+<link href="/${res}/fordcss/boilerplate.css" rel="stylesheet" type="text/css">
+<link href="/${res}/fordcss/style.css" rel="stylesheet" type="text/css">
+
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="${resSys}/html5.js"></script>
+<![endif]-->
+<script src="/${res}/respond.min.js"></script>
+<script src="/${res}/fordjs/jquery-1.7.1.min.js"></script>
+
+<style>
+/*地图升级下载 2015-07-01*/
+.daohangDown { margin: 0 0 168px 10px; padding: 20px 0 0;}
+.daohangDown li { float:left; width: 225px; text-align:center;}
+.daohangDown li img {margin:0 auto 15px;}
+.daohangDown li a {text-decoration: underline; color:#5e5e5e;}
+.popupdown { background: #fff; border-radius: 8px; width: 624px; height: 270px; position: fixed; left: 50%; top: 50%; margin: -135px 0 0 -312px;}
+.popupdown p { font-size: 18px; text-align: center; vertical-align: middle; padding: 75px 0 0; color: #5e5e5e;}
+.popupdown p strong { font-size: 36px;}
+.popupdown p.sorry02 { padding: 65px 0 0;}
+.popupdown p.sorry02,.popupdown p.sorry03 { display: none;}
+.popupdown .closeDown { position: absolute; right: 10px; top: 10px; display: block;}
+</style>
+
+<script type="text/javascript">
+function goDownload(fileId){
+	window.location.href="downloadMapFile.jspx?fileId="+fileId;
+	
+}
+</script>
+
+</head>
+<body>
+[#include "../include/页头顶栏.html"/]
+[#include "../include/页头导航栏.html"/]
+<div style=" width: 1174px; margin: 0 auto; position: relative;" class="fixdw">
+[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>地图升级下载</h1>
+	
+	<article class="ctan">
+		<section>
+			<h2>升级文件</h2>
+			<div class="art">
+				<ul class="daohangDown">
+                                      <li><img src="/${res}/images/daohang_icon01.gif" alt="" /><a href="javascript:void(0);" onclick="goDownload(3);">导航系统升级包（约500M）</a></li> 
+                                    <li><img src="/${res}/images/daohang_icon02.gif" alt="" /><a href="javascript:void(0);" onclick="goDownload(1);">地图升级包（约5G）</a></li>                                     
+                                    <li><img src="/${res}/images/daohang_icon03.gif" alt="" /><a href="javascript:void(0);" onclick="goDownload(2);">升级操作指南（约5M）</a></li> 
+                          
+                                 </ul>
+				<p style="font-size: 12px; color:#5e5e5e; margin: 0 0 25px 0;">＊“地图升级下载”页面的文件仅对购车时间在12个月内认证车主开放下载，每个文件分别可下载两次，如有不便敬请谅解。<br />
+1. 如您还不是认证车主，请先完成车主认证后，再返回本页下载；<br />
+2. 如您符合购车时间在12个月内，且已经成为认证车主。但无法下载本页文件，请拨打长安福特24小时客服热线：400-887-7766<br />
+&nbsp; &nbsp;按数字键3由人工客服为您解决。如有不便，敬请谅解。</p>
+				</div>
+			
+		</section>
+		<aside><img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				<h3>家都在关注</h3>
+				<ul>
+					[@cms_content_list count='4' orderBy='9' titLen='18' channelId='11,12,13,14,49,50,61,64,67'  channelOption='1']
+                [#list tag_list as a]
+					<li><a href="${a.url}">[@text_cut s=a.title len=titLen /]</a></li>
+				[/#list]
+                [/@cms_content_list]
+					<li class="last"><a href="${base}/gfbyjy/index.htm">官方保养建议</a></li>
+				</ul>
+			</div>
+			<img src="/${res}/images/img02.png" alt="" style="*float:left;">
+			<div class="box">
+				[#include "../include/投票栏.html"/]
+				
+				
+			</div>
+			
+		</aside>
+	</article>
+</article>
+[#if status??]
+<div class="zzc" style="display:block;">
+     <div class="popupdown">
+<a href="javascript:;" onclick="$('.zzc').hide();" class="closeDown"><img src="/${res}/images/close.jpg" alt="" /></a>          
+<p class="sorry01"><strong>对不起</strong>
+<br />
+[#if status==1]“地图升级下载”文件仅对购车时间在12个月以内的认证车主开<br/>放下载。您还不是福域的认证车主，请先完成车主认证。
+[/#if]
+[#if status==2]数据错误，会员数据缺失。[/#if]
+[#if status==3]数据错误，汽车数据缺失。[/#if]
+[#if status==4]“地图升级下载”文件仅对购车时间在12个月以内的认证车主开<br/>放下载。您的购车时间不符，无法下载。如有疑问请联系24<br/>小时客户服务热线400-887-7766转数字键3由人工为您解答。
+[/#if]
+[#if status==5]“地图升级下载”文件仅对购车时间在12个月以内的认证车主开<br/>放下载。您的购车时间不符，无法下载。如有疑问请联系24<br/>小时客户服务热线400-887-7766转数字键3由人工为您解答。
+[/#if]
+[#if status==6]每个文件可下载2次，您已超过该文件的下载次数 ，谢谢！[/#if]
+[#if status==8]文件不存在！[/#if]
+</p>
+</div>
+</div>
+[/#if]
+</div>
+<form id="downloadMapFile" action="downloadMapFile.jspx" method="get">
+<input type="hidden" value=""  id="fileId"/>
+</form>
+[#include "../include/页脚信息栏.html"/]
+</body>
+</html>

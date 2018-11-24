@@ -1,0 +1,534 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<style type="text/css">
+/*聊天chat样式*/
+.chat {
+	width: 532px;
+	height: 380px;
+	border: 1px solid #e4e3e3
+}
+.chat_box {
+	float: left;
+}
+.chat_l {
+	float: left;
+	width: 150px;
+	border-right: 1px solid #e4e3e3;
+}
+.chat_l_query {
+	width: 100%;
+	height: 35px;
+	border-bottom: 1px solid #e4e3e3;
+	position: relative;
+}
+.chat_l_query_input {
+	width: 120px;
+	border: 1px solid #e4e3e3;
+	margin: 4px 0 0 4px;
+	padding: 4px 18px 5px 2px;
+	*padding-top: 6px;
+	*padding-bottom: 3px;
+	color: #787878;
+	font-size: 12px;
+}
+.chat_icon_query {
+	width: 16px;
+	height: 16px;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_icon.png) repeat 0px 0px;
+	position: absolute;
+	top: 9px;
+	right: 6px;
+	z-index: 2;
+	cursor: pointer;
+}
+.chat_l_list {
+	width:100%;
+	height: 300px;
+	overflow: auto;
+}
+
+.chat_l_list li {
+	height: 45px;
+	line-height: 45px;
+	padding-left: 5px;
+	cursor: pointer;
+	list-style-type:none;
+}
+.chat_l_list ul {
+	
+}
+.chat_l_list li.active {
+	background-color: #f2f2f5
+}
+.chat_l_list li img {
+	width: 29px;
+	height: 29px;
+	float: left;
+	margin-top: 7px;
+}
+.chat_l_list li p {
+	margin-left: 35px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.chat_r {
+	width: 379px;
+	float: right;
+}
+.chat_l_title {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	border-bottom: 1px solid #e4e3e3;
+	position: relative;
+}
+.chat_l_title span {
+	padding-left: 10px;
+	color: #000
+}
+.chat_l_s_box {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: 30px;
+	z-index: 1
+}
+.chat_l_select {
+	width: 15px;
+	margin: 9px auto 0;
+	height: 6px;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_icon.png) repeat 0 -33px;
+}
+.chat_l_c_box {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: 1px;
+	z-index: 1
+}
+.chat_l_closed {
+	width: 11px;
+	height: 15px;
+	margin: 5px auto 0;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_icon.png) repeat 0 -40px;
+}
+.chat_msg_list {
+	width: 369px;
+	height: 290px;
+	padding: 5px;
+	float: left;
+	overflow: auto;
+}
+.chatItem {
+	width: 95%;
+	float: left;
+	padding: 4px 0 10px;
+	overflow-y:hidden
+}
+.chatItem .time {
+	clear: both;
+	width: 265px;
+	font-size: 12px;
+	padding: 2px 0;
+	margin: 10px 0 10px 38px;
+	border-radius: 20px;
+	color: #7f7f7f;
+	text-shadow: 0 1px 0 #fff;
+	text-align: center;
+	overflow: hidden;
+}
+.chatItem .time .timeBg {
+	display: block;
+	height: 1px;
+	width: 80px;
+	border-bottom: 1px dashed #B4B8BD;
+	margin-top: 6px;
+}
+.chatItem .time span {
+	float:left;
+	max-width: 200px;
+	padding:0 10px;
+	text-align: center;
+}
+.chatItemContent {
+	float: left;
+}
+.chatItemContent .headerimg {
+	float: left;
+	width: 29px;
+	height: 29px;
+	border: 1px solid #ccc\9;
+	border: 1px solid #FFF;
+	box-shadow: 0px 1px 0px #B3B6BA;
+}
+.chatItemContent .cloud {
+	min-width: 50px;
+	max-width: 264px;
+	margin: 0 0 20px 42px;
+	cursor: default;
+	margin-bottom: 20px;
+}
+.chatItemContent .cloud .cloudPannel {
+	position: relative;
+	*position: static;
+}
+.chatItemContent .cloud .cloudBody {
+	border: 1px solid #AFAFAF;
+	box-shadow: 0px 1px 0px #D5D5D5;
+	border: 1px solid #9f9f9f\9;
+	border-radius: 6px\9;
+	border-radius: 5px;
+	background-color: #ECECEC;
+}
+.chatItem .cloudContent {
+	text-align: left;
+	font-weight: normal;
+	font-size: 14px;
+	min-height: 20px;
+	word-wrap: break-word;
+	text-shadow: none;
+	border-radius: 5px;
+	padding: 7px 10px;
+	color: #030303;
+	border-top: 1px solid #FFF;
+	border-bottom: 1px solid #F2F2F2;
+	border-right: 1px solid #F2F2F2;
+	background-color: #fff
+}
+.chatItem .cloudText .cloudArrow {
+	position: absolute;
+	left: -7px;
+	top: 5px;
+	width: 13px;
+	height: 24px;
+	background: url(/r/cms/www/blue/bbs_forum/images/bubble_white_guid1dbc1c.png) no-repeat;
+}
+.chat_b {
+	clear: both;
+	width: 530px;
+	height: 43px;
+	border-top: 1px solid #e4e3e3;
+}
+.chat_b_l {
+	float: left;
+	width: 150px;
+	height: 43px;
+	line-height: 43px;
+	border-right: 1px solid #e4e3e3;
+	position: relative;
+	text-align: center;
+}
+.chat_b_l i {
+	width: 13px;
+	height: 12px;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_icon.png) repeat 0 -18px;
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	z-index: 1;
+	cursor: pointer;
+}
+.chat_b_r {
+	width: 378px;
+	float: left;
+}
+.send_input {
+	float: left;
+	width: 278px;
+	height: 25px;
+	margin: 5px 5px 0 2px;
+	padding: 5px 3px 0;
+	outline: none;
+	box-shadow: 1px 1px 2px #bbb inset;
+	background: #fff;
+	border-radius: 2px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	border: 1px solid #fc9c6e;
+	font: 14px/1.5 Helvetica, "微软雅黑", "黑体", Arial, Tahoma;
+	resize: none;
+}
+.send_box {
+	width: 80px;
+	height: 30px;
+	float: left;
+	margin-top: 6px;
+	cursor: pointer;
+}
+.send_phiz {
+	display: block;
+	width: 18px;
+	height: 18px;
+	margin: 6px auto 0;
+	vertical-align: middle;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_icon.png) repeat 0 -92px;
+}
+.send_img {
+	display: block;
+	width: 15px;
+	height: 12px;
+	margin: 9px auto 0;
+	vertical-align: middle;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_icon.png) repeat 0 -77px;
+}
+.send_annex {
+	display: block;
+	width: 16px;
+	height: 17px;
+	margin: 6px auto 0;
+	vertical-align: middle;
+	background: url(/r/cms/www/blue/bbs_forum/images/l_icon.png) repeat 0 -56px;
+}
+
+</style>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+var interval;
+$(document).ready(function(){
+	initFriendEvent();
+	loadFriend();
+	interval=setInterval(loadMessage,5000);
+	loadMessage();
+	initSendEvent();
+	
+});
+
+function initFriendChat(){
+var friendId=$("#friendId").val();
+$('#chat_conversationListContent li').each(function() {//遍历所以好友
+	  if($(this).find("p").attr("fid")==friendId){//如果好友正是需要对话的好友则点点一下
+		  $(this).click();
+	  }
+  }
+);
+}
+
+
+
+var currentFriendId=0;
+function initFriendEvent(){
+	$('#chat_conversationListContent li').live("click",function(event) {
+		$(this).addClass('active').siblings().removeClass('active');
+		$("#current_friend").text($(this).find("p").text());
+		var fid=$(this).find("p").attr("fid");//
+		currentFriendId=fid;
+		setCurrentMessage(fid);
+	});
+}
+
+function setCurrentMessage(friendId){
+	var html='';
+	for(var i=0;i<messageData.length;i++){
+		var m=messageData[i];
+		if((m.receiverUserId==friendId)||(m.senderUserId==friendId)){
+		    
+			 html=html+'<div class="chatItem">'+
+			
+			'<div class="time"><span>'+m.senderUserName+"   "+m.createTime+'</span></div>'+
+		
+		'<div class="chatItemContent">'+
+			'<img class="headerimg" src="/r/cms/www/blue/bbs_forum/images/lt_photo.gif" title="">'+
+			'<div class="cloud cloudText">'+
+				'<div class="cloudPannel" style="">'+
+					'<div class="cloudBody">'+
+					'<div class="cloudContent">'+
+					'<pre style="white-space:pre-wrap">'+m.content+'</pre>'+
+							'</div>'+
+							'</div>'+
+							'<div class="cloudArrow"></div>'+
+							'</div>'+
+							'</div>'+
+							'</div>'+						
+							'</div>';
+		}
+	}
+	
+	$("#chat_chatmsglist").html(html);
+	var ex=document.getElementById("chat_chatmsglist");  
+    ex.scrollTop=ex.scrollHeight;
+}
+
+
+
+
+
+var messageData=[];
+var loadMessage=function loadMessage(){
+	$.ajax({//提交数据
+			url : '/member/findAllMessage.jspx',
+			type : 'post',
+			dataType:'json',
+			data: '',
+			success : function(result) {
+				messageData=result.data;
+				if(currentFriendId!=0){
+					setCurrentMessage(currentFriendId);
+				}
+				
+	      },error:function(){
+            alert("加载好友列表时网络或数据异常，操作失败！");
+            window.clearInterval(interval);
+	     }
+	});
+}
+
+var friendDataList;
+function loadFriend(){
+	$.ajax({//提交数据
+			url : '/member/findAllFriend.jspx',
+			type : 'post',
+			dataType:'json',
+			data: '',
+			success : function(result) {
+				friendDataList=result.data;
+			setFriendData(friendDataList);
+			setTempFriendData();
+	      },error:function(){
+            alert("加载好友列表时网络或数据异常，操作失败！");
+	     }
+	});
+}
+
+function findByKeyword(){
+	var keyword=$("#keyword").val();
+	if(keyword==""){
+		setFriendData(friendDataList);return;
+	}
+	var filtedList=new Array();
+	for(var i=0;i<friendDataList.length;i++){
+		var t=friendDataList[i];
+		if(t.friendUserName==keyword){
+			filtedList.push(t);
+		}
+	}
+	setFriendData(filtedList);
+}
+//设置好友用户列表数据
+function setFriendData(data){
+	var html='';
+	for(var i=0;i<data.length;i++){
+		var t=data[i];
+		html=html+'<li><img src="/r/cms/www/blue/bbs_forum/images/lt_photo.gif"><p fid="'+t.friendUserId+'">'+t.friendUserName+'</p></li>';
+	}
+	$("#friend_list").html(html);
+	initFriendChat();
+}
+//设置临时会话用户列表数据
+function setTempFriendData(){
+	var friendId=$("#friendId").val();
+	var friendName=$("#friendName").val();
+	var isMyFriend=false;//是否为已经存在的好友
+	$('#chat_conversationListContent li').each(function() {//遍历所以好友
+			  if($(this).find("p").attr("fid")==friendId){//如果好友正是需要对话的好友则点点一下
+			  isMyFriend=true;
+			 }
+		 
+	   }
+	);
+  if(isMyFriend==false){
+		  var html='<li><img src="/r/cms/www/blue/bbs_forum/images/lt_photo.gif"><p fid="'+friendId+'">'+friendName+'</p></li>';
+			$("#friend_list").append(html);
+			$('#chat_conversationListContent li').each(function() {//遍历所以好友
+				  if($(this).find("p").attr("fid")==friendId){//如果好友正是需要对话的好友则点一下
+					  $(this).click();
+				  }
+			   }
+			);
+	  }
+}
+function initSendEvent(){
+	/* $("#btn_send").click(function(){
+		sendMsg();
+	}) */;
+	//content
+	$("#content").keydown(function (event) {
+        if (event.keyCode == 13) {
+        	sendMsg();
+        }
+       
+    });
+}
+function sendMsg(){
+	var username=$("#current_friend").text();
+    var content=$("#content").val();
+    if(username==""){
+        alert("请选择用户!");
+        return false;
+    }
+    if(content==""){
+        alert("内容不能为空!");
+        return false;
+    }
+    if(content.length>=1000){
+        alert("内容长度不能超过1000个文字!");
+        return false;
+    }
+	$.post('${base}/member/sendChatMessage.jhtml', {
+		'username':username,
+		'content':content
+		}, function(data) {
+			if(data.message=="发送成功!"){
+				$("#content").val('');
+				loadMessage();
+				
+			}
+		},"json");
+}
+</script>
+</head>
+<body style="min-width:560px;background-color: white;">
+	<div class="chat">
+		<div class="chat_box">
+			<div class="chat_l">
+				<div class="chat_l_query">
+					<input type="text" class="chat_l_query_input" id="keyword"  placeholder="查找联系人">
+					<label class="chat_icon_query" onclick="findByKeyword();"></label>
+				</div>
+				<div class="chat_l_list" id="chat_conversationListContent">
+					<ul id="friend_list">
+					</ul>
+				</div>
+			</div>
+			<div class="chat_r">
+				<div class="chat_l_title">
+					<span id="current_friend"></span>
+					<!-- <div class="chat_l_s_box">
+						<div class="chat_l_select"></div>
+					</div> -->
+					<div class="chat_l_c_box">
+						<div class="chat_l_closed" onclick="window.parent.hideChatWin();"></div>
+					</div>
+				</div>
+				<div class="chat_msg_list" id="chat_chatmsglist">
+				</div>
+			</div>
+		</div>
+		<div class="chat_b">
+			<div class="chat_b_l"></div>
+			<div class="chat_b_r">
+				<textarea type="text" id="content" class="send_input" placeholder="按回车发送私信"  ></textarea>
+			<!-- 	<div class="send_box" style="padding-top:8px"> <span id="btn_send"   >发送</span> </div> -->
+				
+			</div>
+		</div>
+	</div>
+	<input type="hidden" value="${friendId!}" id="friendId">
+	<input type="hidden" value="${friendName!}" id="friendName">
+	<input type="hidden" value="{bbsUserId!}" id="bbsUserId">
+</body>
+
+
+</html>
+
+

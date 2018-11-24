@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>发表主题</title>
+	<link href="${resSys}/front.css" rel="stylesheet" type="text/css"/>
+    <script src="${resSys}/jquery.js" type="text/javascript"></script>
+    <script src="${resSys}/front.js" type="text/javascript"></script>
+    <script src="/${res}/bbs_forum/js/pony.js" type="text/javascript"></script>
+    <script src="/${res}/bbs_forum/js/PnEditor.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/${res}/bbs_forum/css/whole.css" />
+    <link rel="stylesheet" type="text/css" href="/${res}/bbs_forum/css/layout.css" />
+     <link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/plugins/code/prettify.css" />
+<link rel="stylesheet" href="/plugins/kindeditor4/themes/default/default.css" />
+<script charset="utf-8" src="/plugins/kindeditor4/kindeditor.js"></script>
+<script charset="utf-8" src="/plugins/kindeditor4/lang/zh_CN.js"></script>
+<script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    
+    function getCookie(name){
+   	 var strCookie=document.cookie;
+   	 var arrCookie=strCookie.split("; ");
+   	 for(var i=0;i<arrCookie.length;i++){
+   	 var arr=arrCookie[i].split("=");
+   	     if(arr[0]==name){
+   	  	 	return arr[1];
+   	 	}
+   	 }
+   	 return "";
+   } 
+  var editor;
+    function initEditor(){
+    	$("#title").val("");
+    	var base=location.protocol+"//"+window.location.hostname+":"+window.location.port;
+       	var sessionId=getCookie("JSESSIONID");
+       	var auth_id=getCookie("AUTH_ID");
+       	KindEditor.ready(function(K) {
+    		 editor= K.create('#_editor_textarea', {
+      			cssPath:base+'/plugin/kindeditor/plugins/code/prettify.css',
+    			uploadJson:base+'/common/kindeditor/upload.jhtml;jsessionid='+sessionId+"?AUTH_ID="+auth_id+"&needWaterMark=true", //多文件上传时必须加上
+    			fileManagerJson:base+'/common/kindeditor/manage.jhtml;jsessionid='+sessionId+"?AUTH_ID="+auth_id,
+    			allowFileManager : true
+    		 });
+       	});
+      
+    }
+   
+ 
+var VoteItem = "<div><input name='name'/><a href='javascript:;'>X</a></div>";
+$(function() {
+	new PnEditor();
+	$(".AddItem").click(function(){
+		$("#itemPanel").append(VoteItem);
+		BindEvent();
+	});
+	BindEvent();
+});
+
+function BindEvent(){
+	$("#itemPanel a").click(function(){
+		$(this).parent().remove();
+	});
+}
+
+function checkContent(){
+  if($("#title").val()==""){
+     alert("标题不能为空");
+     return false;
+  }
+  if(editor.html()==""){
+	     alert("内容不能为空");
+	     return false;
+  }
+  return true;
+}
+
+function autoSave(){
+	var submitData={};
+	submitData["title"]=$("#title").val();
+	submitData["content"]=editor.html();
+	submitData["postTypeId"]=$("#postTypeId").val();
+	submitData["forumId"]=$("#forumId").val();
+	if(submitData["title"]==""){
+		return;
+	}
+	if(submitData["content"]==""){
+		return;
+	}
+	$.ajax( {
+		url :'../topic/saveBbsTopicDraft.jspx',
+		type : 'post',
+		data:submitData,
+		dataType:'json',
+		success : function(result) {
+			if(result.id!=0){
+				$("#topicDraftId").val(result.id);
+			}
+			$("#draft_alert_content").html("该主题于:"+result.createTime+"自动保存为草稿");
+			$("#draft_alert").fadeIn();
+        },error:function(){
+        	clearInterval(intervalId);
+          
+       }
+	});
+}
+
+var intervalId=setInterval("autoSave()",30000);
+var draft;
+function loadTopicDraft(){
+	$.ajax( {
+		url :'../topic/findAllBbsTopicDraft.jspx',
+		type : 'post',
+		data:'',
+		dataType:'json',
+		success : function(result) {
+			if(result.length>0){
+				draft=result[0];
+				[#if topicDraftId??]//如果是从草稿查过来的，那么直接设置内容
+				setDraft();
+				[#else]
+				$("#draft_alert_content").html('您有一篇未完成的草稿，您可以继续<a href="javascript:void(0)"; onclick="setDraft();" >编辑</a>,该草稿将在您发表主题后自动丢弃！');
+				$("#draft_alert").fadeIn();
+				[/#if]
+				
+			}
+			
+        },error:function(){
+        }
+	});
+}
+
+$(document).ready(function(){
+    initPostTypeSelected();
+	initPostTypeEvent();
+	loadTopicDraft();
+	initEditor();
+	initPreview();
+	[#if canAddTopicPoint==false]initModelAlert('发贴');[/#if]
+});
+
+function setDraft(){
+	if(draft!=undefined){
+		$("#topicDraftId").val(draft["id"]);
+		$("#title").val(draft["title"]);
+		editor.html(draft["content"]);
+		$("#postTypeId").val(draft["postTypeId"]);
+		$("#forumId").val(draft["forumId"]);
+		$("#draft_alert").fadeOut();
+	}
+}
+
+function initPreview(){
+	$("#btn_preview").click(function(){
+		var action=$("#jvForm").attr("action");
+		$("#_editor_textarea").val(editor.html());
+		$("#jvForm").attr("target","_blank").attr("action",action.replace("o_save","preview")).submit();
+		$("#jvForm").attr("target","_self").attr("action",action.replace("preview","o_save"));
+	});
+	
+}
+
+function initPostTypeEvent(){
+	$('.c_tag').click(function(event) {
+		$('.c_tag').each(function(index, el) {
+			var cs="c_tag0"+$(el).attr('name')+"_actived";
+			if($(el).hasClass(cs))$(el).removeClass(cs);
+		});
+		$("#postTypeId").val($(this).attr('typeId'));
+		var css="c_tag0"+($(this).attr('name'))+"_actived";
+		$(this).addClass(css);
+		if($(this).attr('name')==3){
+			$("#vote_container").show();
+			$("#category").val("101");
+		}else{
+			$("#category").val("");
+			$("#vote_container").hide();
+		}
+	});
+}
+
+
+
+function initPostTypeSelected(){
+	var category=$("#category").val();
+	if(category=="101"){
+		$('.c_tag').each(function(index, el) {
+			if($(this).attr('name')==1){//初始化主题类型
+				$("#postTypeId").val($(this).attr('typeId'));
+			}
+			if($(this).attr('name')==3){
+				$("#vote_container").show();
+				$('.c_tag').each(function(index, el) {
+					var cs="c_tag0"+$(el).attr('name')+"_actived";
+					if($(el).hasClass(cs))$(el).removeClass(cs);
+				});
+				$("#postTypeId").val($(this).attr('typeId'));
+				var css="c_tag0"+($(this).attr('name'))+"_actived";
+				$(this).addClass(css);
+			}
+		});
+	}else{
+		$("#postTypeId").val($("#firstPostTypeId").attr('typeId'));
+	}
+}
+
+function initModelAlert(modalType){
+	if ($('#modal-backdrop').size() === 0) {
+		var fade=$('<div id="modal-backdrop" class="modal-backdrop"></div>');
+		$('body').append(fade);
+		$('#myModal').find("font").text(modalType);
+		$('#myModal').show();
+		$('#myModal .modal-close,#myModal .btn-default').click(function(event) {
+			$('#modal-backdrop').remove();
+			$('#myModal').hide();
+		});
+	}
+}
+</script>
+<script type="text/javascript">
+	$("#jvForm").validate($.validator.AlertError);
+</script>
+<style type="text/css">
+#_editor_controls{text-align:left;}
+#_editor_controls ._menu{font-size:12px;padding:4px 9px 2px 2px;}
+
+.editortoolbar a{width:30px; float:left; display:block; margin:4px 0 0 4px; cursor:pointer; text-decoration:none;}
+.editortoolbar a:hover{border:1px solid #C1C1C1;}
+
+
+._controls_normal{border:1px solid #F5F5F0;}
+._controls_hover{border:1px solid #9DB3C5;background-color:#E8F3FD;}
+
+#_pop_container{font-size:12px;}
+#_pop_container ul{list-style-type:none;margin:0px;padding:10px 7px;}
+#_pop_container li{padding:1px;cursor:pointer}
+#_pop_container > div{position:absolute;border:1px solid #CCC;border-bottom-style:solid;background-color:#FFF}
+
+#_forecolor_pop{padding:5px;}
+#_forecolor_pop td{width:12px;height:12px;}
+#_forecolor_pop td div{width:10px;height:10px;cursor:pointer;}
+._forecolor_normal{border:1px solid #FFF;}
+._forecolor_hover{border:1px solid #000;}
+
+._center{text-align:center;}
+._pop_input{width:270px;padding:10px 10px;}
+._pop_input input[type=text]{width:260px;}
+._pop_input div{padding:1px 0;}
+._pop_input hr{height:1px;padding-top:0px; margin-top:0px;}
+
+#_editor_textarea{width:99%;height:250px;}
+._editor_local_img{border:1px solid #CCC;padding:10px;background-color:#FFF}
+#smile{overflow:hidden;}
+#smile img{cursor:pointer;}
+
+
+
+.modal-backdrop{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1030;
+	background-color: #000;
+	opacity: .5;
+	filter: alpha(opacity=50);
+	-webkit-transition: opacity .15s linear;
+	transition: opacity .15s linear
+}
+.modal {
+	position: fixed;
+	top: 20%;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	display: none;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-webkit-transition: opacity .15s linear;
+	transition: opacity .15s linear;
+}
+.modal-dialog {
+	position: relative;
+	z-index: 1050;
+	width: auto;
+	margin: 10px;
+}
+.modal-content {
+	width: 410px;
+	margin: 0 auto;
+	position: relative;
+	background-color: #fff;
+	border: 1px solid #999;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 6px;
+	outline: 0;
+	-webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+	background-clip: padding-box;
+}
+.modal-header{
+	width: 100%;
+	height: 185px;
+	position: relative;
+}
+.modal-header img{
+	width: 410px;
+	height: 185px;
+}
+.modal-close{
+	width: 38px;
+	height: 45px;
+	background: url(/r/cms/www/blue/bbs_forum/images/q_close.png) no-repeat 0 0;
+	position: absolute;
+	top: 0;
+	right: 20px;
+	cursor: pointer;
+}
+.modal-body{
+	width: 100%;
+	padding: 28px 0;
+	text-align: center;
+	font-size: 14px;
+}
+.modal-footer {
+	padding: 0 20px 20px;
+	text-align: center;
+}
+.btn-default{
+	width: 134px;
+	height: 32px;
+	background: url(/r/cms/www/blue/bbs_forum/images/modle_btn_ok.png) no-repeat 0 0;
+	border:none;
+	outline: none;
+}
+</style>
+<style type="text/css">
+
+.warp_c_all {
+	margin: 0 auto;
+	width: 1000px;
+	overflow: hidden
+}
+.warp_c_ed {
+	width: 1000px;
+	background: url(/r/cms/www/blue/bbs_forum/images/t_002.png) repeat-y 0 0;
+}
+.warp_c_tag {
+	width: 100%;
+	height: 56px;
+	line-height: 56px;
+	background: url(/r/cms/www/blue/bbs_forum/images/h3_bg04.png) no-repeat 0 0;
+	position: relative;
+}
+.c_tag {
+	width: 121px;
+	height: 31px;
+	float: left;
+	margin-top: 13px;
+	margin-left: 9px;
+	cursor: pointer;
+}
+.c_tag01 {
+	margin-left: 29px;
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_01.jpg) no-repeat 0 0;
+}
+.c_tag01_actived{
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_01_actived.png) no-repeat 0 0;
+}
+.c_tag02 {
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_02.jpg) no-repeat 0 0;
+}
+.c_tag02_actived{
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_02_actived.png) no-repeat 0 0;
+}
+.c_tag03 {
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_03.jpg) no-repeat 0 0;
+}
+.c_tag03_actived{
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_03_actived.png) no-repeat 0 0;
+}
+.c_tag04 {
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_04.jpg) no-repeat 0 0;
+}
+.c_tag04_actived{
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_04_actived.png) no-repeat 0 0;
+}
+.c_tag05 {
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_05.jpg) no-repeat 0 0;
+}
+.c_tag05_actived{
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_05_actived.png) no-repeat 0 0;
+}
+.c_tag06 {
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_06.png) no-repeat 0 0;
+}
+.c_tag06_actived{
+	background: url(/r/cms/www/blue/bbs_forum/images/f_btn_06_actived.png) no-repeat 0 0;
+}
+.warp_c_cont {
+	width: 100%;
+	height: 1px;
+}
+.down_arrow {
+	width: 10px;
+	height: 6px;
+	background: url(/r/cms/www/blue/bbs_forum/images/down_arrow.png) no-repeat 0 0;
+	position: absolute;
+	right: 8px;
+	top: 9px;
+	z-index: 2
+}
+.warp_c_text {
+	width: 568px;
+	height: 40px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	margin-left: 29px;
+	margin-top: 10px;
+}
+.c_text {
+	clear: both;
+	*margin-left: -29px;
+	width: 556px;
+	font-size: 14px;
+	font-weight: 600;
+	border: none;
+	background-color: #fff;
+	padding: 11px 5px;
+	color: #999;
+}
+.warp_c_editor {
+	width: 940px;
+	height: 300px;
+	border: 1px solid #ddd;
+	margin: 10px 0 10px 29px;
+}
+.warp_c_msg {
+	padding-left: 29px;
+	color: #999;
+}
+.warp_c_button {
+	padding: 19px 0 30px 29px;
+	overflow: hidden;
+}
+.c_release {
+	width: 112px;
+	height: 31px;
+	background: url(/r/cms/www/blue/bbs_forum/images/c_release.png) no-repeat 0 0;
+	border: none;
+}
+.c_preview {
+	width: 83px;
+	height: 31px;
+	background: url(/r/cms/www/blue/bbs_forum/images/c_preview.jpg) no-repeat 0 0;
+	border: none;
+	margin-left: 6px;
+}
+</style>
+
+  </head>
+  <body>
+    [#include "../include/head.html"/]
+    <!--header--> 
+	[#include "../include/页头.html"/]	
+	<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+	<article class="main ycyc fuylt">
+	<h1>福域论谈</h1>	
+	<ul class="ltbanner">
+		<li><a href="${base}/">${site.name}</a> &raquo; 发表新主题</li>
+	</ul>
+    <!--main-->
+   <div class="warp_c_all">
+				<div class="warp_c_tag">
+			 [#if postTypes??]
+           	[#if postTypes?size>0]
+	               		[#list postTypes as type]
+	            		    [#if type.parent??]
+	            		    [#if type.priority==1]
+	            		    <div class="c_tag c_tag0${type.priority} c_tag01_actived" id="firstPostTypeId" typeId="${type.id}"  name="${type.priority}" ></div>
+	            		    [#else]
+	            		    <div class="c_tag c_tag0${type.priority}"  typeId="${type.id}" name="${type.priority}" ></div>
+	            		    [/#if]
+	            		    [/#if]
+	            		[/#list]
+	                [/#if]
+	        [/#if] 
+				
+				</div>
+				<div class="warp_c_ed">
+					<form id="jvForm" action="${base}/topic/o_save.jspx" method="post" enctype="multipart/form-data" validate="true" onsubmit="return checkContent();">
+ 					<div class="warp_c_cont"></div>
+ 					
+ 					<table cellspacing="0" cellpadding="0" width="100%" align="center">
+                      <tbody>
+                      <tr id="draft_alert"  style="display: none;color: #666; line-height: 23px; height: 23px">
+                      <td class="h"><b>提示</b></td>
+                      <td class="h"><font id="draft_alert_content" color="red" ></font> </td>
+                      </tr>
+                     </tbody>
+                    </table>
+ 					<div class="warp_c_text">
+						<input class="c_text required" value="请输入帖子标题"  maxlength="100" size="50" id="title" name="title" type="text">
+					</div>
+					 <!--处理投票贴开始-->
+          
+            <div id="vote_container" style="border: 1px solid #DDD;border-radius: 3px;margin-left: 29px;margin-top: 10px;display: none;" >
+            <input id="category" name="category" value="${category!}" type="hidden"/>
+            	投票开始时间: <input type="text" name="voteStartTime"  style="width:150px"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true,skin:'whyGreen'})" />
+	        <br />
+	         投票结束时间: <input type="text" name="voteEndTime"  style="width:150px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true,skin:'whyGreen'})" />
+            <br />是否可多选：<select name="multipleVote" >
+  <option value="true">是</option>
+   <option value="false">否</option>
+  </select>
+            <div id="itemPanel">
+            <div><input name="name"/><a href="javascript:;">X</a></div>
+            <div><input name="name"/><a href="javascript:;">X</a></div>
+            <div><input name="name"/><a href="javascript:;">X</a></div>
+            <div><input name="name"/><a href="javascript:;">X</a></div>
+            </div>
+            <a href="javascript:;" class="AddItem">增加一项</a>
+            </div>
+           
+            <!--处理投票贴结束-->
+           
+            <div style="margin-left: 29px;margin-top: 10px;">
+             <strong>是否回复后可见</strong>
+             <select name="visibleAfterReply" >
+           <option value="false">否</option>
+            <option value="true">是</option>
+           </select>
+            </div>
+					<div class="warp_c_editor">
+					<textarea id="_editor_textarea" name="content"  vld="{rangelength:[2,4096]}" style="width: 100%;height: 300px" >
+                    </textarea>
+                    </div>
+					<div class="warp_c_msg">*限2,4096字符</div>
+					<div class="warp_c_button">
+						<input class="c_release" value="" type="submit">
+						<input class="c_preview" value="" id="btn_preview" type="button">
+					</div>
+					<input type="hidden" id="forumId" name="forumId" value="${forumId!}"/>
+					<input id="topicDraftId" type="hidden"  />
+					<input id="postTypeId" name="postTypeId" type="hidden" />
+					
+					 </form>
+				</div>
+			</div>
+   
+   
+    <!--/main-->
+    </article>
+    </div>
+    
+    
+    <!--弹出层-->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<img src="/r/cms/www/blue/bbs_forum/images/modal_banner.png" alt="" />
+					<div class="modal-close"></div>
+				</div>
+				<div class="modal-body">您今天的<font ></font>积分上限已满，<br />您可以继续<font></font>，但积分将不被记录，谢谢！</div>
+				<div class="modal-footer">
+					<input type="button" class="btn-default">
+				</div>
+			</div>
+		</div>
+	</div>
+    <!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+  </body>
+</html>

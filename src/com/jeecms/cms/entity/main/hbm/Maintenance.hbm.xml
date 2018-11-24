@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity.maintenance">
+
+	<class name="MaintenanceCar" table="MAINTENANCE_CAR">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Long" column="ID">
+			<generator class="sequence"><param name="sequence">SEQ_MAINTENANCE_CAR_ID</param></generator>
+		</id>
+		<property name="vehicleLine" column="VEHICLE_LINE" type="string" />
+		<property name="engineType" column="ENGINE_TYPE" type="string" />
+		<property name="model" column="MODEL" type="string" />
+	</class>
+	
+	<class name="MaintenancePackage" table="MAINTENANCE_PACKAGE">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Long" column="ID">
+			<generator class="sequence"><param name="sequence">SEQ_MAINTENANCE_PACKAGE_ID</param></generator>
+		</id>
+	    <property name="model" column="MODEL" type="string" />
+		<property name="type" column="TYPE" type="string" />
+		<property name="name" column="NAME" type="string" />
+		<property name="price" column="PRICE" type="string" />
+		<property name="packageType" column="PACKAGE_TYPE" type="string" />
+		<property name="buyChance" column="BUY_CHANCE" type="string" />
+	</class>
+	
+   <class name="MaintenancePackageOrder" table="MAINTENANCE_PACKAGE_ORDER">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Long" column="ID">
+			<generator class="sequence"><param name="sequence">SEQ_MAINTENANCE_PACKAGE_ORDER_ID</param></generator>
+		</id>
+	    <property name="product" column="PRODUCT" type="string" />
+		<property name="productType" column="PRODUCT_TYPE" type="string" />
+		<property name="vin" column="VIN" type="string" />
+		<property name="contractNumber" column="CONTRACT_NUMBER" type="string" />
+		<property name="termMonths" column="TERM_MONTHS" type="string" />
+		<property name="termOdometer" column="TERM_ODOMETER" type="string" />
+		<property name="vehicleRetail" column="VEHICLE_RETAIL" type="string" />
+	    <property name="contractRegistrationDate" column="CONTRACT_REGISTRATION_DATE" type="string" />
+		<property name="contractStartDate" column="CONTRACT_START_DATE" type="string" />
+		<property name="contractEndDate" column="CONTRACT_END_DATE" type="string" />
+		<property name="vehicleLine" column="VEHICLE_LINE" type="string" />
+		<property name="engineType" column="ENGINE_TYPE" type="string" />
+		<property name="dealerSupplierCode" column="DEALER_SUPPLIER_CODE" type="string" />
+		<property name="dealerName" column="DEALER_NAME" type="string" />
+	    <property name="fileName" column="FILE_NAME" type="string" />
+	</class>
+	
+</hibernate-mapping>
+		

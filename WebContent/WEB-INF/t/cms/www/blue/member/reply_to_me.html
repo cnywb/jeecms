@@ -1,0 +1,207 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<title>个人主页-福域</title>
+<link href="${base}/r/cms/www/red/fordcss/boilerplate.css" rel="stylesheet" type="text/css" />
+     <link href="${base}/r/cms/www/red/fordcss/style.css" rel="stylesheet" type="text/css" />
+	<link href="${base}/r/cms/www/red/fordcss/style02.css" rel="stylesheet" type="text/css" />
+<!-- 
+要详细了解文件顶部 html 标签周围的条件注释:
+paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
+
+如果您使用的是 modernizr (http://www.modernizr.com/) 的自定义内部版本，请执行以下操作:
+* 在此处将链接插入 js 
+* 将下方链接移至 html5shiv
+* 将“no-js”类添加到顶部的 html 标签
+* 如果 modernizr 内部版本中包含 MQ Polyfill，您也可以将链接移至 respond.min.js 
+-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script src="/${res}/bbs_forum/js/respond.min.js"></script>
+<script src="/${res}/bbs_forum/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="${base}/plugins/jquery.blockUI.js"></script>
+<script>
+	//tab切换
+	function changeDV1(id){
+		var dvnum=7;
+		for(var i=1;i<=dvnum;i++){
+		document.getElementById('page'+i).className="";
+		document.getElementById('pagelist'+i).style.display="none";
+		}
+		document.getElementById('page'+id).className="out";
+		document.getElementById('pagelist'+id).style.display="block";
+	}
+	$(document).ready(function(){
+		$("span").each(function(){
+				if($(this).text().trim()=="我的主题"){
+				$(this).parent().addClass("out");
+			}
+		});
+	});
+	
+	function showBlock(postId){
+		var bleft=(document.body.clientWidth-730)/2;
+		$.blockUI({message:$('#block_post_content'),css:{height:'500px', width:'730px',left:bleft+'px',top:'100px',overflow:'scroll'} });
+		$.post('${base}/member/readPostById.jhtml', {
+			'postId':postId
+			}, function(data) {
+			  if(data.message=="ok"){
+				  $("#post_content").html(data.post);
+			  }else{
+				  $("#post_content").html(data.message);
+			  }
+				
+			},"json");
+		
+	}
+	
+	
+	function showSendLeaveMsg(userName){
+		$("#content").val("");
+		$("#leaveMsgUserName").text(userName)
+		$.blockUI({message:$('#send_leave_msg'),css:{ width:'550px'} });
+	}
+	function sendMsg(){
+		var username=$("#leaveMsgUserName").text();
+	    var content=$("#content").val();
+	    if(content==""){
+	        alert("内容不能为空!");
+	        return false;
+	    }
+	    if(content.length>=1000){
+	        alert("内容长度不能超过1000个文字!");
+	        return false;
+	    }
+		$.post('${base}/member/sendMsgJson.jhtml', {
+			'username':username,
+			'content':content,
+			'msgType':2
+			}, function(data) {
+				$.unblockUI();
+				alert(data.message);
+			},"json");
+	}
+</script>
+<style type="text/css">
+<!-- 
+ *{margin:0;padding:0;}
+.box{margin-bottom:12px;overflow-x:hidden;overflow-y:hidden;padding:3px;background:#FFFFEE;border:solid 1px #999;}
+.boxTitle{font-size:10.5pt;color: black;}
+ -->
+</style>
+</head>
+<body>
+[#include "../include/head.html"/]
+    <!--header--> 
+[#include "../include/页头.html"/]	
+<div class="fixdw" style=" width: 1174px; margin: 0 auto; position: relative;">
+	[#include "../include/czrz.html"/]
+<article class="main ycyc">
+	<h1>个人主页</h1>
+	[#include "会员中心页_导航.html"/]
+	<article class="selfpage de_event self">
+		<section id="pagelist5" class="tabpage none" style="display: block;">
+			 <ul class="inftab">
+				<li class="bodl"><a href="mytopic.jhtml"   id="xiaox1">主题列表</a></li>
+				<li class="bodl"><a href="mypost.jhtml"  id="xiaox2">我的回复</a></li>
+				<li><a href="replyToMe.jhtml"  class="out " id="xiaox3">收到回复</a></li>
+			</ul>
+			<table cellpadding="0" cellspacing="0" width="100%" class="listtable block">
+				<tr>
+					<td class="aleft"><img src="/${res}/bbs_member/img/page_img02.gif" alt=""></td>
+				</tr>
+				<tr class="bg01">
+					<td class="bg01">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<th width="300" class="aleft"><span style=" padding-left: 15px;">标 题</span></th>
+								<th width="200">所在版块</th>
+								<th  width="100">回贴人</th>
+								<th  width="100">回贴时间</th>
+								<th  width="200">操作</th>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+				 [@reply_to_me userId=bbsUser.id  count='15']
+      			 [#list tag_pagination.list as post]
+				<tr>
+					<td height="2"></td>
+				</tr>
+				<tr>
+					<td class="aleft"><img src="/${res}/bbs_member/img/page_img03.gif" alt=""></td>
+				</tr>
+				<tr>
+					<td class="bg02">
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td class="title" width="300" ><a href="${post.topic.url}" title="${post.topic.title?html}"> [@text_cut s=post.topic.title?html len=16 append="..."/]</a><span>HOT</span></td>
+								<td width="200" >${post.topic.forum.title}</td>
+								<td width="100">${post.creater.username!}</td>
+								<td width="100">${post.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+								<td width="200"><a href="javascript:void(0);" onclick="showBlock('${post.id}');">查看</a>
+								<a href="${base}/post/v_reply${post.id!}.jspx" target="_blank" >回复</a>
+								[#if bbsUser.id!=post.creater.id]
+								<a href="javascript:void(0);" onclick="showSendLeaveMsg('${post.creater.username!}');">私信</a>
+								[/#if]
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				 [/#list]
+    			[/@reply_to_me]
+			</table>
+			
+			<ul class="page">
+				<li class="num"> [@reply_to_me userId=bbsUser.id   count='15' ][#include "../tag/topic.html"/] [/@reply_to_me]</li>
+			</ul>
+		</section>
+	</article>
+</article>
+</div>
+<!--footer-->[#include "../include/页脚.html"/]<!--footer-->
+
+<div id="block_post_content" style="display:none; cursor: default">
+      <div class="tiezcot" >
+        <div  id="post_content" class="tpc_content f14">
+         
+        </div>
+        </div>
+     <div style="position: relative;"><input type="button" value="关闭" onclick="$.unblockUI();"  /></div>
+</div>
+
+<div id="send_leave_msg" style="display:none; cursor: default">
+       <table cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td  >私信给：</td>
+									<td id="leaveMsgUserName" style="text-align: left;"></td>
+								</tr>
+								<tr>
+									<td><br> 内容：</td>
+									<td style="text-align: left;"><br><textarea id="content" name="content" rows="6" cols="70"></textarea></td>
+								</tr>
+								
+								<tr>
+									
+									<td colspan="2">
+									<input type="hidden" value='1' name="msgType"/>
+     								<input type="submit" value="发送" onclick="sendMsg();"/>
+     								<input type="submit" value="取消" onclick="$.unblockUI();"/>
+     								</td>
+     							
+								</tr>
+							</table>
+</div>
+</body>
+</html>

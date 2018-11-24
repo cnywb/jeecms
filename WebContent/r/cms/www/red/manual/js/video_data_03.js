@@ -1,0 +1,11 @@
+[
+ {"car":"锐界","videoid":"XMTU0OTY3MTgzMg==","title":"用户手册视频完整版","thumbnail":"/r/cms/www/red/manual/images/rj9.jpg","time":"1:13:42"},
+ {"car":"锐界","videoid":"XMTU0OTU3NTk2NA==","title":"组合仪表","thumbnail":"/r/cms/www/red/manual/images/rj1.jpg","time":"07:43"},
+ {"car":"锐界","videoid":"XMTU0OTU3ODc4NA==","title":"行驶前检查","thumbnail":"/r/cms/www/red/manual/images/rj2.jpg","time":"11:36"},
+ {"car":"锐界","videoid":"XMTU0OTU4NjI4NA==","title":"启动与驾驶","thumbnail":"/r/cms/www/red/manual/images/rj3.jpg","time":"18:08"},
+ {"car":"锐界","videoid":"XMTU0OTU5MTYwOA==","title":"驾驶辅助系统","thumbnail":"/r/cms/www/red/manual/images/rj4.jpg","time":"20:12"},
+ {"car":"锐界","videoid":"XMTU0OTU5NDQxMg==","title":"sync系统","thumbnail":"/r/cms/www/red/manual/images/rj5.jpg","time":"11:58"},
+ {"car":"锐界","videoid":"XMTU0OTYwOTc5Ng==","title":"应急措施","thumbnail":"/r/cms/www/red/manual/images/rj6.jpg","time":"02:47"},
+ {"car":"锐界","videoid":"XMTU0OTYzNjEzNg==","title":"用车小常识","thumbnail":"/r/cms/www/red/manual/images/rj7.jpg","time":"00:34"},
+ {"car":"锐界","videoid":"XMTU0OTYzODEwOA==","title":"片头","thumbnail":"/r/cms/www/red/manual/images/rj8.jpg","time":"00:48"}
+ ]
